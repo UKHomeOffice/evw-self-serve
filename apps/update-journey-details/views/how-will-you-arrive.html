@@ -1,0 +1,34 @@
+{{<layout}}
+{{$step}}Step 1 of 2{{/step}}
+
+{{$journeyHeader}}
+{{#t}}journey.header{{/t}}
+{{/journeyHeader}}
+
+{{$validationSummary}}
+{{> partials-validation-summary}}
+{{/validationSummary}}
+
+{{$propositionHeader}}
+{{> partials-navigation}}
+{{/propositionHeader}}
+
+{{$content}}
+<header>
+    <h1 class="heading-large">{{#t}}pages.how-will-you-arrive.header{{/t}}</h1>
+</header><!-- /header -->
+
+{{<partials-form}}
+
+{{$form}}
+
+{{#radio-group}}transport-options{{/radio-group}}
+
+{{#input-submit}}continue{{/input-submit}}
+{{/form}}
+
+{{/partials-form}}
+
+{{/content}}
+
+{{/layout}}

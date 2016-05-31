@@ -1,0 +1,60 @@
+{
+  "example-dob": {
+    "label": "Date",
+    "legend": "Date on the letter",
+    "hint": "For example, 11  6  2015"
+  },
+  "example-dob-day": {
+    "label": "Day"
+  },
+  "example-dob-month": {
+    "label": "Month"
+  },
+  "example-dob-year": {
+    "label": "Year"
+  },
+  "transport-options": {
+    "legend": "How will you arrive in the UK?",
+    "options": {
+      "by-plane": {
+        "label": "By plane"
+      },
+      "by-train": {
+        "label": "By train"
+      },
+      "by-private-plane": {
+        "label": "By private plane"
+      },
+      "by-boat": {
+        "label": "By boat"
+      },
+      "by-land": {
+        "label": "By land from the Republic of Ireland"
+      }
+    }
+  },
+  "example-text": {
+    "label": "What is your favourite colour?"
+  },
+  "example-email": {
+    "label": "What is your email address?"
+  },
+  "example-checkbox": {
+    "label": "Please tick if you like cheese"
+  },
+  "yes-no-radio-toggler": {
+    "legend": "Select \"Yes\" to show the hidden field, or \"No\" to hide it"
+  },
+  "yes-no-radio": {
+    "legend": "Select \"Yes\" if you want to make the text field below mandatory"
+  },
+  "example-toggled-text": {
+    "label": "You showed me!!"
+  },
+  "example-depends-on-text": {
+    "label": "What is the name of your pet dog?"
+  },
+  "multiples-input": {
+    "label": "What is your favourite multiple of 3?"
+  }
+}

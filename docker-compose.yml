@@ -1,0 +1,12 @@
+app:
+  build: .
+  environment:
+  - NODE_ENV=docker-compose
+  ports:
+    - "8080:8080"
+  volumes:
+  - "/public"
+  net: "host"
+redis:
+  image: redis
+  net: "host"
