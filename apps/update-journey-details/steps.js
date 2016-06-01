@@ -9,35 +9,12 @@ module.exports = {
     template: 'how-will-you-arrive',
     fields: [
       'transport-options',
-      'example-dob',
-      'example-dob-day',
-      'example-dob-month',
-      'example-dob-year',
-      'example-text',
-      'example-email'
     ],
-    next: '/second-page'
+    next: '/email-us'
   },
-  '/second-page': {
-    template: 'second-page',
-    fields: [
-      'yes-no-radio-toggler',
-      'example-toggled-text'
-    ],
-    next: '/third-page'
-  },
-  '/third-page': {
-    template: 'third-page',
-    fields: [
-      'yes-no-radio',
-      'example-depends-on-text'
-    ],
-    next: '/fourth-page'
-  },
-  '/fourth-page': {
-    controller: require('./controllers/fourth-page'),
-    template: 'fourth-page',
-    fields: ['multiples-input'],
+  '/email-us': {
+    template: 'email-us',
+    controller: require('./controllers/email-us'),
     next: '/confirm'
   },
   '/confirm': {

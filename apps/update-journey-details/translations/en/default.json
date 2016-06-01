@@ -67,8 +67,32 @@
 			"header": "Your new journey to the UK",
 			"question": "How will you arrive in the UK?"
 		},
-		"second-page": {
-			"header": "This page demonstrates a field that toggles depending on the value of another field"
+		"email-us": {
+			"header": "Email us with your new travel details",
+			"request": "Please email <a href='mailto:electronicvisawaiver@homeoffice.gsi.gov.uk'>electronicvisawaiver@homeoffice.gsi.gov.uk</a> with the new details for your journey to the UK.",
+			"list": {
+				"title": "We need to know:",
+				"by-plane": {
+					"one": "your electronic visa waiver number",
+					"two": "new flight number (if your journey has any stops or connecting flights we only need details of the flight landing in the UK)",
+					"three": "airport this flight takes off from",
+					"four": "new date this flight takes off",
+					"five": "new time this flight takes off",
+					"six": "UK arrival airport",
+					"seven": "new date of arrival in the UK",
+					"eight": "new time of arrival in the UK"
+				},
+				"by-train": {
+					"one": "your electronic visa waiver number",
+					"two": "new train number, eg Eurostar 9140",
+					"three": "new train station you depart for the UK from",
+					"four": "new date of departure for the UK",
+					"five": "new time of departure for the UK",
+					"six": "new UK arrival train station",
+					"seven": "new date of arrival in the UK",
+					"eight": "new time of arrival in the UK"
+				}
+			}
 		},
 		"third-page": {
 			"header": "This page shows how to make a field mandatory depending on the answer to a previous question"

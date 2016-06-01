@@ -1,0 +1,47 @@
+{{<layout}}
+{{$step}}Step 2 of 5{{/step}}
+
+{{$journeyHeader}}
+{{#t}}journey.header{{/t}}
+{{/journeyHeader}}
+
+{{$validationSummary}}
+{{> partials-validation-summary}}
+{{/validationSummary}}
+
+{{$propositionHeader}}
+{{> partials-navigation}}
+{{/propositionHeader}}
+
+
+{{$content}}
+
+<h1 class="heading-large">{{#t}}pages.email-us.header{{/t}}</h1>
+
+<p>{{#t}}pages.email-us.request{{/t}}</p>
+
+<p>{{#t}}pages.email-us.list.title{{/t}}</p>
+
+<ul>
+    <li>{{#t}}pages.email-us.list.{{transport}}.one{{/t}}</li>
+    <li>{{#t}}pages.email-us.list.{{transport}}.two{{/t}}</li>
+    <li>{{#t}}pages.email-us.list.{{transport}}.three{{/t}}</li>
+    <li>{{#t}}pages.email-us.list.{{transport}}.four{{/t}}</li>
+    <li>{{#t}}pages.email-us.list.{{transport}}.five{{/t}}</li>
+    <li>{{#t}}pages.email-us.list.{{transport}}.six{{/t}}</li>
+    <li>{{#t}}pages.email-us.list.{{transport}}.seven{{/t}}</li>
+    <li>{{#t}}pages.email-us.list.{{transport}}.eight{{/t}}</li>
+</ul>
+
+{{<partials-form}}
+
+{{$form}}
+
+{{#input-submit}}continue{{/input-submit}}
+{{/form}}
+
+{{/partials-form}}
+
+{{/content}}
+
+{{/layout}}
