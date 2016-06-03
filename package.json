@@ -11,7 +11,7 @@
   "scripts": {
     "start": "node .",
     "dev": "npm-run-all --parallel watch:app watch:scss watch:js watch:translations",
-    "watch:app": "NODE_ENV=development nodemon --watch apps -e html,json",
+    "watch:app": "NODE_ENV=development nodemon --watch apps -e html,json,js",
     "watch:scss": "nodemon -e scss -x 'npm run sass'",
     "watch:js": "nodemon --watch assets/js -x 'npm run browserify'",
     "watch:translations": "nodemon --watch apps/update-journey-details/translations/src -x 'npm run hof-transpile'",

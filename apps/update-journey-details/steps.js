@@ -15,17 +15,6 @@ module.exports = {
   '/email-us': {
     template: 'email-us',
     controller: require('./controllers/email-us'),
-    next: '/confirm'
-  },
-  '/confirm': {
-    controller: require('./controllers/confirm'),
-    template: 'confirm.html',
-    next: '/confirmation'
-  },
-  '/confirmation': {
-    template: 'confirmation.html',
-    backLink: false,
-    clearSession: true
+    clearSession: false
   }
-}
-;
+};
