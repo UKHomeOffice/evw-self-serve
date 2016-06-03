@@ -70,6 +70,7 @@
 		"email-us": {
 			"header": "Email us with your new travel details",
 			"request": "Please email <a href='mailto:electronicvisawaiver@homeoffice.gsi.gov.uk'>electronicvisawaiver@homeoffice.gsi.gov.uk</a> with the new details for your journey to the UK.",
+			"call-out": "We must receive your request at least 48 hours before your original travel date. Otherwise we won’t be able to change your electronic visa waiver",
 			"list": {
 				"title": "We need to know:",
 				"by-plane": [
