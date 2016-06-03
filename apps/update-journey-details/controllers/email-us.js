@@ -4,6 +4,8 @@ const _ = require('lodash');
 const util = require('util');
 const controllers = require('hof').controllers;
 const BaseController = controllers.base;
+const translations = require('../translations/en/default.json');
+const list = translations.pages['email-us'].list;
 
 const EmailUsController = function EmailUsController() {
   BaseController.apply(this, arguments);
@@ -12,12 +14,14 @@ const EmailUsController = function EmailUsController() {
 util.inherits(EmailUsController, BaseController);
 
 EmailUsController.prototype.locals = function locals(req, res) {
-  const mod = req.sessionModel.toJSON()
-  // this.transport = mod['transport-options'];
-  console.log(req.sessionModel.toJSON());
+  let mod = req.sessionModel.toJSON();
+  let key = mod['transport-options'];
 
   return _.extend(
-    { transport:mod['transport-options'] },
+    {
+        transport: key,
+        list: list[key]
+    },
     BaseController.prototype.locals.call(this, req, res)
   );
 };
