@@ -24,8 +24,7 @@ You will need the server running to run the cucumber tests against.
 
 ```bash
 $ cd acceptance_tests
-$ bundle install
-$ cucumber -r features
+$ ../node_modules/.bin/nightwatch
+$ # or run in chrome and firefox in parallel 🤘🏽😝🤘🏽
+$ ../node_modules/.bin/nightwatch -e chrome,firefox
 ```
-
-You will need phantomjs installed to run tests. Alternatively you can export IN_BROWSER=true to run the tests in firefox.
