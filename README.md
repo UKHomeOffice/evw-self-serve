@@ -23,8 +23,9 @@ Go to http://localhost:8080/update-journey-details
 You will need the server running to run the cucumber tests against.
 
 ```bash
-$ cd acceptance_tests
-$ ../node_modules/.bin/nightwatch
+$ node_modules/.bin/nightwatch
 $ # or run in chrome and firefox in parallel 🤘🏽😝🤘🏽
-$ ../node_modules/.bin/nightwatch -e chrome,firefox
+$ node_modules/.bin/nightwatch  -e chrome,firefox
+$ # or via npm scripts
+$ npm run test:acceptance
 ```

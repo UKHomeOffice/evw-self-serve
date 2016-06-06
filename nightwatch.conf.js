@@ -1,15 +1,31 @@
+'use strict';
+
 const seleniumServer = require('selenium-server');
 const phantomjs = require('phantomjs-prebuilt');
 const chromedriver = require('chromedriver');
 
 /*eslint camelcase: 0*/
+const screenshotSettings = function (folderName) {
+    return {
+        enabled: true,
+        on_failure: true,
+        on_error: false,
+        path: `acceptance_tests/screenshots/${folderName}`
+    };
+};
+
+/*eslint camelcase: 0*/
 module.exports = {
-    src_folders: [require('nightwatch-cucumber')()],
-    output_folder: 'reports',
+    src_folders: [require('nightwatch-cucumber')({
+        featureFiles: 'acceptance_tests/features',
+        stepDefinitions: 'acceptance_tests/features/step_definitions',
+        htmlReport: 'acceptance_tests/reports/index.html'
+    })],
+    output_folder: 'acceptance_tests/reports',
     custom_commands_path: '',
     custom_assertions_path: '',
     page_objects_path: '',
-    live_output: true,
+    live_output: false,
     disable_colors: false,
     // test_workers: {
     //  enabled: true,
@@ -31,12 +47,7 @@ module.exports = {
             selenium_port: 4444,
             selenium_host: 'localhost',
             silent: true,
-            screenshots: {
-                enabled: true,
-                on_failure: true,
-                on_error: false,
-                path: 'screenshots/default'
-            },
+            screenshots: screenshotSettings('phantomjs'),
             desiredCapabilities: {
                 browserName: 'phantomjs',
                 javascriptEnabled: true,
@@ -55,7 +66,8 @@ module.exports = {
                 cli_args: {
                     'webdriver.chrome.driver': chromedriver.path
                 }
-            }
+            },
+            screenshots: screenshotSettings('chrome')
         },
 
         firefox: {
@@ -63,7 +75,8 @@ module.exports = {
                 browserName: 'firefox',
                 javascriptEnabled: true,
                 acceptSslCerts: true
-            }
+            },
+            screenshots: screenshotSettings('firefox')
         }
     }
-}
+};

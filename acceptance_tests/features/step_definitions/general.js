@@ -14,7 +14,7 @@ module.exports = function () {
         this.click(`input[value=${urlise(value)}]`);
     });
 
-    this.When(/^I continue$/, function (value) {
+    this.When(/^I continue$/, function () {
         this.click(`input[value=Continue]`);
     });
 
