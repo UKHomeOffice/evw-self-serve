@@ -1,5 +1,5 @@
 {
-  "name": "EVW Self Serve",
+  "name": "EVW-Self-Serve",
   "version": "1.0.0",
   "main": "app.js",
   "description": "A tiny, HOF-based form to allow Electronic Visa Wavier users to update their travel details.",

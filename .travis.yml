@@ -1,7 +1,19 @@
 language: node_js
 node_js:
-  - "4.2"
+  - "6"
+  - "4.2.2"
+
+services:
+  - redis-server
+
+cache:
+  directories:
+    - node_modules
+
+before_script:
+  - npm run sass
+  - NODE_ENV='ci' npm start&
 
 script:
-  - npm test
-  - npm test:acceptance
+  - npm run test:ci
+  - npm run test:acceptance
