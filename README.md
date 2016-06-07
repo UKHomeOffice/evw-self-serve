@@ -1,6 +1,8 @@
+[![Build Status](https://travis-ci.org/UKHomeOffice/evw-self-serve.svg?branch=master)](https://travis-ci.org/UKHomeOffice/evw-self-serve)
+
 # EVW Self serve
 
-It's the hof example form, but not as we know it
+A tiny, HOF-based form to allow Electronic Visa Wavier users to update their travel details.
 
 ### Prerequisities
 
