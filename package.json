@@ -15,7 +15,7 @@
     "watch:scss": "nodemon -e scss -x 'npm run sass'",
     "watch:js": "nodemon --watch assets/js -x 'npm run browserify'",
     "watch:translations": "nodemon --watch apps/update-journey-details/translations/src -x 'npm run hof-transpile'",
-    "test": "NODE_ENV=test mocha",
+    "test": "NODE_ENV=test node_modules/.bin/mocha",
     "test:acceptance": "node_modules/.bin/nightwatch -e default",
     "test:ci": "npm run lint && npm run style && npm run test",
     "browserify": "browserify ./assets/js/index.js > ./public/js/bundle.js",
