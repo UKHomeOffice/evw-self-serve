@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/UKHomeOffice/evw-self-serve.svg?branch=master)](https://travis-ci.org/UKHomeOffice/evw-self-serve)
+[![Dependency Status](https://david-dm.org/UKHomeOffice/evw-self-serve.svg)](https://david-dm.org/UKHomeOffice/evw-self-serve)
+[![devDependency Status](https://david-dm.org/UKHomeOffice/evw-self-serve/dev-status.svg)](https://david-dm.org/UKHomeOffice/evw-self-serve#info=devDependencies)
 
 # EVW Self serve
 
