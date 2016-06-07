@@ -20,5 +20,5 @@ module.exports = {
       value: 'by-land',
       label: 'fields.transport-options.options.by-land.label'
     }]
-  },
+  }
 };

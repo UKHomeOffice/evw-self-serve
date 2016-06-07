@@ -8,7 +8,7 @@ module.exports = {
   '/how-will-you-arrive': {
     template: 'how-will-you-arrive',
     fields: [
-      'transport-options',
+      'transport-options'
     ],
     next: '/email-us'
   },
