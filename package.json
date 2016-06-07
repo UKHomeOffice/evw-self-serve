@@ -1,12 +1,12 @@
 {
-  "name": "HOF-Example",
-  "version": "0.0.1",
+  "name": "EVW Self Serve",
+  "version": "1.0.0",
   "main": "app.js",
-  "description": "An example of how to use the HOF package for creating forms",
+  "description": "A tiny, HOF-based form to allow Electronic Visa Wavier users to update their travel details.",
   "license": "GPLv2",
   "repository": {
     "type": "git",
-    "url": "https://github.com/UKHomeOffice/hof-example-form/"
+    "url": "https://github.com/UKHomeOffice/evw-self-serve/"
   },
   "scripts": {
     "start": "node .",
