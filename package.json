@@ -41,6 +41,7 @@
     "hogan-express-strict": "^0.5.4",
     "hogan.js": "^3.0.2",
     "jquery": "^2.1.4",
+    "lodash": "^4.13.1",
     "moment": "^2.10.3",
     "moment-business": "^2.0.0",
     "node-sass": "3.4.2",
@@ -81,7 +82,6 @@
   },
   "pre-commit": [
     "lint",
-    "style",
     "test"
   ]
 }
