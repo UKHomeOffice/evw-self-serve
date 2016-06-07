@@ -45,7 +45,7 @@ app.set('trust proxy', 1);
 /******* Redis session storage *******/
 /*************************************/
 var redis = require('redis');
-var RedisStore = require('connect-redis-crypto')(session);
+var RedisStore = require('connect-redis')(session);
 var client = redis.createClient(config.redis.port, config.redis.host);
 
 client.on('connecting', function redisConnecting() {
