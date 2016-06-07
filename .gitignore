@@ -1,3 +1,4 @@
 node_modules
-public/css
+public
+apps/update-journey-details/translations/en
 selenium-debug.log
