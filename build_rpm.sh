@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+# Read app version from root level version.properties
+updatesVersion=`cat version`
+
 TARGET=fpm/build/usr/share/evw-self-serve
 
 rm -rf ${TARGET}/*
