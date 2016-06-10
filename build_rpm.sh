@@ -1,6 +1,12 @@
 #!/bin/bash
 
 
+function fail() {
+  echo "Failed: $@"
+  exit 1
+}
+
+
 # Read app version from root level version.properties
 updatesVersion=`cat version`
 
