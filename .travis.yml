@@ -27,6 +27,8 @@ after_success:
   - git commit -m "Set build version number" version
   - git tag $GIT_TAG -a -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
   - git push --quiet https://$GITHUBKEY@github.com/UKHomeOffice/evw-self-serve $GIT_TAG > /dev/null 2>&1
+  # build rpm
+  - ./fpm/build_rpm.sh
 
 branches:
   except:
