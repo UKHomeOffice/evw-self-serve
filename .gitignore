@@ -2,3 +2,4 @@ node_modules
 public
 apps/update-journey-details/translations/en
 selenium-debug.log
+Gemfile.lock
