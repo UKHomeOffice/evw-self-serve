@@ -3,3 +3,4 @@ public
 apps/update-journey-details/translations/en
 selenium-debug.log
 Gemfile.lock
+fpm/build/usr/share/evw-self-serve/*

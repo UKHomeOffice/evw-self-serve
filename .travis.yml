@@ -19,6 +19,8 @@ script:
   - npm run test:acceptance
 
 after_success:
+  # build rpm
+  - ./fpm/build_rpm.sh
   # CREATE GIT TAG
   - git config --global user.email "builds@travis-ci.com"
   - git config --global user.name "Travis CI"
@@ -27,13 +29,15 @@ after_success:
   - git commit -m "Set build version number" version
   - git tag $GIT_TAG -a -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
   - git push --quiet https://$GITHUBKEY@github.com/UKHomeOffice/evw-self-serve $GIT_TAG > /dev/null 2>&1
-  # build rpm
-  - ./fpm/build_rpm.sh
 
 branches:
   except:
     - /^build-[0-9a-z\-]*/
 
+addons:
+  apt:
+    packages:
+      - rpm
 
 deploy:
   provider: releases

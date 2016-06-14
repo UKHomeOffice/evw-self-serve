@@ -10,15 +10,12 @@ updatesVersion=`cat version`
 
 TARGET=fpm/build/usr/share/evw-self-serve
 
-mkdir ${TARGET}
-cp -rf app.js config.js CONTRIBUTING.md LICENSE package.json README.md version apps lib assets errors lib middleware node_modules public $TARGET/
+rm -rf ${TARGET}/*
+cp -rf app.js config.js CONTRIBUTING.md LICENSE package.json README.md version apps lib assets errors middleware node_modules public $TARGET/
+cp -a lib $TARGET/
 
 cd fpm
 bundle install
-sudo apt-get install -y rpm
-make build
-make deb
-make rpm
 
 fpm --before-install scripts/preinstall.sh \
     --after-install scripts/postinstall.sh \
