@@ -15,10 +15,6 @@ cp -rf app.js config.js CONTRIBUTING.md LICENSE package.json README.md version a
 
 cd fpm
 bundle install
-sudo apt-get install -y rpm
-make build
-make deb
-make rpm
 
 fpm --before-install scripts/preinstall.sh \
     --after-install scripts/postinstall.sh \
