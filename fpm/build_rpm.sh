@@ -1,21 +1,21 @@
 #!/bin/bash
 
-
 function fail() {
   echo "Failed: $@"
   exit 1
 }
 
-
-# Read app version from root level version.properties
-updatesVersion=`cat version`
+# Read app version version
+updatesVersion=`cat ../version`
 
 TARGET=fpm/build/usr/share/evw-self-serve
 
+cd ..
 rm -rf ${TARGET}/*
-cp -rf app.js config.js CONTRIBUTING.md LICENSE package.json README.md version apps lib assets errors lib middleware $TARGET/
-
+cp -rf app.js config.js CONTRIBUTING.md LICENSE package.json README.md version apps lib assets errors lib middleware node_modules public $TARGET/
 cd fpm
+
+bundle install
 
 fpm --before-install scripts/preinstall.sh \
     --after-install scripts/postinstall.sh \
