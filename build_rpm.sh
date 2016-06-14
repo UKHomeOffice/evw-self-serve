@@ -13,9 +13,7 @@ TARGET=fpm/build/usr/share/evw-self-serve
 rm -rf ${TARGET}/*
 cp -rf app.js config.js CONTRIBUTING.md LICENSE package.json README.md version apps lib assets errors middleware node_modules public $TARGET/
 cp -a lib $TARGET/
-
 cd fpm
-bundle install
 
 fpm --before-install scripts/preinstall.sh \
     --after-install scripts/postinstall.sh \
