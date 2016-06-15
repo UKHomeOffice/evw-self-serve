@@ -15,7 +15,7 @@ if (config.env !== 'ci') {
 }
 
 if (config.env === 'development' || config.env === 'ci' || config.env === 'docker-compose') {
-  app.use('/public', express.static(path.resolve(__dirname, './public')));
+  app.use(config.assetPath, express.static(path.resolve(__dirname, './public')));
 }
 
 app.use(function setAssetPath(req, res, next) {
@@ -23,7 +23,9 @@ app.use(function setAssetPath(req, res, next) {
   next();
 });
 
-require('hof').template.setup(app);
+require('hof').template.setup(app, {
+    path: config.govukAssetPath
+});
 app.set('view engine', 'html');
 app.set('views', path.resolve(__dirname, './apps/common/views'));
 app.enable('view cache');
