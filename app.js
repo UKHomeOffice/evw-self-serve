@@ -19,7 +19,7 @@ if (config.env === 'development' || config.env === 'ci' || config.env === 'docke
 }
 
 app.use(function setAssetPath(req, res, next) {
-  res.locals.assetPath = '/public';
+  res.locals.assetPath = config.assetPath;
   next();
 });
 

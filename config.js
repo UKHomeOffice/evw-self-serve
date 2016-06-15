@@ -7,6 +7,7 @@ module.exports = {
   env: process.env.NODE_ENV,
   port: process.env.PORT || 8080,
   listen_host: process.env.LISTEN_HOST || '0.0.0.0',
+  assetPath: process.env.ASSET_PATH || '/public',
   session: {
     secret: process.env.SESSION_SECRET || 'howdoesyourgardengrow',
     ttl: process.env.SESSION_TTL || 1200 /* 20 mins */
