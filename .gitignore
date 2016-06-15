@@ -1,5 +1,6 @@
 node_modules
 public
+dump.rdb
 apps/update-journey-details/translations/en
 selenium-debug.log
 Gemfile.lock
