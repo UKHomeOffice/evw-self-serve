@@ -52,7 +52,7 @@
     "redis": "^2.6.1",
     "typeahead.js-browserify": "^1.0.5",
     "underscore": "^1.8.3",
-    "winston": "^2.2.0"
+    "winston": "^1.*.*"
   },
   "devDependencies": {
     "chai": "^3.0.0",
