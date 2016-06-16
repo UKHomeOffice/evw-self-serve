@@ -80,9 +80,5 @@
     "sinomocha": "^0.2.4",
     "sinon": "^1.15.3",
     "sinon-chai": "^2.8.0"
-  },
-  "pre-commit": [
-    "lint",
-    "test"
-  ]
+  }
 }
