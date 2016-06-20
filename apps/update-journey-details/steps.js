@@ -16,5 +16,14 @@ module.exports = {
     template: 'email-us',
     controller: require('./controllers/email-us'),
     clearSession: false
+  },
+  '/enter-your-details': {
+    template: 'enter-your-details',
+    fields: [
+      'dob',
+      'evw-number'
+    ],
+    // next: '/email-us',
+    clearSession: false
   }
 };
