@@ -19,6 +19,13 @@ module.exports = {
   },
   '/link-sent': {
     template: 'link-sent',
+  '/enter-your-details': {
+    template: 'enter-your-details',
+    fields: [
+      'dob',
+      'evw-number'
+    ],
+    // next: '/email-us',
     clearSession: false
   },
   '/flight-number': {

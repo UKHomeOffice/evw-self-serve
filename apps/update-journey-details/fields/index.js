@@ -1,11 +1,9 @@
 'use strict';
 
-var _ = require('underscore');
-
-module.exports = _.extend(
+module.exports = Object.assign(
   require('./how-will-you-arrive'),
   require('./email-us'),
   require('./flight-number'),
-  require('./third-page'),
-  require('./arrival-date')
+  require('./arrival-date'),
+  require('./enter-your-details')
 );
