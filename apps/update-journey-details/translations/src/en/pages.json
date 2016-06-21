@@ -57,11 +57,9 @@
         ]
     }
   },
-  "third-page": {
-    "header": "This page shows how to make a field mandatory depending on the answer to a previous question"
-  },
-  "fourth-page": {
-    "header": "This page demonstrates custom validation"
+  "link-sent": {
+    "header": "Flight change link sent",
+    "content": "We have emailed you with a link for you to change your flight details."
   },
   "confirm": {
     "table": {
