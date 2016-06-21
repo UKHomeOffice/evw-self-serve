@@ -18,4 +18,8 @@ module.exports = function () {
         this.click(`input[value=Continue]`);
     });
 
+    this.Then(/^the page title should contain "([^"]*)"$/, function (string) {
+        this.assert.containsText('h1.heading-large', string);
+    });
+
 };
