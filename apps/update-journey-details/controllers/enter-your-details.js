@@ -1,22 +1,19 @@
 'use strict';
 
 const util = require('util');
-const controllers = require('hof').controllers;
-const DateController = controllers.date;
+const DateController = require('hof').controllers.date;
 
 let EnterYourDetailsController = function EnterYourDetailsController() {
   this.dateKey = 'dob';
   DateController.apply(this, arguments);
 };
 
-util.inherits(EnterYourDetailsController, DateController);
 
-/*
- * The validateField method can be overidden in the following way to
- * always allow date to be omitted, regardless of settings in fields directory
- */
-// FirstPageController.prototype.validateField = function validateField(keyToValidate, req) {
-//   return DateController.prototype.validateField.call(this, keyToValidate, req, false);
-// };
+EnterYourDetailsController.prototype.validateField = function validateField(keyToValidate, req) {
+    console.log('keyToValidate',keyToValidate); // wtf
+    return DateController.prototype.validateField.call(this, keyToValidate, req, false);
+};
+
+util.inherits(EnterYourDetailsController, DateController);
 
 module.exports = EnterYourDetailsController;

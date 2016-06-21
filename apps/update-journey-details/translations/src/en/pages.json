@@ -60,6 +60,7 @@
   "link-sent": {
     "header": "Check your email",
     "content": "We have emailed you with a link for you to change your flight details."
+  },
   "enter-your-details": {
     "header": "Enter your details"
   },

@@ -17,15 +17,14 @@ module.exports = {
     controller: require('./controllers/email-us'),
     clearSession: false
   },
-  '/link-sent': {
-    template: 'link-sent',
   '/enter-your-details': {
     template: 'enter-your-details',
+    controller: require('./controllers/enter-your-details'),
     fields: [
       'dob',
       'evw-number'
     ],
-    // next: '/email-us',
+    next: '/link-sent',
     clearSession: false
   },
   '/flight-number': {
@@ -42,5 +41,8 @@ module.exports = {
     ],
     next: '',
     clearSession: false
+  },
+  '/link-sent': {
+    template: 'link-sent'
   }
 };

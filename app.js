@@ -89,7 +89,7 @@ app.use(session({
   cookie: {
     secure: (config.env === 'development' || config.env === 'ci' || config.env === 'docker-compose') ? false : true
   },
-  key: 'hof-example-form.sid',
+  key: 'evw-self-serve.sid',
   secret: config.session.secret,
   resave: true,
   saveUninitialized: true

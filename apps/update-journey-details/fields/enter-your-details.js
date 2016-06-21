@@ -1,9 +1,13 @@
 'use strict';
 
 module.exports = {
+    'evw-number': {
+        validate: ['required', 'alphanum']
+    },
     'dob': {
         legend: 'fields.date-of-birth.legend',
-        hint: 'fields.dob.hint'
+        hint: 'fields.dob.hint',
+        validate: ['format', 'future', 'past']
     },
     'dob-day': {
         validate: ['required', 'numeric'],
@@ -16,6 +20,5 @@ module.exports = {
     'dob-year': {
         validate: ['required', 'numeric'],
         label: 'fields.dob-year.label'
-    },
-
+    }
 };

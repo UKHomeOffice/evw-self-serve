@@ -24,9 +24,8 @@
 
     {{#input-text}}evw-number{{/input-text}}
 
-
-    <fieldset id="" class="{{#errors.dob}}validation-error{{/errors.dob}}">
-        <legend class="visuallyhidden">
+    <fieldset id="dob-group" class="{{#errors.dob}}validation-error{{/errors.dob}}">
+        <legend>
             <span class="form-label-bold">{{#t}}fields.dob.legend{{/t}}</span>
         </legend>
 
@@ -36,8 +35,7 @@
             </span>
         {{/errors.dob}}
 
-        <div class="form-group form-date">
-            <span class='bold-small'>{{#t}}fields.dob.legend{{/t}}</span>
+        <div class="form-group form-date" id="dob-group">
             <p class="form-hint">{{#t}}fields.dob.hint{{/t}}</p>
             {{#input-date}}dob{{/input-date}}
         </div>

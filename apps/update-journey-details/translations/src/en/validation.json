@@ -8,11 +8,15 @@
   "arrival-date": {
     "required": "Please enter your arrival date"
   },
-  "example-dob": {
-    "required": "Enter the superhero's date of birth",
+  "evw-number": {
+    "required": "Please enter your electronic visa wavier number",
+    "alphanum": "Please enter only letters and numbers"
+  },
+  "dob": {
+    "required": "Enter your date of birth",
     "numeric": "Date must only contain numbers",
-    "future": "The date is in the future",
-    "format": "Enter the collection date in the correct format"
+    "future": "This date is in the future",
+    "format": "Please use the correct date format"
   },
   "example-text": {
     "required": "Enter your favourite colour"
