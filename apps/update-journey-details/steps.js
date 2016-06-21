@@ -16,5 +16,9 @@ module.exports = {
     template: 'email-us',
     controller: require('./controllers/email-us'),
     clearSession: false
+  },
+  '/link-sent': {
+    template: 'link-sent',
+    clearSession: false
   }
 };

@@ -85,3 +85,9 @@ Scenario: Choosing Land
     method of road travel to Northern Ireland, eg bus or private car
     arrival point in Northern Ireland, for example, the town or bus station where your bus or car drops you off
     """
+
+Scenario: Requesting a flight change link
+
+  Given I am on the "Link sent" page
+  Then the page title should contain "Flight change link sent"
+  And the page content should contain "We have emailed you with a link for you to change your flight details."
