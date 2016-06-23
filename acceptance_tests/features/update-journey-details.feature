@@ -92,7 +92,6 @@ Scenario: Requesting a flight change link
   When I enter "EVW08001000" into "evw-number"
   And I enter the date "20-10-1978" into "dob"
   And I click confirm details
-  Then I should be on the "Link sent" page
   Then the page title should contain "Check your email"
   And the page content should contain "We have emailed you with a link for you to change your flight details."
 
