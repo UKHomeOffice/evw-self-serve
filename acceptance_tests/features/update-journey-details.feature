@@ -92,7 +92,12 @@ Scenario: Requesting a flight change link
   Then the page title should contain "Check your email"
   And the page content should contain "We have emailed you with a link for you to change your flight details."
 
-  Scenario: Entering a flight number
-
+Scenario: Entering new flight details
+  # Flight number page
   Given I am on the "Flight number" page
   Then the page title should contain "Your new flight details"
+  And I enter "abc123" into the "Flight number" field
+  And I continue
+  # Arrival date page
+  Then I should be on the "Arrival date" page
+  And the page title should contain "Your new flight details"
