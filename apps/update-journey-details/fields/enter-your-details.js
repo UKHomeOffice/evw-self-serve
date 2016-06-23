@@ -6,8 +6,7 @@ module.exports = {
     },
     'dob': {
         legend: 'fields.date-of-birth.legend',
-        hint: 'fields.dob.hint',
-        validate: ['format', 'future', 'past']
+        hint: 'fields.dob.hint'
     },
     'dob-day': {
         validate: ['required', 'numeric'],

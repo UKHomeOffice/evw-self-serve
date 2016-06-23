@@ -19,13 +19,13 @@ module.exports = {
   },
   '/enter-your-details': {
     template: 'enter-your-details',
-    controller: require('./controllers/enter-your-details'),
+    // controller is giving high levels of wtf so leaving it out for now
+    // controller: require('./controllers/enter-your-details'),
     fields: [
       'dob',
       'evw-number'
     ],
-    next: '/link-sent',
-    clearSession: false
+    next: '/link-sent'
   },
   '/flight-number': {
     template: 'flight-number',
