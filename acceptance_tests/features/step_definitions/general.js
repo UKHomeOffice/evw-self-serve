@@ -22,4 +22,8 @@ module.exports = function () {
         this.assert.containsText('h1.heading-large', string);
     });
 
+    this.When(/^I enter "([^"]*)" into the "([^"]*)" field$/, function (value, field) {
+        this.setValue(`input[id=${urlise(field)}]`, value);
+    });
+
 };
