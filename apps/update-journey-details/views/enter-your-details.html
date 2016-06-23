@@ -1,0 +1,52 @@
+{{<layout}}
+{{$step}}Step 1 of 2{{/step}}
+
+{{$journeyHeader}}
+{{#t}}journey.header{{/t}}
+{{/journeyHeader}}
+
+{{$validationSummary}}
+{{> partials-validation-summary}}
+{{/validationSummary}}
+
+{{$propositionHeader}}
+{{> partials-navigation}}
+{{/propositionHeader}}
+
+
+{{$content}}
+
+<h1 class="heading-large">{{#t}}pages.enter-your-details.header{{/t}}</h1>
+
+{{<partials-form}}
+
+{{$form}}
+
+    {{#input-text}}evw-number{{/input-text}}
+
+    <fieldset id="dob-group" class="form-group{{#errors.dob}} validation-error{{/errors.dob}}">
+
+        <span class="form-label-bold">{{#t}}fields.dob.legend{{/t}}</span>
+        <div class="form-date">
+            <p class="form-hint">{{#t}}fields.dob.hint{{/t}}</p>
+            {{#errors.dob}}
+                <span id="dob-error" class="error-message">
+                    {{errors.dob.message}}
+                </span>
+            {{/errors.dob}}
+            {{#input-date}}dob{{/input-date}}
+        </div>
+
+    </fieldset>
+
+    <p>
+        {{#input-submit}}Confirm details{{/input-submit}}
+    </p>
+
+{{/form}}
+
+{{/partials-form}}
+
+{{/content}}
+
+{{/layout}}

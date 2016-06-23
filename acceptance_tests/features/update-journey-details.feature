@@ -88,12 +88,15 @@ Scenario: Choosing Land
 
 Scenario: Requesting a flight change link
 
-  Given I am on the "Link sent" page
+  Given I am on the "Enter your details" page
+  When I enter "EVW08001000" into "evw-number"
+  And I enter the date "20-10-1978" into "dob"
+  And I click confirm details
   Then the page title should contain "Check your email"
   And the page content should contain "We have emailed you with a link for you to change your flight details."
 
 Scenario: Entering new flight details
-  # Flight number page
+
   Given I am on the "Flight number" page
   Then the page title should contain "Your new flight details"
   And I enter "abc123" into the "Flight number" field
