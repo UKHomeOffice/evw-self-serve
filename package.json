@@ -29,6 +29,7 @@
   },
   "author": "HomeOffice",
   "dependencies": {
+    "async": "^2.0.0-rc.6",
     "body-parser": "^1.13.0",
     "browserify": "^13.0.1",
     "churchill": "0.0.5",
