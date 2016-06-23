@@ -5,6 +5,9 @@
   "flight-number": {
     "required": "Please enter your flight number"
   },
+  "arrival-date": {
+    "required": "Please enter your arrival date"
+  },
   "example-dob": {
     "required": "Enter the superhero's date of birth",
     "numeric": "Date must only contain numbers",
