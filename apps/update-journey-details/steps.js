@@ -19,8 +19,6 @@ module.exports = {
   },
   '/enter-your-details': {
     template: 'enter-your-details',
-    // controller is giving high levels of wtf so leaving it out for now
-    // controller: require('./controllers/enter-your-details'),
     fields: [
       'dob',
       'evw-number'
