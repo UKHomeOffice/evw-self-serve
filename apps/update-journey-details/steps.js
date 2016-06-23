@@ -20,5 +20,13 @@ module.exports = {
   '/link-sent': {
     template: 'link-sent',
     clearSession: false
+  },
+  '/flight-number': {
+    template: 'flight-number',
+    fields: [
+      'flight-number'
+    ],
+    next: '',
+    clearSession: false
   }
 };
