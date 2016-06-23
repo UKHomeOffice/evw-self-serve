@@ -2,6 +2,9 @@
   "transport-options": {
     "required": "Please tell us how you will arrive"
   },
+  "flight-number": {
+    "required": "Please enter your flight number"
+  },
   "example-dob": {
     "required": "Enter the superhero's date of birth",
     "numeric": "Date must only contain numbers",

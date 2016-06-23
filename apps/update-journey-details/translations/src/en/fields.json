@@ -32,5 +32,8 @@
         "label": "By road from the Republic of Ireland"
       }
     }
+  },
+  "flight-number": {
+    "label": "New flight number"
   }
 }
