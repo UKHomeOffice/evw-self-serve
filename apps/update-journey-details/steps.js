@@ -26,6 +26,13 @@ module.exports = {
     fields: [
       'flight-number'
     ],
+    next: '/arrival-date'
+  },
+  '/arrival-date': {
+    template: 'arrival-date',
+    fields: [
+      'arrival-date'
+    ],
     next: '',
     clearSession: false
   }
