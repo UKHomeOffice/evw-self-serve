@@ -35,5 +35,18 @@
   },
   "flight-number": {
     "label": "New flight number"
+  },
+  "arrival-date": {
+    "legend": "New date of arrival in the UK",
+    "hint": "For example 31 3 2016"
+  },
+  "arrival-date-day": {
+    "label": "Day"
+  },
+  "arrival-date-month": {
+    "label": "Month"
+  },
+  "arrival-date-year": {
+    "label": "Year"
   }
 }
