@@ -58,7 +58,7 @@
   "devDependencies": {
     "chai": "^3.0.0",
     "chromedriver": "^2.21.2",
-    "cucumber": "^1.0.0",
+    "cucumber": "1.0.0",
     "debug": "^2.2.0",
     "eslint": "^2.11.1",
     "eslint-plugin-filenames": "^1.0.0",
