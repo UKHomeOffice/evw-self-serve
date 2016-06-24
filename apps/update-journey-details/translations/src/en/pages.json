@@ -76,6 +76,9 @@
     "header": "Your new flight details",
     "content": "We have emailed you with a link for you to change your flight details."
   },
+  "is-this-your-flight": {
+    "header": "Is this your flight to the UK?"
+  },
   "confirm": {
     "table": {
       "headers": {
