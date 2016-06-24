@@ -34,10 +34,29 @@ module.exports = {
   },
   '/arrival-date': {
     template: 'arrival-date',
+    // Commented out until validation is sorted
+    // controller: require('./controllers/arrival-date'),
     fields: [
       'arrival-date'
     ],
+    next: '/is-this-your-flight',
+    clearSession: false
+  },
+  '/is-this-your-flight': {
+    template: 'is-this-your-flight',
+    controller: require('./controllers/is-this-your-flight'),
+    fields: [
+      'is-this-your-flight'
+    ],
     next: '',
+    // Commnted out because having this prevents us from entering the form on the /flight-details page
+    // forks: [{
+    //   target: '/flight-number',
+    //   condition: {
+    //     field: 'is-this-your-flight',
+    //     value: 'no'
+    //   }
+    // }],
     clearSession: false
   },
   '/link-sent': {
