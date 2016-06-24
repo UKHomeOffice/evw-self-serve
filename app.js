@@ -89,7 +89,7 @@ app.use(session({
   cookie: {
     secure: (config.env === 'development' || config.env === 'ci' || config.env === 'docker-compose') ? false : true
   },
-  key: 'hof-example-form.sid',
+  key: 'evw-self-serve.sid',
   secret: config.session.secret,
   resave: true,
   saveUninitialized: true
@@ -104,7 +104,7 @@ app.get('/terms-and-conditions', function renderTerms(req, res) {
 });
 
 // use the hof middleware
-app.use(require('hof').middleware());
+app.use(require('hof').middleware.cookies());
 
 // apps
 app.use(require('./apps/update-journey-details/'));
@@ -113,7 +113,6 @@ app.use(require('./middleware/not-found')());
 
 // errors
 app.use(require('./errors/'));
-
 
 /*eslint camelcase: 0*/
 app.listen(config.port, config.listen_host);

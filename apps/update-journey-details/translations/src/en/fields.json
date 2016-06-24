@@ -1,16 +1,21 @@
 {
-  "example-dob": {
-    "label": "Date",
-    "legend": "Date on the letter",
-    "hint": "For example, 11  6  2015"
+  "evw-number": {
+    "label": "Enter your electronic visa wavier number",
+    "legend": "Enter your electronic visa wavier number",
+    "hint": "This is on your current electronic visa wavier document"
   },
-  "example-dob-day": {
+  "dob": {
+    "label": "Date of Birth",
+    "legend": "Enter your date of birth",
+    "hint": "Enter what is written in your passport. For example, 22 3 1979"
+  },
+  "dob-day": {
     "label": "Day"
   },
-  "example-dob-month": {
+  "dob-month": {
     "label": "Month"
   },
-  "example-dob-year": {
+  "dob-year": {
     "label": "Year"
   },
   "transport-options": {

@@ -14,6 +14,17 @@ module.exports = function () {
         this.click(`input[value=${urlise(value)}]`);
     });
 
+    this.When(/^I enter "([^"]*)" into "([^"]*)"$/, function (value, id) {
+        this.setValue('#'+id, value);
+    });
+
+    this.When(/^I enter the date "([^"]*)" into "([^"]*)"$/, function (date, id) {
+        let d = date.split('-');
+        this.setValue('#'+id+'-day', d[0]);
+        this.setValue('#'+id+'-month', d[1]);
+        this.setValue('#'+id+'-year', d[2]);
+    });
+
     this.When(/^I continue$/, function () {
         this.click(`input[value=Continue]`);
     });
