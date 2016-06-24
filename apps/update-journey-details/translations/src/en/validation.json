@@ -6,36 +6,17 @@
     "required": "Please enter your flight number"
   },
   "arrival-date": {
-    "required": "Please enter your arrival date"
+    "required": "Please enter your arrival date",
+    "numeric": "Please enter a valid date"
   },
   "evw-number": {
     "required": "Please enter your electronic visa wavier number",
     "alphanum": "Please enter only letters and numbers"
   },
   "dob": {
-    "required": "Enter your date of birth",
-    "numeric": "Date must only contain numbers",
-    "future": "This date is in the future",
-    "format": "Please use the correct date format"
+    "required": "Enter your date of birth"
   },
-  "example-text": {
-    "required": "Enter your favourite colour"
-  },
-  "example-email": {
-    "required": "Enter an email address",
-    "email": "The email address isn't valid, enter a valid email address"
-  },
-  "yes-no-radio-toggler": {
-    "required": "Please select Yes or No"
-  },
-  "yes-no-radio": {
-    "required": "Please select Yes or No"
-  },
-  "example-depends-on-text": {
-    "required": "Input the name of your pet dog"
-  },
-  "multiples-input": {
-    "required": "This field is required",
-    "multipleError": "That isn't a multiple of 3, try again!"
+  "is-this-your-flight": {
+    "required": "Please select an option"
   }
 }
