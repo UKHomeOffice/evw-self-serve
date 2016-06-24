@@ -2,7 +2,7 @@ Feature: Updating Journey Details
 
 Scenario: Choosing Plane
 
-  Given I am on the "How will you arrive" page
+  Given I start on the "How will you arrive" page
   When I click "By plane"
   And I continue
   Then I should be on the "Email us" page
@@ -20,7 +20,7 @@ Scenario: Choosing Plane
 
 Scenario: Choosing Train
 
-  Given I am on the "How will you arrive" page
+  Given I start on the "How will you arrive" page
   When I click "By train"
   And I continue
   Then I should be on the "Email us" page
@@ -38,7 +38,7 @@ Scenario: Choosing Train
 
 Scenario: Choosing Private Plane
 
-  Given I am on the "How will you arrive" page
+  Given I start on the "How will you arrive" page
   When I click "By private plane"
   And I continue
   Then I should be on the "Email us" page
@@ -56,7 +56,7 @@ Scenario: Choosing Private Plane
 
 Scenario: Choosing Boat
 
-  Given I am on the "How will you arrive" page
+  Given I start on the "How will you arrive" page
   When I click "By boat"
   And I continue
   Then I should be on the "Email us" page
@@ -74,7 +74,7 @@ Scenario: Choosing Boat
 
 Scenario: Choosing Land
 
-  Given I am on the "How will you arrive" page
+  Given I start on the "How will you arrive" page
   When I click "By land"
   And I continue
   Then I should be on the "Email us" page
@@ -88,7 +88,7 @@ Scenario: Choosing Land
 
 Scenario: Requesting a flight change link
 
-  Given I am on the "Enter your details" page
+  Given I start on the "Enter your details" page
   When I enter "EVW08001000" into "EVW number"
   And I enter the date "20-10-1978" into "dob"
   And I click confirm details
@@ -97,7 +97,7 @@ Scenario: Requesting a flight change link
 
 Scenario: Entering new flight details
 
-  Given I am on the "Flight number" page
+  Given I start on the "Flight number" page
   Then the page title should contain "Your new flight details"
   And I enter "EK009" into "Flight number"
   And I continue
@@ -109,3 +109,11 @@ Scenario: Entering new flight details
   # Is this your flight page
   Then I should be on the "Is this your flight" page
   And the page title should contain "Is this your flight to the UK?"
+  When I click "Yes"
+  And I continue
+  And the page title should contain "Check your answers"
+  And the summary table should contain
+    """
+    EK009
+    """
+
