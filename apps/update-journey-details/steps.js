@@ -19,11 +19,15 @@ module.exports = {
   },
   '/enter-your-details': {
     template: 'enter-your-details',
+    // controller: require('../common/controllers/enter-your-details'),
     fields: [
       'dob',
       'evw-number'
     ],
     next: '/link-sent'
+  },
+  '/link-sent': {
+    template: 'link-sent'
   },
   '/flight-number': {
     template: 'flight-number',
@@ -48,7 +52,6 @@ module.exports = {
     fields: [
       'is-this-your-flight'
     ],
-    next: '',
     // Commnted out because having this prevents us from entering the form on the /flight-details page
     // forks: [{
     //   target: '/flight-number',
@@ -57,9 +60,11 @@ module.exports = {
     //     value: 'no'
     //   }
     // }],
-    clearSession: false
+    next: '/check-your-answers',
   },
-  '/link-sent': {
-    template: 'link-sent'
+  '/check-your-answers': {
+    template: 'check-your-answers.html',
+    backLink: false,
+    clearSession: true
   }
 };

@@ -79,20 +79,17 @@
   "is-this-your-flight": {
     "header": "Is this your flight to the UK?"
   },
-  "confirm": {
+  "check-your-answers": {
+    "header": "Check your answers",
+    "notice": "Please check your new flight details and correct them if necessary",
     "table": {
-      "headers": {
-        "example-dob": "Superhero date of birth",
-        "transport-options": "Example radio button",
-        "example-text": "Favourite colour",
-        "example-email": "Email",
-        "example-checkbox": "Example check box",
-        "yes-no-radio-toggler": "Radio toggler",
-        "example-toggled-text": "Example toggled text",
-        "yes-no-radio": "Yes no radio",
-        "example-depends-on-text": "Example depends on text",
-        "multiples-input": "Favourite multiple"
-      }
+      "departure-airport": "Departure airport",
+      "departure-date": "Departure date",
+      "departure-time": "Departure time",
+      "flight-number": "Flight number",
+      "arrival-airport": "Arrival airport",
+      "arrival-date": "Arrival date",
+      "arrival-time": "Arrival time"
     }
   }
 }
