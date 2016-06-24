@@ -53,5 +53,15 @@
   },
   "arrival-date-year": {
     "label": "Year"
+  },
+  "is-this-your-flight": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }

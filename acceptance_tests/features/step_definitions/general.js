@@ -14,15 +14,15 @@ module.exports = function () {
         this.click(`input[value=${urlise(value)}]`);
     });
 
-    this.When(/^I enter "([^"]*)" into "([^"]*)"$/, function (value, id) {
-        this.setValue('#'+id, value);
+    this.When(/^I enter "([^"]*)" into "([^"]*)"$/, function (value, field) {
+        this.setValue('#'+urlise(field), value);
     });
 
-    this.When(/^I enter the date "([^"]*)" into "([^"]*)"$/, function (date, id) {
+    this.When(/^I enter the date "([^"]*)" into "([^"]*)"$/, function (date, field) {
         let d = date.split('-');
-        this.setValue('#'+id+'-day', d[0]);
-        this.setValue('#'+id+'-month', d[1]);
-        this.setValue('#'+id+'-year', d[2]);
+        this.setValue('#'+urlise(field)+'-day', d[0]);
+        this.setValue('#'+urlise(field)+'-month', d[1]);
+        this.setValue('#'+urlise(field)+'-year', d[2]);
     });
 
     this.When(/^I continue$/, function () {
@@ -31,10 +31,6 @@ module.exports = function () {
 
     this.Then(/^the page title should contain "([^"]*)"$/, function (string) {
         this.assert.containsText('h1.heading-large', string);
-    });
-
-    this.When(/^I enter "([^"]*)" into the "([^"]*)" field$/, function (value, field) {
-        this.setValue(`input[id=${urlise(field)}]`, value);
     });
 
 };

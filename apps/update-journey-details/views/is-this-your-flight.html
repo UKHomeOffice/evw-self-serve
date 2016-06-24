@@ -1,0 +1,57 @@
+{{<layout}}
+{{$step}}Step x of x{{/step}}
+
+{{$journeyHeader}}
+{{#t}}journey.header{{/t}}
+{{/journeyHeader}}
+
+{{$validationSummary}}
+{{> partials-validation-summary}}
+{{/validationSummary}}
+
+{{$propositionHeader}}
+{{> partials-navigation}}
+{{/propositionHeader}}
+
+{{$content}}
+<header>
+    <h1 class="heading-large">{{#t}}pages.is-this-your-flight.header{{/t}}</h1>
+</header>
+
+<table class="flight-details">
+    <tr>
+        <td>Flight Number</td>
+        <td class="flight-details-value">{{ flightDetails.flightNumber }}</td>
+    </tr>
+    <tr>
+        <td>Departure airport</td>
+        <td class="flight-details-value">{{ flightDetails.departureAirport }}</td>
+    </tr>
+    <tr>
+        <td>Arrival airport</td>
+        <td class="flight-details-value">{{ flightDetails.arrivalAirport }}</td>
+    </tr>
+    <tr>
+        <td>Arrival date</td>
+        <td class="flight-details-value">{{ flightDetails.arrivalDate }}</td>
+    </tr>
+    <tr>
+        <td>Arrival time</td>
+        <td class="flight-details-value">{{ flightDetails.arrivalTime }}</td>
+    </tr>
+</table>
+
+{{<partials-form}}
+
+{{$form}}
+
+{{#radio-group}}is-this-your-flight{{/radio-group}}
+
+{{#input-submit}}continue{{/input-submit}}
+{{/form}}
+
+{{/partials-form}}
+
+{{/content}}
+
+{{/layout}}
