@@ -52,7 +52,9 @@ module.exports = {
     fields: [
       'is-this-your-flight'
     ],
-    // Commnted out because having this prevents us from entering the form on the /flight-details page
+    next: '/flight-not-found',
+    // Commented out because having this prevents us from entering the form on the /flight-details page
+    // It will need to be added back in
     // forks: [{
     //   target: '/flight-number',
     //   condition: {
@@ -66,5 +68,7 @@ module.exports = {
     template: 'check-your-answers.html',
     backLink: false,
     clearSession: true
+  '/flight-not-found': {
+    template: 'flight-not-found'
   }
 };

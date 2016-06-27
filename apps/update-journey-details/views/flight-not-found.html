@@ -1,0 +1,30 @@
+{{<layout}}
+{{$step}}Step x of x{{/step}}
+
+{{$journeyHeader}}
+{{#t}}journey.header{{/t}}
+{{/journeyHeader}}
+
+{{$validationSummary}}
+{{> partials-validation-summary}}
+{{/validationSummary}}
+
+{{$propositionHeader}}
+{{> partials-navigation}}
+{{/propositionHeader}}
+
+
+{{$content}}
+
+<h1 class="heading-large">{{#t}}pages.flight-not-found.header{{/t}}</h1>
+
+<div class="panel panel-border-wide">
+    {{#t}}pages.flight-not-found.call-out{{/t}}
+</div>
+
+<a class="button" href="flight-number" role="button">{{#t}}pages.flight-not-found.retry-button{{/t}}</a>
+<p><a class="retry-button" href="#">{{#t}}pages.flight-not-found.manual-entry-link{{/t}}</a></p>
+
+{{/content}}
+
+{{/layout}}
