@@ -5,9 +5,13 @@ const urlise = (text) => text.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/
 
 module.exports = function () {
 
-    this.Given(/^I (?:am|should be) on the "([^"]*)" page$/, function (page) {
+    this.When(/^I (?:start on|go to) the "([^"]*)" page$/, function (page) {
         this.url(base + urlise(page))
         .waitForElementVisible('body', 1000);
+    });
+
+    this.Given(/^I (?:am|should be) on the "([^"]*)" page$/, function (page) {
+        this.assert.urlEquals(base + urlise(page));
     });
 
     this.When(/^I click "([^"]*)"$/, function (value) {
