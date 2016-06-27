@@ -97,5 +97,5 @@
     "call-out": "This might be because the flight you entered doesn’t land in the UK. For example, if you are flying from Kuwait to Doha, then Doha to London, we just need the number for the Doha to London flight.",
     "retry-button": "Retry",
     "manual-entry-link": "I will enter my flight details manually"
-  },
+  }
 }
