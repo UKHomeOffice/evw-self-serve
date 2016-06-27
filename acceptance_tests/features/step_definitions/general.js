@@ -22,6 +22,10 @@ module.exports = function () {
         this.setValue('#'+urlise(field), value);
     });
 
+    this.When(/^I enter "([^"]*)" into "([^"]*)" class$/, function (value, field) {
+        this.setValue('.'+urlise(field), value);
+    });
+
     this.When(/^I enter the date "([^"]*)" into "([^"]*)"$/, function (date, field) {
         let d = date.split('-');
         this.setValue('#'+urlise(field)+'-day', d[0]);
@@ -30,11 +34,17 @@ module.exports = function () {
     });
 
     this.When(/^I continue$/, function () {
-        this.click(`input[value=Continue]`);
+        this.click(`input[type=submit]`);
     });
 
     this.Then(/^the page title should contain "([^"]*)"$/, function (string) {
         this.assert.containsText('h1.heading-large', string);
+    });
+
+    this.Then(/^the "([^"]*)" class should contain$/, function (selector, strings) {
+        strings.split(/\n/).forEach( function (string) {
+            this.assert.containsText('.' + urlise(selector), string);
+        }, this);
     });
 
 };
