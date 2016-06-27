@@ -68,6 +68,7 @@ module.exports = {
     template: 'check-your-answers.html',
     backLink: false,
     clearSession: true
+  },
   '/flight-not-found': {
     template: 'flight-not-found'
   }
