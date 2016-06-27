@@ -1,3 +1,5 @@
+Feature: Flight finder happy path
+
 Scenario: Entering new flight details
 
   Given I start on the "Flight number" page
