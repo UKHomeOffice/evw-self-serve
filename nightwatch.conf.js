@@ -53,6 +53,9 @@ module.exports = {
                 javascriptEnabled: true,
                 acceptSslCerts: true,
                 'phantomjs.binary.path': phantomjs.path
+            },
+            globalVars: {
+                link1: 'something'
             }
         },
 
