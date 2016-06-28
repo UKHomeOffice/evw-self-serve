@@ -34,6 +34,12 @@ module.exports = function () {
         this.setValue('#'+urlise(field)+'-year', d[2]);
     });
 
+    this.When(/^I enter the time "([^"]*)" into "([^"]*)"$/, function (time, field) {
+        let t = time.split(':');
+        this.setValue('#'+urlise(field)+'-hours', t[0]);
+        this.setValue('#'+urlise(field)+'-minutes', t[1]);
+    });
+
     this.When(/^I continue$/, function () {
         this.click(`input[type=submit]`);
     });
