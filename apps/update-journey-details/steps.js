@@ -3,7 +3,14 @@
 module.exports = {
   '/': {
     controller: require('../common/controllers/start'),
-    next: '/how-will-you-arrive'
+    next: '/how-will-you-arrive',
+    forks: [{
+        target: '/flight-number',
+        condition: function() {
+          let features = require('characteristic')();
+          return features.isEnabled('update_details');
+        }
+      }]
   },
   '/how-will-you-arrive': {
     template: 'how-will-you-arrive',
@@ -16,21 +23,6 @@ module.exports = {
     template: 'email-us',
     controller: require('./controllers/email-us'),
     clearSession: false
-  },
-  '/enter-your-details': {
-    template: 'enter-your-details',
-    controller: require('./controllers/enter-your-details'),
-    fields: [
-      'dob',
-      'dob-day',
-      'dob-month',
-      'dob-year',
-      'evw-number'
-    ],
-    next: '/link-sent'
-  },
-  '/link-sent': {
-    template: 'link-sent'
   },
   '/flight-number': {
     template: 'flight-number',
@@ -55,19 +47,21 @@ module.exports = {
     fields: [
       'is-this-your-flight'
     ],
-    // Commnted out because having this prevents us from entering the form on the /flight-details page
-    // forks: [{
-    //   target: '/flight-number',
-    //   condition: {
-    //     field: 'is-this-your-flight',
-    //     value: 'no'
-    //   }
-    // }],
     next: '/check-your-answers',
+    forks: [{
+      target: '/flight-not-found',
+      condition: {
+        field: 'is-this-your-flight',
+        value: 'no'
+      }
+    }]
   },
   '/check-your-answers': {
     template: 'check-your-answers.html',
     backLink: false,
     clearSession: true
+  },
+  '/flight-not-found': {
+    template: 'flight-not-found'
   }
 };

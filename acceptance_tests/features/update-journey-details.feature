@@ -2,10 +2,10 @@ Feature: Updating Journey Details
 
 Scenario: Choosing Plane
 
-  Given I start on the "How will you arrive" page
+  Given I start on the "How will you arrive" page of the "Update journey details" app
   When I click "By plane"
   And I continue
-  Then I should be on the "Email us" page
+  Then I should be on the "Email us" page of the "Update journey details" app
   And the need to know list should contain
     """
     your electronic visa waiver number
@@ -19,11 +19,10 @@ Scenario: Choosing Plane
     """
 
 Scenario: Choosing Train
-
-  Given I start on the "How will you arrive" page
+  Given I start on the "How will you arrive" page of the "Update journey details" app
   When I click "By train"
   And I continue
-  Then I should be on the "Email us" page
+  Then I should be on the "Email us" page of the "Update journey details" app
   And the need to know list should contain
     """
     your electronic visa waiver number
@@ -38,10 +37,10 @@ Scenario: Choosing Train
 
 Scenario: Choosing Private Plane
 
-  Given I start on the "How will you arrive" page
+  Given I start on the "How will you arrive" page of the "Update journey details" app
   When I click "By private plane"
   And I continue
-  Then I should be on the "Email us" page
+  Then I should be on the "Email us" page of the "Update journey details" app
   And the need to know list should contain
     """
     your electronic visa waiver number
@@ -56,10 +55,10 @@ Scenario: Choosing Private Plane
 
 Scenario: Choosing Boat
 
-  Given I start on the "How will you arrive" page
+  Given I start on the "How will you arrive" page of the "Update journey details" app
   When I click "By boat"
   And I continue
-  Then I should be on the "Email us" page
+  Then I should be on the "Email us" page of the "Update journey details" app
   And the need to know list should contain
     """
     your electronic visa waiver number
@@ -74,10 +73,10 @@ Scenario: Choosing Boat
 
 Scenario: Choosing Land
 
-  Given I start on the "How will you arrive" page
+  Given I start on the "How will you arrive" page of the "Update journey details" app
   When I click "By land"
   And I continue
-  Then I should be on the "Email us" page
+  Then I should be on the "Email us" page of the "Update journey details" app
   And the need to know list should contain
     """
     date of arrival in Northern Ireland
@@ -86,34 +85,47 @@ Scenario: Choosing Land
     arrival point in Northern Ireland, for example, the town or bus station where your bus or car drops you off
     """
 
-Scenario: Requesting a flight change link
+# Scenario: Entering new flight details happy path
 
-  Given I start on the "Enter your details" page
-  When I enter "EVW08001000" into "EVW number"
-  And I enter the date "20-10-1978" into "dob"
-  And I click confirm details
-  Then the page title should contain "Check your email"
-  And the page content should contain "We have emailed you with a link for you to change your flight details."
+#   Given I start on the "Flight number" page of the "Update journey details" app
+#   Then the page title should contain "Your new flight details"
+#   And I enter "EK009" into "Flight number"
+#   And I continue
+#   # Arrival date page
+#   Then I should be on the "Arrival date" page of the "Update journey details" app
+#   And the page title should contain "Your new flight details"
+#   And I enter the date "08-08-2016" into "Arrival date"
+#   And I continue
+#   # Is this your flight page
+#   Then I should be on the "Is this your flight" page of the "Update journey details" app
+#   And the page title should contain "Is this your flight to the UK?"
+#   And I click "Yes"
+#   And I continue
+#   # Check your amswers page
+#   Then the page title should contain "Check your answers"
+#   And the summary table should contain
+#     """
+#     EK009
+#     """
 
-Scenario: Entering new flight details
+# Scenario: Entering new flight details unhappy path
 
-  Given I start on the "Flight number" page
-  Then the page title should contain "Your new flight details"
-  And I enter "EK009" into "Flight number"
-  And I continue
-  # Arrival date page
-  Then I should be on the "Arrival date" page
-  And the page title should contain "Your new flight details"
-  And I enter the date "08-08-2016" into "Arrival date"
-  And I continue
-  # Is this your flight page
-  Then I should be on the "Is this your flight" page
-  And the page title should contain "Is this your flight to the UK?"
-  When I click "Yes"
-  And I continue
-  And the page title should contain "Check your answers"
-  And the summary table should contain
-    """
-    EK009
-    """
-
+#   Given I start on the "Flight number" page of the "Update journey details" app
+#   Then the page title should contain "Your new flight details"
+#   And I enter "EK009" into "Flight number"
+#   And I continue
+#   # Arrival date page
+#   Then I should be on the "Arrival date" page of the "Update journey details" app
+#   And the page title should contain "Your new flight details"
+#   And I enter the date "08-08-2016" into "Arrival date"
+#   And I continue
+#   # Is this your flight page
+#   Then I should be on the "Is this your flight" page of the "Update journey details" app
+#   And the page title should contain "Is this your flight to the UK?"
+#   And I click "No"
+#   And I continue
+#   # Flight not found page
+#   Then I should be on the "Flight not found" page of the "Update journey details" app
+#   And the page title should contain "We can’t find your flight"
+#   And I retry
+#   Then I should be on the "Flight number" page of the "Update journey details" app
