@@ -46,7 +46,7 @@ module.exports = {
     fields: [
       'is-this-your-flight'
     ],
-    next: '/check-your-answers',
+    next: '/departure-date-and-time',
     forks: [{
       target: '/flight-not-found',
       condition: {
@@ -54,6 +54,15 @@ module.exports = {
         value: 'no'
       }
     }]
+  },
+  '/departure-date-and-time': {
+    template: 'departure-date-and-time',
+    fields: [
+      'departure-date',
+      'departure-time'
+    ],
+    next: '/check-your-answers',
+    clearSession: false
   },
   '/check-your-answers': {
     template: 'check-your-answers.html',

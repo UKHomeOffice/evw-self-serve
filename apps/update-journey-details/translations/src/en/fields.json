@@ -35,6 +35,32 @@
   "arrival-date-year": {
     "label": "Year"
   },
+  "departure-date": {
+    "legend-1": "What date does flight",
+    "legend-2": "leave",
+    "legend-3": "?"
+  },
+  "departure-date-day": {
+    "label": "Day"
+  },
+  "departure-date-month": {
+    "label": "Month"
+  },
+  "departure-date-year": {
+    "label": "Year"
+  },
+  "departure-time": {
+    "legend-1": "What time does flight",
+    "legend-2": "leave",
+    "legend-3": "?",
+    "hint": "Use the 24 hour clock, for example 09:45 or 21:45"
+  },
+  "departure-time-hours": {
+    "label": "Hours"
+  },
+  "departure-time-minutes": {
+    "label": "Minutes"
+  },
   "is-this-your-flight": {
     "options": {
       "yes": {

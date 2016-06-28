@@ -5,5 +5,6 @@ module.exports = Object.assign(
   require('./email-us'),
   require('./flight-number'),
   require('./arrival-date'),
-  require('./is-this-your-flight')
+  require('./is-this-your-flight'),
+  require('./departure-date-and-time')
 );
