@@ -107,6 +107,7 @@ app.get('/terms-and-conditions', function renderTerms(req, res) {
 app.use(require('hof').middleware.cookies());
 
 // apps
+app.use(require('./apps/find-your-application/'));
 app.use(require('./apps/update-journey-details/'));
 
 app.use(require('./middleware/not-found')());

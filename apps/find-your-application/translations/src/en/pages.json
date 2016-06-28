@@ -1,8 +1,4 @@
 {
-  "how-will-you-arrive": {
-    "header": "Your new journey to the UK",
-    "question": "How will you arrive in the UK?"
-  },
   "email-us": {
     "header": "Email us with your new travel details",
     "request": "Please email <a href='mailto:electronicvisawaiver@homeoffice.gsi.gov.uk'>electronicvisawaiver@homeoffice.gsi.gov.uk</a> with the new details for your journey to the UK.",
@@ -61,38 +57,7 @@
     "header": "Check your email",
     "content": "We have emailed you with a link for you to change your flight details."
   },
-  "flight-number": {
-    "header": "Your new flight details",
-    "question": "New flight number",
-    "call-out": "If you have any stops or connecting flights you must enter the number for the final part of your journey to the UK",
-    "help-text-title": "What is my flight number?",
-    "help-text-content-1": "A flight number has 2 or 3 letters or numbers representing the airline followed by 1 to 4 numbers and sometimes an extra letter at the end, for example EK009, QR003 or KU101. It is not the same as the booking confirmation from your travel agent or airline.",
-    "help-text-content-2": "If you are taking more than 1 flight to reach the UK we only need to know the number for the flight that lands in the UK."
-  },
-  "arrival-date": {
-    "header": "Your new flight details",
-    "content": "We have emailed you with a link for you to change your flight details."
-  },
-  "is-this-your-flight": {
-    "header": "Is this your flight to the UK?"
-  },
-  "check-your-answers": {
-    "header": "Check your answers",
-    "notice": "Please check your new flight details and correct them if necessary",
-    "table": {
-      "departure-airport": "Departure airport",
-      "departure-date": "Departure date",
-      "departure-time": "Departure time",
-      "flight-number": "Flight number",
-      "arrival-airport": "Arrival airport",
-      "arrival-date": "Arrival date",
-      "arrival-time": "Arrival time"
-    }
-  },
-  "flight-not-found": {
-    "header": "We can’t find your flight",
-    "call-out": "This might be because the flight you entered doesn’t land in the UK. For example, if you are flying from Kuwait to Doha, then Doha to London, we just need the number for the Doha to London flight.",
-    "retry-button": "Retry",
-    "manual-entry-link": "I will enter my flight details manually"
+  "enter-your-details": {
+    "header": "Enter your details"
   }
 }
