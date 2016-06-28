@@ -5,6 +5,7 @@ module.exports = {
         validate: ['required', 'alphanum']
     },
     'dob': {
+        validate: ['required', 'numeric', 'future'],
         legend: 'fields.date-of-birth.legend',
         hint: 'fields.dob.hint'
     },
@@ -17,7 +18,7 @@ module.exports = {
         label: 'fields.dob-month.label'
     },
     'dob-year': {
-        validate: ['required', 'numeric'],
+        validate: ['required', 'numeric', 'date-year'],
         label: 'fields.dob-year.label'
     }
 };
