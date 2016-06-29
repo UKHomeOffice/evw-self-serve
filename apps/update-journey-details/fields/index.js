@@ -6,5 +6,6 @@ module.exports = Object.assign(
   require('./flight-number'),
   require('./arrival-date'),
   require('./is-this-your-flight'),
-  require('./departure-date-and-time')
+  require('./departure-date-and-time'),
+  require('./declaration')
 );
