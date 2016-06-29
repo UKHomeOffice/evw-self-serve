@@ -1,17 +1,18 @@
 'use strict';
 
-const base = 'http://localhost:8080/update-journey-details/';
+const base = 'http://localhost:8080';
 const urlise = (text) => text.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
+const setUrl = (app, page) => `${base}/${urlise(app)}/${urlise(page)}`;
 
 module.exports = function () {
 
-    this.When(/^I (?:start on|go to) the "([^"]*)" page$/, function (page) {
-        this.url(base + urlise(page))
+    this.When(/^I (?:start on|go to) the "([^"]*)" page of the "([^"]*)" app$/, function (page, app) {
+        this.url(setUrl(app, page))
         .waitForElementVisible('body', 1000);
     });
 
-    this.Given(/^I (?:am|should be) on the "([^"]*)" page$/, function (page) {
-        this.assert.urlEquals(base + urlise(page));
+    this.Given(/^I (?:am|should be) on the "([^"]*)" page of the "([^"]*)" app$/, function (page, app) {
+        this.assert.urlEquals(setUrl(app, page));
     });
 
     this.When(/^I click "([^"]*)"$/, function (value) {
@@ -31,6 +32,12 @@ module.exports = function () {
         this.setValue('#'+urlise(field)+'-day', d[0]);
         this.setValue('#'+urlise(field)+'-month', d[1]);
         this.setValue('#'+urlise(field)+'-year', d[2]);
+    });
+
+    this.When(/^I enter the time "([^"]*)" into "([^"]*)"$/, function (time, field) {
+        let t = time.split(':');
+        this.setValue('#'+urlise(field)+'-hours', t[0]);
+        this.setValue('#'+urlise(field)+'-minutes', t[1]);
     });
 
     this.When(/^I continue$/, function () {

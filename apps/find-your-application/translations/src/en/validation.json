@@ -1,0 +1,16 @@
+{
+  "evw-number": {
+    "required": "Please enter your electronic visa wavier number",
+    "alphanum": "Please enter only letters and numbers"
+  },
+  "dob": {
+    "required": "Enter your date of birth",
+    "numeric": "Please enter numbers only",
+    "future": "Date of birth cannot be in the future",
+    "format": "Please use the correct date format, for example, 22 3 1979",
+    "date": "Please use the correct date format, for example, 22 3 1979"
+  },
+  "dob-year": {
+    "date-year": "Please use the correct date format, for example, 22 3 1979"
+  }
+}

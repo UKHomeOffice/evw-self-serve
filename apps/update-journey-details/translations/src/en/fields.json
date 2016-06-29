@@ -1,23 +1,4 @@
 {
-  "evw-number": {
-    "label": "Enter your electronic visa wavier number",
-    "legend": "Enter your electronic visa wavier number",
-    "hint": "This is on your current electronic visa wavier document"
-  },
-  "dob": {
-    "label": "Date of Birth",
-    "legend": "Enter your date of birth",
-    "hint": "Enter what is written in your passport. For example, 22 3 1979"
-  },
-  "dob-day": {
-    "label": "Day"
-  },
-  "dob-month": {
-    "label": "Month"
-  },
-  "dob-year": {
-    "label": "Year"
-  },
   "transport-options": {
     "legend": "How will you arrive in the UK?",
     "options": {
@@ -53,6 +34,32 @@
   },
   "arrival-date-year": {
     "label": "Year"
+  },
+  "departure-date": {
+    "legend-1": "What date does flight",
+    "legend-2": "leave",
+    "legend-3": "?"
+  },
+  "departure-date-day": {
+    "label": "Day"
+  },
+  "departure-date-month": {
+    "label": "Month"
+  },
+  "departure-date-year": {
+    "label": "Year"
+  },
+  "departure-time": {
+    "legend-1": "What time does flight",
+    "legend-2": "leave",
+    "legend-3": "?",
+    "hint": "Use the 24 hour clock, for example 09:45 or 21:45"
+  },
+  "departure-time-hours": {
+    "label": "Hours"
+  },
+  "departure-time-minutes": {
+    "label": "Minutes"
   },
   "is-this-your-flight": {
     "options": {
