@@ -6,7 +6,7 @@ Feature: Updating Journey Details
 #   When I click "By plane"
 #   And I continue
 #   Then I should be on the "Email us" page of the "Update journey details" app
-#   And the need to know list should contain
+#   And the content list should contain
 #     """
 #     your electronic visa waiver number
 #     new flight number (if your journey has any stops or connecting flights we only need details of the flight landing in the UK)
@@ -23,7 +23,7 @@ Feature: Updating Journey Details
 #   When I click "By train"
 #   And I continue
 #   Then I should be on the "Email us" page of the "Update journey details" app
-#   And the need to know list should contain
+#   And the content list should contain
 #     """
 #     your electronic visa waiver number
 #     new train number, eg Eurostar 9140
@@ -41,7 +41,7 @@ Feature: Updating Journey Details
 #   When I click "By private plane"
 #   And I continue
 #   Then I should be on the "Email us" page of the "Update journey details" app
-#   And the need to know list should contain
+#   And the content list should contain
 #     """
 #     your electronic visa waiver number
 #     tail number of the plane you’ll be taking
@@ -59,7 +59,7 @@ Feature: Updating Journey Details
 #   When I click "By boat"
 #   And I continue
 #   Then I should be on the "Email us" page of the "Update journey details" app
-#   And the need to know list should contain
+#   And the content list should contain
 #     """
 #     your electronic visa waiver number
 #     new boat name, eg ‘Spirit of Britain’
@@ -77,7 +77,7 @@ Feature: Updating Journey Details
 #   When I click "By land"
 #   And I continue
 #   Then I should be on the "Email us" page of the "Update journey details" app
-#   And the need to know list should contain
+#   And the content list should contain
 #     """
 #     date of arrival in Northern Ireland
 #     expected time of arrival at your destination in Northern Ireland
@@ -107,12 +107,23 @@ Scenario: Entering new flight details happy path
   And I enter the date "07-08-2016" into "Departure date"
   And I enter the time "12:23" into "Departure time"
   And I continue
-  # Check your amswers page
+  # Check your answers page
   Then the page title should contain "Check your answers"
   And the summary table should contain
     """
     EK009
     """
+  And I continue
+  # Declaration page
+  Then I should be on the "Declaration" page of the "Update journey details" app
+  And the page title should contain "Declaration"
+  And the content list should contain
+    """
+    The new flight information I have entered is correct to the best of my knowledge and belief and is for my flight that lands in the UK.
+    On changing my flight details my old electronic visa waiver document will be invalid and I will not use it to try to enter the UK; if I do so I may be denied boarding or be refused entry at the UK border.
+    If I have completed this for someone else I have their full agreement.
+    """
+
 
 Scenario: Entering new flight details unhappy path
 
