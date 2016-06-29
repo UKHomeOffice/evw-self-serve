@@ -54,4 +54,10 @@ module.exports = function () {
         }, this);
     });
 
+    this.Then(/^the content list should contain$/, function (strings) {
+        strings.split(/\n/).forEach( function (string) {
+            this.assert.containsText('ul.list', string);
+        }, this);
+    });
+
 };

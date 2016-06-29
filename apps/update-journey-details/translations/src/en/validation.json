@@ -11,5 +11,8 @@
   },
   "is-this-your-flight": {
     "required": "Please select an option"
+  },
+  "accept-declaration": {
+    "required": "Please indicate that you agree to the declaration"
   }
 }

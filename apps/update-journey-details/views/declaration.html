@@ -1,0 +1,40 @@
+{{<layout}}
+{{$step}}Step x of x{{/step}}
+
+{{$journeyHeader}}
+{{#t}}journey.header{{/t}}
+{{/journeyHeader}}
+
+{{$validationSummary}}
+{{> partials-validation-summary}}
+{{/validationSummary}}
+
+{{$propositionHeader}}
+{{> partials-navigation}}
+{{/propositionHeader}}
+
+
+{{$content}}
+<h1 class="heading-large">{{#t}}pages.declaration.header{{/t}}</h1>
+<p>{{#t}}pages.declaration.content{{/t}}</p>
+<ul class="list list-bullet">
+    <li>{{#t}}pages.declaration.confirmation-1{{/t}}</li>
+    <li>{{#t}}pages.declaration.confirmation-2{{/t}}</li>
+    <li>{{#t}}pages.declaration.confirmation-3{{/t}}</li>
+</ul>
+
+{{<partials-form}}
+
+{{$form}}
+
+    {{#checkbox}}accept-declaration{{/checkbox}}
+
+    {{#input-submit}}continue{{/input-submit}}
+
+{{/form}}
+
+{{/partials-form}}
+
+{{/content}}
+
+{{/layout}}
