@@ -14,4 +14,9 @@
             @include bold-19;
         }
     }
+
+    /* Prevent checkbox labels getting a big height applied to them when an error is displayed */
+    &.validation-error label span.visuallyhidden {
+        position: absolute;
+    }
 }

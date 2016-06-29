@@ -70,5 +70,8 @@
         "label": "No"
       }
     }
+  },
+  "accept-declaration": {
+    "label": "I understand and agree with the above"
   }
 }

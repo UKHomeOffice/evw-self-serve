@@ -20,8 +20,7 @@ module.exports = {
   },
   '/email-us': {
     template: 'email-us',
-    controller: require('./controllers/email-us'),
-    clearSession: false
+    controller: require('./controllers/email-us')
   },
   '/flight-number': {
     template: 'flight-number',
@@ -37,8 +36,7 @@ module.exports = {
     fields: [
       'arrival-date'
     ],
-    next: '/is-this-your-flight',
-    clearSession: false
+    next: '/is-this-your-flight'
   },
   '/is-this-your-flight': {
     template: 'is-this-your-flight',
@@ -61,15 +59,21 @@ module.exports = {
       'departure-date',
       'departure-time'
     ],
-    next: '/check-your-answers',
-    clearSession: false
+    next: '/check-your-answers'
   },
   '/check-your-answers': {
     template: 'check-your-answers.html',
-    backLink: false,
-    clearSession: true
+    next: '/declaration'
   },
   '/flight-not-found': {
     template: 'flight-not-found'
+  },
+  '/declaration': {
+    template: 'declaration',
+    fields: [
+      'accept-declaration'
+    ],
+    next: '/next-page',
+    clearSession: true
   }
 };
