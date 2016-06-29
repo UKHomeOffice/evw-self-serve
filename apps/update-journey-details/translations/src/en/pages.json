@@ -97,5 +97,12 @@
     "call-out": "This might be because the flight you entered doesn’t land in the UK. For example, if you are flying from Kuwait to Doha, then Doha to London, we just need the number for the Doha to London flight.",
     "retry-button": "Retry",
     "manual-entry-link": "I will enter my flight details manually"
+  },
+  "declaration": {
+    "header": "Declaration",
+    "content": "I confirm that:",
+    "confirmation-1": "The new flight information I have entered is correct to the best of my knowledge and belief and is for my flight that lands in the UK.",
+    "confirmation-2": "On changing my flight details my old electronic visa waiver document will be invalid and I will not use it to try to enter the UK; if I do so I may be denied boarding or be refused entry at the UK border.",
+    "confirmation-3": "If I have completed this for someone else I have their full agreement."
   }
 }
