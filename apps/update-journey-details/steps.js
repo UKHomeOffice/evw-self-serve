@@ -1,6 +1,6 @@
 'use strict';
 
-let features = require('characteristic')();
+let features = require('characteristic')('config/features.yml');
 
 module.exports = {
   '/': {
