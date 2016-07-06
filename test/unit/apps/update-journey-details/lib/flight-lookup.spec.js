@@ -1,12 +1,24 @@
 'use strict';
 
+const path = require('path');
 let flightLookup = require('../../../../../lib/flight-lookup');
 let airports = require('../../../../../data/airports');
 let dyson = require('dyson');
 let chaiAsPromised = require('chai-as-promised');
+let config = require('../../../../../config');
 chai.use(chaiAsPromised);
 
 describe('lib/flight-lookup', function() {
+
+    before(function () {
+        let port = config.flightService.url.split(':').pop();
+        let dir = path.resolve(__dirname, '../../../../../mocks');
+        dyson.bootstrap({
+          port: port,
+          configDir: dir
+        });
+    });
+
     describe('#findFlight', function() {
         it('returns a 200 status code', function() {
             let foundData = flightLookup.findFlight('KU0101', '2016-08-09');
