@@ -2,12 +2,17 @@
 
 const base = 'http://localhost:8080';
 const urlise = (text) => text.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
-const setUrl = (app, page) => `${base}/${urlise(app)}/${urlise(page)}`;
+const setUrl = (app, page) => `${base}/${urlise(app)}/${page ? urlise(page) : ''}`;
 
 module.exports = function () {
 
     this.When(/^I (?:start on|go to) the "([^"]*)" page of the "([^"]*)" app$/, function (page, app) {
         this.url(setUrl(app, page))
+        .waitForElementVisible('body', 1000);
+    });
+
+    this.When(/^I start the "([^"]*)" app$/, function (app) {
+        this.url(setUrl(app))
         .waitForElementVisible('body', 1000);
     });
 
@@ -58,6 +63,10 @@ module.exports = function () {
         strings.split(/\n/).forEach( function (string) {
             this.assert.containsText('ul.list', string);
         }, this);
+    });
+
+    this.Then(/^the "([^"]*)" should contain "([^"]*)"$/, function (field, value) {
+        this.assert.containsText(`.${urlise(field)}`, value);
     });
 
 };

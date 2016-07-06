@@ -85,33 +85,38 @@ Feature: Updating Journey Details
 #     arrival point in Northern Ireland, for example, the town or bus station where your bus or car drops you off
 #     """
 
-Scenario: Entering new flight details happy path
+Scenario: Entering new flight details and correct flight found
 
-  Given I start on the "Flight number" page of the "Update journey details" app
+  Given I start the "Update journey details" app
   Then the page title should contain "Your new flight details"
-  And I enter "EK009" into "Flight number"
+  And I enter "KU101" into "Flight number"
   And I continue
   # Arrival date page
   Then I should be on the "Arrival date" page of the "Update journey details" app
   And the page title should contain "Your new flight details"
-  And I enter the date "08-08-2016" into "Arrival date"
+  And I enter the date "09-08-2016" into "Arrival date"
   And I continue
   # Is this your flight page
   Then I should be on the "Is this your flight" page of the "Update journey details" app
   And the page title should contain "Is this your flight to the UK?"
+  And the "Flight number" should contain "KU101"
+  And the "Departure airport" should contain "Dubai"
+  And the "Arrival airport" should contain "London - Gatwick"
+  And the "Arrival date" should contain "09/08/2016"
+  And the "Arrival time" should contain "19:45"
   And I click "Yes"
   And I continue
   # Departure date and time page
   Then I should be on the "Departure date and time" page of the "Update journey details" app
   And the page title should contain "Your journey to the UK"
-  And I enter the date "07-08-2016" into "Departure date"
+  And I enter the date "09-08-2016" into "Departure date"
   And I enter the time "12:23" into "Departure time"
   And I continue
   # Check your answers page
   Then the page title should contain "Check your answers"
   And the summary table should contain
     """
-    EK009
+    KU101
     """
   And I continue
   # Declaration page
@@ -124,19 +129,19 @@ Scenario: Entering new flight details happy path
     If I have completed this for someone else I have their full agreement.
     """
 
+Scenario: Entering new flight details and incorrect flight found
 
-Scenario: Entering new flight details unhappy path
-
-  Given I start on the "Flight number" page of the "Update journey details" app
+  Given I start the "Update journey details" app
   Then the page title should contain "Your new flight details"
-  And I enter "EK009" into "Flight number"
+  And I enter "KU101" into "Flight number"
   And I continue
   # Arrival date page
   Then I should be on the "Arrival date" page of the "Update journey details" app
   And the page title should contain "Your new flight details"
-  And I enter the date "08-08-2016" into "Arrival date"
+  And I enter the date "09-08-2016" into "Arrival date"
   And I continue
   # Is this your flight page
+  # Flight details on this page have been tested in the last test so we only need to test the flow here
   Then I should be on the "Is this your flight" page of the "Update journey details" app
   And the page title should contain "Is this your flight to the UK?"
   And I click "No"
@@ -146,3 +151,18 @@ Scenario: Entering new flight details unhappy path
   And the page title should contain "We can’t find your flight"
   And I retry
   Then I should be on the "Flight number" page of the "Update journey details" app
+
+Scenario: Entering new flight details and flight not found
+
+  Given I start the "Update journey details" app
+  Then the page title should contain "Your new flight details"
+  And I enter "NO0001" into "Flight number"
+  And I continue
+  # Arrival date page
+  Then I should be on the "Arrival date" page of the "Update journey details" app
+  And the page title should contain "Your new flight details"
+  And I enter the date "08-08-2016" into "Arrival date"
+  And I continue
+  # Flight not found page
+  Then I should be on the "Flight not found" page of the "Update journey details" app
+  And the page title should contain "We can’t find your flight"
