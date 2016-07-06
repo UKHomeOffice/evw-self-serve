@@ -31,12 +31,20 @@ module.exports = {
   },
   '/arrival-date': {
     template: 'arrival-date',
-    // Commented out until validation is sorted
-    // controller: require('./controllers/arrival-date'),
+    controller: require('./controllers/arrival-date'),
     fields: [
-      'arrival-date'
+      'arrival-date',
+      'arrival-date-day',
+      'arrival-date-month',
+      'arrival-date-year'
     ],
-    next: '/is-this-your-flight'
+    next: '/is-this-your-flight',
+    forks: [{
+      target: '/flight-not-found',
+      condition: function(req) {
+        return typeof req.sessionModel.get('flightDetails') === 'undefined';
+      }
+    }]
   },
   '/is-this-your-flight': {
     template: 'is-this-your-flight',
