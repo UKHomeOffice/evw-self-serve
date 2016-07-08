@@ -60,7 +60,7 @@ module.exports = {
       target: '/flight-not-found',
       condition: {
         field: 'is-this-your-flight',
-        value: 'No'
+        value: 'no'
       }
     }]
   },
