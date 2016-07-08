@@ -5,7 +5,7 @@ const controllers = require('hof').controllers;
 const BaseController = controllers.base;
 const ErrorClass = require('hof').controllers.error;
 const validateLib = require('validate.js');
-const fse = require('fs-extra');
+const fs = require('fs');
 const options = {
   fullMessages: false,
 };
@@ -31,7 +31,7 @@ let formatValue = (formValues, keyToValidate) => {
 EvwBaseController.prototype.validateField = function validateField(keyToValidate, req) {
   let validationRules = `validation/${keyToValidate}.js`;
 
-  if (fse.existsSync(validationRules)) {
+  if (fs.existsSync(validationRules)) {
     let fieldValue = formatValue(req.form.values, keyToValidate);
     let rules = require(`../../../${validationRules}`).rules(fieldValue, req.sessionModel);
 
