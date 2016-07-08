@@ -8,10 +8,10 @@ module.exports = {
       className: 'visuallyhidden'
     },
     options: [{
-      value: 'yes',
+      value: 'Yes',
       label: 'fields.is-this-your-flight.options.yes.label'
     }, {
-      value: 'no',
+      value: 'No',
       label: 'fields.is-this-your-flight.options.no.label'
     }]
   }
