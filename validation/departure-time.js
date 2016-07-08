@@ -3,7 +3,7 @@
 const moment = require('moment');
 
 module.exports = {
-  validate: (fieldValue, model) => {
+  rules: (fieldValue, model) => {
     let departureDateTime = moment(`${model.get('departure-date')} ${fieldValue}`, 'YYYY-M-D h:m');
     let arrivalDateTime = moment(`${model.get('arrival-date')} ${model.get('flightDetails').arrivalTime}`, 'YYYY-M-D h:m');
 

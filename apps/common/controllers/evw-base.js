@@ -33,7 +33,7 @@ EvwBaseController.prototype.validateField = function validateField(keyToValidate
 
   if (fse.existsSync(validationRules)) {
     let fieldValue = formatValue(req.form.values, keyToValidate);
-    let rules = require(`../../../${validationRules}`).validate(fieldValue, req.sessionModel);
+    let rules = require(`../../../${validationRules}`).rules(fieldValue, req.sessionModel);
 
     req.sessionModel.set(keyToValidate, fieldValue);
 

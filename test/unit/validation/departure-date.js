@@ -1,6 +1,6 @@
 'use strict';
 
-const rules = require('../../../validation/departure-date');
+const validation = require('../../../validation/departure-date');
 const moment = require('moment');
 
 describe('validation/departure-date', function() {
@@ -16,7 +16,7 @@ describe('validation/departure-date', function() {
       'arrival-date': moment().subtract(1, 'day')
     }
 
-    rules.validate('2016-08-32', model).should.deep.equal({
+    validation.rules('2016-08-32', model).should.deep.equal({
       length: {
         minimum: 12,
         message: 'departure-date.invalid'
@@ -29,7 +29,7 @@ describe('validation/departure-date', function() {
       'arrival-date': moment().add(2, 'days')
     }
 
-    rules.validate(moment(), model).should.deep.equal({
+    validation.rules(moment(), model).should.deep.equal({
       length: {
         minimum: 12,
         message: 'departure-date.in-past'
@@ -42,7 +42,7 @@ describe('validation/departure-date', function() {
       'arrival-date': moment().subtract(2, 'days')
     }
 
-    rules.validate(moment(), model).should.deep.equal({
+    validation.rules(moment(), model).should.deep.equal({
       length: {
         minimum: 12,
         message: 'departure-date.in-future'
