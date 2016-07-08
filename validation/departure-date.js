@@ -3,7 +3,7 @@
 const moment = require('moment');
 
 module.exports = {
-  validate: (fieldValue, model) => {
+  rules: (fieldValue, model) => {
     let departureDate = moment(fieldValue, 'YYYY-M-D');
     let arrivalDateMinusOneDay = moment(model.get('arrival-date')).subtract(1, 'day');
     let arrivalDatePlusOneDay = moment(model.get('arrival-date')).add(1, 'day');

@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  validate: () => {
+  rules: () => {
     return Object.assign({
       presence: {
         message: 'flight-number.required'

@@ -1,6 +1,6 @@
 'use strict';
 
-const rules = require('../../../validation/departure-time');
+const validation = require('../../../validation/departure-time');
 
 describe('validation/departure-time', function() {
   let model = {
@@ -19,7 +19,7 @@ describe('validation/departure-time', function() {
       }
     };
 
-    rules.validate('16:01', model).should.deep.equal({
+    validation.rules('16:01', model).should.deep.equal({
       length: {
         minimum: 12,
         message: 'departure-time.departure-after-arrival'
@@ -36,7 +36,7 @@ describe('validation/departure-time', function() {
       }
     };
 
-    rules.validate('14:59', model).should.deep.equal({
+    validation.rules('14:59', model).should.deep.equal({
       length: {
         minimum: 12,
         message: 'departure-time.departure-too-far-before-arrival'
