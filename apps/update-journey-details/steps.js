@@ -5,18 +5,20 @@ let features = require('characteristic')(__dirname + '/../../config/features.yml
 module.exports = {
   '/': {
     controller: require('../common/controllers/start'),
-    next: '/how-will-you-arrive',
-    forks: [{
-        target: '/flight-number',
-        condition: () => features.isEnabled('update_details')
-      }]
+    next: '/how-will-you-arrive'
   },
   '/how-will-you-arrive': {
     template: 'how-will-you-arrive',
     fields: [
       'transport-options'
     ],
-    next: '/email-us'
+    next: '/email-us',
+    forks: [{
+      target: '/flight-number',
+      condition: (req) => {
+        return features.isEnabled('update_details') && req.form.values['transport-options'] === 'by-plane';
+      }
+    }]
   },
   '/email-us': {
     template: 'email-us',
