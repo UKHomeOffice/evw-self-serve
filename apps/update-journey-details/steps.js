@@ -60,20 +60,27 @@ module.exports = {
       target: '/flight-not-found',
       condition: {
         field: 'is-this-your-flight',
-        value: 'no'
+        value: 'No'
       }
     }]
   },
   '/departure-date-and-time': {
     template: 'departure-date-and-time',
+    controller: require('../common/controllers/evw-base'),
     fields: [
       'departure-date',
-      'departure-time'
+      'departure-date-day',
+      'departure-date-month',
+      'departure-date-year',
+      'departure-time',
+      'departure-time-hours',
+      'departure-time-minutes'
     ],
     next: '/check-your-answers'
   },
   '/check-your-answers': {
     template: 'check-your-answers.html',
+    controller: require('../common/controllers/evw-base'),
     next: '/declaration'
   },
   '/flight-not-found': {
