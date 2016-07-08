@@ -58,6 +58,7 @@
     "request": "^2.72.0",
     "typeahead.js-browserify": "^1.0.5",
     "underscore": "^1.8.3",
+    "validate.js": "^0.10.0",
     "winston": "^1.*.*"
   },
   "devDependencies": {
