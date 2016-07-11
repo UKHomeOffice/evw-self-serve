@@ -19,10 +19,5 @@ module.exports = {
   },
   '/link-sent': {
     template: 'link-sent'
-  },
-  '/email-us': {
-    template: 'email-us',
-    controller: require('./controllers/email-us'),
-    clearSession: false
   }
 };
