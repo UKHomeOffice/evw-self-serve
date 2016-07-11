@@ -47,8 +47,8 @@ module.exports = {
     port: process.env.INTEGRATION_SERVICE_PORT || 9300,
     timeout: 5000,
     verify: {
-        method: 'POST',
-        endpoint: 'verify/evw'
+      method: 'POST',
+      endpoint: 'verify/evw'
     }
   }
 };
