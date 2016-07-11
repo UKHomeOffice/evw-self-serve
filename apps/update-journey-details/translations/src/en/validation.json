@@ -1,18 +1,33 @@
 {
   "transport-options": {
-    "required": "Please tell us how you will arrive"
+    "required": "Please tell us how you will arrive",
+    "equal": "Please select an option from the list"
   },
   "flight-number": {
-    "required": "Please enter your flight number"
+    "required": "Enter the flight number you will be arriving in the UK on",
+    "too-long": "Your flight number is too long. Please check your travel documents and enter it correctly",
+    "format": "A flight number has 2 or 3 letters or numbers representing the airline followed by 1 to 4 numbers and sometimes an extra letter at the end, for example KU101. Please check your travel documents and re-enter"
   },
   "arrival-date": {
-    "required": "Please enter your arrival date",
-    "numeric": "Please enter a valid date"
+    "numeric": "Enter a valid date",
+    "invalid": "Enter the time your flight is due to land in the UK in 24 hour format HH:MM",
+    "within-48-hours": "Date of arrival must be at least 48 hours from now",
+    "to-far-in-future": "Date of arrival in the UK must be no more than 3 months from now"
   },
   "is-this-your-flight": {
-    "required": "Please select an option"
+    "required": "Please select an option",
+    "equal": "Please select an option from the list"
   },
   "accept-declaration": {
     "required": "Please indicate that you agree to the declaration"
+  },
+  "departure-date": {
+    "invalid": "Select a valid date you will depart for the UK",
+    "in-past": "The date your flight to the UK takes off cannot be more than 1 day before it arrives in the UK",
+    "in-future": "The date your flight to the UK takes off cannot be after the date it arrives in the UK"
+  },
+  "departure-time": {
+    "departure-after-arrival": "Your departure cannot be after your arrival",
+    "departure-too-far-before-arrival": "The date your flight to the UK takes off cannot be more than 24 hours before it arrives in the UK"
   }
 }

@@ -5,18 +5,20 @@ let features = require('characteristic')(__dirname + '/../../config/features.yml
 module.exports = {
   '/': {
     controller: require('../common/controllers/start'),
-    next: '/how-will-you-arrive',
-    forks: [{
-        target: '/flight-number',
-        condition: () => features.isEnabled('update_details')
-      }]
+    next: '/how-will-you-arrive'
   },
   '/how-will-you-arrive': {
     template: 'how-will-you-arrive',
     fields: [
       'transport-options'
     ],
-    next: '/email-us'
+    next: '/email-us',
+    forks: [{
+      target: '/flight-number',
+      condition: (req) => {
+        return features.isEnabled('update_details') && req.form.values['transport-options'] === 'by-plane';
+      }
+    }]
   },
   '/email-us': {
     template: 'email-us',
@@ -24,6 +26,7 @@ module.exports = {
   },
   '/flight-number': {
     template: 'flight-number',
+    controller: require('../common/controllers/evw-base'),
     fields: [
       'flight-number'
     ],
@@ -63,14 +66,21 @@ module.exports = {
   },
   '/departure-date-and-time': {
     template: 'departure-date-and-time',
+    controller: require('../common/controllers/evw-base'),
     fields: [
       'departure-date',
-      'departure-time'
+      'departure-date-day',
+      'departure-date-month',
+      'departure-date-year',
+      'departure-time',
+      'departure-time-hours',
+      'departure-time-minutes'
     ],
     next: '/check-your-answers'
   },
   '/check-your-answers': {
     template: 'check-your-answers.html',
+    controller: require('../common/controllers/evw-base'),
     next: '/declaration'
   },
   '/flight-not-found': {

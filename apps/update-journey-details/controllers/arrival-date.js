@@ -1,14 +1,14 @@
 'use strict';
 
 const util = require('util');
-const BaseController = require('hof').controllers.base;
+const EvwBaseController = require('../../common/controllers/evw-base');
 const flightLookup = require('../../../lib/flight-lookup');
 
 const ArrivalDateController = function ArrivalDateController() {
-  BaseController.apply(this, arguments);
+  EvwBaseController.apply(this, arguments);
 };
 
-util.inherits(ArrivalDateController, BaseController);
+util.inherits(ArrivalDateController, EvwBaseController);
 
 ArrivalDateController.prototype.saveValues = function saveValues(req, res, callback) {
     let lookupData = flightLookup.formatPost({
