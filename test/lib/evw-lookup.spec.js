@@ -7,7 +7,7 @@ const log = {
 };
 let lookup;
 
-describe('evw-lookup', function () {
+describe('lib/evw-lookup', function () {
 
   lookup = proxyquire('../../lib/evw-lookup', {
     logger: log
@@ -46,6 +46,23 @@ describe('evw-lookup', function () {
           .should.eventually.have.property('body').contains({
             error: 'CASE_NOT_UPDATABLE'
           });
+      });
+    });
+
+  });
+
+  describe('#format', function() {
+    it('should format the posted params', function() {
+      let formValues = {
+        'evw-number': 'EVW123',
+        'dob-day': '09',
+        'dob-month': '08',
+        'dob-year': '2016',
+      };
+
+      lookup.format(formValues).should.deep.equal({
+        evwNumber: 'EVW123',
+        dateOfBirth: '2016-08-09'
       });
     });
   });
