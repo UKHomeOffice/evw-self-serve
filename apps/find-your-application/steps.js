@@ -19,7 +19,7 @@ module.exports = {
     forks: [{
       target: '/evw-expired',
       condition: (req) => {
-        return typeof req.sessionModel.get('isEvwVerified') === 'undefined';
+        return !(!!req.sessionModel.get('caseUpdateable'));
       }
     }]
   },

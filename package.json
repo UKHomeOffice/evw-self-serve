@@ -11,7 +11,9 @@
   "scripts": {
     "start": "node .",
     "dev": "npm-run-all --parallel watch:app watch:scss watch:js watch:translations",
-    "mock": "node ./node_modules/.bin/dyson mocks 9350",
+    "mock": "npm-run-all --parallel mock:integration mock:flight",
+    "mock:integration": "INTEGRATION_SERVICE_URL=http://localhost:9300 node ./node_modules/.bin/evw-integration-stub",
+    "mock:flight": "node ./node_modules/.bin/dyson mocks 9350",
     "dev:mock": "npm-run-all --parallel dev mock",
     "watch:app": "NODE_ENV=development nodemon --watch apps -e html,json,js",
     "watch:scss": "nodemon -e scss -x 'npm run sass'",

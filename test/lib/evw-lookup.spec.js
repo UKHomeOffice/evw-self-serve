@@ -52,8 +52,10 @@ describe('lib/evw-lookup', function () {
   });
 
   describe('#format', function() {
+    let formValues;
+
     it('should format the posted params', function() {
-      let formValues = {
+      formValues = {
         'evw-number': 'EVW123',
         'dob-day': '09',
         'dob-month': '08',
@@ -65,5 +67,23 @@ describe('lib/evw-lookup', function () {
         dateOfBirth: '2016-08-09'
       });
     });
+
+    describe('slightly less pretty values', function () {
+
+      it('formats correctly', function () {
+        formValues = {
+          'evw-number': 'EVW123',
+          'dob-day': '9',
+          'dob-month': '8',
+          'dob-year': '2016',
+        };
+
+        lookup.format(formValues).should.deep.equal({
+          evwNumber: 'EVW123',
+          dateOfBirth: '2016-08-09'
+        });
+      });
+    });
+
   });
 });
