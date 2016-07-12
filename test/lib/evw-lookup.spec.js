@@ -17,24 +17,36 @@ describe('evw-lookup', function () {
     lookup.should.exist;
   });
 
+  /* eslint no-warning-comments: 1 */
+  // TODO check logger calls using stubbed spies
   describe('found', function () {
 
     it('should return success', function () {
-      return lookup('validevwnumber10', '10/10/1980')
+      return lookup.find('validevwnumber10', '10/10/1980')
         .should.eventually.have.property('body').contains({
           success: true
         });
     });
 
-    it('should call logger', function (done) {
-      return lookup('validevwnumber10', '10/10/1980').then(() => {
-        log.info.should.have.been.called;
-        done();
-      }, (err) => done(err));
-    });
   });
 
   describe('not found', function () {
+    describe('too late', function () {
+      it('should error', function () {
+        return lookup.find('1000INVALID', '10/10/1980')
+          .should.eventually.have.property('body').contains({
+            error: 'CASE_NOT_FOUND'
+          });
+      });
+    });
 
+    describe('case not found', function () {
+      it('should error', function () {
+        return lookup.find('TOOLATEM8', '10/10/1980')
+          .should.eventually.have.property('body').contains({
+            error: 'CASE_NOT_UPDATABLE'
+          });
+      });
+    });
   });
 });
