@@ -11,5 +11,6 @@ require('moment-business');
 // bring up evw-integration-stub
 require('evw-integration-stub')();
 
+process.env.NODE_ENV = 'test';
 process.setMaxListeners(0);
 process.stdout.setMaxListeners(0);
