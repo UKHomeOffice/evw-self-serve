@@ -11,5 +11,5 @@ require('moment-business');
 // bring up evw-integration-stub
 require('evw-integration-stub')();
 
-// process.setMaxListeners(0);
-// process.stdout.setMaxListeners(0);
+process.setMaxListeners(0);
+process.stdout.setMaxListeners(0);
