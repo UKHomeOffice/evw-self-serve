@@ -59,5 +59,9 @@
   },
   "enter-your-details": {
     "header": "Enter your details"
+  },
+  "evw-expired": {
+    "header": "Electronic visa waiver expired",
+    "content": "YOu can no longer download your electronic visa waiver. This is because it is for a travel date in the past and has expired."
   }
 }
