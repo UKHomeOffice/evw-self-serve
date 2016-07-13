@@ -2,8 +2,7 @@
 node_modules
 public
 dump.rdb
-apps/update-journey-details/translations/en
-apps/common/translations/en/default.json
+apps/*/translations/en/default.json
 selenium-debug.log
 Gemfile.lock
 fpm/build/usr/share/evw-self-serve/*
