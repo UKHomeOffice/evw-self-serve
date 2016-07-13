@@ -159,12 +159,17 @@
 		},
 		"enter-your-details": {
 			"header": "Enter your details"
+		},
+		"evw-expired": {
+			"header": "Electronic visa waiver expired",
+			"content": "You can no longer download your electronic visa waiver. This is because it is for a travel date in the past and has expired."
 		}
 	},
 	"validation": {
 		"evw-number": {
 			"required": "Please enter your electronic visa wavier number",
-			"alphanum": "Please enter only letters and numbers"
+			"alphanum": "Please enter only letters and numbers",
+			"not-found": "We can't find your EVW"
 		},
 		"dob": {
 			"required": "Enter your date of birth",

@@ -2,7 +2,7 @@
 
 const util = require('util');
 const controllers = require('hof').controllers;
-const BaseController = controllers.base;
+const DateController = controllers.date;
 const ErrorClass = require('hof').controllers.error;
 const validateLib = require('validate.js');
 const logger = require('../../../lib/logger');
@@ -11,21 +11,31 @@ const options = {
 };
 
 let EvwBaseController = function EvwBaseController() {
-  BaseController.apply(this, arguments);
+  DateController.apply(this, arguments);
 };
 
-util.inherits(EvwBaseController, BaseController);
+util.inherits(EvwBaseController, DateController);
 
-let formatValue = (formValues, keyToValidate) => {
-  if (keyToValidate.indexOf('date') > -1) {
-    return `${formValues[keyToValidate + '-year']}-${formValues[keyToValidate + '-month']}-${formValues[keyToValidate + '-day']}`;
+EvwBaseController.prototype.applyDates = function firstDates(fields) {
+  Object.keys(fields).forEach((key) => {
+    let type = fields[key].type;
+    if(type && type.indexOf('date') > -1) {
+      this.dateKey = key;
+    };
+  });
+}
+
+// Format date/time
+let formatValue = (formValues, key) => {
+  if(key.match(/dob$|date$/gi) ) {
+    return `${formValues[key + '-year']}-${formValues[key + '-month']}-${formValues[key + '-day']}`;
   }
 
-  if (keyToValidate.indexOf('time') > -1) {
-    return `${formValues[keyToValidate + '-hours']}:${formValues[keyToValidate + '-minutes']}`;
+  if (key.indexOf('time') > -1) {
+    return `${formValues[key + '-hours']}:${formValues[key + '-minutes']}`;
   }
 
-  return formValues[keyToValidate];
+  return formValues[key];
 };
 
 EvwBaseController.prototype.validateField = function validateField(keyToValidate, req) {
@@ -43,12 +53,16 @@ EvwBaseController.prototype.validateField = function validateField(keyToValidate
 
     let validationErrors = validateLib.validate(field, schema, options);
 
+    // found custom rules
     if (validationErrors !== undefined) {
       return new ErrorClass(keyToValidate, {
         type: validationErrors[keyToValidate]
       });
     }
+    // 'normal' validators
+    return DateController.prototype.validateField.apply(this, arguments);
   } catch (e) {
+    return DateController.prototype.validateField.apply(this, arguments);
     logger.info(`No validation rules found for ${keyToValidate}`);
   }
 };
