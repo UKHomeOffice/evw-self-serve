@@ -35,12 +35,20 @@ module.exports = {
     from: process.env.FROM_ADDRESS || 'brp@dsp.notprod.homeoffice.gov.uk'
   },
   flightService: {
-      url: process.env.FLIGHT_SERVICE_URL || 'http://localhost:9350',
-      timeout: 5000,
-      check: {
-          method: 'POST',
-          endpoint: 'check-flight-details'
-      }
+    url: process.env.FLIGHT_SERVICE_URL || 'http://localhost:9350',
+    timeout: 5000,
+    check: {
+        method: 'POST',
+        endpoint: 'check-flight-details'
+    }
+  },
+  integrationService: {
+    url: process.env.INTEGRATION_SERVICE_URL || 'http://localhost:9300',
+    port: process.env.INTEGRATION_SERVICE_PORT || 9300,
+    timeout: 5000,
+    verify: {
+      method: 'POST',
+      endpoint: 'verify/evw'
+    }
   }
-
 };
