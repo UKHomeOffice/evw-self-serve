@@ -12,8 +12,10 @@ module.exports = class EnterYourDetailsController extends EvwBaseController {
   }
 
   process(req, res, callback) {
+    // reset any previous lookup errors
+    req.sessionModel.set('evwLookupError', null);
     let values = lookup.format(req.form.values);
-    // TODO check for validationErrors before doing this
+
     lookup.find(values.evwNumber, values.dateOfBirth).then((response) => {
       let result = response.body;
 
@@ -21,10 +23,10 @@ module.exports = class EnterYourDetailsController extends EvwBaseController {
       if (result.error) {
         req.sessionModel.set('evwLookupError', result.error);
       }
-
-      callback();
+      super.process(req, res, callback);
     },
     (err) => logger.error(err));
+
   }
 
 }

@@ -12,20 +12,18 @@ const options = {
 };
 
 let EvwBaseController = function EvwBaseController() {
-  // this.dateKey = 'dob';
   DateController.apply(this, arguments);
 };
 
 util.inherits(EvwBaseController, DateController);
 
 EvwBaseController.prototype.applyDates = function firstDates(fields) {
-  console.log('got these fields', fields)
   Object.keys(fields).forEach((key) => {
-    if(key.match(/dob$|date$/gi) ) {
+    let type = fields[key].type;
+    if(type && type.indexOf('date') > -1) {
       this.dateKey = key;
     };
   });
-  console.log('set dateKey to', this.dateKey);
 }
 
 // Format date/time
@@ -65,8 +63,7 @@ EvwBaseController.prototype.validateField = function validateField(keyToValidate
       });
     }
     // 'normal' validators
-    // TODO is this needed here?
-    // return DateController.prototype.validateField.apply(this, arguments);
+    return DateController.prototype.validateField.apply(this, arguments);
   } catch (e) {
     return DateController.prototype.validateField.apply(this, arguments);
     console.log(this);
