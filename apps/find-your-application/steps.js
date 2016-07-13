@@ -19,7 +19,7 @@ module.exports = {
     forks: [{
       target: '/evw-expired',
       condition: (req) => {
-        return req.sessionModel.get('caseNotUpdatable');
+        return req.sessionModel.get('evwLookupError') === 'CASE_NOT_UPDATABLE';
       }
     }]
   },

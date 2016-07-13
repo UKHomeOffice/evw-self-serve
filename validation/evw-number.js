@@ -2,7 +2,7 @@
 
 module.exports = {
   rules: (value, model) => {
-    if (model.get('caseNotFound')) {
+    if (model.get('evwLookupError') === 'CASE_NOT_FOUND') {
       return Object.assign({
         length: {
           minimum: 999,
