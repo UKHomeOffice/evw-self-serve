@@ -2,7 +2,8 @@
 
 const util = require('util');
 const controllers = require('hof').controllers;
-const BaseController = controllers.base;
+// const BaseController = controllers.base;
+const DateController = controllers.date;
 const ErrorClass = require('hof').controllers.error;
 const validateLib = require('validate.js');
 const logger = require('../../../lib/logger');
@@ -11,21 +12,35 @@ const options = {
 };
 
 let EvwBaseController = function EvwBaseController() {
-  BaseController.apply(this, arguments);
+  // this.dateKey = 'dob';
+  DateController.apply(this, arguments);
 };
 
-util.inherits(EvwBaseController, BaseController);
+util.inherits(EvwBaseController, DateController);
 
-let formatValue = (formValues, keyToValidate) => {
-  if (keyToValidate.indexOf('date') > -1) {
-    return `${formValues[keyToValidate + '-year']}-${formValues[keyToValidate + '-month']}-${formValues[keyToValidate + '-day']}`;
+EvwBaseController.prototype.applyDates = function firstDates(fields) {
+  console.log('got these fields', fields)
+  Object.keys(fields).forEach((key) => {
+    if(key.match(/dob$|date$/gi) ) {
+      this.dateKey = key;
+    };
+  });
+  console.log('set dateKey to', this.dateKey);
+}
+
+// Format date/time
+let formatValue = (formValues, key) => {
+  // if (key.indexOf('date') > -1) {
+
+  if(key.match(/dob|date/gi) ) {
+    return `${formValues[key + '-year']}-${formValues[key + '-month']}-${formValues[key + '-day']}`;
   }
 
-  if (keyToValidate.indexOf('time') > -1) {
-    return `${formValues[keyToValidate + '-hours']}:${formValues[keyToValidate + '-minutes']}`;
+  if (key.indexOf('time') > -1) {
+    return `${formValues[key + '-hours']}:${formValues[key + '-minutes']}`;
   }
 
-  return formValues[keyToValidate];
+  return formValues[key];
 };
 
 EvwBaseController.prototype.validateField = function validateField(keyToValidate, req) {
@@ -43,12 +58,18 @@ EvwBaseController.prototype.validateField = function validateField(keyToValidate
 
     let validationErrors = validateLib.validate(field, schema, options);
 
+    // found custom rules
     if (validationErrors !== undefined) {
       return new ErrorClass(keyToValidate, {
         type: validationErrors[keyToValidate]
       });
     }
+    // 'normal' validators
+    // TODO is this needed here?
+    // return DateController.prototype.validateField.apply(this, arguments);
   } catch (e) {
+    return DateController.prototype.validateField.apply(this, arguments);
+    console.log(this);
     logger.info(`No validation rules found for ${keyToValidate}`);
   }
 };

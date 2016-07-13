@@ -5,21 +5,26 @@ const lookup = require('../../../lib/evw-lookup');
 const logger = require('../../../lib/logger');
 
 module.exports = class EnterYourDetailsController extends EvwBaseController {
+
+  constructor(options) {
+    super(options);
+    super.applyDates(options.fields);
+  }
+
   process(req, res, callback) {
     let values = lookup.format(req.form.values);
-
+    // TODO check for validationErrors before doing this
     lookup.find(values.evwNumber, values.dateOfBirth).then((response) => {
       let result = response.body;
 
-      // Application not found
-      if (result.error === 'CASE_NOT_FOUND') {
-        req.sessionModel.set('caseNotFound', true);
-      } else if (result.error === 'CASE_NOT_UPDATABLE') {
-        req.sessionModel.set('caseNotUpdatable', true);
+      // Application not found / too late
+      if (result.error) {
+        req.sessionModel.set('evwLookupError', result.error);
       }
 
       callback();
     },
     (err) => logger.error(err));
   }
+
 }
