@@ -1,13 +1,32 @@
 'use strict';
 
-const util = require('util');
-const DateController = require('hof').controllers.date;
+const EvwBaseController = require('../../common/controllers/evw-base');
+const lookup = require('../../../lib/evw-lookup');
+const logger = require('../../../lib/logger');
 
-let EnterYourDetailsController = function EnterYourDetailsController() {
-  this.dateKey = 'dob';
-  DateController.apply(this, arguments);
-};
+module.exports = class EnterYourDetailsController extends EvwBaseController {
 
-util.inherits(EnterYourDetailsController, DateController);
+  constructor(options) {
+    super(options);
+    super.applyDates(options.fields);
+  }
 
-module.exports = EnterYourDetailsController;
+  process(req, res, callback) {
+    // reset any previous lookup errors
+    req.sessionModel.set('evwLookupError', null);
+    let values = lookup.format(req.form.values);
+
+    lookup.find(values.evwNumber, values.dateOfBirth).then((response) => {
+      let result = response.body;
+
+      // Application not found / too late
+      if (result.error) {
+        req.sessionModel.set('evwLookupError', result.error);
+      }
+      super.process(req, res, callback);
+    },
+    (err) => logger.error(err));
+
+  }
+
+}

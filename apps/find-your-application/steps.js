@@ -15,14 +15,18 @@ module.exports = {
       'dob-year',
       'evw-number'
     ],
-    next: '/link-sent'
+    next: '/link-sent',
+    forks: [{
+      target: '/evw-expired',
+      condition: (req) => {
+        return req.sessionModel.get('evwLookupError') === 'CASE_NOT_UPDATABLE';
+      }
+    }]
   },
   '/link-sent': {
     template: 'link-sent'
   },
-  '/email-us': {
-    template: 'email-us',
-    controller: require('./controllers/email-us'),
-    clearSession: false
+  '/evw-expired': {
+    template: 'evw-expired'
   }
 };
