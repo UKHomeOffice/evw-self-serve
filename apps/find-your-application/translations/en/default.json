@@ -168,7 +168,8 @@
 	"validation": {
 		"evw-number": {
 			"required": "Please enter your electronic visa wavier number",
-			"alphanum": "Please enter only letters and numbers"
+			"alphanum": "Please enter only letters and numbers",
+			"not-found": "We can't find your EVW"
 		},
 		"dob": {
 			"required": "Enter your date of birth",

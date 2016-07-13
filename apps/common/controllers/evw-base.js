@@ -28,7 +28,14 @@ let formatValue = (formValues, keyToValidate) => {
   return formValues[keyToValidate];
 };
 
-EvwBaseController.prototype.validateField = function validateField(keyToValidate, req) {
+EvwBaseController.prototype.validateField = function validateField(keyToValidate, req, custom) {
+  if(custom) {
+    console.log('custom');
+    return new ErrorClass('evw-number', {
+      type: 'wrong'
+    });
+  };
+  console.log(keyToValidate, 'validating');
   try {
     let fieldValue = formatValue(req.form.values, keyToValidate);
     let rules = require(`../../../validation/${keyToValidate}`).rules(fieldValue, req.sessionModel);

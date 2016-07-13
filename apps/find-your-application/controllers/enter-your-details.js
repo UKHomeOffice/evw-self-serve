@@ -2,7 +2,8 @@
 
 const util = require('util');
 const EvwBaseController = require('../../common/controllers/evw-base');
-const verifyEvw = require('../../../lib/verify-evw');
+const lookup = require('../../../lib/evw-lookup');
+const logger = require('../../../lib/logger');
 
 let EnterYourDetailsController = function EnterYourDetailsController() {
   EvwBaseController.apply(this, arguments);
@@ -10,21 +11,40 @@ let EnterYourDetailsController = function EnterYourDetailsController() {
 
 util.inherits(EnterYourDetailsController, EvwBaseController);
 
-EnterYourDetailsController.prototype.saveValues = function saveValues(req, res, callback) {
-  let lookupValues = verifyEvw.formatPost(req.form.values);
+// const handleError = (error, req) => {
 
-  verifyEvw.findApplication(lookupValues.evwNumber, lookupValues.dateOfBirth).then(function (response) {
-    let result = verifyEvw.mapResponse(response.body);
+//   // too late
+//   if (error === 'CASE_NOT_UPDATABLE') {
+//     req.sessionModel.set('caseUpdateable', false);
+//   } else {
+
+
+// }
+
+EnterYourDetailsController.prototype.saveValues = function saveValues(req, res, callback) {
+  console.log('do u even get errs❌');
+  let values = lookup.format(req.form.values);
+
+  lookup.find(values.evwNumber, values.dateOfBirth).then( (response) => {
+    let result = response.body;
 
     // Application found
-    if (result === 'success') {
-      req.sessionModel.set('isEvwVerified', true);
+    if (result.success) {
+      req.sessionModel.set('caseUpdateable', true);
     }
 
-    // Application not found, page gets set in steps.js
+    // Application not found
+    if (result.error) {
+      console.log('result.error', result.error);
+      EnterYourDetailsController.prototype.validateField.call(this, 'rubbish', req, true);
+    }
 
     callback();
-  });
+  }, (err) => logger.error(err));
+
+  // return Object.assign(
+  //   BaseController.prototype.locals.call(this, req, res)
+  // );
 }
 
 module.exports = EnterYourDetailsController;
