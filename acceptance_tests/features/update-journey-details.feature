@@ -1,3 +1,4 @@
+@update_journey_details
 Feature: Updating Journey Details
 
 Scenario: Entering new flight details and correct flight found

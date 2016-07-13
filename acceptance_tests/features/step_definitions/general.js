@@ -53,9 +53,9 @@ module.exports = function () {
         this.assert.containsText('h1.heading-large', string);
     });
 
-    this.Then(/^the "([^"]*)" class should contain$/, function (selector, strings) {
+    this.Then(/^the validation summary should contain$/, function (strings) {
         strings.split(/\n/).forEach( function (string) {
-            this.assert.containsText('.' + urlise(selector), string);
+            this.assert.containsText('.validation-summary', string);
         }, this);
     });
 
