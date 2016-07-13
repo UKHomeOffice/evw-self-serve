@@ -2,7 +2,6 @@
 
 const util = require('util');
 const controllers = require('hof').controllers;
-// const BaseController = controllers.base;
 const DateController = controllers.date;
 const ErrorClass = require('hof').controllers.error;
 const validateLib = require('validate.js');
@@ -28,9 +27,7 @@ EvwBaseController.prototype.applyDates = function firstDates(fields) {
 
 // Format date/time
 let formatValue = (formValues, key) => {
-  // if (key.indexOf('date') > -1) {
-
-  if(key.match(/dob|date/gi) ) {
+  if(key.match(/dob$|date$/gi) ) {
     return `${formValues[key + '-year']}-${formValues[key + '-month']}-${formValues[key + '-day']}`;
   }
 
@@ -66,7 +63,6 @@ EvwBaseController.prototype.validateField = function validateField(keyToValidate
     return DateController.prototype.validateField.apply(this, arguments);
   } catch (e) {
     return DateController.prototype.validateField.apply(this, arguments);
-    console.log(this);
     logger.info(`No validation rules found for ${keyToValidate}`);
   }
 };
