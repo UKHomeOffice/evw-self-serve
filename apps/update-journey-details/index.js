@@ -23,7 +23,7 @@ router.use('/update-journey-details/', wizard(require('./steps'), fields, {
   controller: BaseController,
   templatePath: path.resolve(__dirname, 'views'),
   translate: i18n.translate.bind(i18n),
-  params: '/:action?'
+  params: '/:action?/:token?'
 }));
 
 module.exports = router;
