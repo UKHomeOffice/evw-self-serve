@@ -16,7 +16,7 @@ describe('validation/departure-date', function() {
       'arrival-date': moment().subtract(1, 'day')
     }
 
-    validation.rules('2016-08-32', model).should.deep.equal({
+    validation.rules('32-08-2016', model).should.deep.equal({
       length: {
         minimum: 12,
         message: 'departure-date.invalid'
