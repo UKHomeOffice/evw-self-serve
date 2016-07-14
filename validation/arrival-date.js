@@ -21,7 +21,7 @@ module.exports = {
       return {
         length: {
           minimum: 12,
-          message: 'arrival-date.to-far-in-future'
+          message: 'arrival-date.too-far-in-future'
         }
       };
     }
