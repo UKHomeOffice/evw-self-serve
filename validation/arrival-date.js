@@ -4,7 +4,7 @@ const moment = require('moment');
 
 module.exports = {
   rules: (fieldValue) => {
-    let date = moment(fieldValue, 'YYYY-M-D');
+    let date = moment(fieldValue, 'DD-MM-YYYY');
     let threeMonths = moment().add(3, 'months');
     let fourtyEight = moment().add(48, 'hours');
 
