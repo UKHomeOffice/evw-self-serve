@@ -4,9 +4,9 @@ const moment = require('moment');
 
 module.exports = {
   rules: (fieldValue, model) => {
-    let departureDate = moment(fieldValue, 'YYYY-M-D');
-    let arrivalDateMinusOneDay = moment(model.get('arrival-date')).subtract(1, 'day');
-    let arrivalDatePlusOneDay = moment(model.get('arrival-date')).add(1, 'day');
+    let departureDate = moment(fieldValue, 'DD-MM-YYYY');
+    let arrivalDateMinusOneDay = moment(model.get('arrival-date'), 'DD-MM-YYYY').subtract(1, 'day');
+    let arrivalDatePlusOneDay = moment(model.get('arrival-date'), 'DD-MM-YYYY').add(1, 'day');
 
     if (!departureDate.isValid()) {
       return {
