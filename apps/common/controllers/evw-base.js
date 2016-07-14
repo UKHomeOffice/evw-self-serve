@@ -9,18 +9,33 @@ const logger = require('../../../lib/logger');
 const options = {
   fullMessages: false,
 };
+const formatting = require('../../../lib/formatting');
 
 let EvwBaseController = function EvwBaseController() {
+  this.dateFormat = 'DD-MM-YYYY';
   DateController.apply(this, arguments);
 };
 
 util.inherits(EvwBaseController, DateController);
 
-EvwBaseController.prototype.applyDates = function firstDates(fields) {
+EvwBaseController.prototype.process = function process(req, res, callback) {
+
+  return DateController.prototype.process.call(this, req, res, function processTime() {
+    if(this.timeKey) {
+      req.form.values[this.timeKey] = formatting.getTime(req.form.values, this.timeKey);
+    }
+    callback();
+  }.bind(this));
+};
+
+EvwBaseController.prototype.applyDatesTimes = function firstDates(fields) {
   Object.keys(fields).forEach((key) => {
     let type = fields[key].type;
     if(type && type.indexOf('date') > -1) {
       this.dateKey = key;
+    };
+    if(type && type.indexOf('time') > -1) {
+      this.timeKey = key;
     };
   });
 }
@@ -28,11 +43,11 @@ EvwBaseController.prototype.applyDates = function firstDates(fields) {
 // Format date/time
 let formatValue = (formValues, key) => {
   if(key.match(/dob$|date$/gi) ) {
-    return `${formValues[key + '-year']}-${formValues[key + '-month']}-${formValues[key + '-day']}`;
+    return formatting.getDate(formValues, key);
   }
 
   if (key.indexOf('time') > -1) {
-    return `${formValues[key + '-hours']}:${formValues[key + '-minutes']}`;
+    return formatting.getTime(formValues, key);
   }
 
   return formValues[key];
