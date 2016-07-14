@@ -11,15 +11,21 @@ const options = {
 };
 const formatting = require('../../../lib/formatting');
 
+
 let EvwBaseController = function EvwBaseController() {
-  this.dateFormat = 'DD-MM-YYYY';
   DateController.apply(this, arguments);
 };
 
 util.inherits(EvwBaseController, DateController);
 
-EvwBaseController.prototype.process = function process(req, res, callback) {
+// A hack because Ralph can't figure out
+// passing options to a constructor 🙍🏽
+EvwBaseController.prototype.getNextStep = function (req, res) {
+  this.confirmStep = '/check-your-answers';
+  return DateController.prototype.getNextStep.call(this, req, res);
+}
 
+EvwBaseController.prototype.process = function process(req, res, callback) {
   return DateController.prototype.process.call(this, req, res, function processTime() {
     if(this.timeKey) {
       req.form.values[this.timeKey] = formatting.getTime(req.form.values, this.timeKey);
