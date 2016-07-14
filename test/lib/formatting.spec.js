@@ -28,7 +28,7 @@ describe('lib/formatting', function () {
       values['departure-time-hours'] = '';
       values['departure-time-minutes'] = '';
       formatting.getTime(values, 'departure-time')
-      .should.equal('Invalid date');
+      .should.equal('');
     });
 
     it('derives 00mins when hour passed', function () {
