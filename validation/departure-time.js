@@ -4,8 +4,8 @@ const moment = require('moment');
 
 module.exports = {
   rules: (fieldValue, model) => {
-    let departureDateTime = moment(`${model.get('departure-date')} ${fieldValue}`, 'YYYY-M-D h:m');
-    let arrivalDateTime = moment(`${model.get('arrival-date')} ${model.get('flightDetails').arrivalTime}`, 'YYYY-M-D h:m');
+    let departureDateTime = moment(`${model.get('departure-date')} ${fieldValue}`, 'DD-MM-YYYY h:m');
+    let arrivalDateTime = moment(`${model.get('arrival-date')} ${model.get('flightDetails').arrivalTime}`, 'DD-MM-YYYY h:m');
 
     // We allow time travel of one hour max to compensate for time-zone hopping
     // `departure-time: 8:00` => `arrival-time: 7:00` is okay

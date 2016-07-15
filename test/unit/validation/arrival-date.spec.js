@@ -5,7 +5,7 @@ const moment = require('moment');
 
 describe('validation/arrival-date', function() {
   it('should be a valid date', function() {
-    validation.rules('2016-08-32').should.deep.equal({
+    validation.rules('32-08-2016').should.deep.equal({
       length: {
         minimum: 12,
         message: 'arrival-date.invalid'
@@ -17,7 +17,7 @@ describe('validation/arrival-date', function() {
     validation.rules(moment().add(4, 'months')).should.deep.equal({
       length: {
         minimum: 12,
-        message: 'arrival-date.to-far-in-future'
+        message: 'arrival-date.too-far-in-future'
       }
     });
   });
