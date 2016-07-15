@@ -9,6 +9,19 @@ let lookup;
 
 describe('lib/evw-lookup', function () {
 
+  // bring up evw-integration-stub
+  before(function (done){
+    this.dyson = dysonServer({
+      mocks: './node_modules/evw-integration-stub/mocks',
+      port: 9300,
+      name: 'integration service stub'
+    }, done);
+  });
+
+  after(function () {
+    this.dyson.kill();
+  });
+
   lookup = proxyquire('../../lib/evw-lookup', {
     logger: log
   });
