@@ -12,7 +12,7 @@
     "numeric": "Enter a valid date",
     "invalid": "Enter the time your flight is due to land in the UK in 24 hour format HH:MM",
     "within-48-hours": "Date of arrival must be at least 48 hours from now",
-    "to-far-in-future": "Date of arrival in the UK must be no more than 3 months from now"
+    "too-far-in-future": "Date of arrival in the UK must be no more than 3 months from now"
   },
   "is-this-your-flight": {
     "required": "Please select an option",
@@ -27,6 +27,7 @@
     "in-future": "The date your flight to the UK takes off cannot be after the date it arrives in the UK"
   },
   "departure-time": {
+    "required": "Please enter a time",
     "departure-after-arrival": "Your departure cannot be after your arrival",
     "departure-too-far-before-arrival": "The date your flight to the UK takes off cannot be more than 24 hours before it arrives in the UK"
   }

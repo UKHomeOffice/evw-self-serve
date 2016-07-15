@@ -8,7 +8,7 @@ module.exports = class EnterYourDetailsController extends EvwBaseController {
 
   constructor(options) {
     super(options);
-    super.applyDates(options.fields);
+    super.applyDatesTimes(options.fields);
   }
 
   process(req, res, callback) {

@@ -66,7 +66,7 @@ module.exports = {
   },
   '/departure-date-and-time': {
     template: 'departure-date-and-time',
-    controller: require('../common/controllers/evw-base'),
+    controller: require('./controllers/departure-date-and-time'),
     fields: [
       'departure-date',
       'departure-date-day',
