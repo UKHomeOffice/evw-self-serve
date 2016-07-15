@@ -3,20 +3,24 @@
 const path = require('path');
 let flightLookup = require('../../../../../lib/flight-lookup');
 let airports = require('../../../../../data/airports');
-let dyson = require('dyson');
 let chaiAsPromised = require('chai-as-promised');
 let config = require('../../../../../config');
 chai.use(chaiAsPromised);
 
 describe('lib/flight-lookup', function() {
 
-    before(function () {
+    before(function (done) {
         let port = config.flightService.url.split(':').pop();
         let dir = path.resolve(__dirname, '../../../../../mocks');
-        dyson.bootstrap({
+        this.dyson = dysonServer({
+          mocks: dir,
           port: port,
-          configDir: dir
-        });
+          name: 'flight lookup service'
+        }, done);
+    });
+
+    after(function () {
+      this.dyson.kill();
     });
 
     describe('#findFlight', function() {

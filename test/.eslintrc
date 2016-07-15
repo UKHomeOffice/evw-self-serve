@@ -5,6 +5,7 @@ globals:
   expect: true
   sinon: true
   should: true
+  dysonServer: true
 rules:
   func-names: 0
   max-nested-callbacks: 0
