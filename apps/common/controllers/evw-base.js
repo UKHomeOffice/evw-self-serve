@@ -9,6 +9,8 @@ const logger = require('../../../lib/logger');
 const options = {
   fullMessages: false,
 };
+const formatting = require('../../../lib/formatting');
+
 
 let EvwBaseController = function EvwBaseController() {
   DateController.apply(this, arguments);
@@ -16,11 +18,30 @@ let EvwBaseController = function EvwBaseController() {
 
 util.inherits(EvwBaseController, DateController);
 
-EvwBaseController.prototype.applyDates = function firstDates(fields) {
+// A hack because Ralph can't figure out
+// passing options to a constructor 🙍🏽
+EvwBaseController.prototype.getNextStep = function (req, res) {
+  this.confirmStep = '/check-your-answers';
+  return DateController.prototype.getNextStep.call(this, req, res);
+}
+
+EvwBaseController.prototype.process = function process(req, res, callback) {
+  return DateController.prototype.process.call(this, req, res, function processTime() {
+    if(this.timeKey) {
+      req.form.values[this.timeKey] = formatting.getTime(req.form.values, this.timeKey);
+    }
+    callback();
+  }.bind(this));
+};
+
+EvwBaseController.prototype.applyDatesTimes = function firstDates(fields) {
   Object.keys(fields).forEach((key) => {
     let type = fields[key].type;
     if(type && type.indexOf('date') > -1) {
       this.dateKey = key;
+    };
+    if(type && type.indexOf('time') > -1) {
+      this.timeKey = key;
     };
   });
 }
@@ -28,11 +49,11 @@ EvwBaseController.prototype.applyDates = function firstDates(fields) {
 // Format date/time
 let formatValue = (formValues, key) => {
   if(key.match(/dob$|date$/gi) ) {
-    return `${formValues[key + '-year']}-${formValues[key + '-month']}-${formValues[key + '-day']}`;
+    return formatting.getDate(formValues, key);
   }
 
   if (key.indexOf('time') > -1) {
-    return `${formValues[key + '-hours']}:${formValues[key + '-minutes']}`;
+    return formatting.getTime(formValues, key);
   }
 
   return formValues[key];
