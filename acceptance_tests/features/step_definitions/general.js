@@ -20,6 +20,10 @@ module.exports = function () {
         this.assert.urlEquals(setUrl(app, page));
     });
 
+    this.Given(/^I sleep for "([^"]*)"$/, function (time) {
+        this.pause(time*1000);
+    });
+
     this.When(/^I click "([^"]*)"$/, function (value) {
         this.click(`input[value=${urlise(value)}]`);
     });
