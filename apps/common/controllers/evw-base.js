@@ -46,22 +46,9 @@ EvwBaseController.prototype.applyDatesTimes = function firstDates(fields) {
   });
 }
 
-// Format date/time
-let formatValue = (formValues, key) => {
-  if(key.match(/dob$|date$/gi) ) {
-    return formatting.getDate(formValues, key);
-  }
-
-  if (key.indexOf('time') > -1) {
-    return formatting.getTime(formValues, key);
-  }
-
-  return formValues[key];
-};
-
 EvwBaseController.prototype.validateField = function validateField(keyToValidate, req) {
   try {
-    let fieldValue = formatValue(req.form.values, keyToValidate);
+    let fieldValue = formatting.setDateTimes(req.form.values, keyToValidate);
     let rules = require(`../../../validation/${keyToValidate}`).rules(fieldValue, req.sessionModel);
 
     req.sessionModel.set(keyToValidate, fieldValue);

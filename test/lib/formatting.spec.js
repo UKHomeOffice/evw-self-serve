@@ -53,4 +53,26 @@ describe('lib/formatting', function () {
       .should.equal('02-03-2016');
     });
   });
+
+  describe('#setDateTimes', function () {
+    it('accepts a date', function () {
+      formatting.setDateTimes(values, 'departure-date')
+      .should.equal('02-03-2016');
+    });
+
+    it('accepts a time', function () {
+      formatting.setDateTimes(values, 'departure-time')
+      .should.equal('18:00');
+    });
+
+    it('works for dob as well', function () {
+      formatting.setDateTimes({
+        'dob': '',
+        'dob-day': '10',
+        'dob-month': '03',
+        'dob-year': '1968',
+      }, 'dob')
+      .should.equal('10-03-1968');
+    });
+  });
 });
