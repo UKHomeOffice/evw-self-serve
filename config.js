@@ -49,6 +49,10 @@ module.exports = {
     verify: {
       method: 'POST',
       endpoint: 'verify/evw'
+    },
+    check: {
+      method: 'GET',
+      endpoint: 'check/evw'
     }
   }
 };

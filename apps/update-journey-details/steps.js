@@ -9,6 +9,7 @@ module.exports = {
   },
   '/how-will-you-arrive': {
     template: 'how-will-you-arrive',
+    controller: require('./controllers/how-will-you-arrive'),
     fields: [
       'transport-options'
     ],

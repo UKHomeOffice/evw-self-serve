@@ -3,7 +3,7 @@ Feature: Updating Journey Details
 
 Scenario: Entering new flight details and correct flight found
 
-  Given I start the "Update journey details" app
+  Given I start the Update journey details app
   Then the page title should contain "Your new journey to the UK"
   When I click "By plane"
   And I continue
