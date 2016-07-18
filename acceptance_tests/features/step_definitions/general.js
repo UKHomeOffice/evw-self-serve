@@ -39,6 +39,10 @@ module.exports = function () {
         this.click(`input[value=${urlise(value)}]`);
     });
 
+    this.When(/^I click id "([^"]*)"$/, function (id) {
+        this.click('#'+urlise(id));
+    });
+
     this.When(/^I enter "([^"]*)" into "([^"]*)"$/, function (value, field) {
         this.setValue('#'+urlise(field), value);
     });
