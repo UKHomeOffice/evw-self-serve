@@ -61,10 +61,13 @@ Scenario: Entering new flight details and correct flight found
     On changing my flight details my old electronic visa waiver document will be invalid and I will not use it to try to enter the UK; if I do so I may be denied boarding or be refused entry at the UK border.
     If I have completed this for someone else I have their full agreement.
     """
+  When I click id "Accept Declaration"
+  And I continue
+  Then I should be on the "Confirmation" page of the "Update journey details" app
 
 Scenario: Entering new flight details and flight not found
 
-  Given I start the "Update journey details" app
+  Given I start the Update journey details app
   Then the page title should contain "Your new journey to the UK"
   When I click "By plane"
   And I continue
@@ -83,7 +86,7 @@ Scenario: Entering new flight details and flight not found
 
 Scenario: Entering new flight details and incorrect flight found
 
-  Given I start the "Update journey details" app
+  Given I start the Update journey details app
   Then the page title should contain "Your new journey to the UK"
   When I click "By plane"
   And I continue
@@ -109,7 +112,7 @@ Scenario: Entering new flight details and incorrect flight found
   Then I should be on the "Flight number" page of the "Update journey details" app
 
 Scenario: Choosing Train
-  Given I start the "Update journey details" app
+  Given I start the Update journey details app
   When I click "By train"
   And I continue
   Then I should be on the "Email us" page of the "Update journey details" app
@@ -127,7 +130,7 @@ Scenario: Choosing Train
 
 Scenario: Choosing Private Plane
 
-  Given I start the "Update journey details" app
+  Given I start the Update journey details app
   When I click "By private plane"
   And I continue
   Then I should be on the "Email us" page of the "Update journey details" app
@@ -145,7 +148,7 @@ Scenario: Choosing Private Plane
 
 Scenario: Choosing Boat
 
-  Given I start the "Update journey details" app
+  Given I start the Update journey details app
   When I click "By boat"
   And I continue
   Then I should be on the "Email us" page of the "Update journey details" app
@@ -163,7 +166,7 @@ Scenario: Choosing Boat
 
 Scenario: Choosing Land
 
-  Given I start the "Update journey details" app
+  Given I start the Update journey details app
   When I click "By land"
   And I continue
   Then I should be on the "Email us" page of the "Update journey details" app
