@@ -1,5 +1,6 @@
 'use strict';
 
+const moment = require('moment');
 const EvwBaseController = require('../../common/controllers/evw-base');
 const is = require('../../../config').integrationService;
 const request = require('request');
@@ -20,7 +21,9 @@ const propMap = (model) => {
     portOfArrivalCode: f.portOfArrivalPlaneCode,
     inwardDepartureCountry: f.inwardDepartureCountryPlaneCode,
     inwardDeparturePort: f.departureAirport,
-    inwardDeparturePortCode: f.inwardDeparturePortPlaneCode
+    inwardDeparturePortCode: f.inwardDeparturePortPlaneCode,
+    dateCreated: moment().format('YYYY-MM-DD hh:mm:ss'),
+    flightDetailsCheck: 'Yes' // hard-coded until we implement un-happy path
   }
 };
 
@@ -46,14 +49,12 @@ class ConfirmationController extends EvwBaseController {
     }, function (err, response, body) {
 
       if (err) {
-        req.sessionModel.reset();
         logger.error('error sending update to integration service', err);
         return callback(err);
       }
 
       if (body.error) {
-        req.sessionModel.reset();
-        logger.error('error sending update to integration service', body.error);
+        logger.error('body error sending update to integration service', body.error || err);
         return callback(body.error);
         /* eslint no-warning-comments: 1*/
         // TODO change to an error page
