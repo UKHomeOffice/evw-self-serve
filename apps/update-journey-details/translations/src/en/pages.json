@@ -104,5 +104,13 @@
     "confirmation-1": "The new flight information I have entered is correct to the best of my knowledge and belief and is for my flight that lands in the UK.",
     "confirmation-2": "On changing my flight details my old electronic visa waiver document will be invalid and I will not use it to try to enter the UK; if I do so I may be denied boarding or be refused entry at the UK border.",
     "confirmation-3": "If I have completed this for someone else I have their full agreement."
+  },
+  "confirmation": {
+    "header": "Electronic Visa Wavier",
+    "received": "Request received",
+    "reference": "Your reference is",
+    "email": "We will email",
+    "email-continued": "within 24 hours telling you how to download your new electronic visa wavier.",
+    "finish-button": "Finished"
   }
 }

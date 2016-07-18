@@ -15,8 +15,24 @@
 
 
 {{$content}}
-<h1 class="heading-large">TODO: {{#t}}pages.confirmation.header{{/t}}</h1>
-<p>{{#t}}pages.confirmation.content{{/t}}</p>
+<h1 class="heading-large">{{#t}}pages.confirmation.header{{/t}}</h1>
+
+
+<header class="form-title header-notice-complete">
+  <h1>{{#t}}pages.confirmation.received{{/t}}</h1>
+  <p>
+    {{#t}}pages.confirmation.reference{{/t}}<br />
+    <strong id="referenceId">{{updateNumber}}</strong>
+  </p>
+</header>
+<br />
+
+<p>{{#t}}pages.confirmation.email{{/t}} {{emailAddress}} {{#t}}pages.confirmation.email-continued{{/t}}</p>
+
+<hr class="keyline"/>
+<a href="https://www.gov.uk/done/get-electronic-visa-waiver" id="done" type="done" data-journey-click="electronic-visa-waver:complete" rel="button" class="button">
+  <span data-lang="eng">{{#t}}pages.confirmation.finish-button{{/t}}</span>
+</a>
 
 {{/content}}
 
