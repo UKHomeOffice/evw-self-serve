@@ -22,8 +22,7 @@ router.use(mixins(fields, {
 router.use('/update-journey-details/', wizard(require('./steps'), fields, {
   controller: BaseController,
   templatePath: path.resolve(__dirname, 'views'),
-  translate: i18n.translate.bind(i18n),
-  params: '/:action?'
+  translate: i18n.translate.bind(i18n)
 }));
 
 module.exports = router;
