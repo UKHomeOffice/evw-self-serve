@@ -6,14 +6,25 @@ const setUrl = (app, page) => `${base}/${urlise(app)}/${page ? urlise(page) : ''
 
 module.exports = function () {
 
+    this.When(/^I start the "([^"]*)" app$/, function (app) {
+        this.url(setUrl(app))
+        .waitForElementVisible('body', 1000);
+    });
+
     this.When(/^I (?:start on|go to) the "([^"]*)" page of the "([^"]*)" app$/, function (page, app) {
         this.url(setUrl(app, page))
         .waitForElementVisible('body', 1000);
     });
 
-    this.When(/^I start the "([^"]*)" app$/, function (app) {
-        this.url(setUrl(app))
+    this.Given(/^I start the Update journey details app$/, function () {
+        this.url(`${base}/update-journey-details/how-will-you-arrive?evwNumber=evw-number&token=token`)
+
+
         .waitForElementVisible('body', 1000);
+    });
+
+    this.When(/^I wait for "([^"]*)"$/, function (time) {
+        this.pause(time*1000);
     });
 
     this.Given(/^I (?:am|should be) on the "([^"]*)" page of the "([^"]*)" app$/, function (page, app) {
@@ -26,6 +37,10 @@ module.exports = function () {
 
     this.When(/^I click "([^"]*)"$/, function (value) {
         this.click(`input[value=${urlise(value)}]`);
+    });
+
+    this.When(/^I click id "([^"]*)"$/, function (id) {
+        this.click('#'+urlise(id));
     });
 
     this.When(/^I enter "([^"]*)" into "([^"]*)"$/, function (value, field) {
