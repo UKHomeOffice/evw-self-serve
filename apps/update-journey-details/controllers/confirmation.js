@@ -59,9 +59,20 @@ class ConfirmationController extends EvwBaseController {
         // TODO change to an error page
       }
 
-      req.sessionModel.set('updateNumber', body.membershipNumber);
-      req.sessionModel.set('emailAddress', body.currentDetails.contactDetails.emailAddress);
+      req.context = {
+        updateNumber: body.membershipNumber,
+        emailAddress: body.currentDetails.contactDetails.emailAddress
+      }
+
       logger.info('application sent to integration service', body);
+
+      // Manually reset the session.
+      // This should be handled by the super.getValues function,
+      // but due to a race condition it is possible the response
+      // is sent before the session is reset.
+      // When https://github.com/UKHomeOffice/hof-controllers/pull/72
+      // is merged and released in a version of hof this can be removed.
+      req.sessionModel.reset();
 
       return callback();
     });
@@ -71,8 +82,8 @@ class ConfirmationController extends EvwBaseController {
   locals(req, res) {
     return Object.assign(
       {
-        updateNumber: req.sessionModel.get('updateNumber'),
-        emailAddress: req.sessionModel.get('emailAddress')
+        updateNumber: req.context.updateNumber,
+        emailAddress: req.context.emailAddress
       },
       super.locals(req, res)
     );
