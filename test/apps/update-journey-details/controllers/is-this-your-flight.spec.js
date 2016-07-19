@@ -1,6 +1,6 @@
 'use strict';
 
-const IsThisYourFlightController = require('../../../../../apps/update-journey-details/controllers/is-this-your-flight');
+const IsThisYourFlightController = require('../../../../apps/update-journey-details/controllers/is-this-your-flight');
 const controller = new IsThisYourFlightController({template: 'is-is-this-your-flight'});
 const flightDetails = {
   flightNumber: 'KU101',

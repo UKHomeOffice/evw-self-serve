@@ -95,6 +95,7 @@ module.exports = {
     next: '/confirmation'
   },
   '/confirmation': {
+    controller: require('./controllers/confirmation'),
     template: 'confirmation'
   }
 };

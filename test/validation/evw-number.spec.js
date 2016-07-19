@@ -1,6 +1,6 @@
 'use strict';
 
-const validation = require('../../../validation/evw-number');
+const validation = require('../../validation/evw-number');
 
 describe('validation/evw-number', function() {
   let model = {

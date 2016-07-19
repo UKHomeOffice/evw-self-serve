@@ -1,6 +1,6 @@
 'use strict';
 
-const validation = require('../../../validation/departure-date');
+const validation = require('../../validation/departure-date');
 const moment = require('moment');
 
 describe('validation/departure-date', function() {

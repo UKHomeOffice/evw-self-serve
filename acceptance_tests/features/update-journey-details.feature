@@ -64,6 +64,9 @@ Scenario: Entering new flight details and correct flight found
   When I click id "Accept Declaration"
   And I continue
   Then I should be on the "Confirmation" page of the "Update journey details" app
+  And the page title should contain "Electronic visa wavier"
+  And the "header notice complete" should contain "Request received"
+  And the reference number should be present
 
 Scenario: Entering new flight details and flight not found
 
