@@ -23,17 +23,25 @@ module.exports = function errorHandler(err, req, res, next) {
     content.message = i18n.translate('errors.cookies-required.message');
   }
 
-  err.template = 'error';
+  let error = {
+    message: err,
+    template: 'error'
+  };
+  let startLink = req.sessionModel.get('startLink');
+  req.sessionModel.reset();
   content.title = content.title || i18n.translate('errors.default.title');
   content.message = content.message || i18n.translate('errors.default.message');
 
   res.statusCode = err.status || 500;
 
-  logger.error(err.message || err.error, err);
-  res.render(err.template, {
-    error: err,
+  logger.error(err);
+  res.render(error.template, {
+    error: error.message,
     content: content,
     showStack: (config.env === 'development' || config.env === 'docker-compose'),
-    startLink: req.path.replace(/^\/([^\/]*).*$/, '$1')
+    startLink: startLink ? [
+      req.path.replace(/^\/([^\/]*).*$/, '$1'),
+      startLink
+    ].join('/') : req.path.replace(/^\/([^\/]*).*$/, '$1')
   });
 };
