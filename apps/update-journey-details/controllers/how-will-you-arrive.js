@@ -8,6 +8,7 @@ const i18n = hof.i18n({
 const EvwBaseController = require('../../common/controllers/evw-base');
 const request = require('request');
 const is = require('../../../config').integrationService;
+const logger = require('../../../lib/logger');
 
 const fourOhfourIt = (res) => {
   return res.status(404).render('404', {
@@ -45,11 +46,18 @@ const validateApp = (req, res, callback) => {
     },
     timeout: is.timeout
   }, function (err, response, body) {
+
+    if(err) {
+      logger.error('error verifying application', err);
+      return callback(err);
+    }
+
     var json = JSON.parse(body);
 
     // 404 it in lieu of a more specific error page
     if (json.error) {
       req.sessionModel.reset();
+      logger.error('error verifying application', json.error);
       return fourOhfourIt(res);
       /* eslint no-warning-comments: 1*/
       // TODO change to a invalid page

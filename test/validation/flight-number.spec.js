@@ -1,6 +1,6 @@
 'use strict';
 
-const validation = require('../../../validation/flight-number');
+const validation = require('../../validation/flight-number');
 
 describe('validation/flight-number', function() {
   it('should return the correct validation rules', function() {

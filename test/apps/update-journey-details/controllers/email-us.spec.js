@@ -1,8 +1,6 @@
 'use strict';
 
-const controllers = require('hof').controllers;
-let Controller = controllers.base;
-let EmailUsController = require('../../../../../apps/update-journey-details/controllers/email-us');
+let EmailUsController = require('../../../../apps/update-journey-details/controllers/email-us');
 
 describe('apps/update-journey-details/controllers/email-us', function () {
 
@@ -11,7 +9,6 @@ describe('apps/update-journey-details/controllers/email-us', function () {
     let controller;
     let req;
     let res;
-    let callback; // y u no eslint?
 
     beforeEach(function () {
       req = {

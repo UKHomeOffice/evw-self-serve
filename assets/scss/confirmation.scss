@@ -1,0 +1,22 @@
+.header-notice-complete {
+
+  background-color: #28a197;
+  padding: 0 0 .2em 0;
+  color: #fff;
+  margin-top: 1em;
+  text-align: center;
+  margin-bottom: 0;
+
+  h1 {
+    padding-top: 1em
+  }
+
+  h1,
+  #referenceId {
+    @include bold-36;
+  }
+
+  p {
+    @include bold-19;
+  }
+}

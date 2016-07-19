@@ -1,6 +1,6 @@
 'use strict';
 
-const validation = require('../../../validation/departure-time');
+const validation = require('../../validation/departure-time');
 
 describe('validation/departure-time', function() {
   let model = {
