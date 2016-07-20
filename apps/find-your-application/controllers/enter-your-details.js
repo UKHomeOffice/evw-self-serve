@@ -18,11 +18,13 @@ module.exports = class EnterYourDetailsController extends EvwBaseController {
 
     lookup.find(values.evwNumber, values.dateOfBirth).then((response) => {
       let result = response.body;
+      logger.info('application lookup result', response.body);
 
       // Application not found / too late
       if (result.error) {
         req.sessionModel.set('evwLookupError', result.error);
       }
+
       super.process(req, res, callback);
     },
     (err) => logger.error(err));
