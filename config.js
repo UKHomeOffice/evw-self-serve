@@ -56,7 +56,7 @@ module.exports = {
     },
     check: {
       method: 'GET',
-      endpoint: 'check/evw'
+      endpoint: 'check/update'
     },
     update: {
       method: 'POST',
