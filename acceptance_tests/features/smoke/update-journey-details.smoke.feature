@@ -1,6 +1,9 @@
 @update_journey_smoke
 Feature: Updating Journey Details Smoke Test
 
+Background: Adding a canned case
+  Given I add a canned case
+
 Scenario: Entering new flight details and correct flight found
 
   Given I start the Update journey details app with smoke params
