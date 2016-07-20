@@ -3,6 +3,7 @@
 const util = require('util');
 const EvwBaseController = require('../../common/controllers/evw-base');
 const flightLookup = require('../../../lib/flight-lookup');
+const logger = require('../../../lib/logger');
 
 const ArrivalDateController = function ArrivalDateController() {
   EvwBaseController.apply(this, arguments);
@@ -18,7 +19,10 @@ ArrivalDateController.prototype.saveValues = function saveValues(req, res, callb
         arrivalDateYear: req.form.values['arrival-date-year']
     });
 
+    logger.info('looking up flight', lookupData);
+
     flightLookup.findFlight(lookupData.number, lookupData.date).then(function (foundData) {
+        logger.info('flight service response for', lookupData, foundData.body);
         let flight = foundData.body.flights[0];
 
         // Flight found

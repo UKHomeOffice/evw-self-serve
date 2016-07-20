@@ -62,7 +62,9 @@ const validateApp = (req, res, callback) => {
       /* eslint no-warning-comments: 1*/
       // TODO change to a invalid page
     }
-
+    let startLink = req.path.replace(/^\/([^\/]*).*$/, '$1') + `?evwNumber=${evwNumber}&token=${token}`;
+    logger.info('setting startLink', startLink);
+    req.sessionModel.set('startLink', startLink);
     req.sessionModel.set('validated', true);
     req.sessionModel.set('evw-number', evwNumber);
     req.sessionModel.set('token', token);
