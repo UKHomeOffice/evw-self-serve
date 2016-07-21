@@ -19,7 +19,7 @@ const fixture = {"objectId":"56ec2057084d726f6a4611b8","passport":{"givenNames":
 
 module.exports = function () {
 
-    this.Given(/^I add a canned case$/, function (callback) {
+    this.Given(/^I add a canned case$/, function () {
         request.post({
           url: `${base}:9300/tester/canned-evw-case/CHECK_ACCEPTED`,
           json: fixture,
@@ -29,13 +29,17 @@ module.exports = function () {
         }, function (err, response, body) {
 
           if (err) {
-            console.log('error sending canned case', err, body);
-            return callback(err);
+            console.log('   error sending canned case', err, body);
+            this.assert.ok(false);
           }
+
+          console.log('   case added =>', body.membershipNumber);
+          this.assert.ok(!!body);
           // TODO make nightwatch return passing assertion
-          // this.assert.ok(body.length);
-          callback('case added', body);
-        });
+          // this.assert(pass, true);
+          //
+        }.bind(this));
+
 
     });
 
