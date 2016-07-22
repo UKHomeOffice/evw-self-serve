@@ -1,6 +1,11 @@
 @update_journey_details
 Feature: Updating Journey Details
 
+Scenario: Invalid token
+
+  Given I start the Update journey details app with an invalid token
+  Then the page body should contain "This page does not exist"
+
 Scenario: Entering new flight details and correct flight found
 
   Given I start the Update journey details app
@@ -22,7 +27,7 @@ Scenario: Entering new flight details and correct flight found
   And the "Flight number" should contain "KU101"
   And the "Departure airport" should contain "Dubai"
   And the "Arrival airport" should contain "London - Gatwick"
-  And the "Arrival date" should contain "10/08/2016"
+  And the "Arrival date" should contain "10-08-2016"
   And the "Arrival time" should contain "19:45"
   And I click "Yes"
   And I continue
@@ -86,6 +91,8 @@ Scenario: Entering new flight details and flight not found
   # Flight not found page
   Then I should be on the "Flight not found" page of the "Update journey details" app
   And the page title should contain "We can’t find your flight"
+  And I retry
+  Then I should be on the "Flight number" page of the "Update journey details" app
 
 Scenario: Entering new flight details and incorrect flight found
 
