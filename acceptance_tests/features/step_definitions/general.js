@@ -18,8 +18,11 @@ module.exports = function () {
 
     this.Given(/^I start the Update journey details app$/, function () {
         this.url(`${base}/update-journey-details/how-will-you-arrive?evwNumber=evw-number&token=token`)
+        .waitForElementVisible('body', 1000);
+    });
 
-
+    this.Given(/^I start the Update journey details app with an invalid token$/, function () {
+        this.url(`${base}/update-journey-details/how-will-you-arrive?evwNumber=evw-number&token=invalid`)
         .waitForElementVisible('body', 1000);
     });
 
@@ -86,6 +89,10 @@ module.exports = function () {
 
     this.Then(/^the "([^"]*)" should contain "([^"]*)"$/, function (field, value) {
         this.assert.containsText(`.${urlise(field)}`, value);
+    });
+
+    this.Then(/^the page body should contain "([^"]*)"$/, function (value) {
+        this.assert.containsText('body', value);
     });
 
 };

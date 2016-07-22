@@ -46,18 +46,25 @@ const validateApp = (req, res, callback) => {
     },
     timeout: is.timeout
   }, function (err, response, body) {
+    let parsed;
 
     if(err) {
       logger.error('error verifying application', err);
       return callback(err);
     }
 
-    var json = JSON.parse(body);
+    try {
+      parsed = JSON.parse(body);
+    } catch (e) {
+      parsed = body;
+      logger.info('could not parse body, attempting without json parse', body);
+    }
+
 
     // 404 it in lieu of a more specific error page
-    if (json.error) {
+    if (parsed.error) {
       req.sessionModel.reset();
-      logger.error('error verifying application', json.error);
+      logger.error('error verifying application', parsed.error);
       return fourOhfourIt(res);
       /* eslint no-warning-comments: 1*/
       // TODO change to a invalid page
