@@ -197,8 +197,8 @@
 	},
 	"errors": {
 		"404": {
-			"title": "Page not found",
-			"description": "This page does not exist"
+			"title": "The page or item you were looking for has not been found",
+			"description": "Please check that you have entered the correct web address, or explore <a href=\"http://www.gov.uk/\">GOV.UK</a> to find the information you need."
 		},
 		"default": {
 			"title": "Sorry, something went wrong",

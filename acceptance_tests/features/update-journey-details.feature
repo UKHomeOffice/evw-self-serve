@@ -4,7 +4,7 @@ Feature: Updating Journey Details
 Scenario: Invalid token
 
   Given I start the Update journey details app with an invalid token
-  Then the page body should contain "This page does not exist"
+  Then the page body should contain "The page or item you were looking for has not been found"
 
 Scenario: Entering new flight details and correct flight found
 

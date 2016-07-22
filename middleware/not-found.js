@@ -13,7 +13,8 @@ module.exports = function notFound() {
 
     res.status(404).render('404', {
       title: i18n.translate('errors.404.title'),
-      description: i18n.translate('errors.404.description')
+      description: i18n.translate('errors.404.description'),
+      startLink: req.startLink || require('../config').appPath
     });
   };
 };
