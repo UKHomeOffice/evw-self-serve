@@ -8,3 +8,4 @@ Gemfile.lock
 fpm/build/usr/share/evw-self-serve/*
 npm-debug.log
 .DS_Store
+.idea
