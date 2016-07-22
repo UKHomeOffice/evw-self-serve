@@ -16,11 +16,14 @@ module.exports = {
       'evw-number'
     ],
     next: '/link-sent',
-    forks: [{
+    forks: [
+    {
       target: '/evw-expired',
-      condition: (req) => {
-        return req.sessionModel.get('evwLookupError') === 'CASE_NOT_UPDATABLE';
-      }
+      condition: (req) => req.sessionModel.get('evwLookupError') === 'CASE_EXPIRED'
+    },
+    {
+      target: '/evw-not-verified',
+      condition: (req) => req.sessionModel.get('evwLookupError') === 'CASE_NOT_VERIFIED'
     }]
   },
   '/link-sent': {
@@ -28,5 +31,8 @@ module.exports = {
   },
   '/evw-expired': {
     template: 'evw-expired'
+  },
+  '/evw-not-verified': {
+    template: 'evw-not-verified'
   }
 };
