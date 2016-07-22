@@ -7,7 +7,6 @@ const request = require('request');
 const logger = require('../../../lib/logger');
 
 const propMap = (model) => {
-  console.log(model,'model attrs to map');
   let f = model.flightDetails;
 
   return {

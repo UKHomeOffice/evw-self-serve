@@ -30,6 +30,8 @@ module.exports = class ArrivalDateController extends EvwBaseController {
         if (typeof flight !== 'undefined') {
           let mappedFlight = flightLookup.mapFlight(flight, req.sessionModel);
           req.sessionModel.set('flightDetails', mappedFlight);
+        }  else {
+          req.sessionModel.set('flightDetails', null);
         }
 
         // Flight not found, page gets set in steps.js

@@ -86,6 +86,8 @@ Scenario: Entering new flight details and flight not found
   # Flight not found page
   Then I should be on the "Flight not found" page of the "Update journey details" app
   And the page title should contain "We can’t find your flight"
+  And I retry
+  Then I should be on the "Flight number" page of the "Update journey details" app
 
 Scenario: Entering new flight details and incorrect flight found
 

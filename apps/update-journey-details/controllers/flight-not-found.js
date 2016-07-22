@@ -14,6 +14,7 @@ module.exports = class ArrivalDateController extends EvwBaseController {
       req.sessionModel.set('arrival-date-day', null);
       req.sessionModel.set('arrival-date-month', null);
       req.sessionModel.set('arrival-date-year', null);
+      req.sessionModel.set('flightDetails', null);
       callback();
     });
   }
