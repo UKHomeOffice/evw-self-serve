@@ -12,23 +12,24 @@ module.exports = class EnterYourDetailsController extends EvwBaseController {
   }
 
   process(req, res, callback) {
-    // reset any previous lookup errors
-    req.sessionModel.set('evwLookupError', null);
-    let values = lookup.format(req.form.values);
+    super.process(req, res, () => {
+      // reset any previous lookup errors
+      req.sessionModel.set('evwLookupError', null);
+      let values = lookup.format(req.form.values);
 
-    lookup.find(values.evwNumber, values.dateOfBirth).then((response) => {
-      let result = response.body;
-      logger.info('application lookup result', response.body);
+      lookup.find(values.evwNumber, values.dateOfBirth).then((response) => {
+        let result = response.body;
+        logger.info('application lookup result', response.body);
 
-      // Application not found / too late
-      if (result.error) {
-        req.sessionModel.set('evwLookupError', result.error);
-      }
-
-      super.process(req, res, callback);
-    },
-    (err) => logger.error(err));
-
+        // Application not found / too late
+        if (result.error) {
+          req.sessionModel.set('evwLookupError', result.error);
+        }
+        callback();
+      }, (err) => {
+        logger.error(err);
+        callback(err);
+      });
+    });
   }
-
 }

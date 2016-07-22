@@ -46,18 +46,18 @@ describe('lib/evw-lookup', function () {
   describe('not found', function () {
     describe('too late', function () {
       it('should error', function () {
-        return lookup.find('1000INVALID', '10/10/1980')
+        return lookup.find('TOOLATEM8', '10/10/1980')
           .should.eventually.have.property('body').contains({
-            error: 'CASE_NOT_FOUND'
+            error: 'CASE_EXPIRED'
           });
       });
     });
 
     describe('case not found', function () {
       it('should error', function () {
-        return lookup.find('TOOLATEM8', '10/10/1980')
+        return lookup.find('NOFOUND', '10/10/1980')
           .should.eventually.have.property('body').contains({
-            error: 'CASE_NOT_UPDATABLE'
+            error: 'CASE_NOT_FOUND'
           });
       });
     });
