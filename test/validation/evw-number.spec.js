@@ -27,13 +27,15 @@ describe('validation/evw-number', function() {
     });
   });
 
-  describe("evwLookupError is undefined", function() {
+  describe('evwLookupError is null', function() {
     before(function() {
-      model.attributes = {};
+      model.attributes = {
+        evwLookupError: null
+      };
     });
 
     it('returns undefined', function() {
-      should.equal(validation.rules('', model), undefined);
+      should.equal(validation.rules(null, model), undefined);
     });
   });
 });
