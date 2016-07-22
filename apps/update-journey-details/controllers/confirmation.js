@@ -13,7 +13,7 @@ const propMap = (model) => {
     membershipNumber: model['evw-number'],
     token: model.token,
     arrivalTravel: f.flightNumber,
-    arrivalDate: model['arrival-date'].split('-').reverse().join('-'),
+    arrivalDate: f.arrivalDate.split('-').reverse().join('-'),
     arrivalTime: f.arrivalTime,
     departureForUKDate: model['departure-date'].split('-').reverse().join('-'),
     departureForUKTime: model['departure-time'],

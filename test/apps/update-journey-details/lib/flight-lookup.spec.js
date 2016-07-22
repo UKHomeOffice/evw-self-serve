@@ -102,7 +102,7 @@ describe('lib/flight-lookup', function() {
                 inwardDeparturePortPlaneCode: 'KWI',
                 arrivalAirport: 'London - Heathrow',
                 portOfArrivalPlaneCode: 'LHR',
-                arrivalDate: '09/08/2016',
+                arrivalDate: '09-08-2016',
                 arrivalDatePlaneDay: '09',
                 arrivalDatePlaneMonth: '08',
                 arrivalDatePlaneYear: '2016',

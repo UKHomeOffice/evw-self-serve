@@ -46,7 +46,7 @@ module.exports = {
     forks: [{
       target: '/flight-not-found',
       condition: function(req) {
-        return typeof req.sessionModel.get('flightDetails') === 'undefined';
+        return req.sessionModel.get('flightDetails') === null;
       }
     }]
   },
@@ -85,7 +85,9 @@ module.exports = {
     next: '/declaration'
   },
   '/flight-not-found': {
-    template: 'flight-not-found'
+    template: 'flight-not-found',
+    controller: require('./controllers/flight-not-found'),
+    next: '/flight-number?retry=true'
   },
   '/declaration': {
     template: 'declaration',
