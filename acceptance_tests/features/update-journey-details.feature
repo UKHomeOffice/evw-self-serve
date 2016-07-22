@@ -22,7 +22,7 @@ Scenario: Entering new flight details and correct flight found
   And the "Flight number" should contain "KU101"
   And the "Departure airport" should contain "Dubai"
   And the "Arrival airport" should contain "London - Gatwick"
-  And the "Arrival date" should contain "10/08/2016"
+  And the "Arrival date" should contain "10-08-2016"
   And the "Arrival time" should contain "19:45"
   And I click "Yes"
   And I continue
