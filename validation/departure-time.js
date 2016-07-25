@@ -10,7 +10,7 @@ module.exports = {
     // We allow time travel of one hour max to compensate for time-zone hopping
     // `departure-time: 8:00` => `arrival-time: 7:00` is okay
     // `departure-time: 8:10` => `arrival-time: 7:00` is not
-    if (moment(arrivalDateTime).isBefore(moment(departureDateTime).subtract(1, 'hour'))) {
+    if (arrivalDateTime.isBefore(departureDateTime.subtract(1, 'hour'))) {
       return {
         length: {
           minimum: 12,
@@ -19,7 +19,7 @@ module.exports = {
       };
     }
 
-    if (moment(departureDateTime).isBefore(moment(arrivalDateTime).subtract(24, 'hours'))) {
+    if (departureDateTime.isBefore(arrivalDateTime.subtract(24, 'hours'))) {
       return {
         length: {
           minimum: 12,
