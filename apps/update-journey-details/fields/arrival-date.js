@@ -2,6 +2,8 @@
 
 module.exports = {
   'arrival-date': {
+    type: ['date'],
+    validate: [] // blank because dates are being 'future' validated by default
   },
   'arrival-date-day': {
       validate: ['required', 'numeric'],
