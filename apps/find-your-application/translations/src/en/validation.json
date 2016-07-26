@@ -1,6 +1,6 @@
 {
   "evw-number": {
-    "required": "Please enter your electronic visa wavier number",
+    "required": "Please enter your electronic visa waiver number",
     "alphanum": "Please enter only letters and numbers",
     "not-found": "We can't find your EVW"
   },

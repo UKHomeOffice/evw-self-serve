@@ -4,9 +4,9 @@
 	},
 	"fields": {
 		"evw-number": {
-			"label": "Enter your electronic visa wavier number",
-			"legend": "Enter your electronic visa wavier number",
-			"hint": "This is on your current electronic visa wavier document"
+			"label": "Enter your electronic visa waiver number",
+			"legend": "Enter your electronic visa waiver number",
+			"hint": "This is on your current electronic visa waiver document"
 		},
 		"dob": {
 			"label": "Date of Birth",
@@ -24,7 +24,7 @@
 		}
 	},
 	"journey": {
-		"header": "Electronic Visa Wavier"
+		"header": "Electronic Visa Waiver"
 	},
 	"pages": {
 		"email-us": {
@@ -171,7 +171,7 @@
 	},
 	"validation": {
 		"evw-number": {
-			"required": "Please enter your electronic visa wavier number",
+			"required": "Please enter your electronic visa waiver number",
 			"alphanum": "Please enter only letters and numbers",
 			"not-found": "We can't find your EVW"
 		},
