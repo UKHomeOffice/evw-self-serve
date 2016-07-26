@@ -104,11 +104,14 @@
     "confirmation-3": "If I have completed this for someone else I have their full agreement."
   },
   "confirmation": {
-    "header": "Electronic visa wavier",
+    "header": "Electronic visa waiver",
     "received": "Request received",
     "reference": "Your reference is",
-    "email": "We will email",
-    "email-continued": "within 24 hours telling you how to download your new electronic visa wavier.",
+    "check": "We will check your details before we issue a new electronic visa waiver - this can take up to 24 hours.",
+    "email": "We will then send you an email to",
+    "email-continued": "with details of how to download and print your new electronic visa waiver.",
+    "bring": "You must bring a printed copy of your new electronic visa waiver with you when you travel. Otherwise you may be denied boarding or refused entry to the UK at the border.",
+    "wait": "Add electronicvisawaiver@homeoffice.gsi.gov.uk to your safe senders list to make sure you get your download details. Please wait 24 hours before contacting us about your new electronic visa waiver.",
     "finish-button": "Finished"
   }
 }
