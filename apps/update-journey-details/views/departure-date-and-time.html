@@ -26,9 +26,9 @@
         <legend>
             <span class="form-label-bold">
                 {{#t}}fields.departure-date.legend-1{{/t}}
-                <span class="data-flight-number">{{values.flight-number}}</span>
+                <span class="data-flight-number">{{flightDetails.flightNumber}}</span>
                 {{#t}}fields.departure-date.legend-2{{/t}}
-                <span class="data-departure-airport">{{values.departure-airport}}Dubai</span>
+                <span class="data-departure-airport">{{flightDetails.departureAirport}}</span>
                 {{#t}}fields.departure-date.legend-3{{/t}}
             </span>
         </legend>
@@ -46,9 +46,9 @@
         <legend>
             <span class="form-label-bold">
                 {{#t}}fields.departure-time.legend-1{{/t}}
-                <span class="data-flight-number">{{values.flight-number}}</span>
+                <span class="data-flight-number">{{flightDetails.flightNumber}}</span>
                 {{#t}}fields.departure-time.legend-2{{/t}}
-                <span class="data-departure-airport">{{values.departure-airport}}Dubai</span>
+                <span class="data-departure-airport">{{flightDetails.departureAirport}}</span>
                 {{#t}}fields.departure-time.legend-3{{/t}}
             </span>
             <span class="form-hint">{{#t}}fields.departure-time.hint{{/t}}</span>
