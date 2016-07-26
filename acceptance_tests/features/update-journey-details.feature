@@ -34,6 +34,8 @@ Scenario: Entering new flight details and correct flight found
   # Departure date and time page
   Then I should be on the "Departure date and time" page of the "Update journey details" app
   And the page title should contain "Your journey to the UK"
+  And the "Data flight number" should contain "KU101"
+  And the "Data departure airport" should contain "Dubai"
   And I enter the date "09-08-2016" into "Departure date"
   And I enter the time "23:15" into "Departure time"
   And I continue
