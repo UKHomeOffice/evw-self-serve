@@ -17,12 +17,12 @@ module.exports = function () {
     });
 
     this.Given(/^I start the Update journey details app$/, function () {
-        this.url(`${base}/update-journey-details/how-will-you-arrive?evwNumber=evw-number&token=token`)
+        this.url(`${base}/update-journey-details/how-will-you-arrive?evwNumber=EVW123&token=TOKEN123`)
         .waitForElementVisible('body', 1000);
     });
 
     this.Given(/^I start the Update journey details app with an invalid token$/, function () {
-        this.url(`${base}/update-journey-details/how-will-you-arrive?evwNumber=evw-number&token=invalid`)
+        this.url(`${base}/update-journey-details/how-will-you-arrive?evwNumber=EVW123&token=invalid`)
         .waitForElementVisible('body', 1000);
     });
 
