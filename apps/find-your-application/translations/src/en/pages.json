@@ -55,7 +55,8 @@
   },
   "link-sent": {
     "header": "Check your email",
-    "content": "We have emailed you with a link for you to change your flight details."
+    "content-1": "We have emailed you with a link for you to change your flight details.",
+    "content-2": "Check your spam or junk folder if you can't find the email in your inbox."
   },
   "enter-your-details": {
     "header": "Enter your details"
