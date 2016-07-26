@@ -1,6 +1,6 @@
 {
   "transport-options": {
-    "required": "Please tell us how you will arrive",
+    "required": "Tell us how you will arrive",
     "equal": "Please select an option from the list"
   },
   "flight-number": {

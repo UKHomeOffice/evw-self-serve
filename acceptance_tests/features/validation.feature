@@ -10,7 +10,7 @@ Scenario: Wrong details in Enter Your Details
   Then the validation summary should contain
     """
     Please enter numbers only
-    Please enter your electronic visa wavier number
+    Please enter your electronic visa waiver number
     """
 
 Scenario: Entering an EVW number that is not found
