@@ -130,7 +130,7 @@ Scenario: Choosing Train
   Then I should be on the "Email us" page of the "Update journey details" app
   And the content list should contain
     """
-    your electronic visa waiver number
+    reference number: EVW123 (this is in the email we sent you)
     new train number, eg Eurostar 9140
     new train station you depart for the UK from
     new date of departure for the UK
@@ -148,7 +148,7 @@ Scenario: Choosing Private Plane
   Then I should be on the "Email us" page of the "Update journey details" app
   And the content list should contain
     """
-    your electronic visa waiver number
+    reference number: EVW123 (this is in the email we sent you)
     tail number of the plane you’ll be taking
     airport this flight takes off from
     new date your flight takes off
@@ -166,7 +166,7 @@ Scenario: Choosing Boat
   Then I should be on the "Email us" page of the "Update journey details" app
   And the content list should contain
     """
-    your electronic visa waiver number
+    reference number: EVW123 (this is in the email we sent you)
     new boat name, eg ‘Spirit of Britain’
     new port of departure for the UK, eg Calais
     new date of departure for the UK
