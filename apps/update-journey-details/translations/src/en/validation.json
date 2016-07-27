@@ -10,6 +10,7 @@
   },
   "arrival-date": {
     "numeric": "Enter a valid date",
+    "required": "Enter the time your flight is due to land in the UK in 24 hour format HH:MM",
     "invalid": "Enter the time your flight is due to land in the UK in 24 hour format HH:MM",
     "within-48-hours": "Date of arrival must be at least 48 hours from now",
     "too-far-in-future": "Date of arrival in the UK must be no more than 3 months from now"
