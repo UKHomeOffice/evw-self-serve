@@ -27,7 +27,8 @@ module.exports = {
     }]
   },
   '/link-sent': {
-    template: 'link-sent'
+    template: 'link-sent',
+    controller: require('./controllers/link-sent')
   },
   '/evw-expired': {
     template: 'evw-expired'
