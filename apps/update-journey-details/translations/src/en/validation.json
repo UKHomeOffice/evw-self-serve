@@ -9,6 +9,7 @@
     "format": "A flight number has 2 or 3 letters or numbers representing the airline followed by 1 to 4 numbers and sometimes an extra letter at the end, for example KU101. Please check your travel documents and re-enter"
   },
   "arrival-date": {
+    "required": "Enter the date your flight is due to land in the UK",
     "numeric": "Enter a valid date",
     "invalid": "Enter the time your flight is due to land in the UK in 24 hour format HH:MM",
     "within-48-hours": "Date of arrival must be at least 48 hours from now",
