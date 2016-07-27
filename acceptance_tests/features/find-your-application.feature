@@ -10,7 +10,7 @@ Scenario: Requesting a flight change link
   # Link sent page
   Then I should be on the "Link sent" page of the "Find your application" app
   Then the page title should contain "Check your email"
-  And the page content should contain "We have emailed you with a link for you to change your flight details."
+  And the page content should contain "We have sent a link for you to change your flight details to"
 
 Scenario: Application not yet verified
   Given I start the "Find your application" app
