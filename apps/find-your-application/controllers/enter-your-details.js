@@ -21,8 +21,9 @@ module.exports = class EnterYourDetailsController extends EvwBaseController {
         let result = response.body;
         logger.info('application lookup result', response.body);
 
-        // Application not found / too late
-        if (result.error) {
+        if (result.emailAddress) { // Lookup successful
+          req.sessionModel.set('emailAddress', result.emailAddress);
+        } else if (result.error) { // Application not found / too late
           req.sessionModel.set('evwLookupError', result.error);
         }
         callback();
