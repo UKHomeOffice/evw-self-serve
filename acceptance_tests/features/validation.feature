@@ -9,7 +9,7 @@ Scenario: Wrong details in Enter Your Details
   And I continue
   Then the validation summary should contain
     """
-    Please enter numbers only
+    Enter a valid date, for example 22 3 1979
     Please enter your electronic visa waiver number
     """
 
@@ -24,6 +24,16 @@ Scenario: Entering an EVW number that is not found
     We can't find your EVW
     """
 
+Scenario: Entering a dob with all zeros
+
+  Given I start the "Find your application" app
+  When I enter "VALID1000" into "EVW number"
+  And I enter the date "00-00-0000" into "dob"
+  And I click confirm details
+  Then the validation summary should contain
+    """
+    Enter a valid date, for example 22 3 1979
+    """
 Scenario: non-numeric dob
 
   Given I start the "Find your application" app
@@ -32,7 +42,7 @@ Scenario: non-numeric dob
   And I click confirm details
   Then the validation summary should contain
     """
-    Please enter numbers only
+    Enter a valid date, for example 22 3 1979
     """
 
 Scenario: Entering an EVW number that cannot be updated
