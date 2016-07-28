@@ -4,7 +4,7 @@ const moment = require('moment');
 
 module.exports = {
   rules: (fieldValue) => {
-    let date = moment(fieldValue, 'DD-MM-YYYY');
+    let date = moment(`${fieldValue} ${moment().format('HH:mm:ss')}`, 'DD-MM-YYYY HH:mm:ss');
     let threeMonths = moment().add(3, 'months');
     let fourtyEight = moment().add(48, 'hours');
 
@@ -17,7 +17,7 @@ module.exports = {
       };
     }
 
-    if (threeMonths.isBefore(date)) {
+    if (threeMonths.isBefore(date, 'second')) {
       return {
         length: {
           minimum: 12,
@@ -26,7 +26,7 @@ module.exports = {
       };
     }
 
-    if (fourtyEight.isAfter(date)) {
+    if (fourtyEight.isAfter(date, 'second')) {
       return {
         length: {
           minimum: 12,
