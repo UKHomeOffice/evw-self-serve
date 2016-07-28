@@ -23,6 +23,7 @@
     "required": "Please indicate that you agree to the declaration"
   },
   "departure-date": {
+    "required": "Enter the date you will depart for the UK",
     "invalid": "Select a valid date you will depart for the UK",
     "in-past": "The date your flight to the UK takes off cannot be more than 1 day before it arrives in the UK",
     "in-future": "The date your flight to the UK takes off cannot be after the date it arrives in the UK"

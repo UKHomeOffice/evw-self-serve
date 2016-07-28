@@ -2,8 +2,8 @@
 
 module.exports = {
   'departure-date': {
-    type: [ 'date' ],
-    validate: [] // blanked out validation because 'future was being applied for some wtf reason'
+    type: ['date'],
+    validate: ['required']
   },
   'departure-date-day': {
     validate: ['required', 'numeric'],
@@ -18,8 +18,8 @@ module.exports = {
     label: 'fields.departure-date-year.label'
   },
   'departure-time': {
-    validate: [ 'required' ],
-    type: [ 'time' ]
+    validate: ['required'],
+    type: ['time']
   },
   'departure-time-hours': {
     validate: ['required', 'numeric'],
