@@ -14,7 +14,7 @@ describe('validation/arrival-date', function() {
   });
 
   it('should be less than 3 months in the future', function() {
-    validation.rules(moment().add(4, 'months')).should.deep.equal({
+    validation.rules(moment().add(4, 'months').format('DD-MM-YYYY')).should.deep.equal({
       length: {
         minimum: 12,
         message: 'arrival-date.too-far-in-future'
@@ -22,8 +22,8 @@ describe('validation/arrival-date', function() {
     });
   });
 
-  it('should me more than 48 hours in the future', function() {
-    validation.rules(moment().add(47, 'hours')).should.deep.equal({
+  it('should be more than 48 hours in the future', function() {
+    validation.rules(moment().add(1, 'day').format('DD-MM-YYYY')).should.deep.equal({
       length: {
         minimum: 12,
         message: 'arrival-date.within-48-hours'
