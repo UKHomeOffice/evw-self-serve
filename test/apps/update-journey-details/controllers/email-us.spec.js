@@ -20,7 +20,7 @@ describe('apps/update-journey-details/controllers/email-us', function () {
         sessionModel: {
           get: sinon.stub(),
           toJSON: sinon.stub().returns({
-            'transport-options': 'by-plane'
+            'transport-options': 'by-train'
           })
         }
       };
@@ -37,7 +37,7 @@ describe('apps/update-journey-details/controllers/email-us', function () {
 
     it('adds transport and list', function () {
       let ret = controller.locals(req, res);
-      ret.should.have.property('transport').eql('by-plane');
+      ret.should.have.property('transport').eql('by-train');
       ret.should.have.property('list').to.be.instanceof(Array);
     });
 

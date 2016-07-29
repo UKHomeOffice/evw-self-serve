@@ -11,15 +11,6 @@
       "title": "We need to know:",
       "reference-number-1": "reference number:",
       "reference-number-2": "(this is in the email we sent you)",
-      "by-plane": [
-        { "name": "new flight number (if your journey has any stops or connecting flights we only need details of the flight landing in the UK)" },
-        { "name": "airport this flight takes off from" },
-        { "name": "new date this flight takes off" },
-        { "name": "new time this flight takes off" },
-        { "name": "UK arrival airport" },
-        { "name": "new date of arrival in the UK" },
-        { "name": "new time of arrival in the UK" }
-      ],
       "by-train": [
         { "name": "new train number, eg Eurostar 9140" },
         { "name": "new train station you depart for the UK from" },
