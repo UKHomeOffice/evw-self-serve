@@ -93,8 +93,7 @@
       "item-6": "new date of arrival in the UK",
       "item-7": "new time of arrival in the UK"
     },
-    "retry-button": "Retry",
-    "manual-entry-link": "I will enter my flight details manually"
+    "retry-button": "Retry"
   },
   "declaration": {
     "header": "Declaration",
