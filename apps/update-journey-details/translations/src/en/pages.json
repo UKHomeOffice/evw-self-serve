@@ -11,15 +11,6 @@
       "title": "We need to know:",
       "reference-number-1": "reference number:",
       "reference-number-2": "(this is in the email we sent you)",
-      "by-plane": [
-        { "name": "new flight number (if your journey has any stops or connecting flights we only need details of the flight landing in the UK)" },
-        { "name": "airport this flight takes off from" },
-        { "name": "new date this flight takes off" },
-        { "name": "new time this flight takes off" },
-        { "name": "UK arrival airport" },
-        { "name": "new date of arrival in the UK" },
-        { "name": "new time of arrival in the UK" }
-      ],
       "by-train": [
         { "name": "new train number, eg Eurostar 9140" },
         { "name": "new train station you depart for the UK from" },
@@ -55,10 +46,6 @@
       ]
     }
   },
-  "link-sent": {
-    "header": "Check your email",
-    "content": "We have emailed you with a link for you to change your flight details."
-  },
   "flight-number": {
     "header": "Your new flight details",
     "question": "New flight number",
@@ -92,9 +79,21 @@
   },
   "flight-not-found": {
     "header": "We can’t find your flight",
-    "call-out": "This might be because the flight you entered doesn’t land in the UK. For example, if you are flying from Kuwait to Doha, then Doha to London, we just need the number for the Doha to London flight.",
-    "retry-button": "Retry",
-    "manual-entry-link": "I will enter my flight details manually"
+    "request": "Please email <a href='mailto:electronicvisawaiver@homeoffice.gsi.gov.uk'>electronicvisawaiver@homeoffice.gsi.gov.uk</a> with the new details for your journey to the UK.",
+    "call-out": "We must receive your request at least 48 hours before your original travel date. Otherwise we won’t be able to change your electronic visa waiver",
+    "list": {
+      "title": "We need to know:",
+      "reference-number-1": "reference number:",
+      "reference-number-2": "(this is in the email we sent you)",
+      "item-1": "new flight number (if your journey has any stops or connecting flights we only need details of the flight landing in the UK)",
+      "item-2": "airport this flight takes off from",
+      "item-3": "new date this flight takes off",
+      "item-4": "new time this flight takes off",
+      "item-5": "UK arrival airport",
+      "item-6": "new date of arrival in the UK",
+      "item-7": "new time of arrival in the UK"
+    },
+    "retry-button": "Retry"
   },
   "declaration": {
     "header": "Declaration",

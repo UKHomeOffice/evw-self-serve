@@ -13,18 +13,30 @@
 {{> partials-navigation}}
 {{/propositionHeader}}
 
-
 {{$content}}
 
 <h1 class="heading-large">{{#t}}pages.flight-not-found.header{{/t}}</h1>
+
+<p>{{#t}}pages.flight-not-found.request{{/t}}</p>
+
+<p>{{#t}}pages.flight-not-found.list.title{{/t}}</p>
+
+<ul class="list list-bullet">
+  <li>{{#t}}pages.flight-not-found.list.reference-number-1{{/t}} {{evwNumber}} {{#t}}pages.flight-not-found.list.reference-number-2{{/t}}</li>
+  <li>{{#t}}pages.flight-not-found.list.item-1{{/t}}</li>
+  <li>{{#t}}pages.flight-not-found.list.item-2{{/t}}</li>
+  <li>{{#t}}pages.flight-not-found.list.item-3{{/t}}</li>
+  <li>{{#t}}pages.flight-not-found.list.item-4{{/t}}</li>
+  <li>{{#t}}pages.flight-not-found.list.item-5{{/t}}</li>
+  <li>{{#t}}pages.flight-not-found.list.item-6{{/t}}</li>
+  <li>{{#t}}pages.flight-not-found.list.item-7{{/t}}</li>
+</ul>
 
 <div class="panel panel-border-wide">
     {{#t}}pages.flight-not-found.call-out{{/t}}
 </div>
 
 <a class="button retry-button" href="flight-number" role="button">{{#t}}pages.flight-not-found.retry-button{{/t}}</a>
-
-<!-- <p><a href="#">{{#t}}pages.flight-not-found.manual-entry-link{{/t}}</a></p> -->
 
 {{/content}}
 

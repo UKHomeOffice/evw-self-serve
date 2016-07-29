@@ -93,6 +93,17 @@ Scenario: Entering new flight details and flight not found
   # Flight not found page
   Then I should be on the "Flight not found" page of the "Update journey details" app
   And the page title should contain "We can’t find your flight"
+  And the content list should contain
+    """
+    reference number: EVW123 (this is in the email we sent you)
+    new flight number (if your journey has any stops or connecting flights we only need details of the flight landing in the UK)
+    airport this flight takes off from
+    new date this flight takes off
+    new time this flight takes off
+    UK arrival airport
+    new date of arrival in the UK
+    new time of arrival in the UK
+    """
   And I retry
   Then I should be on the "Flight number" page of the "Update journey details" app
 

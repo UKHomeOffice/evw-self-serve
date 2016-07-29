@@ -18,4 +18,10 @@ module.exports = class ArrivalDateController extends EvwBaseController {
       callback();
     });
   }
+
+  locals(req, res) {
+    return Object.assign({
+      evwNumber: req.sessionModel.get('evw-number')
+    }, super.locals.call(this, req, res));
+  }
 }
