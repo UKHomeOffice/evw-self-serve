@@ -19,13 +19,19 @@
 
 {{$form}}
 
-
 <h1 class='heading-large'>{{#t}}pages.check-your-answers.header{{/t}}</h1>
 <p>{{#t}}pages.check-your-answers.notice{{/t}}</p>
 
 <table id="summary" class="table-details">
     <thead></thead>
     <tbody>
+        <tr>
+            <td>{{#t}}pages.check-your-answers.table.departure-country{{/t}}</td>
+            <td class="data-departure-country">
+                {{values.flightDetails.inwardDepartureCountryPlane}}
+            </td>
+            <td><a href="flight-number#edit/flight-number" class="button" id="">{{#t}}buttons.change{{/t}}</a></td>
+        </tr>
         <tr>
             <td>{{#t}}pages.check-your-answers.table.departure-airport{{/t}}</td>
             <td class="data-departure-airport">
