@@ -11,6 +11,7 @@ module.exports = {
   port: port,
   baseUrl: process.env.BASE_URL || 'http://localhost',
   listen_host: process.env.LISTEN_HOST || '0.0.0.0',
+  gaTag: process.env.GA_TAG || false,
   assetPath: process.env.ASSET_PATH || '/public',
   govukAssetPath: process.env.GOVUK_ASSET_PATH || '/govuk-assets',
   appPath: 'find-your-application/enter-your-details',
