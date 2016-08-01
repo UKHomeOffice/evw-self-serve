@@ -13,10 +13,9 @@
 {{> partials-navigation}}
 {{/propositionHeader}}
 
-
 {{$content}}
-<h1 class="heading-large">{{#t}}pages.confirmation.header{{/t}}</h1>
 
+<h1 class="heading-large visuallyhidden">{{#t}}pages.confirmation.header{{/t}}</h1>
 
 <header class="form-title header-notice-complete">
   <h1>{{#t}}pages.confirmation.received{{/t}}</h1>
@@ -29,7 +28,11 @@
 
 <p>{{#t}}pages.confirmation.check{{/t}}</p>
 <p>{{#t}}pages.confirmation.email{{/t}} {{emailAddress}} {{#t}}pages.confirmation.email-continued{{/t}}</p>
-<p>{{#t}}pages.confirmation.bring{{/t}}</p>
+
+<div class="panel panel-border-wide">
+  {{#t}}pages.confirmation.bring{{/t}}
+</div>
+
 <p>{{#t}}pages.confirmation.wait{{/t}}</p>
 
 <hr class="keyline"/>
