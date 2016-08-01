@@ -43,6 +43,8 @@ Scenario: Entering new flight details and correct flight found
   Then the page title should contain "Check your answers"
   And the summary table should contain
     """
+    Departure country
+                      United Arab Emirates
     Departure airport
                       Dubai
     Departure date
