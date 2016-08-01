@@ -14,6 +14,13 @@ if (config.env !== 'ci') {
   app.use(churchill(logger));
 }
 
+app.use(function setGaCode(req, res, next) {
+  if (config.gaCode) {
+    res.locals.gaCode = config.gaCode;
+  }
+  next();
+});
+
 app.use(config.assetPath, express.static(path.resolve(__dirname, './public')));
 
 app.use(function setAssetPath(req, res, next) {
