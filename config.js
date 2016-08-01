@@ -23,23 +23,6 @@ module.exports = {
     port: process.env.REDIS_PORT_6379_TCP_PORT || process.env.REDIS_PORT || 6379,
     host: process.env.REDIS_PORT_6379_TCP_ADDR || process.env.REDIS_HOST || '127.0.0.1'
   },
-  email: {
-    caseworker: {
-      error: process.env.CASEWORKER_ERROR_EMAIL || 'caseworker_email_address',
-      'lost-or-stolen-uk': process.env.CASEWORKER_LOSTSTOLEN_EMAIL || 'caseworker_email_address',
-      'lost-or-stolen-abroad': process.env.CASEWORKER_LOSTSTOLEN_EMAIL || 'caseworker_email_address',
-      delivery: process.env.CASEWORKER_DELIVERY_EMAIL || 'caseworker_email_address',
-      collection: process.env.CASEWORKER_COLLECTION_EMAIL || 'caseworker_email_address',
-      'someone-else': process.env.CASEWORKER_SOMEONEELSE_EMAIL || 'someoneelse_email_address'
-    },
-    port: process.env.EMAIL_PORT || 587,
-    host: process.env.EMAIL_HOST || 'email-smtp.eu-west-1.amazonaws.com',
-    auth: {
-      user: process.env.SMTP_USER || '',
-      pass: process.env.SMTP_PASSWORD || ''
-    },
-    from: process.env.FROM_ADDRESS || 'brp@dsp.notprod.homeoffice.gov.uk'
-  },
   flightService: {
     url: process.env.FLIGHT_SERVICE_URL || 'http://localhost:9350',
     timeout: 5000,
