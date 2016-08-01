@@ -98,7 +98,6 @@ module.exports = {
   },
   '/confirmation': {
     controller: require('./controllers/confirmation'),
-    backLink: false,
     template: 'confirmation'
   }
 };
