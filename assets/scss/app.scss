@@ -133,8 +133,4 @@ h1 {
   td {
     @include core-19();
   }
-
-  .flight-details-value {
-    @include bold-19();
-  }
 }
