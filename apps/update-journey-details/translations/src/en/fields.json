@@ -20,7 +20,8 @@
     }
   },
   "flight-number": {
-    "label": "New flight number"
+    "label": "New flight number",
+    "hint": "For example EK009, QR003 or KU101"
   },
   "arrival-date": {
     "legend": "New date of arrival in the UK",

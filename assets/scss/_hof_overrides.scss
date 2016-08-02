@@ -20,3 +20,7 @@
         position: absolute;
     }
 }
+
+.form-label-bold .form-hint {
+  @include bold-19;
+}
