@@ -20,8 +20,7 @@
     }
   },
   "flight-number": {
-    "label": "New flight number",
-    "hint": "For example EK009, QR003 or KU101"
+    "label": "New flight number<p class='form-hint'>For example EK009, QR003 or KU101</p><p class='form-hint'>If you have any stops or connecting flights you must enter the number for the final part of your journey to the UK</p>"
   },
   "arrival-date": {
     "legend": "New date of arrival in the UK",
