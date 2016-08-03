@@ -17,29 +17,25 @@
     <h1 class="heading-large">{{#t}}pages.flight-number.header{{/t}}</h1>
 </header>
 
-<div class="panel panel-border-wide">
-    {{#t}}pages.flight-number.call-out{{/t}}
-</div>
-
 {{<partials-form}}
 
 {{$form}}
 
 {{#input-text}}flight-number{{/input-text}}
 
-{{#input-submit}}continue{{/input-submit}}
-
-{{/form}}
-
-{{/partials-form}}
-
-<details>
+<details class="flight-number-panel">
   <summary><span class="summary">{{#t}}pages.flight-number.help-text-title{{/t}}</span></summary>
   <div class="panel panel-border-narrow">
     <p>{{#t}}pages.flight-number.help-text-content-1{{/t}}</p>
     <p>{{#t}}pages.flight-number.help-text-content-2{{/t}}</p>
   </div>
 </details>
+
+{{#input-submit}}continue{{/input-submit}}
+
+{{/form}}
+
+{{/partials-form}}
 
 {{/content}}
 
