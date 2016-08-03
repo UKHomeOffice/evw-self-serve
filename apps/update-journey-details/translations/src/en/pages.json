@@ -79,21 +79,23 @@
   },
   "flight-not-found": {
     "header": "We can’t find your flight",
-    "request": "Please email <a href='mailto:electronicvisawaiver@homeoffice.gsi.gov.uk'>electronicvisawaiver@homeoffice.gsi.gov.uk</a> with the new details for your journey to the UK.",
-    "call-out": "We must receive your request at least 48 hours before your original travel date. Otherwise we won’t be able to change your electronic visa waiver",
-    "list": {
-      "title": "We need to know:",
-      "reference-number-1": "reference number:",
-      "reference-number-2": "(this is in the email we sent you)",
-      "item-1": "new flight number (if your journey has any stops or connecting flights we only need details of the flight landing in the UK)",
-      "item-2": "airport this flight takes off from",
-      "item-3": "new date this flight takes off",
-      "item-4": "new time this flight takes off",
-      "item-5": "UK arrival airport",
-      "item-6": "new date of arrival in the UK",
-      "item-7": "new time of arrival in the UK"
+    "request": "This might be because the flight you entered doesn’t land in the UK. For example, if you are flying from Kuwait to Doha, then Doha to London, we just need the number for the Doha to London flight.",
+    "contact-by-email": {
+      "title": "Tell us about your flight by email",
+      "details": "Email <a href='mailto:electronicvisawaiver@homeoffice.gsi.gov.uk'>electronicvisawaiver@homeoffice.gsi.gov.uk</a> with your new travel details. We need to know:",
+      "list": {
+        "item-1": "your reference number",
+        "item-2": "your new flight number (if your journey has any stops or connecting flights we only need details of the flight landing in the UK)",
+        "item-3": "the airport this flight takes off from",
+        "item-4": "the new date this flight takes off",
+        "item-5": "the new time this flight takes off",
+        "item-6": "the UK arrival airport",
+        "item-7": "the new date of arrival in the UK",
+        "item-8": "the new time of arrival in the UK"
+      },
+      "request": "We must receive your request at least 48 hours before your original travel date - or your new travel date if it’s before the original date. Otherwise we won’t be able to change your electronic visa waiver."
     },
-    "retry-button": "Retry"
+    "retry-button": "Try again"
   },
   "declaration": {
     "header": "Declaration",

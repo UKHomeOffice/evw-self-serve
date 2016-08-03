@@ -16,26 +16,25 @@
 
 <h1 class="heading-large">{{#t}}pages.flight-not-found.header{{/t}}</h1>
 
-<p>{{#t}}pages.flight-not-found.request{{/t}}</p>
-
-<p>{{#t}}pages.flight-not-found.list.title{{/t}}</p>
-
-<ul class="list list-bullet">
-  <li>{{#t}}pages.flight-not-found.list.reference-number-1{{/t}} {{evwNumber}} {{#t}}pages.flight-not-found.list.reference-number-2{{/t}}</li>
-  <li>{{#t}}pages.flight-not-found.list.item-1{{/t}}</li>
-  <li>{{#t}}pages.flight-not-found.list.item-2{{/t}}</li>
-  <li>{{#t}}pages.flight-not-found.list.item-3{{/t}}</li>
-  <li>{{#t}}pages.flight-not-found.list.item-4{{/t}}</li>
-  <li>{{#t}}pages.flight-not-found.list.item-5{{/t}}</li>
-  <li>{{#t}}pages.flight-not-found.list.item-6{{/t}}</li>
-  <li>{{#t}}pages.flight-not-found.list.item-7{{/t}}</li>
-</ul>
-
-<div class="panel panel-border-wide">
-    {{#t}}pages.flight-not-found.call-out{{/t}}
-</div>
+<p class="panel panel-border-narrow">{{#t}}pages.flight-not-found.request{{/t}}</p>
 
 <a class="button retry-button" href="flight-number" role="button">{{#t}}pages.flight-not-found.retry-button{{/t}}</a>
+
+<details class="flight-not-found-panel">
+  <summary><span class="summary">{{#t}}pages.flight-not-found.contact-by-email.title{{/t}}</span></summary>
+    <p>{{#t}}pages.flight-not-found.contact-by-email.details{{/t}}</p>
+    <ul class="list list-bullet">
+      <li>{{#t}}pages.flight-not-found.contact-by-email.list.item-1{{/t}} ({{evwNumber}})</li>
+      <li>{{#t}}pages.flight-not-found.contact-by-email.list.item-2{{/t}}</li>
+      <li>{{#t}}pages.flight-not-found.contact-by-email.list.item-3{{/t}}</li>
+      <li>{{#t}}pages.flight-not-found.contact-by-email.list.item-4{{/t}}</li>
+      <li>{{#t}}pages.flight-not-found.contact-by-email.list.item-5{{/t}}</li>
+      <li>{{#t}}pages.flight-not-found.contact-by-email.list.item-6{{/t}}</li>
+      <li>{{#t}}pages.flight-not-found.contact-by-email.list.item-7{{/t}}</li>
+      <li>{{#t}}pages.flight-not-found.contact-by-email.list.item-8{{/t}}</li>
+    </ul>
+    <p class="panel panel-border-narrow">{{#t}}pages.flight-not-found.contact-by-email.request{{/t}}</p>
+</details>
 
 {{/content}}
 
