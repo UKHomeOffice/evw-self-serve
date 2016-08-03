@@ -73,6 +73,7 @@ h1 {
 //custom form styling
 .form-control {
   padding: 0.5em;
+  border: 2px solid #6f777b;
 
   @include media(desktop) {
     width: 65%;
