@@ -21,20 +21,18 @@
 
 {{$form}}
 
-    <fieldset id="arrival-date-group" class="form-group{{#errors.arrival-date}} validation-error{{/errors.arrival-date}}">
-        <legend>
-            <span class="form-label-bold">{{#t}}fields.arrival-date.legend{{/t}}</span>
-            <span class="form-hint">{{#t}}fields.arrival-date.hint{{/t}}</span>
-        </legend>
-        {{#errors.arrival-date}}
-          <span id="arrival-date-error" class="error-message">
-            {{errors.arrival-date.message}}
-          </span>
-        {{/errors.arrival-date}}
+    <div id="arrival-date-group" class="form-group{{#errors.arrival-date}} validation-error{{/errors.arrival-date}}">
+        <span class="form-label-bold">{{#t}}fields.arrival-date.legend{{/t}}</span>
         <div class="form-date">
+            <p class="form-hint">{{#t}}fields.arrival-date.hint{{/t}}</p>
+            {{#errors.arrival-date}}
+              <span id="arrival-date-error" class="error-message">
+                {{errors.arrival-date.message}}
+              </span>
+            {{/errors.arrival-date}}
             {{#input-date}}arrival-date{{/input-date}}
         </div>
-    </fieldset>
+    </div>
 
     {{#input-submit}}continue{{/input-submit}}
 
