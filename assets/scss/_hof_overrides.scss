@@ -22,5 +22,6 @@
 }
 
 .form-group .form-hint {
-  @include bold-19;
+  color: $black;
+  @include core-19;
 }
