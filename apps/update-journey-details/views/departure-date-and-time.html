@@ -21,47 +21,43 @@
 
 {{$form}}
 
-    <fieldset id="departure-date-group" class="form-group{{#errors.departure-date}} validation-error{{/errors.departure-date}}">
-        <legend>
-            <span class="form-label-bold">
-                {{#t}}fields.departure-date.legend-1{{/t}}
-                <span class="data-flight-number">{{flightDetails.flightNumber}}</span>
-                {{#t}}fields.departure-date.legend-2{{/t}}
-                <span class="data-departure-airport">{{flightDetails.departureAirport}}</span>
-                {{#t}}fields.departure-date.legend-3{{/t}}
-            </span>
-        </legend>
+    <div id="departure-date-group" class="form-group{{#errors.departure-date}} validation-error{{/errors.departure-date}}">
+      <span class="form-label-bold">
+        {{#t}}fields.departure-date.legend-1{{/t}}
+        <span class="data-flight-number">{{flightDetails.flightNumber}}</span>
+        {{#t}}fields.departure-date.legend-2{{/t}}
+        <span class="data-departure-airport">{{flightDetails.departureAirport}}</span>
+        {{#t}}fields.departure-date.legend-3{{/t}}
+      </span>
+      <div class="form-date">
         {{#errors.departure-date}}
           <span id="departure-date-error" class="error-message">
             {{errors.departure-date.message}}
           </span>
         {{/errors.departure-date}}
-        <div class="form-date">
-            {{#input-date}}departure-date{{/input-date}}
-        </div>
-    </fieldset>
+        {{#input-date}}departure-date{{/input-date}}
+      </div>
+    </div>
 
     <fieldset id="departure-time-group" class="form-group{{#errors.departure-time}} validation-error{{/errors.departure-time}}">
-        <legend>
-            <span class="form-label-bold">
-                {{#t}}fields.departure-time.legend-1{{/t}}
-                <span class="data-flight-number">{{flightDetails.flightNumber}}</span>
-                {{#t}}fields.departure-time.legend-2{{/t}}
-                <span class="data-departure-airport">{{flightDetails.departureAirport}}</span>
-                {{#t}}fields.departure-time.legend-3{{/t}}
-            </span>
-            <span class="form-hint">{{#t}}fields.departure-time.hint{{/t}}</span>
-        </legend>
-        {{#errors.departure-time}}
-          <span id="departure-time-error" class="error-message">
-            {{errors.departure-time.message}}
-          </span>
-        {{/errors.departure-time}}
+        <span class="form-label-bold">
+          {{#t}}fields.departure-time.legend-1{{/t}}
+          <span class="data-flight-number">{{flightDetails.flightNumber}}</span>
+          {{#t}}fields.departure-time.legend-2{{/t}}
+          <span class="data-departure-airport">{{flightDetails.departureAirport}}</span>
+          {{#t}}fields.departure-time.legend-3{{/t}}
+        </span>
         <div class="form-date">
-            {{#input-text-compound}}departure-time-hours{{/input-text-compound}}
+          <p class="form-hint">{{#t}}fields.departure-time.hint{{/t}}</p>
+          {{#errors.departure-time}}
+            <span id="departure-time-error" class="error-message">
+              {{errors.departure-time.message}}
+            </span>
+          {{/errors.departure-time}}
+          {{#input-text-compound}}departure-time-hours{{/input-text-compound}}
         </div>
         <div class="form-date">
-            {{#input-text-compound}}departure-time-minutes{{/input-text-compound}}
+          {{#input-text-compound}}departure-time-minutes{{/input-text-compound}}
         </div>
     </fieldset>
 
