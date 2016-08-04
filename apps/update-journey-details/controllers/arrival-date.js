@@ -11,8 +11,8 @@ module.exports = class ArrivalDateController extends EvwBaseController {
     super.applyDatesTimes(options.fields);
   }
 
-  saveValues(req, res, callback) {
-    super.saveValues(req, res, () => {
+  process(req, res, callback) {
+    super.process(req, res, () => {
       let lookupData = flightLookup.formatPost({
         flightNumber: req.sessionModel.get('flight-number'),
         arrivalDateDay: req.form.values['arrival-date-day'],
@@ -22,7 +22,7 @@ module.exports = class ArrivalDateController extends EvwBaseController {
 
       logger.info('looking up flight', lookupData);
 
-      flightLookup.findFlight(lookupData.number, lookupData.date).then(function (foundData) {
+      flightLookup.findFlight(lookupData.number, lookupData.date).then((foundData) => {
         logger.info('flight service response for', lookupData, foundData.body);
         let flight = foundData.body.flights[0];
 
