@@ -3,8 +3,8 @@
 const moment = require('moment');
 
 module.exports = {
-  rules: (fieldValue) => {
-    let date = moment(`${fieldValue} ${moment().format('HH:mm:ss')}`, 'DD-MM-YYYY HH:mm:ss');
+  rules: (fieldValue, model) => {
+    let date = moment(`${fieldValue} ${model.get('flightDetails').arrivalTime}:00`, 'DD-MM-YYYY HH:mm:ss');
     let threeMonths = moment().add(3, 'months');
     let fourtyEight = moment().add(48, 'hours');
 
