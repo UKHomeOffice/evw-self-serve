@@ -134,6 +134,10 @@ h1 {
   td {
     @include core-19();
   }
+
+  td[class] {
+    @include bold-19();
+  }
 }
 
 #flight-number {
