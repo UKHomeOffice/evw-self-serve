@@ -1,17 +1,17 @@
 'use strict';
 
 const path = require('path');
-let flightLookup = require('../../../../lib/flight-lookup');
-let airports = require('../../../../data/airports');
+let flightLookup = require('../../lib/flight-lookup');
+let airports = require('../../data/airports');
 let chaiAsPromised = require('chai-as-promised');
-let config = require('../../../../config');
+let config = require('../../config');
 chai.use(chaiAsPromised);
 
 describe('lib/flight-lookup', function() {
 
     before(function (done) {
         let port = config.flightService.url.split(':').pop();
-        let dir = path.resolve(__dirname, '../../../../mocks');
+        let dir = path.resolve(__dirname, '../../mocks');
         this.dyson = dysonServer({
           mocks: dir,
           port: port,
