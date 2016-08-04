@@ -85,26 +85,27 @@ h1 {
 
 // GOVUK Elements `.form-date` overrides
 .form-date {
-    border-left: none;
-    padding-left: 0;
+  border-left: none;
+  padding-left: 0;
 
-    label {
-        @include core-19();
-    }
+  label {
+    @include core-19();
+  }
 
-    .form-group {
-        input {
-            &[id$="-year"] {
-                width: 70px;
-            }
-        }
+  .form-group {
+    margin-top: 0;
+
+    input {
+      &[id$="-year"] {
+        width: 70px;
+      }
     }
+  }
 }
 
 #delivery-details {
   width: 100%;
 }
-
 
 .table-details {
   width: 100%;
@@ -137,4 +138,8 @@ h1 {
 
 #flight-number {
   width: 110px;
+}
+
+.button {
+  margin-top: 20px;
 }
