@@ -18,7 +18,7 @@ describe('validation/departure-date', function() {
 
     validation.rules('32-08-2016', model).should.deep.equal({
       length: {
-        minimum: 12,
+        minimum: 100,
         message: 'departure-date.invalid'
       }
     });
@@ -31,7 +31,7 @@ describe('validation/departure-date', function() {
 
     validation.rules(moment(), model).should.deep.equal({
       length: {
-        minimum: 12,
+        minimum: 100,
         message: 'departure-date.in-past'
       }
     });
@@ -44,7 +44,7 @@ describe('validation/departure-date', function() {
 
     validation.rules(moment(), model).should.deep.equal({
       length: {
-        minimum: 12,
+        minimum: 100,
         message: 'departure-date.in-future'
       }
     });
