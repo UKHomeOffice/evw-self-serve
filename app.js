@@ -63,7 +63,7 @@ app.use(require('cookie-parser')(config.session.secret));
 app.use(secureCookies);
 
 // Mongo session
-const mongoSession = require('./lib/session/mongo.js')(config);
+const mongoSession = require('./lib/session/mongo')(config);
 app.use(mongoSession);
 
 app.get('/cookies', function renderCookies(req, res) {
