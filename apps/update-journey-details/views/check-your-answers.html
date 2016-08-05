@@ -19,63 +19,63 @@
 {{$form}}
 
 <h1 class='heading-large'>{{#t}}pages.check-your-answers.header{{/t}}</h1>
-<p>{{#t}}pages.check-your-answers.notice{{/t}}</p>
+<p class="bold">{{#t}}pages.check-your-answers.notice{{/t}}</p>
 
 <table id="summary" class="table-details">
     <thead></thead>
     <tbody>
         <tr>
             <td>{{#t}}pages.check-your-answers.table.departure-country{{/t}}</td>
-            <td class="data-departure-country">
+            <td class="data-departure-country bold">
                 {{values.flightDetails.inwardDepartureCountryPlane}}
             </td>
             <td><a href="flight-number#edit/flight-number" class="button" id="">{{#t}}buttons.change{{/t}}</a></td>
         </tr>
         <tr>
             <td>{{#t}}pages.check-your-answers.table.departure-airport{{/t}}</td>
-            <td class="data-departure-airport">
+            <td class="data-departure-airport bold">
                 {{values.flightDetails.departureAirport}}
             </td>
             <td><a href="flight-number#edit/flight-number" class="button" id="">{{#t}}buttons.change{{/t}}</a></td>
         </tr>
         <tr>
             <td>{{#t}}pages.check-your-answers.table.departure-date{{/t}}</td>
-            <td class="data-departure-date">
+            <td class="data-departure-date bold">
                 {{values.departure-date}}
             </td>
             <td><a href="departure-date-and-time#edit/departure-date" class="button" id="">{{#t}}buttons.change{{/t}}</a></td>
         </tr>
         <tr>
             <td>{{#t}}pages.check-your-answers.table.departure-time{{/t}}</td>
-            <td class="data-departure-time">
+            <td class="data-departure-time bold">
                 {{values.departure-time}}
             </td>
             <td><a href="departure-date-and-time#edit/departure-time" class="button" id="">{{#t}}buttons.change{{/t}}</a></td>
         </tr>
         <tr>
             <td>{{#t}}pages.check-your-answers.table.flight-number{{/t}}</td>
-            <td class="data-flight-number">
+            <td class="data-flight-number bold">
                 {{values.flight-number}}
             </td>
             <td><a href="flight-number#edit/flight-number" class="button">{{#t}}buttons.change{{/t}}</a></td>
         </tr>
         <tr>
             <td>{{#t}}pages.check-your-answers.table.arrival-airport{{/t}}</td>
-            <td class="data-arrival-airport">
+            <td class="data-arrival-airport bold">
                 {{values.flightDetails.arrivalAirport}}
             </td>
             <td><a href="flight-number#edit/flight-number" class="button" id="">{{#t}}buttons.change{{/t}}</a></td>
         </tr>
         <tr>
             <td>{{#t}}pages.check-your-answers.table.arrival-date{{/t}}</td>
-            <td class="data-arrival-date">
+            <td class="data-arrival-date bold">
                 {{values.flightDetails.arrivalDate}}
             </td>
             <td><a href="arrival-date#edit/arrival-date" class="button" id="">{{#t}}buttons.change{{/t}}</a></td>
         </tr>
         <tr>
             <td>{{#t}}pages.check-your-answers.table.arrival-time{{/t}}</td>
-            <td class="data-arrival-time">
+            <td class="data-arrival-time bold">
                 {{values.flightDetails.arrivalTime}}
             </td>
             <td><a href="arrival-date#edit/arrival-time" class="button" id="">{{#t}}buttons.change{{/t}}</a></td>
