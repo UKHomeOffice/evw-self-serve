@@ -11,7 +11,7 @@ module.exports = {
     if (!departureDate.isValid()) {
       return {
         length: {
-          minimum: 12,
+          minimum: 100,
           message: 'departure-date.invalid'
         }
       };
@@ -20,7 +20,7 @@ module.exports = {
     if (departureDate.isBefore(arrivalDateMinusOneDay)) {
       return {
         length: {
-          minimum: 12,
+          minimum: 100,
           message: 'departure-date.in-past'
         }
       };
@@ -29,7 +29,7 @@ module.exports = {
     if (departureDate.isAfter(arrivalDatePlusOneDay)) {
       return {
         length: {
-          minimum: 12,
+          minimum: 100,
           message: 'departure-date.in-future'
         }
       };
