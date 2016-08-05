@@ -13,9 +13,6 @@ const mockConfig = {
   }
 };
 
-// let fakeExpressSession = () => {
-//   sessionObject: true
-// };
 let sessionStub = sinon.stub();
 let mongoStoreStub = sinon.stub();
 let mongoSession;
