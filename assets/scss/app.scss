@@ -148,3 +148,7 @@ h1 {
 .button {
   margin-top: 20px;
 }
+
+table td {
+  @include core-19();
+}
