@@ -19,9 +19,9 @@ module.exports = {
     secret: process.env.SESSION_SECRET || 'howdoesyourgardengrow',
     ttl: process.env.SESSION_TTL || 1200 /* 20 mins */
   },
-  redis: {
-    port: process.env.REDIS_PORT_6379_TCP_PORT || process.env.REDIS_PORT || 6379,
-    host: process.env.REDIS_PORT_6379_TCP_ADDR || process.env.REDIS_HOST || '127.0.0.1'
+  mongo: {
+    connectionString: process.env.MONGO_CONNECTION_STRING || 'mongodb://localhost:27017/evw-self-serve',
+    secret: process.env.SESSION_SECRET || 'thisisnotasecurepassword'
   },
   flightService: {
     url: process.env.FLIGHT_SERVICE_URL || 'http://localhost:9350',
