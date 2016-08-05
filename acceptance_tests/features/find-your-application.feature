@@ -33,5 +33,5 @@ Scenario: Case not found
   And I click confirm details
   Then the validation summary should contain
     """
-    We can't find your EVW
+    We can't find your electronic visa waiver number
     """
