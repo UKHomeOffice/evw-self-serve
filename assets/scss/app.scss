@@ -149,6 +149,14 @@ h1 {
   margin-top: 20px;
 }
 
+.button[type="done"] {
+  margin-top: 5px;
+}
+
 table td {
   @include core-19();
+}
+
+#accept-declaration-group {
+  margin: 0 0 5px;
 }
