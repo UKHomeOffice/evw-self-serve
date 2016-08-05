@@ -152,3 +152,7 @@ h1 {
 table td {
   @include core-19();
 }
+
+#accept-declaration-group {
+  margin: 0 0 5px;
+}
