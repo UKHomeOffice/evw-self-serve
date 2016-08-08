@@ -19,7 +19,7 @@ Scenario: Entering new flight details and correct flight found
   # Arrival date page
   Then I should be on the "Arrival date" page of the "Update journey details" app
   And the page title should contain "Your new flight details"
-  And I enter the date "10-08-2016" into "Arrival date"
+  And I enter a date "2 months" in the future into "Arrival date"
   And I continue
   # Is this your flight page
   Then I should be on the "Is this your flight" page of the "Update journey details" app
@@ -27,7 +27,7 @@ Scenario: Entering new flight details and correct flight found
   And the "Flight number" should contain "KU101"
   And the "Departure airport" should contain "Dubai"
   And the "Arrival airport" should contain "London - Gatwick"
-  And the "Arrival date" should contain "10-08-2016"
+  And the "Arrival date" should contain a date "2 months" in the future
   And the "Arrival time" should contain "19:45"
   And I click "Yes"
   And I continue
@@ -36,8 +36,8 @@ Scenario: Entering new flight details and correct flight found
   And the page title should contain "Your journey to the UK"
   And the "Data flight number" should contain "KU101"
   And the "Data departure airport" should contain "Dubai"
-  And I enter the date "09-08-2016" into "Departure date"
-  And I enter the time "23:15" into "Departure time"
+  And I enter a date "2 months" in the future into "Departure date"
+  And I enter the time "07:15" into "Departure time"
   And I continue
   # Check your answers page
   Then the page title should contain "Check your answers"
@@ -48,15 +48,15 @@ Scenario: Entering new flight details and correct flight found
     Departure airport
                       Dubai
     Departure date
-                      09-08-2016
+                      ${"2 months" in the "future"}
     Departure time
-                      23:15
+                      7:15
     Flight number
                       KU101
     Arrival airport
                       London - Gatwick
     Arrival date
-                      10-08-2016
+                      ${"2 months" in the "future"}
     Arrival time
                       19:45
     """
@@ -89,7 +89,7 @@ Scenario: Entering new flight details and flight not found
   # Arrival date page
   Then I should be on the "Arrival date" page of the "Update journey details" app
   And the page title should contain "Your new flight details"
-  And I enter the date "08-08-2016" into "Arrival date"
+  And I enter a date "2 months" in the future into "Arrival date"
   And I continue
   # Flight not found page
   Then I should be on the "Flight not found" page of the "Update journey details" app
@@ -121,7 +121,7 @@ Scenario: Entering new flight details and incorrect flight found
   # Arrival date page
   Then I should be on the "Arrival date" page of the "Update journey details" app
   And the page title should contain "Your new flight details"
-  And I enter the date "09-08-2016" into "Arrival date"
+  And I enter a date "2 months" in the future into "Arrival date"
   And I continue
   # Is this your flight page
   # Flight details on this page have been tested in the last test so we only need to test the flow here
