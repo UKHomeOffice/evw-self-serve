@@ -9,8 +9,8 @@ Scenario: Wrong details in Enter Your Details
   And I continue
   Then the validation summary should contain
     """
-    Please enter a valid date, for example, 22 3 1979
-    Please enter your electronic visa waiver number
+    Enter a valid date, for example, 22 3 1979
+    Enter your electronic visa waiver number
     """
 
 Scenario: Entering an EVW number that is not found
@@ -21,7 +21,7 @@ Scenario: Entering an EVW number that is not found
   And I click confirm details
   Then the validation summary should contain
     """
-    We can't find your EVW
+    We can't find your electronic visa waiver number
     """
 
 Scenario: Entering a dob that is non-numeric
@@ -32,7 +32,7 @@ Scenario: Entering a dob that is non-numeric
   And I click confirm details
   Then the validation summary should contain
     """
-    Please enter a valid date, for example, 22 3 1979
+    Enter a valid date, for example, 22 3 1979
     """
 
 Scenario: Entering an EVW number that cannot be updated
