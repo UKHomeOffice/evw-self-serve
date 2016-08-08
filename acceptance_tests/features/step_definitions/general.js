@@ -1,9 +1,15 @@
 'use strict';
 
+const moment = require('moment');
 const base = 'http://localhost:8080';
 const urlise = (text) => text.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
 const setUrl = (app, page) => `${base}/${urlise(app)}/${page ? urlise(page) : ''}`;
-
+const futureDate = (future) => {
+    let times = future.split(' ');
+    let amount = Number(times[0]);
+    let unit = times[1].slice(0,-1); //day/s month/s
+    return moment().add(amount, unit);
+}
 module.exports = function () {
 
     this.When(/^I start the "([^"]*)" app$/, function (app) {
@@ -65,6 +71,24 @@ module.exports = function () {
         let t = time.split(':');
         this.setValue('#'+urlise(field)+'-hours', t[0]);
         this.setValue('#'+urlise(field)+'-minutes', t[1]);
+    });
+
+    this.When(/^I enter a date "([^"]*)" in the future into "([^"]*)"$/, function (future, field) {
+        let val = futureDate(future);
+        console.log('future date', val.format('DD-MM-YYYY'));
+        let target = urlise(field);
+
+        this.setValue('#' + target + '-day', val.format('DD'));
+        this.setValue('#' + target + '-month', val.format('MM'));
+        this.setValue('#' + target + '-year', val.format('YYYY'));
+    });
+
+    //And the "Arrival date" should contain a date "2 months" in the future
+    this.Then(/^the "([^"]*)" should contain a date "([^"]*)" in the future$/, function (field, future) {
+        let val = futureDate(future);
+        let target = urlise(field);
+        console.log(val.format('DD-MM-YYYY'), 'does it need formatting?');
+        this.assert.containsText('.' + target, val.format('DD-MM-YYYY'));
     });
 
     this.When(/^I continue$/, function () {
