@@ -14,27 +14,25 @@
 
 {{$content}}
 <header>
-    <h1 class="heading-large">{{#t}}pages.arrival-date.header{{/t}}</h1>
+  <h1 class="heading-large">{{#t}}pages.arrival-date.header{{/t}}</h1>
 </header>
 
 {{<partials-form}}
 
 {{$form}}
 
-    <div id="arrival-date-group" class="form-group{{#errors.arrival-date}} validation-error{{/errors.arrival-date}}">
-        <span class="form-label-bold">{{#t}}fields.arrival-date.legend{{/t}}</span>
-        <div class="form-date">
-            <p class="form-hint">{{#t}}fields.arrival-date.hint{{/t}}</p>
-            {{#errors.arrival-date}}
-              <span id="arrival-date-error" class="error-message">
-                {{errors.arrival-date.message}}
-              </span>
-            {{/errors.arrival-date}}
-            {{#input-date}}arrival-date{{/input-date}}
-        </div>
+  <fieldset id="arrival-date-group" class="form-group{{#errors.arrival-date}} validation-error{{/errors.arrival-date}}">
+    <legend class="form-label-bold">{{#t}}fields.arrival-date.legend{{/t}}</legend>
+    <div class="form-date">
+      <p class="form-hint">{{#t}}fields.arrival-date.hint{{/t}}</p>
+      {{#errors.arrival-date}}
+        <span id="arrival-date-error" class="error-message">{{errors.arrival-date.message}}</span>
+      {{/errors.arrival-date}}
+      {{#input-date}}arrival-date{{/input-date}}
     </div>
+  </fieldset>
 
-    {{#input-submit}}continue{{/input-submit}}
+  {{#input-submit}}continue{{/input-submit}}
 
 {{/form}}
 

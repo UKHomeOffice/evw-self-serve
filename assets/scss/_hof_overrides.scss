@@ -7,8 +7,9 @@
 
     legend {
         // Margins taken from .heading-medium in elements_typography
-        margin-top: em(25, 20);
         margin-bottom: em(10, 20);
+        float: left;
+        width: 100%;
 
         span {
             @include bold-19;
