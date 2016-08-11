@@ -54,7 +54,7 @@ Scenario: Not entering any details on the departure date and time page
   And I enter "KU101" into "Flight number"
   And I continue
   # Arrival date page
-  And I enter the date "10-08-2016" into "Arrival date"
+  And I enter a date "2 months" in the future into "Arrival date"
   And I continue
   # Is this your flight page
   And I click "Yes"
