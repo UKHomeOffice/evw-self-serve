@@ -1,0 +1,25 @@
+{{<layout}}
+
+{{$journeyHeader}}
+{{#t}}journey.header{{/t}}
+{{/journeyHeader}}
+
+{{$validationSummary}}
+{{> partials-validation-summary}}
+{{/validationSummary}}
+
+{{$propositionHeader}}
+{{> partials-navigation}}
+{{/propositionHeader}}
+
+{{$content}}
+<h1 class="heading-large">{{#t}}pages.update-limit-reached.header{{/t}}</h1>
+<p>{{#t}}pages.update-limit-reached.content-1{{/t}}</p>
+<p>
+  {{#t}}pages.update-limit-reached.content-2{{/t}}
+  <a href="https://www.electronic-visa-waiver.service.gov.uk">{{#t}}pages.update-limit-reached.return-to-start{{/t}}</a>.
+</p>
+<a href="https://www.gov.uk" class="button">{{#t}}pages.update-limit-reached.return-to-govuk{{/t}}</a>
+{{/content}}
+
+{{/layout}}
