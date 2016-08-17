@@ -37,7 +37,7 @@ describe('lib/evw-lookup', function () {
     it('should return success', function () {
       return lookup.find('validevwnumber10', '10/10/1980')
         .should.eventually.have.property('body').contains({
-          success: true
+          emailAddress: 'someone@example.com'
         });
     });
 
