@@ -24,6 +24,10 @@ module.exports = {
     {
       target: '/evw-not-verified',
       condition: (req) => req.sessionModel.get('evwLookupError') === 'CASE_NOT_VERIFIED'
+    },
+    {
+      target: '/update-limit-reached',
+      condition: (req) => req.sessionModel.get('evwLookupError') === 'UPDATE_LIMIT_REACHED'
     }]
   },
   '/link-sent': {
@@ -35,5 +39,8 @@ module.exports = {
   },
   '/evw-not-verified': {
     template: 'evw-not-verified'
+  },
+  '/update-limit-reached': {
+    template: 'update-limit-reached'
   }
 };

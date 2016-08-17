@@ -14,5 +14,12 @@
   "evw-not-verified": {
     "header": "Electronic visa waiver not yet verified",
     "content": "Your application is still awaiting verification. We will email you as soon as your current application has been processed."
+  },
+  "update-limit-reached": {
+    "header": "You can't change your flight details again",
+    "content-1": "You can only change your flight details twice.",
+    "content-2": "To travel on a different flight, you will need to apply for a",
+    "return-to-start": "new electronic visa waiver",
+    "return-to-govuk": "Back to GOV.UK"
   }
 }
