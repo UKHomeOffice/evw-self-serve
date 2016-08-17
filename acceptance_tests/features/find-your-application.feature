@@ -26,6 +26,13 @@ Scenario: Too late to change
   And I click confirm details
   Then I should be on the "EVW expired" page of the "Find your application" app
 
+Scenario: Updated too many times
+  Given I start the "Find your application" app
+  When I enter "UPDATELIMIT" into "EVW number"
+  And I enter the date "20-10-1978" into "dob"
+  And I click confirm details
+  Then I should be on the "Update limit reached" page of the "Find your application" app
+
 Scenario: Case not found
   Given I start the "Find your application" app
   When I enter "NOFOUND" into "EVW number"
