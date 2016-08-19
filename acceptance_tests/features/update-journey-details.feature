@@ -96,7 +96,7 @@ Scenario: Entering new flight details and flight not found
   And the page title should contain "We can’t find your flight"
   And the content list should contain
     """
-    reference number: EVW123 (this is in the email we sent you)
+    reference number (EVW123)
     new flight number (if your journey has any stops or connecting flights we only need details of the flight landing in the UK)
     airport this flight takes off from
     new date this flight takes off
