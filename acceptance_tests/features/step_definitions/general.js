@@ -75,7 +75,7 @@ module.exports = function () {
 
     this.When(/^I enter a date "([^"]*)" in the future into "([^"]*)"$/, function (future, field) {
         let val = futureDate(future);
-        console.log('future date', val.format('DD-MM-YYYY'));
+        // console.log('future date', val.format('DD-MM-YYYY'));
         let target = urlise(field);
 
         this.setValue('#' + target + '-day', val.format('DD'));
@@ -87,7 +87,7 @@ module.exports = function () {
     this.Then(/^the "([^"]*)" should contain a date "([^"]*)" in the future$/, function (field, future) {
         let val = futureDate(future);
         let target = urlise(field);
-        console.log(val.format('DD-MM-YYYY'), 'does it need formatting?');
+        // console.log(val.format('DD-MM-YYYY'), 'does it need formatting?');
         this.assert.containsText('.' + target, val.format('DD-MM-YYYY'));
     });
 
