@@ -44,11 +44,6 @@ module.exports = {
       condition: function(req) {
         return req.sessionModel.get('flightDetails') === null;
       }
-    }, {
-      target: '/check-departure',
-      condition: function(req) {
-        return req.sessionModel.get('flightDetails').departures.length > 1;
-      }
     }]
   },
   '/is-this-your-flight': {
