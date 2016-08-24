@@ -28,7 +28,12 @@ module.exports = class ArrivalDateController extends EvwBaseController {
 
         // Flight found
         if (typeof flight !== 'undefined') {
+          let departure = flightLookup.mapDepartures(flight.departures)[0];
           let mappedFlight = flightLookup.mapFlight(flight, req.sessionModel);
+
+          Object.assign(mappedFlight, departure); // add first departure to flight
+          delete mappedFlight.departures;
+
           req.sessionModel.set('flightDetails', mappedFlight);
         }  else {
           req.sessionModel.set('flightDetails', null);
@@ -39,4 +44,4 @@ module.exports = class ArrivalDateController extends EvwBaseController {
       });
     });
   }
-}
+};

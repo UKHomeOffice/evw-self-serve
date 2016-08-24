@@ -33,10 +33,10 @@ describe('lib/flight-lookup', function() {
             let foundData = flightLookup.findFlight('KU0101', '2016-08-09');
             return foundData.should.eventually.deep.have.property('body.flights[0]').to.equal({
                 flightNumber: 'KU0101',
-                departure: {
+                departures: [{
                     country: 'AE',
                     port: 'DXB'
-                },
+                }],
                 arrival: {
                     port: 'LGW',
                     date: '2016-08-09',
@@ -73,41 +73,101 @@ describe('lib/flight-lookup', function() {
         });
     });
 
+    describe('departures', function () {
+
+        let flightData;
+
+        before(function (done) {
+            flightLookup.findFlight('KU0101', '2016-08-09').then((data) => {
+                flightData = data.body.flights[0];
+                done();
+            });
+        });
+
+        describe('#mapDepartures', function () {
+            describe('single result', function () {
+                it('maps a list of departures', function () {
+                    flightLookup.mapDepartures(flightData.departures)
+                    .should.deep.equal([
+                        {
+                            inwardDepartureCountryPlane: 'United Arab Emirates',
+                            inwardDepartureCountryPlaneCode: 'ARE',
+                            departureAirport: 'Dubai',
+                            inwardDeparturePortPlaneCode: 'DXB'
+                        }
+                    ]);
+                });
+            });
+
+            describe('multiple results', function () {
+                before(function (done) {
+                    flightLookup.findFlight('LEG0001', '2016-08-09').then((data) => {
+                        flightData = data.body.flights[0];
+                        done();
+                    });
+                });
+
+                it('maps a list of departures', function () {
+                    flightLookup.mapDepartures(flightData.departures)
+                    .should.deep.equal([
+                        {
+                            inwardDepartureCountryPlane: 'United Arab Emirates',
+                            inwardDepartureCountryPlaneCode: 'ARE',
+                            departureAirport: 'Dubai',
+                            inwardDeparturePortPlaneCode: 'DXB'
+                        },
+                        {
+                            inwardDepartureCountryPlane: 'United Arab Emirates',
+                            inwardDepartureCountryPlaneCode: 'ARE',
+                            departureAirport: 'Abu Dhabi',
+                            inwardDeparturePortPlaneCode: 'AUH'
+                        }
+                    ]);
+                });
+            });
+
+        });
+    });
+
     describe('#mapFlight', function() {
+        let flightData;
+        let sessionModel = {
+            get: function (key) {
+                return this.attributes[key];
+            },
+            attributes: {
+                'flight-number': 'ku101'
+            }
+        };
+
+        before(function (done) {
+            flightLookup.findFlight('KU0101', '2016-08-09').then((data) => {
+                flightData = data.body.flights[0];
+                done();
+            });
+        });
+
         it('formats the data from the api into the correct format to use in the app', function() {
-            let flight = {
-                flightNumber: 'KU0101',
-                departure: {
-                    country: 'KW', port: 'KWI'
-                },
-                arrival: {
-                    port: 'LHR',
-                    date: '2016-08-09',
-                    time: '1345'
-                }
-            };
-            let sessionModel = {
-                get: function (key) {
-                    return this.attributes[key];
-                },
-                attributes: {
-                    'flight-number': 'ku101'
-                }
-            };
+            let flight = flightData;
+
             flightLookup.mapFlight(flight, sessionModel).should.deep.equal({
                 flightNumber: 'ku101',
-                inwardDepartureCountryPlane: 'Kuwait',
-                inwardDepartureCountryPlaneCode: 'KWT',
-                departureAirport: 'Kuwait - Kuwait Intl',
-                inwardDeparturePortPlaneCode: 'KWI',
-                arrivalAirport: 'London - Heathrow',
-                portOfArrivalPlaneCode: 'LHR',
+                departures: [
+                    {
+                      departureAirport: 'Dubai',
+                      inwardDeparturePortPlaneCode: 'DXB',
+                      inwardDepartureCountryPlane: 'United Arab Emirates',
+                      inwardDepartureCountryPlaneCode: 'ARE'
+                    }
+                ],
+                arrivalAirport: 'London - Gatwick',
+                portOfArrivalPlaneCode: 'LGW',
                 arrivalDate: '09-08-2016',
                 arrivalDatePlaneDay: '09',
                 arrivalDatePlaneMonth: '08',
                 arrivalDatePlaneYear: '2016',
-                arrivalTime: '14:45',
-                arrivalTimePlaneHour: '14',
+                arrivalTime: '19:45',
+                arrivalTimePlaneHour: '19',
                 arrivalTimePlaneMinutes: '45',
                 aliasFlightNumber: undefined
             });

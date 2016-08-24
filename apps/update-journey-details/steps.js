@@ -3,10 +3,6 @@
 let features = require('characteristic')(__dirname + '/../../config/features.yml');
 
 module.exports = {
-  // '/': {
-  //   controller: require('../common/controllers/start'),
-  //   next: '/how-will-you-arrive'
-  // },
   '/how-will-you-arrive': {
     template: 'how-will-you-arrive',
     controller: require('./controllers/how-will-you-arrive'),
