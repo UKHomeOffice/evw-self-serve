@@ -101,7 +101,7 @@ describe('lib/flight-lookup', function() {
 
             describe('multiple results', function () {
                 before(function (done) {
-                    flightLookup.findFlight('LEG0001', '2016-08-09').then((data) => {
+                    flightLookup.findFlight('BA0072', '2016-08-09').then((data) => {
                         flightData = data.body.flights[0];
                         done();
                     });
@@ -117,10 +117,10 @@ describe('lib/flight-lookup', function() {
                             inwardDeparturePortPlaneCode: 'DXB'
                         },
                         {
-                            inwardDepartureCountryPlane: 'United Arab Emirates',
-                            inwardDepartureCountryPlaneCode: 'ARE',
-                            departureAirport: 'Abu Dhabi',
-                            inwardDeparturePortPlaneCode: 'AUH'
+                            departureAirport: 'Muscat - Seeb',
+                            inwardDepartureCountryPlane: 'Oman',
+                            inwardDepartureCountryPlaneCode: 'OMN',
+                            inwardDeparturePortPlaneCode: 'MCT'
                         }
                     ]);
                 });
