@@ -1,6 +1,7 @@
 'use strict';
 
 const validation = require('../../validation/departure-time');
+const moment = require('moment');
 
 describe('validation/departure-time', function() {
   let model = {
@@ -8,8 +9,8 @@ describe('validation/departure-time', function() {
       return this.attributes[key];
     },
     attributes: {
-      'arrival-date': '2016-07-08',
-      'departure-date': '2016-07-08',
+      'arrival-date': moment().add(2, 'days').format('DD-MM-YYYY'),
+      'departure-date': moment().add(2, 'days').format('DD-MM-YYYY'),
       'flightDetails': {
         'arrivalTime': '15:00'
       }
@@ -35,12 +36,23 @@ describe('validation/departure-time', function() {
   });
 
   it('should be no more than 24 hours before the arrival time', function() {
-    model.attributes['departure-date'] = '2016-07-07';
+    model.attributes['departure-date'] = moment().add(1, 'day').format('DD-MM-YYYY');
 
     validation.rules('14:59', model).should.deep.equal({
       length: {
         minimum: 100,
         message: 'departure-time.departure-too-far-before-arrival'
+      }
+    });
+  });
+
+  it('should not be in the next 48 hours', function() {
+    model.attributes['departure-date'] = moment().add(1, 'day').format('DD-MM-YYYY');
+
+    validation.rules('15:01', model).should.deep.equal({
+      length: {
+        minimum: 100,
+        message: 'departure-date.within-48-hours'
       }
     });
   });
