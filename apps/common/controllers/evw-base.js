@@ -49,9 +49,8 @@ EvwBaseController.prototype.applyDatesTimes = function firstDates(fields) {
 EvwBaseController.prototype.validateField = function validateField(keyToValidate, req) {
   try {
     let fieldValue = formatting.setDateTimes(req.form.values, keyToValidate);
-    let rules = require(`../../../validation/${keyToValidate}`).rules(fieldValue, req.sessionModel);
-
     req.sessionModel.set(keyToValidate, fieldValue);
+    let rules = require(`../../../validation/${keyToValidate}`).rules(fieldValue, req.sessionModel);
 
     let field = {};
     field[keyToValidate] = fieldValue;
