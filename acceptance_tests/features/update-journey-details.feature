@@ -76,6 +76,50 @@ Scenario: Entering new flight details and correct flight found
   And the "header notice complete" should contain "Request received"
   And the reference number should be present
 
+Scenario: Multi-leg flight
+
+  Given I start the Update journey details app
+  When I click "By plane"
+  And I continue
+  When I enter "BA0072" into "Flight number"
+  And I continue
+  Then I enter a date "2 months" in the future into "Arrival date"
+  And I continue
+
+  # Multi-leg page
+  And the page title should contain "Your journey to the UK"
+  When I click exact id "departures-MCT"
+  And I continue
+
+  Then the page title should contain "Is this your flight to the UK?"
+  And the "Flight number" should contain "BA0072"
+  And the "Departure airport" should contain "Muscat - Seeb"
+  And I click "Yes"
+  And I continue
+
+  # Departure date and time page
+  Then I enter a date "2 months" in the future into "Departure date"
+  And I enter the time "07:15" into "Departure time"
+  And I continue
+
+  # Check your answers page
+  Then the page title should contain "Check your answers"
+  And the summary table should contain
+    """
+    Departure country
+                      Oman
+    Departure airport
+                      Muscat - Seeb
+    Departure date
+                      ${"2 months" in the "future"}
+    """
+  And I continue
+  # Declaration page
+  Then I should be on the "Declaration" page of the "Update journey details" app
+  And I click id "Accept Declaration"
+  And I continue
+  Then the reference number should be present
+
 Scenario: Entering new flight details and flight not found
 
   Given I start the Update journey details app
