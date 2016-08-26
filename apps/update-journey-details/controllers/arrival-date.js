@@ -28,11 +28,13 @@ module.exports = class ArrivalDateController extends EvwBaseController {
 
         // Flight found
         if (typeof flight !== 'undefined') {
-          let departure = flightLookup.mapDepartures(flight.departures)[0];
+
+          let departures = flightLookup.mapDepartures(flight.departures);
           let mappedFlight = flightLookup.mapFlight(flight, req.sessionModel);
 
-          Object.assign(mappedFlight, departure); // add first departure to flight
-          delete mappedFlight.departures;
+          if(flight.departures.length === 1) {
+            Object.assign(mappedFlight, departures[0]); // add first departure to flight
+          }
 
           req.sessionModel.set('flightDetails', mappedFlight);
         }  else {

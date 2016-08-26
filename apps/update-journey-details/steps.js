@@ -44,7 +44,20 @@ module.exports = {
       condition: function(req) {
         return req.sessionModel.get('flightDetails') === null;
       }
+    }, {
+      target: '/choose-departure-airport',
+      condition: function(req) {
+        return req.sessionModel.get('flightDetails') && req.sessionModel.get('flightDetails').departures.length > 1;
+      }
     }]
+  },
+  '/choose-departure-airport': {
+    template: 'choose-departure-airport',
+    controller: require('./controllers/choose-departure-airport'),
+    fields: [
+      'departures'
+    ],
+    next: '/is-this-your-flight'
   },
   '/is-this-your-flight': {
     template: 'is-this-your-flight',
