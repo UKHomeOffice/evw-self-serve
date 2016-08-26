@@ -56,13 +56,13 @@ var search = {
             }
 
             // fake up multi-leg flight
-            if(body.flightNumber === 'LEG0001') {
+            if(body.flightNumber === 'BA0072') {
                 let res = tpl(params, query, body);
 
                 // add additional departure
                 res.departures.push({
-                    port: 'AUH',
-                    country: 'AE'
+                    port: 'MCT',
+                    country: 'OM'
                 });
 
                 return [
