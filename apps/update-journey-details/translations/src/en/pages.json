@@ -97,6 +97,9 @@
     },
     "retry-button": "Try again"
   },
+  "choose-departure-airport": {
+    "header": "Your journey to the UK"
+  },
   "declaration": {
     "header": "Declaration",
     "content": "I confirm that:",
