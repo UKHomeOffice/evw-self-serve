@@ -31,7 +31,7 @@ module.exports = class ChooseDepartureAirportController extends EvwBaseControlle
     return Object.assign({
       FLIGHT_NUMBER: flight.flightNumber,
       departures: deps
-    }, super.locals.call(this, req, res));
+    }, super.locals(req, res));
 
   }
 
