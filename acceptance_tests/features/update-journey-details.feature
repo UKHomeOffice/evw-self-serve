@@ -28,7 +28,7 @@ Scenario: Entering new flight details and correct flight found
   And the "Departure airport" should contain "Dubai"
   And the "Arrival airport" should contain "London - Gatwick"
   And the "Arrival date" should contain a date "2 months" in the future
-  And the "Arrival time" should contain "19:45"
+  And the "Arrival time" should contain "18:45"
   And I click "Yes"
   And I continue
   # Departure date and time page
@@ -58,7 +58,7 @@ Scenario: Entering new flight details and correct flight found
     Arrival date
                       ${"2 months" in the "future"}
     Arrival time
-                      19:45
+                      18:45
     """
   And I continue
   # Declaration page

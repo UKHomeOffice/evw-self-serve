@@ -28,12 +28,11 @@ module.exports = class ChooseDepartureAirportController extends EvwBaseControlle
       options: departures
     });
 
-    let ret = Object.assign({
-      flightNumber: flight.flightNumber,
+    return Object.assign({
+      FLIGHT_NUMBER: flight.flightNumber,
       departures: deps
     }, super.locals.call(this, req, res));
 
-    return ret;
   }
 
 };

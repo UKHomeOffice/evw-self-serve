@@ -62,7 +62,7 @@
     "label": "Minutes"
   },
   "departures": {
-    "legend": " ",
+    "legend": "Please select where you are boarding flight {{FLIGHT_NUMBER}}",
     "preLegend": "Please select where you are boarding flight",
     "options": {}
   },
