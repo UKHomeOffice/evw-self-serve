@@ -69,7 +69,7 @@ describe('apps/update-journey-details/controllers/choose-departure-airport', fun
 
     it('adds flight number to locals', function () {
       controller.locals(req, res, () => false)
-      .should.include.property('flightNumber')
+      .should.include.property('FLIGHT_NUMBER')
       .equal('LOL10000');
     });
 
