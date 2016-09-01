@@ -7,6 +7,7 @@
 let port = process.env.PORT || 8080;
 
 module.exports = {
+  appName: 'EVW Self Serve',
   env: process.env.NODE_ENV,
   port: port,
   baseUrl: process.env.BASE_URL || 'http://localhost',
