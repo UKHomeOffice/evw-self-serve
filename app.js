@@ -1,10 +1,11 @@
 'use strict';
 
+var path = require('path');
 var express = require('express');
 var app = express();
-var path = require('path');
 var logger = require('./lib/logger');
 var churchill = require('churchill');
+
 
 var config = require('./config');
 require('moment-business');
@@ -72,6 +73,14 @@ app.get('/cookies', function renderCookies(req, res) {
 
 app.get('/terms-and-conditions', function renderTerms(req, res) {
   res.render('terms');
+});
+
+app.get('/healthcheck/version', (req, res) => {
+  let version = require('fs').readFileSync('version', 'utf8');
+  res.json({
+    'application': config.appName,
+    'version': version
+  })
 });
 
 // use the hof middleware
