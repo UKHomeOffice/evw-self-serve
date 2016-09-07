@@ -1,12 +1,18 @@
-app:
-  build: .
-  environment:
-  - NODE_ENV=docker-compose
-  ports:
-    - "8080:8080"
-  volumes:
-  - "/public"
-  net: "host"
-redis:
-  image: redis
-  net: "host"
+version: '2'
+services:
+  web:
+    restart: always
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - session
+    links:
+      - "session"
+    environment:
+      MONGO_CONNECTION_STRING: 'mongodb://session:27017/evw-self-serve'
+  session:
+    restart: always
+    image: mongo:3.2
+    ports:
+      - "27017:27017"
