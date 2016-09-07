@@ -36,6 +36,8 @@ deploy:
   skip_cleanup: true
   on:
     repo: UKHomeOffice/evw-self-serve
+    branch: master
+    all_branches: false
 notifications:
   slack:
     secure: "L72c2eUbeBM5iaMTfxg9jx2nSQNjWxoBHhjT16whyakQZ1C0JqymtLC2y3MoiOoi59cT6WGa0X9jUdKhvygrUccJAmKlEfSUM60pCXBasXd6UHnbu/fBUXuGCumHGzm/VbsEaLGoMw3OUK8J+yxrYQtl4Zd6vfeaLy7Xq76Wkt5imwTyYCQ61wMbKkvXFIqCdTOZAxd4CSBVLf809tg3ULX5DgF6FjxO8R8uSUdztzFBwD2oAylLOZA0QbfiU7Fd0xYI+i3huxNSSSE8sT8ZpZ9YkHkJ4ChF6uQtWfGm2t+v0xwVCdBwIqyiCaZ+nlIC+a6nD19a4iBKyR47nE3TJh8YODBbvC/sVmY4TOLfIah+brGYUCUIMTPFAF7u7keyOqfZWM7JCJM6257rZfHewXr8NR7I2TEAdLAzEpDTpvSqcebNmGG4P3mJdaDaa2tTJtszZT3QFFb1qRkQ08yqRANlOGHRDRlzI5ucxGshTtx/OH295Te7FQzKb3k7mq90jT/lkRrPlySgejPCgUllkTtVG3pgPxbW1Yclgw5ImgyhSqEr1NrPIc1dH/7izxGYA3Y9oeZ1G7C/Vm2EsKnsr7E+R3LAGQcyHWc8m1SMG6CLAgS7u9lOLXEEAdsL2OIMerC9qksoIHmkYBdb8e84wQCZu+K/6OHPff8jbKg0/gs="
