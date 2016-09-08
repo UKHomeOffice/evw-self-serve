@@ -75,8 +75,12 @@ app.get('/terms-and-conditions', function renderTerms(req, res) {
   res.render('terms');
 });
 
-app.get('/healthcheck/version', (req, res) => {
-  let version = require('fs').readFileSync('version', 'utf8');
+app.get([
+  '/shared/healthcheck/version',
+  '/healthcheck/version',
+  '/version'
+  ], (req, res) => {
+  let version = require('fs').readFileSync(__dirname + '/version', 'utf8');
   res.json({
     'application': config.appName,
     'version': version

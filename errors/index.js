@@ -27,8 +27,10 @@ module.exports = function errorHandler(err, req, res, next) {
     message: err,
     template: 'error'
   };
-  let startLink = req.sessionModel.get('startLink');
-  req.sessionModel.reset();
+  let startLink = req.sessionModel && req.sessionModel.get('startLink');
+  if(req.sessionModel){
+    req.sessionModel.reset();
+  }
   content.title = content.title || i18n.translate('errors.default.title');
   content.message = content.message || i18n.translate('errors.default.message');
 
