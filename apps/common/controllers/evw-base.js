@@ -6,9 +6,6 @@ const DateController = controllers.date;
 const ErrorClass = require('hof').controllers.error;
 const validateLib = require('validate.js');
 const logger = require('../../../lib/logger');
-const options = {
-  fullMessages: false,
-};
 const formatting = require('../../../lib/formatting');
 const validationRules = require('evw-validation-rules')['evw-self-serve'];
 
@@ -46,32 +43,37 @@ EvwBaseController.prototype.applyDatesTimes = function firstDates(fields) {
   });
 }
 
-EvwBaseController.prototype.validateField = function validateField(keyToValidate, req) {
-  try {
-    let fieldValue = formatting.setDateTimes(req.form.values, keyToValidate);
-    req.sessionModel.set(keyToValidate, fieldValue);
-    let rules = validationRules[`${keyToValidate}`](fieldValue, req.sessionModel);
+EvwBaseController.prototype.validateField = function validateField(key, req) {
+
+  if(validationRules.hasOwnProperty(key)) {
+
+    let value = formatting.setDateTimes(req.form.values, key);
+    let rules = validationRules[key](value, req.sessionModel);
+
+    req.sessionModel.set(key, value);
 
     let field = {};
-    field[keyToValidate] = fieldValue;
+    field[key] = value;
 
     let schema = {};
-    schema[keyToValidate] = rules;
+    schema[key] = rules;
 
-    let validationErrors = validateLib.validate(field, schema, options);
+    let validationErrors = validateLib.validate(field, schema, {
+      fullMessages: false,
+    });
 
-    // found custom rules
+    // found custom rules, got an error
     if (validationErrors !== undefined) {
-      return new ErrorClass(keyToValidate, {
-        type: validationErrors[keyToValidate]
+      return new ErrorClass(key, {
+        type: validationErrors[key]
       });
     }
-    // 'normal' validators
-    return DateController.prototype.validateField.apply(this, arguments);
-  } catch (e) {
-    return DateController.prototype.validateField.apply(this, arguments);
-    logger.info(`No validation rules found for ${keyToValidate}`);
+  } else {
+    logger.info(`No custom validation rules found for ${key}`);
   }
+
+  return DateController.prototype.validateField.apply(this, arguments);
+
 };
 
 module.exports = EvwBaseController;
