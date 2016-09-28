@@ -10,7 +10,7 @@ const options = {
   fullMessages: false,
 };
 const formatting = require('../../../lib/formatting');
-
+const validationRules = require('evw-validation-rules')['evw-self-serve'];
 
 let EvwBaseController = function EvwBaseController() {
   DateController.apply(this, arguments);
@@ -50,7 +50,7 @@ EvwBaseController.prototype.validateField = function validateField(keyToValidate
   try {
     let fieldValue = formatting.setDateTimes(req.form.values, keyToValidate);
     req.sessionModel.set(keyToValidate, fieldValue);
-    let rules = require(`../../../validation/${keyToValidate}`).rules(fieldValue, req.sessionModel);
+    let rules = validationRules[`${keyToValidate}`](fieldValue, req.sessionModel);
 
     let field = {};
     field[keyToValidate] = fieldValue;
