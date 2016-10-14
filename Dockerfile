@@ -21,14 +21,13 @@ RUN yum clean all && \
     yum install -y bzip2 && \
     yum clean all && \
     rpm --rebuilddb && \
+    rm -rf node_modules && \
     npm install npm@3.9.0 -g
 
-#yum install -y make gcc gcc-c++ krb5-devel git && \
-
-# Bare minimum npm requirements
-COPY package.json .npmrc .nvmrc /app/
-# Grunt
-COPY config.js .eslintrc .eslintignore /app/
+# Copy downstream in which should help
+# ensure everyone using this has a similar
+# app structure.
+COPY . /app
 
 # Install node depenencies, make sure unit
 # tests are passing, then prune the dev deps.
@@ -39,11 +38,7 @@ RUN npm --production=false install --unsafe-perm --no-optional && \
 # files, forcing downstream to set it.
     chown -R nodejs:nodejs .
 
-# Copy downstream in which should help
-# ensure everyone using this has a similar
-# app structure.
-COPY . /app
-
+RUN npm run sass
 RUN npm test
 
 USER nodejs
