@@ -11,7 +11,20 @@ services:
       - db
     links:
       - db
+    volumes:
+      - /public
   db:
     image: mongo:3.2
     ports:
       - "27017:27017"
+  # flight-forecast-service:
+  #   depends_on:
+  #     - db
+  #   build: ../flight-forecast-service/.
+  #   links:
+  #     - db
+  #   ports:
+  #     - "9350:9350"
+  #   restart: always
+  #   environment:
+  #     MONGO_HOST: db
