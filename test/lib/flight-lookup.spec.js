@@ -151,7 +151,7 @@ describe('lib/flight-lookup', function() {
             let flight = flightData;
 
             flightLookup.mapFlight(flight, sessionModel).should.deep.equal({
-                flightNumber: 'ku101',
+                flightNumber: 'KU101',
                 departures: [
                     {
                       departureAirport: 'Dubai',
