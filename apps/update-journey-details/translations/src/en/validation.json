@@ -21,11 +21,5 @@
     "in-past": "The date your flight to the UK takes off cannot be more than 1 day before it arrives in the UK",
     "in-future": "The date your flight to the UK takes off cannot be after the date it arrives in the UK",
     "within-48-hours": "The date and time of your flight must be at least 48 hours from now"
-  },
-  "departure-time": {
-    "required": "Please enter a time",
-    "invalid": "Enter a valid time using the 24 hour clock, for example 09:45 or 21:45",
-    "departure-after-arrival": "Your departure cannot be after your arrival",
-    "departure-too-far-before-arrival": "The date your flight to the UK takes off cannot be more than 24 hours before it arrives in the UK"
   }
 }

@@ -14,7 +14,7 @@
 
 {{$content}}
 <header>
-    <h1 class="heading-large">{{#t}}pages.departure-date-and-time.header{{/t}}</h1>
+    <h1 class="heading-large">{{#t}}pages.departure-date.header{{/t}}</h1>
 </header>
 
 {{<partials-form}}
@@ -36,28 +36,6 @@
           </span>
         {{/errors.departure-date}}
         {{#input-date}}departure-date{{/input-date}}
-      </div>
-    </fieldset>
-
-    <fieldset id="departure-time-group" class="form-group{{#errors.departure-time}} validation-error{{/errors.departure-time}}">
-      <label class="form-label-bold">
-        {{#t}}fields.departure-time.legend-1{{/t}}
-        <span class="data-flight-number">{{flightDetails.flightNumber}}</span>
-        {{#t}}fields.departure-time.legend-2{{/t}}
-        <span class="data-departure-airport">{{flightDetails.departureAirport}}</span>
-        {{#t}}fields.departure-time.legend-3{{/t}}
-      </label>
-      <div class="form-date">
-        <p class="form-hint">{{#t}}fields.departure-time.hint{{/t}}</p>
-        {{#errors.departure-time}}
-          <span id="departure-time-error" class="error-message">
-            {{errors.departure-time.message}}
-          </span>
-        {{/errors.departure-time}}
-        {{#input-text-compound}}departure-time-hours{{/input-text-compound}}
-      </div>
-      <div class="form-date">
-        {{#input-text-compound}}departure-time-minutes{{/input-text-compound}}
       </div>
     </fieldset>
 

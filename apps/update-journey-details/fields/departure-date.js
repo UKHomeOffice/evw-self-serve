@@ -16,17 +16,5 @@ module.exports = {
   'departure-date-year': {
     validate: ['required', 'numeric'],
     label: 'fields.departure-date-year.label'
-  },
-  'departure-time': {
-    validate: ['required'],
-    type: ['time']
-  },
-  'departure-time-hours': {
-    validate: ['required', 'numeric'],
-    label: 'fields.departure-time-hours.label'
-  },
-  'departure-time-minutes': {
-    validate: ['required', 'numeric'],
-    label: 'fields.departure-time-minutes.label'
   }
 };
