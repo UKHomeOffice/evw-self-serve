@@ -8,13 +8,6 @@
     "too-long": "Your flight number is too long. Please check your travel documents and enter it correctly",
     "format": "Enter a valid flight number, for example EK009, QR003 or KU101"
   },
-  "arrival-date": {
-    "required": "Enter the date your flight is due to land in the UK",
-    "numeric": "Enter a valid date",
-    "invalid": "Enter a valid date",
-    "within-48-hours": "Date of arrival must be at least 48 hours from now",
-    "too-far-in-future": "Date of arrival in the UK must be no more than 3 months from now"
-  },
   "is-this-your-flight": {
     "required": "Select an option",
     "equal": "Please select an option from the list"

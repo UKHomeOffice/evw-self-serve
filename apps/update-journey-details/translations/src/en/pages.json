@@ -53,10 +53,6 @@
     "help-text-content-1": "A flight number has 2 or 3 letters or numbers representing the airline followed by 1 to 4 numbers and sometimes an extra letter at the end, for example EK009, QR003 or KU101. It is not the same as the booking confirmation from your travel agent or airline.",
     "help-text-content-2": "If you are taking more than 1 flight to reach the UK we only need to know the number for the flight that lands in the UK."
   },
-  "arrival-date": {
-    "header": "Your new flight details",
-    "content": "We have emailed you with a link for you to change your flight details."
-  },
   "is-this-your-flight": {
     "header": "Is this your flight to the UK?"
   },

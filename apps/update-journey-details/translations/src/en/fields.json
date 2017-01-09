@@ -22,19 +22,6 @@
   "flight-number": {
     "label": "New flight number<p class='form-hint'>For example EK009, QR003 or KU101</p><p class='form-hint'>If you have any stops or connecting flights you must enter the number for the final part of your journey to the UK</p>"
   },
-  "arrival-date": {
-    "legend": "New date of arrival in the UK",
-    "hint": "For example 30 10 2016"
-  },
-  "arrival-date-day": {
-    "label": "Day"
-  },
-  "arrival-date-month": {
-    "label": "Month"
-  },
-  "arrival-date-year": {
-    "label": "Year"
-  },
   "departure-date": {
     "legend-1": "What date does flight",
     "legend-2": "leave",
