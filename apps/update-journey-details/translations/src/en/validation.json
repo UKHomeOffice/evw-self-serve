@@ -27,8 +27,5 @@
     "invalid": "Enter a valid time using the 24 hour clock, for example 09:45 or 21:45",
     "departure-after-arrival": "Your departure cannot be after your arrival",
     "departure-too-far-before-arrival": "The date your flight to the UK takes off cannot be more than 24 hours before it arrives in the UK"
-  },
-  "departures": {
-    "required": "Please choose a departure airport"
   }
 }
