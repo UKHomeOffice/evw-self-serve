@@ -1,8 +1,8 @@
 'use strict';
 
 const moment = require('moment');
-let ConirmationController = require('../../../../apps/update-journey-details/controllers/confirmation');
-let propMap = ConirmationController.propMap;
+let ConfirmationController = require('../../../../apps/update-journey-details/controllers/confirmation');
+let propMap = ConfirmationController.propMap;
 let modelFixture = require('../../../fixtures/update-model');
 
 describe('apps/update-journey-details/controllers/confirmation', function () {
@@ -16,7 +16,8 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
         'arrivalDate' : '2016-10-10',
         'arrivalTime' : '19:45',
         'departureForUKDate' : '2016-10-10',
-        'departureForUKTime' : '01:01',
+        'departureForUKTime' : '10:35',
+        'departureForUKDateOffset': '+04:00',
         'flightDetailsCheck': 'Yes',
         'dateCreated': moment().format('YYYY-MM-DD hh:mm:ss'),
         'portOfArrival' : 'London - Gatwick',

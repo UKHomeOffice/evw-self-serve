@@ -1,22 +1,25 @@
 'use strict';
 
 const moment = require('moment');
+require('moment-timezone');
 const EvwBaseController = require('../../common/controllers/evw-base');
 const is = require('../../../config').integrationService;
 const request = require('request');
 const logger = require('../../../lib/logger');
 
 const propMap = (model) => {
-  let f = model.flightDetails;
+  const f = model.flightDetails;
+  const departureDateTime = moment.tz(`${f.departureDateRaw} ${f.departureTime}`, f.departureTimezone);
 
   return {
     membershipNumber: model['evw-number'],
     token: model.token,
     arrivalTravel: f.flightNumber,
-    arrivalDate: f.arrivalDate.split('-').reverse().join('-'),
+    arrivalDate: f.arrivalDateRaw,
     arrivalTime: f.arrivalTime,
-    departureForUKDate: model['departure-date'].split('-').reverse().join('-'),
-    departureForUKTime: model['departure-time'],
+    departureForUKDate: moment.utc(departureDateTime).format('YYYY-MM-DD'),
+    departureForUKTime: moment.utc(departureDateTime).format('HH:mm'),
+    departureForUKDateOffset: departureDateTime.format('Z'),
     portOfArrival: f.arrivalAirport,
     portOfArrivalCode: f.portOfArrivalPlaneCode,
     inwardDepartureCountry: f.inwardDepartureCountryPlaneCode,
@@ -63,7 +66,7 @@ class ConfirmationController extends EvwBaseController {
       req.context = {
         updateNumber: body.membershipNumber,
         emailAddress: body.currentDetails.contactDetails.emailAddress
-      }
+      };
 
       logger.info('application sent to integration service', body);
 
