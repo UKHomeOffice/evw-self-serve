@@ -9,7 +9,6 @@ cache:
 before_script:
 - npm run sass
 - NODE_ENV='ci' npm start &
-- sleep 5
 script:
 - npm run test:ci
 - npm run mock &
