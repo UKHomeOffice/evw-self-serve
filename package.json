@@ -94,6 +94,7 @@
     "selenium-server": "^2.53.0",
     "sinomocha": "^0.2.4",
     "sinon": "^1.15.3",
+    "sinon-as-promised": "^4.0.2",
     "sinon-chai": "^2.8.0"
   }
 }
