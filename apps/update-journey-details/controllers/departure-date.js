@@ -47,4 +47,10 @@ module.exports = class DepartureDateController extends EvwBaseController {
     });
   }
 
+  locals(req, res) {
+    return Object.assign({
+      flightNumber: req.sessionModel.get('flight-number')
+    }, super.locals(req, res));
+  }
+
 };

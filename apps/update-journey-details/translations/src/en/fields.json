@@ -24,8 +24,7 @@
   },
   "departure-date": {
     "legend-1": "What date does flight",
-    "legend-2": "leave",
-    "legend-3": "?"
+    "legend-2": "leave?"
   },
   "departure-date-day": {
     "label": "Day"
