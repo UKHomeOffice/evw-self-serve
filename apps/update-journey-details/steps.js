@@ -27,16 +27,16 @@ module.exports = {
     fields: [
       'flight-number'
     ],
-    next: '/arrival-date'
+    next: '/departure-date'
   },
-  '/arrival-date': {
-    template: 'arrival-date',
-    controller: require('./controllers/arrival-date'),
+  '/departure-date': {
+    template: 'departure-date',
+    controller: require('./controllers/departure-date'),
     fields: [
-      'arrival-date',
-      'arrival-date-day',
-      'arrival-date-month',
-      'arrival-date-year'
+      'departure-date',
+      'departure-date-day',
+      'departure-date-month',
+      'departure-date-year'
     ],
     next: '/is-this-your-flight',
     forks: [{
@@ -44,20 +44,7 @@ module.exports = {
       condition: function(req) {
         return req.sessionModel.get('flightDetails') === null;
       }
-    }, {
-      target: '/choose-departure-airport',
-      condition: function(req) {
-        return req.sessionModel.get('flightDetails') && req.sessionModel.get('flightDetails').departures.length > 1;
-      }
     }]
-  },
-  '/choose-departure-airport': {
-    template: 'choose-departure-airport',
-    controller: require('./controllers/choose-departure-airport'),
-    fields: [
-      'departures'
-    ],
-    next: '/is-this-your-flight'
   },
   '/is-this-your-flight': {
     template: 'is-this-your-flight',
@@ -65,7 +52,7 @@ module.exports = {
     fields: [
       'is-this-your-flight'
     ],
-    next: '/departure-date-and-time',
+    next: '/check-your-answers',
     forks: [{
       target: '/flight-not-found',
       condition: {
@@ -73,20 +60,6 @@ module.exports = {
         value: 'no'
       }
     }]
-  },
-  '/departure-date-and-time': {
-    template: 'departure-date-and-time',
-    controller: require('./controllers/departure-date-and-time'),
-    fields: [
-      'departure-date',
-      'departure-date-day',
-      'departure-date-month',
-      'departure-date-year',
-      'departure-time',
-      'departure-time-hours',
-      'departure-time-minutes'
-    ],
-    next: '/check-your-answers'
   },
   '/check-your-answers': {
     template: 'check-your-answers.html',

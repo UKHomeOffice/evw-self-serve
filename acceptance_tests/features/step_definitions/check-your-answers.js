@@ -8,7 +8,7 @@ const momentous = (quantity,  direction) => {
   let amount = Number(times[0]);
   let unit = times[1].slice(0,-1); //day/s month/s
 
-  return moment()[action](amount, unit).format('DD-MM-YYYY'); // e.g. moment().add(2, 'months')
+  return moment()[action](amount, unit).format('DD/MM/YYYY'); // e.g. moment().add(2, 'months')
 }
 
 const pullDate = (string) => {

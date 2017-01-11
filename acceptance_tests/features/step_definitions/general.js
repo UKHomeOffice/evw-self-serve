@@ -92,7 +92,7 @@ module.exports = function () {
         let val = futureDate(future);
         let target = urlise(field);
         // console.log(val.format('DD-MM-YYYY'), 'does it need formatting?');
-        this.assert.containsText('.' + target, val.format('DD-MM-YYYY'));
+        this.assert.containsText('.' + target, val.format('DD/MM/YYYY'));
     });
 
     this.When(/^I continue$/, function () {
