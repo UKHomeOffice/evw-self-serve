@@ -8,10 +8,11 @@ cache:
   - node_modules
 before_script:
 - npm run sass
-- NODE_ENV='ci' npm start&
+- NODE_ENV='ci' npm start &
+- sleep 5
 script:
 - npm run test:ci
-- npm run mock&
+- npm run mock &
 - npm run test:acceptance
 after_success:
 - git config --global user.email "builds@travis-ci.com"
