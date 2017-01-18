@@ -89,11 +89,26 @@ module.exports = {
       'departure-time-hours',
       'departure-time-minutes'
     ],
-    next: '/check-your-answers',
+    next: '/uk-departure',
     options: {
       dateKeys: ['departure-date'],
       timeKeys: ['departure-time']
     }
+  },
+  '/uk-departure': {
+    template: 'uk-departure',
+    controller: require('../common/controllers/evw-base'),
+    fields: [
+      'travel-details-changed',
+      'uk-duration',
+      'uk-departure-travel-number',
+      'uk-date-of-departure',
+      'uk-date-of-departure-day',
+      'uk-date-of-departure-month',
+      'uk-date-of-departure-year',
+      'uk-port-of-departure'
+    ],
+    next: '/check-your-answers'
   },
   '/check-your-answers': {
     template: 'check-your-answers.html',

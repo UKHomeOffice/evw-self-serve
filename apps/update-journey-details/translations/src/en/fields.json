@@ -77,5 +77,50 @@
   },
   "accept-declaration": {
     "label": "I understand and agree with the above"
+  },
+  "travel-details-changed": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "uk-duration": {
+    "legend": "How long are you staying in the UK for?",
+    "options": {
+      "less-than-one-month": {
+        "label": "Less than 1 month"
+      },
+      "one-to-three-months": {
+        "label": "1 to 3 months"
+      },
+      "three-to-six-months": {
+        "label": "3 to 6 months"
+      }
+    }
+  },
+  "uk-departure-travel-number": {
+    "label": "Enter the flight number, train number or boat name for your departure from the UK",
+    "hint": "The details will be on your travel documents"
+  },
+  "uk-date-of-departure": {
+    "legend": "What date will you be departing the UK?",
+    "hint": "For example, 31 3 2017"
+  },
+  "uk-date-of-departure-day": {
+    "label": "Day"
+  },
+  "uk-date-of-departure-month": {
+    "label": "Month"
+  },
+  "uk-date-of-departure-year": {
+    "label": "Year"
+  },
+  "uk-port-of-departure": {
+    "label": "What airport, train station or port are you leaving the UK from?",
+    "hint": "The details will be on your travel documents"
   }
 }
