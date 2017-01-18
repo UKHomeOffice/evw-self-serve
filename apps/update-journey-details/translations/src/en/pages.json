@@ -63,6 +63,9 @@
   "departure-date-and-time": {
     "header": "Your journey to the UK"
   },
+  "uk-departure": {
+    "header": "Have your travel details for your departure from the UK changed?"
+  },
   "check-your-answers": {
     "header": "Check your answers",
     "notice": "Please check your new flight details and correct them if necessary",

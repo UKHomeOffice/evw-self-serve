@@ -1,0 +1,55 @@
+{{<layout}}
+
+{{$journeyHeader}}
+{{#t}}journey.header{{/t}}
+{{/journeyHeader}}
+
+{{$validationSummary}}
+{{> partials-validation-summary}}
+{{/validationSummary}}
+
+{{$propositionHeader}}
+{{> partials-navigation}}
+{{/propositionHeader}}
+
+{{$content}}
+<header>
+    <h1 class="heading-large">{{#t}}pages.uk-departure.header{{/t}}</h1>
+</header>
+
+{{<partials-form}}
+
+{{$form}}
+
+  {{#radio-group}}travel-details-changed{{/radio-group}}
+
+  <div id="travel-details-changed-yes-div" class="panel-indent">
+    {{#input-text}}uk-departure-travel-number{{/input-text}}
+
+    <fieldset id="uk-date-of-departure-group" class="{{#errors.uk-date-of-departure}}validation-error{{/errors.uk-date-of-departure}} form-group">
+      <legend class="form-label-bold">{{#t}}fields.uk-date-of-departure.legend{{/t}}</legend>
+      <div class="form-date">
+        {{#errors.uk-date-of-departure}}
+        <span id="uk-date-of-departure-error" class="error-message">{{{errors.uk-date-of-departure.message}}}</span>
+        {{/errors.uk-date-of-departure}}
+        <p class="form-hint">{{#t}}fields.uk-date-of-departure.hint{{/t}}</p>
+        {{#input-date}}uk-date-of-departure{{/input-date}}
+      </div>
+    </fieldset>
+
+    {{#select}}uk-port-of-departure{{/select}}
+  </div>
+
+  <div id="travel-details-changed-no-div" class="panel-indent">
+    {{#radio-group}}uk-duration{{/radio-group}}
+  </div>
+
+  {{#input-submit}}continue{{/input-submit}}
+
+{{/form}}
+
+{{/partials-form}}
+
+{{/content}}
+
+{{/layout}}
