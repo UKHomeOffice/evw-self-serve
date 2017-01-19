@@ -69,6 +69,8 @@
   "check-your-answers": {
     "header": "Check your answers",
     "notice": "Please check your new flight details and correct them if necessary",
+    "journey-to-uk-title": "Your journey to the UK",
+    "journey-from-uk-title": "Your journey from the UK",
     "table": {
       "departure-country": "Departure country",
       "departure-airport": "Departure airport",
@@ -77,7 +79,10 @@
       "flight-number": "Flight number",
       "arrival-airport": "Arrival airport",
       "arrival-date": "Arrival date",
-      "arrival-time": "Arrival time"
+      "arrival-time": "Arrival time",
+      "uk-port-of-departure": "Departure airport",
+      "uk-date-of-departure": "Departure date",
+      "uk-departure-travel-number": "Flight number"
     }
   },
   "flight-not-found": {
