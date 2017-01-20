@@ -2,17 +2,17 @@
 
 const validate = require('validate.js').validate;
 const controllers = require('hof').controllers;
-const DateController = controllers.date;
-const ErrorClass = controllers.error;
+const BaseController = controllers.base;
+const ErrorController = controllers.error;
 const logger = require('../../../lib/logger');
 const formatting = require('../../../lib/formatting');
-const validationRules = require('evw-validation-rules')['evw-self-serve'];
 
-module.exports = class EvwBaseController extends DateController {
+module.exports = class EvwBaseController extends BaseController {
 
-  constructor(options) {
-    super(options);
-    this.applyDatesTimes(options.fields);
+  constructor(settings) {
+    super(settings);
+    this.dateKeys = settings.options && settings.options.dateKeys || [];
+    this.timeKeys = settings.options && settings.options.timeKeys || [];
   }
 
   getNextStep (req, res) {
@@ -21,56 +21,33 @@ module.exports = class EvwBaseController extends DateController {
   }
 
   process(req, res, callback) {
-    return super.process(req, res, function processTime() {
-      if(this.timeKey) {
-        req.form.values[this.timeKey] = formatting.getTime(req.form.values, this.timeKey);
-      }
-      callback();
-    }.bind(this));
-  }
-
-  applyDatesTimes(fields) {
-    Object.keys(fields).forEach((key) => {
-      let type = fields[key].type;
-      if(type && type.indexOf('date') > -1) {
-        this.dateKey = key;
-      };
-      if(type && type.indexOf('time') > -1) {
-        this.timeKey = key;
-      };
+    this.dateKeys.forEach(key => {
+      req.form.values[key] = formatting.getDate(req.form.values, key);
+      req.form.values[`${key}-formatted`] = formatting.getFormattedDate(req.form.values[key]);
     });
+    this.timeKeys.forEach(key => {
+      req.form.values[key] = formatting.getFormattedTime(formatting.getTime(req.form.values, key));
+    });
+    super.process(req, res, callback);
   }
 
   validateField(key, req) {
-
-    if(validationRules.hasOwnProperty(key)) {
-
-      let value = formatting.setDateTimes(req.form.values, key);
-      let rules = validationRules[key](value, req.sessionModel);
-
-      req.sessionModel.set(key, value);
-
-      let field = {};
-      field[key] = value;
-
-      let schema = {};
-      schema[key] = rules;
-
-      let validationErrors = validate(field, schema, {
-        fullMessages: false,
+    let error = super.validateField(key, req);
+    if (req.fields &&
+      req.fields[key] &&
+      req.fields[key].hasOwnProperty('validators')
+    ) {
+      let value = req.form.values[key];
+      req.fields[key].validators.forEach((validator) => {
+        validator.formValues = Object.assign({}, req.sessionModel.attributes, req.form.values);
+        if (validator.type(value, validator.arguments)) {
+          error = new ErrorController(key, {
+            type: validator.type.name
+          });
+        }
       });
-
-      // found custom rules, got an error
-      if (validationErrors !== undefined) {
-        return new ErrorClass(key, {
-          type: validationErrors[key]
-        });
-      }
-    } else {
-      logger.info(`No custom validation rules found for ${key}`);
     }
+    return error;
+  }
 
-    return super.validateField(key, req);
-
-  };
-}
+};
