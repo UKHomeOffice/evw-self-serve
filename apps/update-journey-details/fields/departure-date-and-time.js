@@ -1,32 +1,42 @@
 'use strict';
 
+const validTime = require('../../../lib/validators').validTime;
+const afterDate = require('../../../lib/validators').afterDate;
+const beforeDate = require('../../../lib/validators').beforeDate;
+const moment = require('moment');
+
 module.exports = {
   'departure-date': {
-    type: ['date'],
-    validate: ['required']
+    validate: ['required', 'date'],
+    validators: [{
+      type: beforeDate,
+      arguments: moment().add(48, 'hours').format('YYYY-MM-DD')
+    }, {
+      type: afterDate,
+      arguments: moment().add(3, 'months').format('YYYY-MM-DD')
+    }]
   },
   'departure-date-day': {
-    validate: ['required', 'numeric'],
     label: 'fields.departure-date-day.label'
   },
   'departure-date-month': {
-    validate: ['required', 'numeric'],
     label: 'fields.departure-date-month.label'
   },
   'departure-date-year': {
-    validate: ['required', 'numeric'],
     label: 'fields.departure-date-year.label'
   },
   'departure-time': {
     validate: ['required'],
-    type: ['time']
+    validators: [{
+      type: validTime
+    }]
   },
   'departure-time-hours': {
-    validate: ['required', 'numeric'],
+    validate: [{type: 'maxlength', arguments: '2'}],
     label: 'fields.departure-time-hours.label'
   },
   'departure-time-minutes': {
-    validate: ['required', 'numeric'],
+    validate: [{type: 'maxlength', arguments: '2'}],
     label: 'fields.departure-time-minutes.label'
   }
 };
