@@ -5,7 +5,7 @@ const afterDate = require('../../../lib/validators').afterDate;
 const beforeDate = require('../../../lib/validators').beforeDate;
 
 module.exports = {
-  'travel-details-changed': {
+  'know-departure-details': {
     validate: ['required'],
     className: ['form-group'],
     legend: {
@@ -13,12 +13,12 @@ module.exports = {
     },
     options: [{
       value: 'Yes',
-      label: 'fields.travel-details-changed.options.yes.label',
-      toggle: 'travel-details-changed-yes-div'
+      label: 'fields.know-departure-details.options.yes.label',
+      toggle: 'know-departure-details-yes-div'
     }, {
       value: 'No',
-      label: 'fields.travel-details-changed.options.no.label',
-      toggle: 'travel-details-changed-no-div'
+      label: 'fields.know-departure-details.options.no.label',
+      toggle: 'know-departure-details-no-div'
     }]
   },
   'uk-duration': {
@@ -35,14 +35,14 @@ module.exports = {
       label: 'fields.uk-duration.options.three-to-six-months.label'
     }],
     dependent: {
-      field: 'travel-details-changed',
+      field: 'know-departure-details',
       value: 'No'
     }
   },
   'uk-departure-travel-number': {
     validate: ['required', {type: 'maxlength', arguments: '30'}],
     dependent: {
-      field: 'travel-details-changed',
+      field: 'know-departure-details',
       value: 'Yes'
     }
   },
@@ -56,7 +56,7 @@ module.exports = {
       arguments: moment().add(6, 'months').format('YYYY-MM-DD')
     }],
     dependent: {
-      field: 'travel-details-changed',
+      field: 'know-departure-details',
       value: 'Yes'
     }
   },
@@ -80,7 +80,7 @@ module.exports = {
       label: 'London - Gatwick'
     }],
     dependent: {
-      field: 'travel-details-changed',
+      field: 'know-departure-details',
       value: 'Yes'
     }
   }

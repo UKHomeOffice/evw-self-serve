@@ -21,9 +21,9 @@
 
 {{$form}}
 
-  {{#radio-group}}travel-details-changed{{/radio-group}}
+  {{#radio-group}}know-departure-details{{/radio-group}}
 
-  <div id="travel-details-changed-yes-div" class="panel-indent">
+  <div id="know-departure-details-yes-div" class="panel-indent">
     {{#input-text}}uk-departure-travel-number{{/input-text}}
 
     <fieldset id="uk-date-of-departure-group" class="{{#errors.uk-date-of-departure}}validation-error{{/errors.uk-date-of-departure}} form-group">
@@ -40,7 +40,7 @@
     {{#select}}uk-port-of-departure{{/select}}
   </div>
 
-  <div id="travel-details-changed-no-div" class="panel-indent">
+  <div id="know-departure-details-no-div" class="panel-indent">
     {{#radio-group}}uk-duration{{/radio-group}}
   </div>
 
