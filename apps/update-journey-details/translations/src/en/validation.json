@@ -49,9 +49,9 @@
   },
   "uk-date-of-departure": {
     "required": "Enter the date you are leaving the UK",
-    "invalid": "Enter a valid date",
-    "in-past": "The date you leave the UK cannot be in the past",
-    "in-future": "Date of departure cannot be more than 6 months after you enter the UK"
+    "date": "Enter a valid date",
+    "beforeDate": "The date you leave the UK cannot be in the past",
+    "afterDate": "Date of departure cannot be more than 6 months after you enter the UK"
   },
   "uk-port-of-departure": {
     "required": "Select one of the airports, sea ports or rail terminals from the list"
