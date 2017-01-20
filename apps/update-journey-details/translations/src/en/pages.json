@@ -81,6 +81,7 @@
       "arrival-date": "Arrival date",
       "arrival-time": "Arrival time",
       "uk-duration": "Length of stay",
+      "uk-visit-more-than-once": "Further trips to UK planned within 3 months",
       "uk-port-of-departure": "Departure airport",
       "uk-date-of-departure": "Departure date",
       "uk-departure-travel-number": "Flight number"
