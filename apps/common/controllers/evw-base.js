@@ -1,10 +1,8 @@
 'use strict';
 
-const validate = require('validate.js').validate;
 const controllers = require('hof').controllers;
 const BaseController = controllers.base;
 const ErrorController = controllers.error;
-const logger = require('../../../lib/logger');
 const formatting = require('../../../lib/formatting');
 
 module.exports = class EvwBaseController extends BaseController {
