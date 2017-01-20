@@ -6,12 +6,7 @@
   },
   "dob": {
     "required": "Enter your date of birth",
-    "numeric": "Enter a valid date, for example, 22 3 1979",
-    "future": "Date of birth cannot be in the future",
-    "format": "Please use the correct date format, for example, 22 3 1979",
+    "before": "Date of birth cannot be in the future",
     "date": "Please use the correct date format, for example, 22 3 1979"
-  },
-  "dob-year": {
-    "date-year": "Please use the correct date format, for example, 22 3 1979"
   }
 }
