@@ -162,7 +162,7 @@ describe('lib/flight-lookup', function() {
                 ],
                 arrivalAirport: 'London - Gatwick',
                 portOfArrivalPlaneCode: 'LGW',
-                arrivalDate: '09-08-2016',
+                arrivalDate: '09/08/2016',
                 arrivalDatePlaneDay: '09',
                 arrivalDatePlaneMonth: '08',
                 arrivalDatePlaneYear: '2016',
