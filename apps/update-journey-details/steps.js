@@ -99,7 +99,7 @@ module.exports = {
     template: 'uk-departure',
     controller: require('../common/controllers/evw-base'),
     fields: [
-      'travel-details-changed',
+      'know-departure-details',
       'uk-duration',
       'uk-departure-travel-number',
       'uk-date-of-departure',
