@@ -108,7 +108,10 @@ module.exports = {
       'uk-date-of-departure-year',
       'uk-port-of-departure'
     ],
-    next: '/check-your-answers'
+    next: '/check-your-answers',
+    options: {
+      dateKeys: ['uk-date-of-departure']
+    }
   },
   '/check-your-answers': {
     template: 'check-your-answers.html',
