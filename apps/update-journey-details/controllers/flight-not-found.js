@@ -2,11 +2,6 @@
 
 const EvwBaseController = require('../../common/controllers/evw-base');
 module.exports = class ArrivalDateController extends EvwBaseController {
-
-  constructor(options) {
-    super(options);
-  }
-
   getValues(req, res, callback) {
     super.getValues(req, res, () => {
       // clear flightDetails from session so we can seach again
