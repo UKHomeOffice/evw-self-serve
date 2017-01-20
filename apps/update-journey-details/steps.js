@@ -115,7 +115,7 @@ module.exports = {
   },
   '/check-your-answers': {
     template: 'check-your-answers.html',
-    controller: require('../common/controllers/evw-base'),
+    controller: require('./controllers/check-your-answers'),
     next: '/declaration'
   },
   '/flight-not-found': {
