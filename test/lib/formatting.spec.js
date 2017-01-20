@@ -1,78 +1,159 @@
 'use strict';
 
 const formatting = require('../../lib/formatting');
-let values = {
-    'departure-date': '',
-    'departure-date-day': '24',
-    'departure-date-month': '10',
-    'departure-date-year': '2016',
-    'departure-time': '',
-    'departure-time-hours': '2',
-    'departure-time-minutes': '1'
-};
 
-describe('lib/formatting', function () {
-  describe('#getTime', function () {
-    it('pads numbers', function () {
-      formatting.getTime(values, 'departure-time')
-      .should.equal('02:01');
+describe('lib/formatting', function() {
+
+  it('should export things', function() {
+    formatting.getDate.should.be.a.function;
+    formatting.getFormattedDate.should.be.a.function;
+    formatting.getTime.should.be.a.function;
+  });
+
+  describe('#getDate', function() {
+    let values;
+    let key;
+
+    beforeEach(function() {
+      values = {
+        'my-date': '',
+        'my-date-day': '',
+        'my-date-month': '',
+        'my-date-year': ''
+      };
+      key = 'my-date';
     });
 
-    it('maintains padding', function () {
-      values['departure-time-hours'] = '02';
-      formatting.getTime(values, 'departure-time')
-      .should.equal('02:01');
+    describe('invalid dates', function() {
+      it('should handle empty date fields', function() {
+        formatting.getDate(values, key).should.equal('');
+      });
+
+      it('should handle empty day field', function() {
+        values['my-date-month'] = '12';
+        values['my-date-year'] = '2016';
+        formatting.getDate(values, key).should.equal('');
+      });
+
+      it('should handle empty month field', function() {
+        values['my-date-day'] = '10';
+        values['my-date-year'] = '2016';
+        formatting.getDate(values, key).should.equal('');
+      });
+
+      it('should handle empty year field', function() {
+        values['my-date-day'] = '10';
+        values['my-date-month'] = '12';
+        formatting.getDate(values, key).should.equal('');
+      });
+
+      it('should set an invalid date so it can be check by HOF validators', function() {
+        values['my-date-day'] = '32';
+        values['my-date-month'] = '15';
+        values['my-date-year'] = '2016';
+        formatting.getDate(values, key).should.equal('2016-15-32');
+      });
     });
 
-    it('does not accept blank values', function () {
-      values['departure-time-hours'] = '';
-      values['departure-time-minutes'] = '';
-      formatting.getTime(values, 'departure-time')
-      .should.equal('');
+    describe('valid dates', function() {
+      beforeEach(function() {
+        values['my-date-day'] = '25';
+        values['my-date-month'] = '12';
+        values['my-date-year'] = '2016';
+      });
+
+      it('should return date in default format', function() {
+        formatting.getDate(values, key).should.equal('2016-12-25');
+      });
+
+      it('should return date in specified format', function() {
+        formatting.getDate(values, key).should.equal('2016-12-25');
+      });
+
+      it('should correctly pad days and months', function() {
+        values['my-date-day'] = '1';
+        values['my-date-month'] = '2';
+        formatting.getDate(values, key).should.equal('2016-02-01');
+      });
     });
 
-    it('derives 00mins when hour passed', function () {
-      values['departure-time-hours'] = '18';
-      values['departure-time-minutes'] = '';
-      formatting.getTime(values, 'departure-time')
-      .should.equal('18:00');
+  });
+
+  describe('#getFormattedDate', function() {
+    it('should handle invalid dates', function() {
+      formatting.getFormattedDate('2016-13-32').should.equal('Invalid date');
+    });
+
+    it('should return date in the default format', function() {
+      formatting.getFormattedDate('2016-12-30').should.equal('30/12/2016');
+    });
+
+    it('should return date in the specified format', function() {
+      formatting.getFormattedDate('2016-12-30', 'DD-MM-YYYY').should.equal('30-12-2016');
+      formatting.getFormattedDate('2016-12-30', 'D MMMM YYYY').should.equal('30 December 2016');
     });
   });
 
-  describe('#getDate', function () {
-    it('formats as DD-MM-YYYY', function () {
-      formatting.getDate(values, 'departure-date')
-      .should.equal('24-10-2016');
+  describe('#getTime', function() {
+    let values;
+    let key;
+
+    beforeEach(function() {
+      values = {
+        'my-time': '',
+        'my-time-hours': '',
+        'my-time-minutes': ''
+      };
+      key = 'my-time'
     });
 
-    it('pads to DD-MM-YYYY', function () {
-      values['departure-date-day'] = '2'
-      values['departure-date-month'] = '3'
-      values['departure-date-year'] = '16'
-      formatting.getDate(values, 'departure-date')
-      .should.equal('02-03-2016');
+    describe('invalid times', function() {
+      it('should handle empty time', function() {
+        formatting.getTime(values, key).should.equal('');
+      });
+
+      it('should handle empty hour field', function() {
+        values['my-time-minutes'] = '30';
+        formatting.getTime(values, key).should.equal('');
+      });
+
+      it('should handle empty minute field', function() {
+        values['my-time-hours'] = '22';
+        formatting.getTime(values, key).should.equal('');
+      });
+
+      it('should set a complete but invalid time, which can be formatted later', function() {
+        values['my-time-hours'] = '25';
+        values['my-time-minutes'] = '30';
+        formatting.getTime(values, key).should.equal('25:30');
+      });
+    });
+
+    describe('valid times', function() {
+      beforeEach(function() {
+        values['my-time-hours'] = '13';
+        values['my-time-minutes'] = '30';
+      });
+
+      it('should return hour and minutes combined', function() {
+        formatting.getTime(values, key).should.equal('13:30');
+      });
     });
   });
 
-  describe('#setDateTimes', function () {
-    it('accepts a date', function () {
-      formatting.setDateTimes(values, 'departure-date')
-      .should.equal('02-03-2016');
+  describe('#getFormattedTime', function() {
+    it('should pass through invalid times', function() {
+      formatting.getFormattedTime('23:60').should.equal('Invalid date');
     });
 
-    it('accepts a time', function () {
-      formatting.setDateTimes(values, 'departure-time')
-      .should.equal('18:00');
+    it('should return time in the default format', function() {
+      formatting.getFormattedTime('12:31').should.equal('12:31');
     });
 
-    it('works for dob as well', function () {
-      formatting.setDateTimes({
-        'dob': '',
-        'dob-day': '10',
-        'dob-month': '03',
-        'dob-year': '1968',
-      }, 'dob')
-      .should.equal('10-03-1968');
+    it('should return date in the specified format', function() {
+      formatting.getFormattedTime('14:45', 'HH:mm:ss').should.equal('14:45:00');
+      formatting.getFormattedTime('14:45', 'hh:mm').should.equal('02:45');
+      formatting.getFormattedTime('14:45', 'hh:mm:ss').should.equal('02:45:00');
     });
   });
 });

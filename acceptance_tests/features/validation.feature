@@ -9,7 +9,7 @@ Scenario: Wrong details in Enter Your Details
   And I continue
   Then the validation summary should contain
     """
-    Enter a valid date, for example, 22 3 1979
+    Please use the correct date format, for example, 22 3 1979
     Enter your electronic visa waiver number
     """
 
@@ -32,7 +32,7 @@ Scenario: Entering a dob that is non-numeric
   And I click confirm details
   Then the validation summary should contain
     """
-    Enter a valid date, for example, 22 3 1979
+    Please use the correct date format, for example, 22 3 1979
     """
 
 Scenario: Entering an EVW number that cannot be updated
@@ -63,8 +63,8 @@ Scenario: Not entering any details on the departure date and time page
   And I continue
   Then the validation summary should contain
     """
-    Enter a valid date
-    Please enter a time
+    Enter the date you will depart for the UK
+    Enter a valid time using the 24 hour clock, for example 09:45 or 21:45
     """
   # Departure date and time page with invalid date and time entered
   And I enter the date "99-08-2016" into "Departure date"
