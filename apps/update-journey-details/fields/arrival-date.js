@@ -1,20 +1,26 @@
 'use strict';
 
+const moment = require('moment');
+const afterDate = require('../../../lib/validators').afterDate;
+
 module.exports = {
   'arrival-date': {
-    type: ['date'],
-    validate: ['required']
+    validate: ['required', 'date', {
+      type: 'after',
+      arguments: moment().add(1, 'day').format('YYYY-MM-DD')
+    }],
+    validators: [{
+      type: afterDate,
+      arguments: moment().add(3, 'months').format('YYYY-MM-DD')
+    }]
   },
   'arrival-date-day': {
-      validate: ['required', 'numeric'],
-      label: 'fields.arrival-date-day.label'
+    label: 'fields.arrival-date-day.label'
   },
   'arrival-date-month': {
-      validate: ['required', 'numeric'],
-      label: 'fields.arrival-date-month.label'
+    label: 'fields.arrival-date-month.label'
   },
   'arrival-date-year': {
-      validate: ['required', 'numeric'],
-      label: 'fields.arrival-date-year.label'
+    label: 'fields.arrival-date-year.label'
   }
 };

@@ -19,6 +19,11 @@ router.use(mixins(fields, {
   translate: i18n.translate.bind(i18n)
 }));
 
+router.use((req, res, next) => {
+  req.fields = fields;
+  next();
+});
+
 router.use('/update-journey-details/', wizard(require('./steps'), fields, {
   controller: BaseController,
   templatePath: path.resolve(__dirname, 'views'),
