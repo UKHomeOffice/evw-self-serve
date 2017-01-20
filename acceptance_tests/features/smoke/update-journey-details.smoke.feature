@@ -37,7 +37,7 @@ Scenario: Entering new flight details and correct flight found
   And I continue
   # Check your answers page
   Then the page title should contain "Check your answers"
-  And the summary table should contain
+  And the "inbound-summary" table should contain
 
     """
     Departure airport
