@@ -38,7 +38,7 @@
   "departures": {
     "required": "Please choose a departure airport"
   },
-  "travel-details-changed": {
+  "know-departure-details": {
     "required": "Select one option"
   },
   "uk-duration": {
