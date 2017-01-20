@@ -1,5 +1,9 @@
 'use strict';
 
+const moment = require('moment');
+const afterDate = require('../../../lib/validators').afterDate;
+const beforeDate = require('../../../lib/validators').beforeDate;
+
 module.exports = {
   'travel-details-changed': {
     validate: ['required'],
@@ -43,23 +47,26 @@ module.exports = {
     }
   },
   'uk-date-of-departure': {
-    type: ['date'],
-    validate: ['required'],
+    validate: ['required', 'date'],
+    validators: [{
+      type: beforeDate,
+      arguments: moment().add(48, 'hours').format('YYYY-MM-DD')
+    }, {
+      type: afterDate,
+      arguments: moment().add(6, 'months').format('YYYY-MM-DD')
+    }],
     dependent: {
       field: 'travel-details-changed',
       value: 'Yes'
     }
   },
   'uk-date-of-departure-day': {
-    validate: ['required', 'numeric'],
     label: 'fields.uk-date-of-departure-day.label'
   },
   'uk-date-of-departure-month': {
-    validate: ['required', 'numeric'],
     label: 'fields.uk-date-of-departure-month.label'
   },
   'uk-date-of-departure-year': {
-    validate: ['required', 'numeric'],
     label: 'fields.uk-date-of-departure-year.label'
   },
   'uk-port-of-departure': {
