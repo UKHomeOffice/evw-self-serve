@@ -22,7 +22,7 @@
 <p>{{#t}}pages.check-your-answers.notice{{/t}}</p>
 
 <h2>{{#t}}pages.check-your-answers.journey-to-uk-title{{/t}}</h2>
-<table class="table-details">
+<table id="inbound-summary" class="table-details">
     <thead></thead>
     <tbody>
         <tr>
@@ -103,7 +103,7 @@
 
 {{#knowDepartureDetailsYes}}
     <h2>{{#t}}pages.check-your-answers.journey-from-uk-title{{/t}}</h2>
-    <table class="table-details">
+    <table id="outbound-summary" class="table-details">
         <thead></thead>
         <tbody>
             <tr>
@@ -116,7 +116,7 @@
             <tr>
                 <td>{{#t}}pages.check-your-answers.table.uk-date-of-departure{{/t}}</td>
                 <td class="data-uk-date-of-departure bold">
-                    {{values.uk-date-of-departure}}
+                    {{values.uk-date-of-departure-formatted}}
                 </td>
                 <td><a href="uk-departure#edit/uk-date-of-departure" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
