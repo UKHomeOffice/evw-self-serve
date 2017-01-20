@@ -5,12 +5,6 @@ const flightLookup = require('../../../lib/flight-lookup');
 const logger = require('../../../lib/logger');
 
 module.exports = class ArrivalDateController extends EvwBaseController {
-
-  constructor(options) {
-    super(options);
-    super.applyDatesTimes(options.fields);
-  }
-
   process(req, res, callback) {
     super.process(req, res, () => {
       let lookupData = flightLookup.formatPost({

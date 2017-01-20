@@ -49,7 +49,10 @@ module.exports = {
       condition: function(req) {
         return req.sessionModel.get('flightDetails') && req.sessionModel.get('flightDetails').departures.length > 1;
       }
-    }]
+    }],
+    options: {
+      dateKeys: ['arrival-date']
+    }
   },
   '/choose-departure-airport': {
     template: 'choose-departure-airport',
@@ -86,7 +89,11 @@ module.exports = {
       'departure-time-hours',
       'departure-time-minutes'
     ],
-    next: '/check-your-answers'
+    next: '/check-your-answers',
+    options: {
+      dateKeys: ['departure-date'],
+      timeKeys: ['departure-time']
+    }
   },
   '/check-your-answers': {
     template: 'check-your-answers.html',
