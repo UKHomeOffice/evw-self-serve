@@ -81,36 +81,48 @@
             </td>
             <td><a href="arrival-date#edit/arrival-time" class="button">{{#t}}buttons.change{{/t}}</a></td>
         </tr>
+        {{#knowDepartureDetailsNo}}
+            <tr>
+                <td>{{#t}}pages.check-your-answers.table.uk-duration{{/t}}</td>
+                <td class="data-uk-duration bold">
+                    {{values.uk-duration}}
+                </td>
+                <td><a href="uk-departure#edit/uk-duration" class="button">{{#t}}buttons.change{{/t}}</a></td>
+            </tr>
+        {{/knowDepartureDetailsNo}}
     </tbody>
 </table>
 
-<h2>{{#t}}pages.check-your-answers.journey-from-uk-title{{/t}}</h2>
-<table class="table-details">
-    <thead></thead>
-    <tbody>
-        <tr>
-            <td>{{#t}}pages.check-your-answers.table.uk-port-of-departure{{/t}}</td>
-            <td class="data-port-of-departure bold">
-                {{values.uk-port-of-departure}}
-            </td>
-            <td><a href="uk-departure#edit/uk-port-of-departure" class="button">{{#t}}buttons.change{{/t}}</a></td>
-        </tr>
-        <tr>
-            <td>{{#t}}pages.check-your-answers.table.uk-date-of-departure{{/t}}</td>
-            <td class="data-uk-date-of-departure bold">
-                {{values.uk-date-of-departure}}
-            </td>
-            <td><a href="uk-departure#edit/uk-date-of-departure" class="button">{{#t}}buttons.change{{/t}}</a></td>
-        </tr>
-        <tr>
-            <td>{{#t}}pages.check-your-answers.table.uk-departure-travel-number{{/t}}</td>
-            <td class="data-uk-departure-travel-number bold">
-                {{values.uk-departure-travel-number}}
-            </td>
-            <td><a href="uk-departure#edit/uk-departure-travel-number" class="button">{{#t}}buttons.change{{/t}}</a></td>
-        </tr>
-    </tbody>
-</table>
+
+{{#knowDepartureDetailsYes}}
+    <h2>{{#t}}pages.check-your-answers.journey-from-uk-title{{/t}}</h2>
+    <table class="table-details">
+        <thead></thead>
+        <tbody>
+            <tr>
+                <td>{{#t}}pages.check-your-answers.table.uk-port-of-departure{{/t}}</td>
+                <td class="data-port-of-departure bold">
+                    {{values.uk-port-of-departure}}
+                </td>
+                <td><a href="uk-departure#edit/uk-port-of-departure" class="button">{{#t}}buttons.change{{/t}}</a></td>
+            </tr>
+            <tr>
+                <td>{{#t}}pages.check-your-answers.table.uk-date-of-departure{{/t}}</td>
+                <td class="data-uk-date-of-departure bold">
+                    {{values.uk-date-of-departure}}
+                </td>
+                <td><a href="uk-departure#edit/uk-date-of-departure" class="button">{{#t}}buttons.change{{/t}}</a></td>
+            </tr>
+            <tr>
+                <td>{{#t}}pages.check-your-answers.table.uk-departure-travel-number{{/t}}</td>
+                <td class="data-uk-departure-travel-number bold">
+                    {{values.uk-departure-travel-number}}
+                </td>
+                <td><a href="uk-departure#edit/uk-departure-travel-number" class="button">{{#t}}buttons.change{{/t}}</a></td>
+            </tr>
+        </tbody>
+    </table>
+{{/knowDepartureDetailsYes}}
 
 <p>
     <br>
