@@ -80,6 +80,7 @@
       "arrival-airport": "Arrival airport",
       "arrival-date": "Arrival date",
       "arrival-time": "Arrival time",
+      "uk-duration": "Length of stay",
       "uk-port-of-departure": "Departure airport",
       "uk-date-of-departure": "Departure date",
       "uk-departure-travel-number": "Flight number"
