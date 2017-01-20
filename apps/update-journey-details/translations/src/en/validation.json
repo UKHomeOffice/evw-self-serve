@@ -5,15 +5,14 @@
   },
   "flight-number": {
     "required": "Enter the number of the flight you will be arriving in the UK on, for example EK009, QR003 or KU101",
-    "too-long": "Your flight number is too long. Please check your travel documents and enter it correctly",
-    "format": "Enter a valid flight number, for example EK009, QR003 or KU101"
+    "maxlength": "Your flight number is too long. Please check your travel documents and enter it correctly",
+    "regex": "Enter a valid flight number, for example EK009, QR003 or KU101"
   },
   "arrival-date": {
     "required": "Enter the date your flight is due to land in the UK",
-    "numeric": "Enter a valid date",
-    "invalid": "Enter a valid date",
-    "within-48-hours": "Date of arrival must be at least 48 hours from now",
-    "too-far-in-future": "Date of arrival in the UK must be no more than 3 months from now"
+    "date": "Enter a valid date",
+    "afterDate": "Date of arrival in the UK must be no more than 3 months from now",
+    "after": "Date of arrival must be at least 48 hours from now"
   },
   "is-this-your-flight": {
     "required": "Select an option",
@@ -24,14 +23,15 @@
   },
   "departure-date": {
     "required": "Enter the date you will depart for the UK",
-    "invalid": "Enter a valid date",
-    "in-past": "The date your flight to the UK takes off cannot be more than 1 day before it arrives in the UK",
-    "in-future": "The date your flight to the UK takes off cannot be after the date it arrives in the UK",
-    "within-48-hours": "The date and time of your flight must be at least 48 hours from now"
+    "date": "Enter a valid date",
+    "afterDate": "Date of travel in the UK must be no more than 3 months from now",
+    "beforeDate": "Date of travel must be at least 48 hours from now",
+    "travel-too-soon": "Date of travel must be at least 48 hours from now",
+    "depart-after-arrive": "Your departure cannot be after your arrival",
+    "depart-24-hours-before-arrive": "The date your flight to the UK takes off cannot be more than 24 hours before it arrives in the UK"
   },
   "departure-time": {
-    "required": "Please enter a time",
-    "invalid": "Enter a valid time using the 24 hour clock, for example 09:45 or 21:45",
+    "validTime": "Enter a valid time using the 24 hour clock, for example 09:45 or 21:45",
     "departure-after-arrival": "Your departure cannot be after your arrival",
     "departure-too-far-before-arrival": "The date your flight to the UK takes off cannot be more than 24 hours before it arrives in the UK"
   },
