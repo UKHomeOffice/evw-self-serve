@@ -39,6 +39,11 @@ Scenario: Entering new flight details and correct flight found
   And I enter a date "2 months" in the future into "Departure date"
   And I enter the time "07:15" into "Departure time"
   And I continue
+  # Return travel
+  Then I should be on the "Return travel" page of the "Update journey details" app
+  And the page title should contain "Have your travel details for your departure from the UK changed?"
+  And I select "Yes" for "Travel details changed"
+  And I continue
   # UK departure
   Then I should be on the "UK departure" page of the "Update journey details" app
   And the page title should contain "Do you have your travel details for your departure from the UK?"
@@ -105,11 +110,16 @@ Scenario: Entering new flight details and correct flight found
     And I enter a date "2 months" in the future into "Departure date"
     And I enter the time "07:15" into "Departure time"
     And I continue
+    # Return travel
+    Then I should be on the "Return travel" page of the "Update journey details" app
+    And the page title should contain "Have your travel details for your departure from the UK changed?"
+    And I select "Yes" for "Travel details changed"
+    And I continue
     # UK departure
     Then I should be on the "UK departure" page of the "Update journey details" app
     And I select "Yes" for "Know departure details"
     And I enter "FL1001" into "UK departure travel number"
-    And I enter a date "2 months" in the future into "UK date of departure"
+    And I enter a date "3 months" in the future into "UK date of departure"
     And I select "LGW" from dropdown list for "UK port of departure"
     And I continue
     # Check your answers page
@@ -119,7 +129,7 @@ Scenario: Entering new flight details and correct flight found
     Departure airport
                       LGW
     Departure date
-                      20/03/2017
+                      ${"3 months" in the "future"}
     Flight number
                       FL1001
     """
@@ -150,11 +160,10 @@ Scenario: Multi-leg flight
   And I enter the time "07:15" into "Departure time"
   And I continue
 
-  # UK departure
-  Then I should be on the "UK departure" page of the "Update journey details" app
-  And the page title should contain "Do you have your travel details for your departure from the UK?"
-  And I select "No" for "Know departure details"
-  And I select "1 to 3 months" for "UK duration"
+  # Return travel
+  Then I should be on the "Return travel" page of the "Update journey details" app
+  And the page title should contain "Have your travel details for your departure from the UK changed?"
+  And I select "No" for "Travel details changed"
   And I continue
 
   # Check your answers page
