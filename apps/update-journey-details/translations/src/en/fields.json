@@ -78,6 +78,16 @@
   "accept-declaration": {
     "label": "I understand and agree with the above"
   },
+  "travel-details-changed": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "know-departure-details": {
     "options": {
       "yes": {
