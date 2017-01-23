@@ -23,7 +23,7 @@ module.exports = {
     inwardDeparturePortPlaneCode: 'DXB',
     arrivalAirport: 'London - Gatwick',
     portOfArrivalPlaneCode: 'LGW',
-    arrivalDate: '2016-10-10',
+    arrivalDate: '10-10-2016',
     arrivalDatePlaneDay: '10',
     arrivalDatePlaneMonth: '10',
     arrivalDatePlaneYear: '2016',
