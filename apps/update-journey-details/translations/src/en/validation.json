@@ -38,6 +38,9 @@
   "departures": {
     "required": "Please choose a departure airport"
   },
+  "travel-details-changed": {
+    "required": "Select one option"
+  },
   "know-departure-details": {
     "required": "Select one option"
   },
