@@ -58,7 +58,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
         'knowDepartureDetails': 'Yes',
         'departureDate': '2017-01-30',
         'departureTravel': 'FL1001',
-        'portOfDeparture': 'LGW'
+        'portOfDeparture': 'London - Gatwick'
       });
     });
 
