@@ -14,6 +14,8 @@ describe('apps/update-journey-details/controllers/check-your-answers', function(
         get: sinon.stub()
       }
     };
+    req.sessionModel.get.withArgs('know-departure-details').returns('No');
+    req.sessionModel.get.withArgs('uk-port-of-departure').returns('LGW');
     controller = new CheckYourAnswersController({
       template: 'check-your-answers'
     });
@@ -36,16 +38,16 @@ describe('apps/update-journey-details/controllers/check-your-answers', function(
       localsStub.should.have.been.calledOnce.calledWith(req, res);
     });
 
-    it('adds knowDepartureDetailsYes to locals', function() {
-      req.sessionModel.get.returns('Yes');
+    it('adds knowDepartureDetailsYes and ukPortOfDepartureDisplay to locals', function() {
+      req.sessionModel.get.withArgs('know-departure-details').returns('Yes');
       controller.locals(req, res).should.deep.equal({
         knowDepartureDetailsYes: true,
-        knowDepartureDetailsNo: false
+        knowDepartureDetailsNo: false,
+        ukPortOfDepartureDisplay: 'London - Gatwick'
       });
     });
 
     it('adds knowDepartureDetailsNo to locals', function() {
-      req.sessionModel.get.returns('No');
       controller.locals(req, res).should.deep.equal({
         knowDepartureDetailsYes: false,
         knowDepartureDetailsNo: true
