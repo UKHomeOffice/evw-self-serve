@@ -44,7 +44,6 @@ Scenario: Entering new flight details and correct flight found
   And the page title should contain "Do you have your travel details for your departure from the UK?"
   And I select "No" for "Know departure details"
   And I select "1 to 3 months" for "UK duration"
-  And I select "No" for "UK visit more than once"
   And I continue
   # Check your answers page
   Then the page title should contain "Check your answers"
@@ -68,8 +67,6 @@ Scenario: Entering new flight details and correct flight found
                       18:45
     Length of stay
                       1 to 3 months
-    Further trips to UK planned within 3 months
-                      No
     """
   And I continue
   # Declaration page
@@ -114,7 +111,6 @@ Scenario: Entering new flight details and correct flight found
     And I enter "FL1001" into "UK departure travel number"
     And I enter a date "2 months" in the future into "UK date of departure"
     And I select "LGW" from dropdown list for "UK port of departure"
-    And I select "Yes" for "UK visit more than once"
     And I continue
     # Check your answers page
     Then the page title should contain "Check your answers"
@@ -159,7 +155,6 @@ Scenario: Multi-leg flight
   And the page title should contain "Do you have your travel details for your departure from the UK?"
   And I select "No" for "Know departure details"
   And I select "1 to 3 months" for "UK duration"
-  And I select "No" for "UK visit more than once"
   And I continue
 
   # Check your answers page
