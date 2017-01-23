@@ -12,7 +12,32 @@ const schema = require('evw-schemas').evw.updateJourney.schema;
 const propMap = (model) => {
   let f = model.flightDetails;
 
-  return {
+  const getReturnJourneyDetails = () => {
+    let returnJourneyProps = {
+      haveDepartureFromUkDetailsChanged: model['travel-details-changed']
+    };
+    if (model['travel-details-changed'] === 'No') {
+      return returnJourneyProps;
+    }
+    Object.assign(returnJourneyProps, {
+      knowDepartureDetails: model['know-departure-details']
+    });
+    if (model['know-departure-details'] === 'No') {
+      Object.assign(returnJourneyProps, {
+        ukDuration: model['uk-duration']
+      });
+    }
+    if (model['know-departure-details'] === 'Yes') {
+      Object.assign(returnJourneyProps, {
+        departureTravel: model['uk-departure-travel-number'],
+        portOfDeparture: model['uk-port-of-departure'],
+        departureDate: model['uk-date-of-departure']
+      });
+    }
+   return returnJourneyProps;
+  };
+
+  return Object.assign({
     membershipNumber: model['evw-number'],
     token: model.token,
     arrivalTravel: f.flightNumber,
@@ -27,7 +52,7 @@ const propMap = (model) => {
     inwardDeparturePortCode: f.inwardDeparturePortPlaneCode,
     dateCreated: moment().format('YYYY-MM-DD hh:mm:ss'),
     flightDetailsCheck: 'Yes' // hard-coded until we implement un-happy path
-  }
+  }, getReturnJourneyDetails());
 };
 
 class ConfirmationController extends EvwBaseController {
@@ -71,7 +96,7 @@ class ConfirmationController extends EvwBaseController {
       req.context = {
         updateNumber: body.membershipNumber,
         emailAddress: body.currentDetails.contactDetails.emailAddress
-      }
+      };
 
       logger.info('application sent to integration service', body);
 
