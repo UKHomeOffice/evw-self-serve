@@ -63,6 +63,9 @@
   "departure-date-and-time": {
     "header": "Your journey to the UK"
   },
+  "return-travel": {
+    "header": "Have you travel details for your departure from the UK changed?"
+  },
   "uk-departure": {
     "header": "Do you have your travel details for your departure from the UK?"
   },
