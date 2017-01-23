@@ -55,8 +55,5 @@
   },
   "uk-port-of-departure": {
     "required": "Select one of the airports, sea ports or rail terminals from the list"
-  },
-  "uk-visit-more-than-once": {
-    "required": "Select one option"
   }
 }
