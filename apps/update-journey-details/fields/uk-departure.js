@@ -83,16 +83,5 @@ module.exports = {
       field: 'know-departure-details',
       value: 'Yes'
     }
-  },
-  'uk-visit-more-than-once': {
-    validate: ['required'],
-    className: ['form-group', 'inline'],
-    options: [{
-      value: 'Yes',
-      label: 'fields.uk-visit-more-than-once.options.yes.label'
-    }, {
-      value: 'No',
-      label: 'fields.uk-visit-more-than-once.options.no.label'
-    }]
   }
 };

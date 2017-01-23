@@ -102,7 +102,6 @@ Scenario: UK departure page validation
   Select one option
   """
   When I select "No" for "Know departure details"
-  And I select "No" for "UK visit more than once"
   And I continue
   Then the validation summary should contain
   """

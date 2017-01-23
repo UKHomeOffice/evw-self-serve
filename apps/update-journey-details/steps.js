@@ -106,8 +106,7 @@ module.exports = {
       'uk-date-of-departure-day',
       'uk-date-of-departure-month',
       'uk-date-of-departure-year',
-      'uk-port-of-departure',
-      'uk-visit-more-than-once'
+      'uk-port-of-departure'
     ],
     next: '/check-your-answers',
     options: {
