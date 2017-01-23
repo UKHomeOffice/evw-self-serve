@@ -5,6 +5,8 @@ const EvwBaseController = require('../../common/controllers/evw-base');
 const is = require('../../../config').integrationService;
 const request = require('request');
 const logger = require('../../../lib/logger');
+const getTypeaheadValue = require('../../../lib/typeahead-options').getTypeaheadValue;
+const allAirportsPortsStations = require('../../../lib/typeahead-options').all;
 
 const propMap = (model) => {
   let f = model.flightDetails;
@@ -27,7 +29,7 @@ const propMap = (model) => {
     if (model['know-departure-details'] === 'Yes') {
       Object.assign(returnJourneyProps, {
         departureTravel: model['uk-departure-travel-number'],
-        portOfDeparture: model['uk-port-of-departure'],
+        portOfDeparture: getTypeaheadValue(model['uk-port-of-departure'], allAirportsPortsStations),
         departureDate: model['uk-date-of-departure']
       });
     }
