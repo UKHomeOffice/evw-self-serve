@@ -94,6 +94,9 @@ Scenario: UK departure page validation
   And I enter a date "2 months" in the future into "Departure date"
   And I enter the time "07:15" into "Departure time"
   And I continue
+  # Return travel
+  And I select "Yes" for "Travel details changed"
+  And I continue
   # UK departure
   And I continue
   Then the validation summary should contain
