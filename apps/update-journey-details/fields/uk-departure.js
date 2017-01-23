@@ -3,6 +3,16 @@
 const moment = require('moment');
 const afterDate = require('../../../lib/validators').afterDate;
 const beforeDate = require('../../../lib/validators').beforeDate;
+const typeaheadOptions = require('../../../lib/typeahead-options');
+const ukPortOfDepartureOptions = typeaheadOptions.britishAirports({prependEmpty: false})
+  .concat(typeaheadOptions.britishPorts({prependEmpty: false}))
+  .concat(typeaheadOptions.britishStations({prependEmpty: false}));
+
+ukPortOfDepartureOptions.unshift({
+  label: 'notranslate.',
+  value: ''
+});
+
 
 module.exports = {
   'know-departure-details': {
@@ -71,14 +81,8 @@ module.exports = {
   },
   'uk-port-of-departure': {
     validate: ['required', {type: 'maxlength', arguments: '95'}],
-    className: ['form-group'],
-    options: [{
-      label: '',
-      value: ''
-    }, {
-      value: 'LGW',
-      label: 'London - Gatwick'
-    }],
+    className: ['typeahead'],
+    options: ukPortOfDepartureOptions,
     dependent: {
       field: 'know-departure-details',
       value: 'Yes'
