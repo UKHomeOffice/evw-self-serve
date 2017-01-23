@@ -122,16 +122,5 @@
   "uk-port-of-departure": {
     "label": "What airport, train station or port are you leaving the UK from?",
     "hint": "The details will be on your travel documents"
-  },
-  "uk-visit-more-than-once": {
-    "legend": "Do you plan to make more than one trip to the UK during the next 3 months?",
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
   }
 }
