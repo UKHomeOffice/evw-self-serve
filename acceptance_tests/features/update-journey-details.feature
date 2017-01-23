@@ -120,14 +120,14 @@ Scenario: Entering new flight details and correct flight found
     And I select "Yes" for "Know departure details"
     And I enter "FL1001" into "UK departure travel number"
     And I enter a date "3 months" in the future into "UK date of departure"
-    And I select "LGW" from dropdown list for "UK port of departure"
+    And I enter "London - Gatwick" into "UK port of departure_typeahead"
     And I continue
     # Check your answers page
     Then the page title should contain "Check your answers"
     And the "outbound-summary" table should contain
     """
     Departure airport
-                      LGW
+                      London - Gatwick
     Departure date
                       ${"3 months" in the "future"}
     Flight number
