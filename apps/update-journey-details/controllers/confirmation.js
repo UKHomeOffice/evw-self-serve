@@ -5,17 +5,44 @@ const EvwBaseController = require('../../common/controllers/evw-base');
 const is = require('../../../config').integrationService;
 const request = require('request');
 const logger = require('../../../lib/logger');
+const getTypeaheadValue = require('../../../lib/typeahead-options').getTypeaheadValue;
+const allAirportsPortsStations = require('../../../lib/typeahead-options').all;
 
 const propMap = (model) => {
   let f = model.flightDetails;
 
-  return {
+  const getReturnJourneyDetails = () => {
+    let returnJourneyProps = {
+      haveDepartureFromUkDetailsChanged: model['travel-details-changed']
+    };
+    if (model['travel-details-changed'] === 'No') {
+      return returnJourneyProps;
+    }
+    Object.assign(returnJourneyProps, {
+      knowDepartureDetails: model['know-departure-details']
+    });
+    if (model['know-departure-details'] === 'No') {
+      Object.assign(returnJourneyProps, {
+        ukDuration: model['uk-duration']
+      });
+    }
+    if (model['know-departure-details'] === 'Yes') {
+      Object.assign(returnJourneyProps, {
+        departureTravel: model['uk-departure-travel-number'],
+        portOfDeparture: getTypeaheadValue(model['uk-port-of-departure'], allAirportsPortsStations),
+        departureDate: model['uk-date-of-departure']
+      });
+    }
+   return returnJourneyProps;
+  };
+
+  return Object.assign({
     membershipNumber: model['evw-number'],
     token: model.token,
     arrivalTravel: f.flightNumber,
     arrivalDate: f.arrivalDate.split('-').reverse().join('-'),
     arrivalTime: f.arrivalTime,
-    departureForUKDate: model['departure-date'].split('-').reverse().join('-'),
+    departureForUKDate: model['departure-date'],
     departureForUKTime: model['departure-time'],
     portOfArrival: f.arrivalAirport,
     portOfArrivalCode: f.portOfArrivalPlaneCode,
@@ -24,7 +51,7 @@ const propMap = (model) => {
     inwardDeparturePortCode: f.inwardDeparturePortPlaneCode,
     dateCreated: moment().format('YYYY-MM-DD hh:mm:ss'),
     flightDetailsCheck: 'Yes' // hard-coded until we implement un-happy path
-  }
+  }, getReturnJourneyDetails());
 };
 
 class ConfirmationController extends EvwBaseController {
@@ -63,7 +90,7 @@ class ConfirmationController extends EvwBaseController {
       req.context = {
         updateNumber: body.membershipNumber,
         emailAddress: body.currentDetails.contactDetails.emailAddress
-      }
+      };
 
       logger.info('application sent to integration service', body);
 
