@@ -9,7 +9,7 @@ const ukPortOfDepartureOptions = typeaheadOptions.britishAirports({prependEmpty:
   .concat(typeaheadOptions.britishStations({prependEmpty: false}));
 
 ukPortOfDepartureOptions.unshift({
-  label: 'notranslate.',
+  label: '',
   value: ''
 });
 
