@@ -35,6 +35,17 @@ Scenario: Entering new flight details and correct flight found
   And I enter a date "2 months" in the future into "Departure date"
   And I enter the time "12:15" into "Departure time"
   And I continue
+  # Return travel
+  Then I should be on the "Return travel" page of the "Update journey details" app
+  And the page title should contain "Have your travel details for your departure from the UK changed?"
+  And I select "Yes" for "Travel details changed"
+  And I continue
+  # UK departure
+  Then I should be on the "UK departure" page of the "Update journey details" app
+  And the page title should contain "Do you have your travel details for your departure from the UK?"
+  And I select "No" for "Know departure details"
+  And I select "1 to 3 months" for "UK duration"
+  And I continue
   # Check your answers page
   Then the page title should contain "Check your answers"
   And the "inbound-summary" table should contain
