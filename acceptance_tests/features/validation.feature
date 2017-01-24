@@ -95,6 +95,11 @@ Scenario: UK departure page validation
   And I enter the time "07:15" into "Departure time"
   And I continue
   # Return travel
+  And I continue
+  Then the validation summary should contain
+  """
+  Select one option
+  """
   And I select "Yes" for "Travel details changed"
   And I continue
   # UK departure
