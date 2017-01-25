@@ -5,6 +5,9 @@ const EvwBaseController = require('../../common/controllers/evw-base');
 const is = require('../../../config').integrationService;
 const request = require('request');
 const logger = require('../../../lib/logger');
+const Validator = require('jsonschema').Validator;
+const v = new Validator();
+const schema = require('evw-schemas').evw.updateJourney.schema;
 
 const propMap = (model) => {
   let f = model.flightDetails;
@@ -13,9 +16,9 @@ const propMap = (model) => {
     membershipNumber: model['evw-number'],
     token: model.token,
     arrivalTravel: f.flightNumber,
-    arrivalDate: f.arrivalDate.split('-').reverse().join('-'),
+    arrivalDate: f.arrivalDate.split('/').reverse().join('-'),
     arrivalTime: f.arrivalTime,
-    departureForUKDate: model['departure-date'].split('-').reverse().join('-'),
+    departureForUKDate: model['departure-date'],
     departureForUKTime: model['departure-time'],
     portOfArrival: f.arrivalAirport,
     portOfArrivalCode: f.portOfArrivalPlaneCode,
@@ -28,13 +31,18 @@ const propMap = (model) => {
 };
 
 class ConfirmationController extends EvwBaseController {
-  constructor(options) {
-    super(options);
-  }
-
   getValues(req, res, callback) {
 
-    logger.info('sending update', propMap(req.sessionModel.attributes));
+    const transformData = ConfirmationController.propMap(req.sessionModel.attributes);
+    logger.info('schema validating', transformData);
+
+    const result = v.validate(transformData, schema);
+    if (!result.valid) {
+      logger.error('error schema validating update', transformData.membershipNumber, result);
+      return callback(result);
+    }
+
+    logger.info('sending update', transformData);
 
     request[is.update.method.toLowerCase()]({
       url: [

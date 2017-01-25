@@ -6,6 +6,8 @@ services:
 cache:
   directories:
   - node_modules
+before_install:
+  - printf "registry=https://artifactory.digital.homeoffice.gov.uk/artifactory/api/npm/npm-virtual\n_auth=${NPM_TOKEN}\nalways-auth=true\nemail=${NPM_EMAIL}\n" >> .npmrc
 before_script:
 - npm run sass
 - NODE_ENV='ci' npm start &
