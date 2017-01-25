@@ -23,7 +23,7 @@ module.exports = {
     inwardDeparturePortPlaneCode: 'DXB',
     arrivalAirport: 'London - Gatwick',
     portOfArrivalPlaneCode: 'LGW',
-    arrivalDate: '10-10-2016',
+    arrivalDate: '10/10/2016',
     arrivalDatePlaneDay: '10',
     arrivalDatePlaneMonth: '10',
     arrivalDatePlaneYear: '2016',
@@ -32,7 +32,7 @@ module.exports = {
     arrivalTimePlaneMinutes: '45'
   },
   'is-this-your-flight': 'yes',
-  'departure-date': '10-10-2016',
+  'departure-date': '2016-10-10',
   'departure-time': '01:01',
   'departure-date-day': '10',
   'departure-date-month': '10',
