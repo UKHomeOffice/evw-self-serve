@@ -117,7 +117,7 @@
     "hint": "The details will be on your travel documents"
   },
   "uk-date-of-departure": {
-    "legend": "What date will you be departing the UK?",
+    "legend": "What date will you be leaving the UK?",
     "hint": "For example, 31 3 2017"
   },
   "uk-date-of-departure-day": {
