@@ -75,3 +75,51 @@ Scenario: Not entering any details on the departure date and time page
     Enter a valid date
     Enter a valid time using the 24 hour clock, for example 09:45 or 21:45
     """
+
+Scenario: UK departure page validation
+
+  Given I start the Update journey details app
+  # How will you arrive page
+  When I click "By plane"
+  And I continue
+  And I enter "KU101" into "Flight number"
+  And I continue
+  # Arrival date page
+  And I enter a date "2 months" in the future into "Arrival date"
+  And I continue
+  # Is this your flight page
+  And I click "Yes"
+  And I continue
+  # Departure date and time
+  And I enter a date "2 months" in the future into "Departure date"
+  And I enter the time "07:15" into "Departure time"
+  And I continue
+  # Return travel
+  And I continue
+  Then the validation summary should contain
+  """
+  Select one option
+  """
+  And I select "Yes" for "Travel details changed"
+  And I continue
+  # UK departure
+  And I continue
+  Then the validation summary should contain
+  """
+  Select one option
+  Select one option
+  """
+  When I select "No" for "Know departure details"
+  And I continue
+  Then the validation summary should contain
+  """
+  Select your length of stay in the UK
+  """
+  When I select "Yes" for "Know departure details"
+  And I continue
+  Then the validation summary should contain
+  """
+  Enter the flight number, train number or boat name that you will be leaving the UK on
+  Enter the date you are leaving the UK
+  Select one of the airports, sea ports or rail terminals from the list
+  """
