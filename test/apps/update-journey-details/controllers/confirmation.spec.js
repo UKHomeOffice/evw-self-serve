@@ -2,7 +2,7 @@
 
 const moment = require('moment');
 const modelFixture = require('../../../fixtures/update-model');
-const proxyquire = require('proxyquire').noCallThru().noPreserveCache();
+const proxyquire = require('proxyquire');
 
 describe('apps/update-journey-details/controllers/confirmation', function () {
   let ConfirmationController;
