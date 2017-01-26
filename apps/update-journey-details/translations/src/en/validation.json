@@ -17,9 +17,13 @@
   },
   "departure-date": {
     "required": "Enter the date you will depart for the UK",
-    "invalid": "Enter a valid date",
-    "too-far-in-future": "Date of travel to the UK must be no more than 3 months from now",
-    "within-48-hours": "The date and time of your flight must be at least 48 hours from now"
+    "date": "Enter a valid date",
+    "afterDate": "Date of travel in the UK must be no more than 3 months from now",
+    "beforeDate": "Date of travel must be at least 48 hours from now",
+    "travel-too-soon": "Date of travel must be at least 48 hours from now",
+    "depart-after-arrive": "Your departure cannot be after your arrival",
+    "depart-24-hours-before-arrive": "The date your flight to the UK takes off cannot be more than 24 hours before it arrives in the UK"
+
   },
   "travel-details-changed": {
     "required": "Select one option"

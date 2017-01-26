@@ -56,8 +56,12 @@ describe('transform, validate and post to integration service', function() {
   });
 
   describe('if validate fails', function() {
-    beforeEach(function() {
-      req.sessionModel.attributes['departure-date'] = '';
+    before(function() {
+      req.sessionModel.attributes.flightDetails.flightNumber = null;
+    });
+
+    after(function() {
+      req.sessionModel.attributes.flightDetails.flightNumber = 'EK009';
     });
 
     it('calls callback with validation error', function(done) {

@@ -4,6 +4,7 @@ const ErrorClass = require('hof').controllers.error;
 const EvwBaseController = require('../../common/controllers/evw-base');
 const flightLookup = require('../../../lib/flight-lookup');
 const logger = require('../../../lib/logger');
+const validators = require('../../../lib/validators');
 
 module.exports = class DepartureDateController extends EvwBaseController {
 
@@ -51,7 +52,8 @@ module.exports = class DepartureDateController extends EvwBaseController {
       return defaultValidationErrors;
     }
     const timeIsSet = time => time !== '' && time !== 'Invalid date';
-    if (key === 'departure-date' && timeIsSet(req.form.values['departure-time'])) {
+    const flightFound = () => req.sessionModel.get('flightDetails');
+    if (key === 'departure-date' && timeIsSet(req.form.values['departure-time']) && flightFound()) {
       const arrivalDate = req.sessionModel.get('flightDetails').arrivalDateRaw;
       const arrivalTime = req.sessionModel.get('flightDetails').arrivalTime;
       const arrivalTimezone = req.sessionModel.get('flightDetails').arrivalTimezone;

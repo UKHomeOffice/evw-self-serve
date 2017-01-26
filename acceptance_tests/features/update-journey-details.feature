@@ -92,17 +92,12 @@ Scenario: Entering new flight details and correct flight found
     And I enter "KU101" into "Flight number"
     And I continue
     # Arrival date page
-    Then I should be on the "Arrival date" page of the "Update journey details" app
-    And I enter a date "2 months" in the future into "Arrival date"
+    Then I should be on the "Departure date" page of the "Update journey details" app
+    And I enter a date "2 months" in the future into "Departure date"
     And I continue
     # Is this your flight page
     Then I should be on the "Is this your flight" page of the "Update journey details" app
     And I click "Yes"
-    And I continue
-    # Departure date and time page
-    Then I should be on the "Departure date and time" page of the "Update journey details" app
-    And I enter a date "2 months" in the future into "Departure date"
-    And I enter the time "07:15" into "Departure time"
     And I continue
     # Return travel
     Then I should be on the "Return travel" page of the "Update journey details" app

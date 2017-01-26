@@ -75,15 +75,11 @@ Scenario: UK departure page validation
   And I continue
   And I enter "KU101" into "Flight number"
   And I continue
-  # Arrival date page
-  And I enter a date "2 months" in the future into "Arrival date"
+  # Departure date page
+  And I enter a date "2 months" in the future into "Departure date"
   And I continue
   # Is this your flight page
   And I click "Yes"
-  And I continue
-  # Departure date and time
-  And I enter a date "2 months" in the future into "Departure date"
-  And I enter the time "07:15" into "Departure time"
   And I continue
   # Return travel
   And I continue

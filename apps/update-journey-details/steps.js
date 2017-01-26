@@ -44,7 +44,10 @@ module.exports = {
       condition: function(req) {
         return req.sessionModel.get('flightDetails') === null;
       }
-    }]
+    }],
+    options: {
+      dateKeys: ['departure-date']
+    }
   },
   '/is-this-your-flight': {
     template: 'is-this-your-flight',
