@@ -393,6 +393,13 @@
   },
   {
     "type": "plane",
+    "country": "United Kingdom",
+    "country-code": "GBR",
+    "code": "DSA",
+    "name": "Doncaster Sheffield"
+  },
+  {
+    "type": "plane",
     "country": "Australia",
     "country-code": "AUS",
     "code": "DYA",

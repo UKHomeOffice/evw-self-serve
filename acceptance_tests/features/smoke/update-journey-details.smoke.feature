@@ -35,9 +35,20 @@ Scenario: Entering new flight details and correct flight found
   And I enter a date "2 months" in the future into "Departure date"
   And I enter the time "12:15" into "Departure time"
   And I continue
+  # Return travel
+  Then I should be on the "Return travel" page of the "Update journey details" app
+  And the page title should contain "Have your travel details for your departure from the UK changed?"
+  And I select "Yes" for "Travel details changed"
+  And I continue
+  # UK departure
+  Then I should be on the "UK departure" page of the "Update journey details" app
+  And the page title should contain "Do you have your travel details for your departure from the UK?"
+  And I select "No" for "Know departure details"
+  And I select "1 to 3 months" for "UK duration"
+  And I continue
   # Check your answers page
   Then the page title should contain "Check your answers"
-  And the summary table should contain
+  And the "inbound-summary" table should contain
 
     """
     Departure airport
@@ -62,7 +73,7 @@ Scenario: Entering new flight details and correct flight found
   And the content list should contain
     """
     The new flight information I have entered is correct to the best of my knowledge and belief and is for my flight that lands in the UK.
-    On changing my flight details my old electronic visa waiver document will be invalid and I will not use it to try to enter the UK; if I do so I may be denied boarding or be refused entry at the UK border.
+    On changing my flight details my old electronic visa waiver document will be invalid and I will not use it to travel to the UK; if I do so I may be denied boarding or be refused entry at the UK border.
     If I have completed this for someone else I have their full agreement.
     """
   When I click id "Accept Declaration"

@@ -52,7 +52,7 @@ module.exports = {
     fields: [
       'is-this-your-flight'
     ],
-    next: '/check-your-answers',
+    next: '/return-travel',
     forks: [{
       target: '/flight-not-found',
       condition: {
@@ -61,9 +61,42 @@ module.exports = {
       }
     }]
   },
+  '/return-travel': {
+    template: 'return-travel',
+    controller: require('../common/controllers/evw-base'),
+    fields: [
+      'travel-details-changed'
+    ],
+    next: '/check-your-answers',
+    forks: [{
+      target: '/uk-departure',
+      condition: {
+        field: 'travel-details-changed',
+        value: 'Yes'
+      }
+    }]
+  },
+  '/uk-departure': {
+    template: 'uk-departure',
+    controller: require('../common/controllers/evw-base'),
+    fields: [
+      'know-departure-details',
+      'uk-duration',
+      'uk-departure-travel-number',
+      'uk-date-of-departure',
+      'uk-date-of-departure-day',
+      'uk-date-of-departure-month',
+      'uk-date-of-departure-year',
+      'uk-port-of-departure'
+    ],
+    next: '/check-your-answers',
+    options: {
+      dateKeys: ['uk-date-of-departure']
+    }
+  },
   '/check-your-answers': {
     template: 'check-your-answers.html',
-    controller: require('../common/controllers/evw-base'),
+    controller: require('./controllers/check-your-answers'),
     next: '/declaration'
   },
   '/flight-not-found': {

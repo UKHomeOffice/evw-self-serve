@@ -5,8 +5,8 @@
   },
   "flight-number": {
     "required": "Enter the number of the flight you will be arriving in the UK on, for example EK009, QR003 or KU101",
-    "too-long": "Your flight number is too long. Please check your travel documents and enter it correctly",
-    "format": "Enter a valid flight number, for example EK009, QR003 or KU101"
+    "maxlength": "Your flight number is too long. Please check your travel documents and enter it correctly",
+    "regex": "Enter a valid flight number, for example EK009, QR003 or KU101"
   },
   "is-this-your-flight": {
     "required": "Select an option",
@@ -20,5 +20,26 @@
     "invalid": "Enter a valid date",
     "too-far-in-future": "Date of travel to the UK must be no more than 3 months from now",
     "within-48-hours": "The date and time of your flight must be at least 48 hours from now"
+  },
+  "travel-details-changed": {
+    "required": "Select one option"
+  },
+  "know-departure-details": {
+    "required": "Select one option"
+  },
+  "uk-duration": {
+    "required": "Select your length of stay in the UK"
+  },
+  "uk-departure-travel-number": {
+    "required": "Enter the flight number, train number or boat name that you will be leaving the UK on"
+  },
+  "uk-date-of-departure": {
+    "required": "Enter the date you are leaving the UK",
+    "date": "Enter a valid date",
+    "beforeDate": "The date you leave the UK cannot be in the past",
+    "afterDate": "Date of departure cannot be more than 6 months after you enter the UK"
+  },
+  "uk-port-of-departure": {
+    "required": "Select one of the airports, sea ports or rail terminals from the list"
   }
 }

@@ -28,7 +28,10 @@ module.exports = {
     {
       target: '/update-limit-reached',
       condition: (req) => req.sessionModel.get('evwLookupError') === 'UPDATE_LIMIT_REACHED'
-    }]
+    }],
+    options: {
+      dateKeys: ['dob']
+    }
   },
   '/link-sent': {
     template: 'link-sent',

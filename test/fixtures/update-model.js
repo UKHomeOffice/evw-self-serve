@@ -14,7 +14,6 @@ module.exports = {
     '/declaration'
   ],
   'flight-number': 'EK009',
-  'arrival-date': '10-10-2016',
   flightDetails: {
     flightNumber: 'EK009',
     inwardDepartureCountryPlane: 'United Arab Emirates',
@@ -43,7 +42,19 @@ module.exports = {
     arrivalTimePlaneMinutes: '45'
   },
   'is-this-your-flight': 'yes',
-  'departure-date': '10-10-2016',
-  'departure-date-formatted': '10 October 2016',
-  'accept-declaration': 'true'
+  'departure-date': '2016-10-10',
+  'departure-date-day': '10',
+  'departure-date-month': '10',
+  'departure-date-year': '2016',
+  'departure-date-formatted': '10/10/2016',
+  'accept-declaration': 'true',
+  'travel-details-changed': 'Yes',
+  'know-departure-details': 'Yes',
+  'uk-date-of-departure': '2017-01-30',
+  'uk-date-of-departure-day': '30',
+  'uk-date-of-departure-month': '01',
+  'uk-date-of-departure-year': '2017',
+  'uk-duration': '1 to 3 months',
+  'uk-departure-travel-number': 'FL1001',
+  'uk-port-of-departure': 'LGW'
 };

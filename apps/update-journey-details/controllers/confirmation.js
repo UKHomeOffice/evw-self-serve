@@ -6,12 +6,42 @@ const EvwBaseController = require('../../common/controllers/evw-base');
 const is = require('../../../config').integrationService;
 const request = require('request');
 const logger = require('../../../lib/logger');
+const Validator = require('jsonschema').Validator;
+const v = new Validator();
+const schema = require('evw-schemas').evw.updateJourney.schema;
+const getTypeaheadValue = require('../../../lib/typeahead-options').getTypeaheadValue;
+const allAirportsPortsStations = require('../../../lib/typeahead-options').all;
 
 const propMap = (model) => {
   const f = model.flightDetails;
   const departureDateTime = moment.tz(`${f.departureDateRaw} ${f.departureTime}`, f.departureTimezone);
 
-  return {
+  const getReturnJourneyDetails = () => {
+    let returnJourneyProps = {
+      haveDepartureFromUkDetailsChanged: model['travel-details-changed']
+    };
+    if (model['travel-details-changed'] === 'No') {
+      return returnJourneyProps;
+    }
+    Object.assign(returnJourneyProps, {
+      knowDepartureDetails: model['know-departure-details']
+    });
+    if (model['know-departure-details'] === 'No') {
+      Object.assign(returnJourneyProps, {
+        ukDuration: model['uk-duration']
+      });
+    }
+    if (model['know-departure-details'] === 'Yes') {
+      Object.assign(returnJourneyProps, {
+        departureTravel: model['uk-departure-travel-number'],
+        portOfDeparture: getTypeaheadValue(model['uk-port-of-departure'], allAirportsPortsStations),
+        departureDate: model['uk-date-of-departure']
+      });
+    }
+   return returnJourneyProps;
+  };
+
+  return Object.assign({
     membershipNumber: model['evw-number'],
     token: model.token,
     arrivalTravel: f.flightNumber,
@@ -19,7 +49,6 @@ const propMap = (model) => {
     arrivalTime: f.arrivalTime,
     departureForUKDate: moment.utc(departureDateTime).format('YYYY-MM-DD'),
     departureForUKTime: moment.utc(departureDateTime).format('HH:mm'),
-    departureForUKDateOffset: departureDateTime.format('Z'),
     portOfArrival: f.arrivalAirport,
     portOfArrivalCode: f.portOfArrivalPlaneCode,
     inwardDepartureCountry: f.inwardDepartureCountryPlaneCode,
@@ -27,17 +56,22 @@ const propMap = (model) => {
     inwardDeparturePortCode: f.inwardDeparturePortPlaneCode,
     dateCreated: moment().format('YYYY-MM-DD hh:mm:ss'),
     flightDetailsCheck: 'Yes' // hard-coded until we implement un-happy path
-  }
+  }, getReturnJourneyDetails());
 };
 
 class ConfirmationController extends EvwBaseController {
-  constructor(options) {
-    super(options);
-  }
-
   getValues(req, res, callback) {
 
-    logger.info('sending update', propMap(req.sessionModel.attributes));
+    const transformData = ConfirmationController.propMap(req.sessionModel.attributes);
+    logger.info('schema validating', transformData);
+
+    const result = v.validate(transformData, schema);
+    if (!result.valid) {
+      logger.error('error schema validating update', transformData.membershipNumber, result);
+      return callback(result);
+    }
+
+    logger.info('sending update', transformData);
 
     request[is.update.method.toLowerCase()]({
       url: [

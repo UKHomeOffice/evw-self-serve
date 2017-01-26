@@ -1,15 +1,11 @@
 'use strict';
 
+const ErrorClass = require('hof').controllers.error;
 const EvwBaseController = require('../../common/controllers/evw-base');
 const flightLookup = require('../../../lib/flight-lookup');
 const logger = require('../../../lib/logger');
 
 module.exports = class DepartureDateController extends EvwBaseController {
-
-  constructor(options) {
-    super(options);
-    super.applyDatesTimes(options.fields);
-  }
 
   process(req, res, callback) {
     super.process(req, res, this.lookup.bind(this, req, res, callback));
@@ -27,10 +23,8 @@ module.exports = class DepartureDateController extends EvwBaseController {
 
     return flightLookup.findFlight(lookupData.number, lookupData.date)
       .then(foundData => {
-        //console.log(foundData);
         logger.info('flight service response for', lookupData, foundData.body);
         const flight = foundData.body.flights[0];
-        //console.log(flight);
 
         // Flight found
         if (typeof flight !== 'undefined') {
@@ -49,6 +43,43 @@ module.exports = class DepartureDateController extends EvwBaseController {
         req.sessionModel.set('flightDetails', null);
         callback();
       });
+  }
+
+  validateField(key, req) {
+    const defaultValidationErrors = super.validateField(key, req);
+    if (defaultValidationErrors) {
+      return defaultValidationErrors;
+    }
+    const timeIsSet = time => time !== '' && time !== 'Invalid date';
+    if (key === 'departure-date' && timeIsSet(req.form.values['departure-time'])) {
+      const arrivalDate = req.sessionModel.get('flightDetails').arrivalDateRaw;
+      const arrivalTime = req.sessionModel.get('flightDetails').arrivalTime;
+      const arrivalTimezone = req.sessionModel.get('flightDetails').arrivalTimezone;
+      const departureDate = req.sessionModel.get('flightDetails').departureDateRaw;
+      const departureTime = req.sessionModel.get('flightDetails').departureTime;
+      const departureTimezone = req.sessionModel.get('flightDetails').departureTimezone;
+
+      const arrivalDateTime = flightLookup.momentDate({
+        date: arrivalDate,
+        time: arrivalTime,
+        timezone: arrivalTimezone
+      }).tz('Europe/London');
+      const departureDateTime = flightLookup.momentDate({
+        date: departureDate,
+        time: departureTime,
+        timezone: departureTimezone
+      }).tz('Europe/London');
+
+      const errorType = validators.validateDepartureDate(arrivalDateTime, departureDateTime);
+      if (errorType) {
+        return new ErrorClass(key, {
+          key: key,
+          type: errorType,
+          redirect: undefined
+        });
+      }
+      return false;
+    }
   }
 
   locals(req, res) {
