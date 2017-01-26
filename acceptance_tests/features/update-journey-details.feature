@@ -16,28 +16,22 @@ Scenario: Entering new flight details and correct flight found
   And the page title should contain "Your new flight details"
   Then I enter "KU101" into "Flight number"
   And I continue
-  # Arrival date page
-  Then I should be on the "Arrival date" page of the "Update journey details" app
+  # Departure date page
+  Then I should be on the "Departure date" page of the "Update journey details" app
   And the page title should contain "Your new flight details"
-  And I enter a date "2 months" in the future into "Arrival date"
+  And I enter a date "2 months" in the future into "Departure date"
   And I continue
   # Is this your flight page
   Then I should be on the "Is this your flight" page of the "Update journey details" app
   And the page title should contain "Is this your flight to the UK?"
   And the "Flight number" should contain "KU101"
   And the "Departure airport" should contain "Dubai"
+  And the "Departure date" should contain a date "2 months" in the future
+  And the "Departure time" should contain "14:35"
   And the "Arrival airport" should contain "London - Gatwick"
   And the "Arrival date" should contain a date "2 months" in the future
-  And the "Arrival time" should contain "18:45"
+  And the "Arrival time" should contain "18:25"
   And I click "Yes"
-  And I continue
-  # Departure date and time page
-  Then I should be on the "Departure date and time" page of the "Update journey details" app
-  And the page title should contain "Your journey to the UK"
-  And the "Data flight number" should contain "KU101"
-  And the "Data departure airport" should contain "Dubai"
-  And I enter a date "2 months" in the future into "Departure date"
-  And I enter the time "07:15" into "Departure time"
   And I continue
   # Return travel
   Then I should be on the "Return travel" page of the "Update journey details" app
@@ -61,7 +55,7 @@ Scenario: Entering new flight details and correct flight found
     Departure date
                       ${"2 months" in the "future"}
     Departure time
-                      7:15
+                      14:35
     Flight number
                       KU101
     Arrival airport
@@ -69,7 +63,7 @@ Scenario: Entering new flight details and correct flight found
     Arrival date
                       ${"2 months" in the "future"}
     Arrival time
-                      18:45
+                      18:25
     Length of stay
                       1 to 3 months
     """
@@ -98,17 +92,12 @@ Scenario: Entering new flight details and correct flight found
     And I enter "KU101" into "Flight number"
     And I continue
     # Arrival date page
-    Then I should be on the "Arrival date" page of the "Update journey details" app
-    And I enter a date "2 months" in the future into "Arrival date"
+    Then I should be on the "Departure date" page of the "Update journey details" app
+    And I enter a date "2 months" in the future into "Departure date"
     And I continue
     # Is this your flight page
     Then I should be on the "Is this your flight" page of the "Update journey details" app
     And I click "Yes"
-    And I continue
-    # Departure date and time page
-    Then I should be on the "Departure date and time" page of the "Update journey details" app
-    And I enter a date "2 months" in the future into "Departure date"
-    And I enter the time "07:15" into "Departure time"
     And I continue
     # Return travel
     Then I should be on the "Return travel" page of the "Update journey details" app
@@ -134,56 +123,6 @@ Scenario: Entering new flight details and correct flight found
                       FL1001
     """
 
-Scenario: Multi-leg flight
-
-  Given I start the Update journey details app
-  When I click "By plane"
-  And I continue
-  When I enter "BA0072" into "Flight number"
-  And I continue
-  Then I enter a date "2 months" in the future into "Arrival date"
-  And I continue
-
-  # Multi-leg page
-  And the page title should contain "Your journey to the UK"
-  When I click exact id "departures-MCT"
-  And I continue
-
-  Then the page title should contain "Is this your flight to the UK?"
-  And the "Flight number" should contain "BA0072"
-  And the "Departure airport" should contain "Muscat - Seeb"
-  And I click "Yes"
-  And I continue
-
-  # Departure date and time page
-  Then I enter a date "2 months" in the future into "Departure date"
-  And I enter the time "07:15" into "Departure time"
-  And I continue
-
-  # Return travel
-  Then I should be on the "Return travel" page of the "Update journey details" app
-  And the page title should contain "Have your travel details for your departure from the UK changed?"
-  And I select "No" for "Travel details changed"
-  And I continue
-
-  # Check your answers page
-  Then the page title should contain "Check your answers"
-  And the "inbound-summary" table should contain
-    """
-    Departure country
-                      Oman
-    Departure airport
-                      Muscat - Seeb
-    Departure date
-                      ${"2 months" in the "future"}
-    """
-  And I continue
-  # Declaration page
-  Then I should be on the "Declaration" page of the "Update journey details" app
-  And I click id "Accept Declaration"
-  And I continue
-  Then the reference number should be present
-
 Scenario: Entering new flight details and flight not found
 
   Given I start the Update journey details app
@@ -192,12 +131,12 @@ Scenario: Entering new flight details and flight not found
   And I continue
   Then I should be on the "Flight number" page of the "Update journey details" app
   And the page title should contain "Your new flight details"
-  Then I enter "NO0001" into "Flight number"
+  Then I enter "NO001" into "Flight number"
   And I continue
-  # Arrival date page
-  Then I should be on the "Arrival date" page of the "Update journey details" app
+  # Departure date page
+  Then I should be on the "Departure date" page of the "Update journey details" app
   And the page title should contain "Your new flight details"
-  And I enter a date "2 months" in the future into "Arrival date"
+  And I enter a date "2 months" in the future into "Departure date"
   And I continue
   # Flight not found page
   Then I should be on the "Flight not found" page of the "Update journey details" app
@@ -226,10 +165,10 @@ Scenario: Entering new flight details and incorrect flight found
   And the page title should contain "Your new flight details"
   Then I enter "KU101" into "Flight number"
   And I continue
-  # Arrival date page
-  Then I should be on the "Arrival date" page of the "Update journey details" app
+  # Departure date page
+  Then I should be on the "Departure date" page of the "Update journey details" app
   And the page title should contain "Your new flight details"
-  And I enter a date "2 months" in the future into "Arrival date"
+  And I enter a date "2 months" in the future into "Departure date"
   And I continue
   # Is this your flight page
   # Flight details on this page have been tested in the last test so we only need to test the flow here

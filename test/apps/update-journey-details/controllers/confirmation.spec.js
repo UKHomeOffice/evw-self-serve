@@ -46,7 +46,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
         'arrivalDate' : '2016-10-10',
         'arrivalTime' : '19:45',
         'departureForUKDate' : '2016-10-10',
-        'departureForUKTime' : '01:01',
+        'departureForUKTime' : '10:35',
         'flightDetailsCheck': 'Yes',
         'dateCreated': moment().format('YYYY-MM-DD hh:mm:ss'),
         'portOfArrival' : 'London - Gatwick',
@@ -71,7 +71,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
         'arrivalDate' : '2016-10-10',
         'arrivalTime' : '19:45',
         'departureForUKDate' : '2016-10-10',
-        'departureForUKTime' : '01:01',
+        'departureForUKTime' : '10:35',
         'flightDetailsCheck': 'Yes',
         'dateCreated': moment().format('YYYY-MM-DD hh:mm:ss'),
         'portOfArrival' : 'London - Gatwick',
@@ -94,7 +94,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
         'arrivalDate' : '2016-10-10',
         'arrivalTime' : '19:45',
         'departureForUKDate' : '2016-10-10',
-        'departureForUKTime' : '01:01',
+        'departureForUKTime' : '10:35',
         'flightDetailsCheck': 'Yes',
         'dateCreated': moment().format('YYYY-MM-DD hh:mm:ss'),
         'portOfArrival' : 'London - Gatwick',
@@ -115,7 +115,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
     beforeEach(function() {
       req = {
         sessionModel: {
-          attributes: modelFixture,
+          attributes: model,
           reset: sinon.stub()
         }
       };
@@ -130,7 +130,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
       });
 
       it('calls propMap to transformData', function() {
-        ConfirmationController.propMap.should.have.been.calledOnce.calledWith(modelFixture);
+        ConfirmationController.propMap.should.have.been.calledOnce.calledWith(model);
       });
 
       it('calls schema validate', function() {
@@ -164,7 +164,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
       });
 
       it('calls propMap to transformData', function() {
-        ConfirmationController.propMap.should.have.been.calledOnce.calledWith(modelFixture);
+        ConfirmationController.propMap.should.have.been.calledOnce.calledWith(model);
       });
 
       it('calls schema validate', function() {
@@ -187,7 +187,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
       });
 
       it('calls propMap to transformData', function() {
-        ConfirmationController.propMap.should.have.been.calledOnce.calledWith(modelFixture);
+        ConfirmationController.propMap.should.have.been.calledOnce.calledWith(model);
       });
 
       it('calls schema validate', function() {
@@ -210,7 +210,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
       });
 
       it('calls propMap to transformData', function() {
-        ConfirmationController.propMap.should.have.been.calledOnce.calledWith(modelFixture);
+        ConfirmationController.propMap.should.have.been.calledOnce.calledWith(model);
       });
 
       it('calls schema validate', function() {

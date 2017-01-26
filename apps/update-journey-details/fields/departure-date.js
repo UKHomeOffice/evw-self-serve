@@ -1,6 +1,5 @@
 'use strict';
 
-const validTime = require('../../../lib/validators').validTime;
 const afterDate = require('../../../lib/validators').afterDate;
 const beforeDate = require('../../../lib/validators').beforeDate;
 const moment = require('moment');
@@ -24,19 +23,5 @@ module.exports = {
   },
   'departure-date-year': {
     label: 'fields.departure-date-year.label'
-  },
-  'departure-time': {
-    validate: ['required'],
-    validators: [{
-      type: validTime
-    }]
-  },
-  'departure-time-hours': {
-    validate: [{type: 'maxlength', arguments: '2'}],
-    label: 'fields.departure-time-hours.label'
-  },
-  'departure-time-minutes': {
-    validate: [{type: 'maxlength', arguments: '2'}],
-    label: 'fields.departure-time-minutes.label'
   }
 };
