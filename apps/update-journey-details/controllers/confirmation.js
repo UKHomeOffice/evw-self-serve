@@ -1,6 +1,7 @@
 'use strict';
 
 const moment = require('moment');
+require('moment-timezone');
 const EvwBaseController = require('../../common/controllers/evw-base');
 const is = require('../../../config').integrationService;
 const request = require('request');
@@ -12,7 +13,8 @@ const getTypeaheadValue = require('../../../lib/typeahead-options').getTypeahead
 const allAirportsPortsStations = require('../../../lib/typeahead-options').all;
 
 const propMap = (model) => {
-  let f = model.flightDetails;
+  const f = model.flightDetails;
+  const departureDateTime = moment.tz(`${f.departureDateRaw} ${f.departureTime}`, f.departureTimezone);
 
   const getReturnJourneyDetails = () => {
     let returnJourneyProps = {
@@ -43,10 +45,10 @@ const propMap = (model) => {
     membershipNumber: model['evw-number'],
     token: model.token,
     arrivalTravel: f.flightNumber,
-    arrivalDate: f.arrivalDate.split('/').reverse().join('-'),
+    arrivalDate: f.arrivalDateRaw,
     arrivalTime: f.arrivalTime,
-    departureForUKDate: model['departure-date'],
-    departureForUKTime: model['departure-time'],
+    departureForUKDate: moment.utc(departureDateTime).format('YYYY-MM-DD'),
+    departureForUKTime: moment.utc(departureDateTime).format('HH:mm'),
     portOfArrival: f.arrivalAirport,
     portOfArrivalCode: f.portOfArrivalPlaneCode,
     inwardDepartureCountry: f.inwardDepartureCountryPlaneCode,

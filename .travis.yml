@@ -38,7 +38,7 @@ deploy:
   skip_cleanup: true
   on:
     repo: UKHomeOffice/evw-self-serve
-    branch: master
+    branch: feature/new-flight-service
     all_branches: false
 notifications:
   slack:
