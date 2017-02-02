@@ -45,7 +45,7 @@ Scenario: Entering an EVW number that cannot be updated
   Then I should be on the "EVW expired" page of the "Find your application" app
   And the page title should contain "Electronic visa waiver expired"
 
-Scenario: Not entering any details on the departure date and time page
+Scenario: Not entering any details on the departure date page
 
   Given I start the Update journey details app
   # How will you arrive page
@@ -53,27 +53,18 @@ Scenario: Not entering any details on the departure date and time page
   And I continue
   And I enter "KU101" into "Flight number"
   And I continue
-  # Arrival date page
-  And I enter a date "2 months" in the future into "Arrival date"
-  And I continue
-  # Is this your flight page
-  And I click "Yes"
-  And I continue
-  # Departure date and time page with no date and time entered
+  # Departure date page with no date and time entered
   And I continue
   Then the validation summary should contain
     """
     Enter the date you will depart for the UK
-    Enter a valid time using the 24 hour clock, for example 09:45 or 21:45
     """
   # Departure date and time page with invalid date and time entered
   And I enter the date "99-08-2016" into "Departure date"
-  And I enter the time "35:00" into "Departure time"
   And I continue
   Then the validation summary should contain
     """
     Enter a valid date
-    Enter a valid time using the 24 hour clock, for example 09:45 or 21:45
     """
 
 Scenario: UK departure page validation
@@ -84,15 +75,11 @@ Scenario: UK departure page validation
   And I continue
   And I enter "KU101" into "Flight number"
   And I continue
-  # Arrival date page
-  And I enter a date "2 months" in the future into "Arrival date"
+  # Departure date page
+  And I enter a date "2 months" in the future into "Departure date"
   And I continue
   # Is this your flight page
   And I click "Yes"
-  And I continue
-  # Departure date and time
-  And I enter a date "2 months" in the future into "Departure date"
-  And I enter the time "07:15" into "Departure time"
   And I continue
   # Return travel
   And I continue

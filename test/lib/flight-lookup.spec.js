@@ -33,20 +33,19 @@ describe('lib/flight-lookup', function() {
             let foundData = flightLookup.findFlight('KU0101', '2016-08-09');
             return foundData.should.eventually.deep.have.property('body.flights[0]').to.equal({
                 flightNumber: 'KU0101',
-                departures: [{
+                departure: {
                     country: 'AE',
-                    port: 'DXB'
-                }],
-                arrival: {
-                    port: 'LGW',
+                    port: 'DXB',
+                    timezone: 'Asia/Dubai',
                     date: '2016-08-09',
-                    time: '1845'
+                    time: '14:35'
                 },
-                params: {},
-                query: {},
-                body: {
-                    arrivalDate: '2016-08-09',
-                    flightNumber: 'KU0101'
+                arrival: {
+                    country: 'GBR',
+                    port: 'LGW',
+                    timezone: 'Europe/London',
+                    date: '2016-08-09',
+                    time: '18:25'
                 }
             });
         });
@@ -54,7 +53,7 @@ describe('lib/flight-lookup', function() {
 
     describe('#formatFlightNumber', function() {
         it('formats the flight number into the correct format for sending to the api', function() {
-            flightLookup.formatFlightNumber('ku101').should.equal('KU0101');
+            flightLookup.formatFlightNumber('ku 101').should.equal('ku101');
         });
     });
 
@@ -62,70 +61,14 @@ describe('lib/flight-lookup', function() {
         it('formats the data into the correct format for sending to the api', function() {
             let body = {
                 flightNumber: 'ku101',
-                arrivalDateDay: '09',
-                arrivalDateMonth: '08',
-                arrivalDateYear: '2016'
+                departureDateDay: '09',
+                departureDateMonth: '08',
+                departureDateYear: '2016'
             };
             flightLookup.formatPost(body).should.deep.equal({
-                number: 'KU0101',
+                number: 'ku101',
                 date: '2016-08-09'
             });
-        });
-    });
-
-    describe('departures', function () {
-
-        let flightData;
-
-        before(function (done) {
-            flightLookup.findFlight('KU0101', '2016-08-09').then((data) => {
-                flightData = data.body.flights[0];
-                done();
-            });
-        });
-
-        describe('#mapDepartures', function () {
-            describe('single result', function () {
-                it('maps a list of departures', function () {
-                    flightLookup.mapDepartures(flightData.departures)
-                    .should.deep.equal([
-                        {
-                            inwardDepartureCountryPlane: 'United Arab Emirates',
-                            inwardDepartureCountryPlaneCode: 'ARE',
-                            departureAirport: 'Dubai',
-                            inwardDeparturePortPlaneCode: 'DXB'
-                        }
-                    ]);
-                });
-            });
-
-            describe('multiple results', function () {
-                before(function (done) {
-                    flightLookup.findFlight('BA0072', '2016-08-09').then((data) => {
-                        flightData = data.body.flights[0];
-                        done();
-                    });
-                });
-
-                it('maps a list of departures', function () {
-                    flightLookup.mapDepartures(flightData.departures)
-                    .should.deep.equal([
-                        {
-                            inwardDepartureCountryPlane: 'United Arab Emirates',
-                            inwardDepartureCountryPlaneCode: 'ARE',
-                            departureAirport: 'Dubai',
-                            inwardDeparturePortPlaneCode: 'DXB'
-                        },
-                        {
-                            departureAirport: 'Muscat - Seeb',
-                            inwardDepartureCountryPlane: 'Oman',
-                            inwardDepartureCountryPlaneCode: 'OMN',
-                            inwardDeparturePortPlaneCode: 'MCT'
-                        }
-                    ]);
-                });
-            });
-
         });
     });
 
@@ -140,10 +83,9 @@ describe('lib/flight-lookup', function() {
             }
         };
 
-        before(function (done) {
-            flightLookup.findFlight('KU0101', '2016-08-09').then((data) => {
+        before(function () {
+            return flightLookup.findFlight('KU0101', '2016-08-09').then((data) => {
                 flightData = data.body.flights[0];
-                done();
             });
         });
 
@@ -152,24 +94,30 @@ describe('lib/flight-lookup', function() {
 
             flightLookup.mapFlight(flight, sessionModel).should.deep.equal({
                 flightNumber: 'KU101',
-                departures: [
-                    {
-                      departureAirport: 'Dubai',
-                      inwardDeparturePortPlaneCode: 'DXB',
-                      inwardDepartureCountryPlane: 'United Arab Emirates',
-                      inwardDepartureCountryPlaneCode: 'ARE'
-                    }
-                ],
+                departureDate: '09/08/2016',
+                departureDatePlaneDay: '09',
+                departureDatePlaneMonth: '08',
+                departureDatePlaneYear: '2016',
+                departureDateRaw: '2016-08-09',
+                departureTime: '14:35',
+                departureTimePlaneHour: '14',
+                departureTimePlaneMinutes: '35',
+                departureTimezone: 'Asia/Dubai',
                 arrivalAirport: 'London - Gatwick',
                 portOfArrivalPlaneCode: 'LGW',
+                arrivalTimezone: 'Europe/London',
+                arrivalDateRaw: '2016-08-09',
                 arrivalDate: '09/08/2016',
                 arrivalDatePlaneDay: '09',
                 arrivalDatePlaneMonth: '08',
                 arrivalDatePlaneYear: '2016',
-                arrivalTime: '19:45',
-                arrivalTimePlaneHour: '19',
-                arrivalTimePlaneMinutes: '45',
-                aliasFlightNumber: undefined
+                arrivalTime: '18:25',
+                arrivalTimePlaneHour: '18',
+                arrivalTimePlaneMinutes: '25',
+                departureAirport: 'Dubai',
+                inwardDeparturePortPlaneCode: 'DXB',
+                inwardDepartureCountryPlane: 'United Arab Emirates',
+                inwardDepartureCountryPlaneCode: 'ARE'
             });
         });
     });
@@ -177,8 +125,9 @@ describe('lib/flight-lookup', function() {
     describe('#momentDate', function() {
         let datetime = {
             date: '2016-08-09',
-            time: '1345'
-        }
+            time: '13:45',
+            timezone: 'Europe/London'
+        };
 
         it('returns a moment object', function() {
             flightLookup.momentDate(datetime).should.contain.property('_isAMomentObject', true);
@@ -189,7 +138,18 @@ describe('lib/flight-lookup', function() {
         });
 
         it('returns the correct date', function() {
-            flightLookup.momentDate(datetime).should.contain.property('_i', '2016-08-09 1345');
+            flightLookup.momentDate(datetime).should.contain.property('_i', '2016-08-09 13:45');
+        });
+
+        it('returns the correct timezone', function() {
+            flightLookup.momentDate(datetime)._z.should.contain.property('name', 'Europe/London');
+        });
+
+        it('correctly observes a timezone that is not local', function() {
+            datetime.timezone = 'Asia/Dubai';
+            const date = flightLookup.momentDate(datetime);
+            date._z.should.contain.property('name', 'Asia/Dubai');
+            date.tz("Europe/London").format('YYYY-MM-DD HH:mm').should.equal('2016-08-09 10:45');
         });
     });
 

@@ -8,12 +8,6 @@
     "maxlength": "Your flight number is too long. Please check your travel documents and enter it correctly",
     "regex": "Enter a valid flight number, for example EK009, QR003 or KU101"
   },
-  "arrival-date": {
-    "required": "Enter the date your flight is due to land in the UK",
-    "date": "Enter a valid date",
-    "afterDate": "Date of arrival in the UK must be no more than 3 months from now",
-    "after": "Date of arrival must be at least 48 hours from now"
-  },
   "is-this-your-flight": {
     "required": "Select an option",
     "equal": "Please select an option from the list"
@@ -29,14 +23,7 @@
     "travel-too-soon": "Date of travel must be at least 48 hours from now",
     "depart-after-arrive": "Your departure cannot be after your arrival",
     "depart-24-hours-before-arrive": "The date your flight to the UK takes off cannot be more than 24 hours before it arrives in the UK"
-  },
-  "departure-time": {
-    "validTime": "Enter a valid time using the 24 hour clock, for example 09:45 or 21:45",
-    "departure-after-arrival": "Your departure cannot be after your arrival",
-    "departure-too-far-before-arrival": "The date your flight to the UK takes off cannot be more than 24 hours before it arrives in the UK"
-  },
-  "departures": {
-    "required": "Please choose a departure airport"
+
   },
   "travel-details-changed": {
     "required": "Select one option"
