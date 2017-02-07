@@ -23,7 +23,7 @@ module.exports = {
   },
   '/flight-number': {
     template: 'flight-number',
-    controller: require('../common/controllers/evw-base'),
+    controller: require('./controllers/flight-number'),
     fields: [
       'flight-number'
     ],
