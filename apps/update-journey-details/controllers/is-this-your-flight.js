@@ -1,18 +1,20 @@
 'use strict';
 
-const util = require('util');
-const BaseController = require('hof').controllers.base;
+const EvwBaseController = require('../../common/controllers/evw-base');
 
-const IsThisYourFlightController = function IsThisYourFlightController() {
-  BaseController.apply(this, arguments);
-};
+class IsThisYourFlightController extends EvwBaseController {
+  getValues(req, res, callback) {
+    if (req.sessionModel.get('flightDetails') === null) {
+      return res.redirect('flight-number');
+    }
+    super.getValues(req, res, callback);
+  }
 
-util.inherits(IsThisYourFlightController, BaseController);
-
-IsThisYourFlightController.prototype.locals = function locals(req, res) {
-  return Object.assign({
-    flightDetails: req.sessionModel.get('flightDetails')
-  }, BaseController.prototype.locals.call(this, req, res));
-};
+  locals(req, res) {
+    return Object.assign({
+      flightDetails: req.sessionModel.get('flightDetails')
+    }, super.locals(req, res));
+  }
+}
 
 module.exports = IsThisYourFlightController;
