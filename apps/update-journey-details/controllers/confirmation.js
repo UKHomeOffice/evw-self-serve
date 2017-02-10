@@ -14,7 +14,7 @@ const allAirportsPortsStations = require('../../../lib/typeahead-options').all;
 
 const propMap = (model) => {
   const f = model.flightDetails;
-  const departureDateTime = moment.tz(`${f.departureDateRaw} ${f.departureTime}`, f.departureTimezone);
+  const departureDateTime = moment.utc(`${f.departureDateRaw} ${f.departureTime}`);
 
   const getReturnJourneyDetails = () => {
     let returnJourneyProps = {
@@ -47,8 +47,8 @@ const propMap = (model) => {
     arrivalTravel: f.flightNumber,
     arrivalDate: f.arrivalDateRaw,
     arrivalTime: f.arrivalTime,
-    departureForUKDate: moment.utc(departureDateTime).format('YYYY-MM-DD'),
-    departureForUKTime: moment.utc(departureDateTime).format('HH:mm'),
+    departureForUKDate: departureDateTime.format('YYYY-MM-DD'),
+    departureForUKTime: departureDateTime.format('HH:mm'),
     portOfArrival: f.arrivalAirport,
     portOfArrivalCode: f.portOfArrivalPlaneCode,
     inwardDepartureCountry: f.inwardDepartureCountryPlaneCode,
