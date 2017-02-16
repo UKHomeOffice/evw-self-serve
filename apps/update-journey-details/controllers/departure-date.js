@@ -27,6 +27,12 @@ module.exports = class DepartureDateController extends EvwBaseController {
         logger.info('flight service response for', lookupData, foundData.body);
         const flight = foundData.body.flights[0];
 
+        if (typeof flight !== 'undefined' && flight.departure.country === 'GBR') {
+          logger.info('Rejecting domestic flight', flight);
+          req.sessionModel.set('flightDetails', null);
+          return callback();
+        }
+
         // Flight found
         if (typeof flight !== 'undefined') {
           const mappedFlight = flightLookup.mapFlight(flight, req.sessionModel);
