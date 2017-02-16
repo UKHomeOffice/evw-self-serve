@@ -1,27 +1,39 @@
 'use strict';
 
 var tpl = function template (params, query) {
-  let port = 'LGW';
-  let time = '18:25';
+  let departureCountryCode = 'AE';
+  let departurePort = 'DXB';
+  let departureTime = '14:35';
+  let departureTimezone = 'Asia/Dubai';
+  let arrivalPort = 'LGW';
+  let arrivalTime = '18:25';
   if (query.flightNumber === 'BI0097') {
-    port = 'LHR';
-    time = '06:40';
+    arrivalPort = 'LHR';
+    arrivalTime = '06:40';
+  }
+  if (query.flightNumber === 'BA2135') {
+    departureCountryCode = 'GBR';
+    departurePort = 'LHR';
+    departureTime = '15:10';
+    departureTimezone = 'Europe/London';
+    arrivalPort = 'BHD';
+    arrivalTime = '16:30';
   }
   return {
     flightNumber: query.flightNumber,
     departure: {
-      country: 'AE',
-      port: 'DXB',
-      timezone: 'Asia/Dubai',
+      country: departureCountryCode,
+      port: departurePort,
+      timezone: departureTimezone,
       date: query.departureDate,
-      time: '14:35'
+      time: departureTime
     },
     arrival: {
       country: 'GBR',
-      port: port,
+      port: arrivalPort,
       timezone: 'Europe/London',
       date: query.departureDate,
-      time: time
+      time: arrivalTime
     }
   };
 };

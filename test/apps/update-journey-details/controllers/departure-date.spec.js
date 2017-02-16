@@ -128,6 +128,47 @@ describe('apps/update-journey-details/controllers/departure-date', function() {
       });
     });
 
+    describe('finds domestic flight', function() {
+      const flightData = {
+        flights: [
+          {
+            flightNumber: 'BA2135',
+            departure: {
+              country: 'GBR',
+              port: 'LHR',
+              timezone: 'Europe/London',
+              date: '2016-09-21',
+              time: '15:10'
+            },
+            arrival: {
+              country: 'GBR',
+              port: 'BHD',
+              timezone: 'Europe/London',
+              date: '2016-08-09',
+              time: '16:30'
+            }
+          }
+        ]
+      };
+
+      beforeEach(function() {
+        flightLookupMock.findFlight.resolves({
+          body: {
+            flights: [flightData]
+          }
+        });
+        return controller.lookup(req, res, callback);
+      });
+
+      it('sets flightDetails to null in session', function () {
+        req.sessionModel.set.should.have.been.calledWith('flightDetails', null);
+      });
+
+      it('calls the callback', function() {
+        callback.should.have.been.calledOnce;
+      });
+    });
+
     describe('flight service returns nothing', function() {
       beforeEach(function() {
         flightLookupMock.findFlight.resolves({
