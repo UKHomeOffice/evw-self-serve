@@ -1,12 +1,30 @@
-app:
-  build: .
-  environment:
-  - NODE_ENV=docker-compose
-  ports:
-    - "8080:8080"
-  volumes:
-  - "/public"
-  net: "host"
-redis:
-  image: redis
-  net: "host"
+version: '2'
+services:
+  app:
+    build: .
+    environment:
+    - NODE_ENV=docker-compose
+    - MONGO_CONNECTION_STRING=mongodb://db:27017/evw-self-serve
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    links:
+      - db
+    volumes:
+      - /public
+  db:
+    image: mongo:3.2
+    ports:
+      - "27017:27017"
+  # flight-forecast-service:
+  #   depends_on:
+  #     - db
+  #   build: ../flight-forecast-service/.
+  #   links:
+  #     - db
+  #   ports:
+  #     - "9350:9350"
+  #   restart: always
+  #   environment:
+  #     MONGO_HOST: db
