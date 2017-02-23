@@ -15,7 +15,7 @@ describe('apps/update-journey-details/controllers/check-your-answers', function(
       }
     };
     req.sessionModel.get.withArgs('know-departure-details').returns('No');
-    req.sessionModel.get.withArgs('uk-port-of-departure').returns('LGW');
+    req.sessionModel.get.withArgs('uk-port-of-departure').returns('LGW_London Gatwick Airport');
     controller = new CheckYourAnswersController({
       template: 'check-your-answers'
     });

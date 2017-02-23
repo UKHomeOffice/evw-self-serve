@@ -56,5 +56,5 @@ module.exports = {
   'uk-date-of-departure-year': '2017',
   'uk-duration': '1 to 3 months',
   'uk-departure-travel-number': 'FL1001',
-  'uk-port-of-departure': 'LGW'
+  'uk-port-of-departure': 'LGW_London Gatwick Airport'
 };
