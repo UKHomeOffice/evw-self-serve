@@ -28,8 +28,8 @@ describe('lib/typeahead-options', function() {
 
     it('returns British airports only', function() {
       const britishAirports = typeaheadOptions.britishAirports();
-      _.find(britishAirports, { value: 'LGW' }).value.should.equal('LGW');
-      should.equal(undefined, _.find(britishAirports, { value: 'LAX' }));
+      _.find(britishAirports, { value: 'LGW_London Gatwick Airport' }).value.should.equal('LGW_London Gatwick Airport');
+      should.equal(undefined, _.find(britishAirports, { value: 'LAX_Los Angeles International Airport' }));
     });
   });
 
@@ -56,8 +56,8 @@ describe('lib/typeahead-options', function() {
 
     it('returns non-British airports only', function() {
       const nonBritishAirports = typeaheadOptions.nonBritishAirports();
-      _.find(nonBritishAirports, { value: 'LAX' }).value.should.equal('LAX');
-      should.equal(undefined, _.find(nonBritishAirports, { value: 'LGW' }));
+      _.find(nonBritishAirports, { value: 'LAX_Los Angeles International Airport' }).value.should.equal('LAX_Los Angeles International Airport');
+      should.equal(undefined, _.find(nonBritishAirports, { value: 'LGW_London Gatwick Airport' }));
     });
   });
 
@@ -86,8 +86,8 @@ describe('lib/typeahead-options', function() {
 
     it('returns British airports only', function() {
       const britishStations = typeaheadOptions.britishStations();
-      _.find(britishStations, { value: 'STP' }).value.should.equal('STP');
-      should.equal(undefined, _.find(britishStations, { value: 'COQ' }));
+      _.find(britishStations, { value: 'STP_London (St Pancras Intl)' }).value.should.equal('STP_London (St Pancras Intl)');
+      should.equal(undefined, _.find(britishStations, { value: 'COQ_Calais (Coquelles)' }));
     });
   });
 
@@ -116,8 +116,8 @@ describe('lib/typeahead-options', function() {
 
     it('returns non-British stations only', function() {
       const nonBritishStations = typeaheadOptions.nonBritishStations();
-      _.find(nonBritishStations, { value: 'COQ' }).value.should.equal('COQ');
-      should.equal(undefined, _.find(nonBritishStations, { value: 'STP' }));
+      _.find(nonBritishStations, { value: 'COQ_Calais (Coquelles)' }).value.should.equal('COQ_Calais (Coquelles)');
+      should.equal(undefined, _.find(nonBritishStations, { value: 'STP_London (St Pancras Intl)' }));
     });
   });
 
@@ -171,8 +171,8 @@ describe('lib/typeahead-options', function() {
 
     it('returns British ports only', function() {
       const britishPorts = typeaheadOptions.britishPorts();
-      _.find(britishPorts, { value: 'DOV' }).value.should.equal('DOV');
-      should.equal(undefined, _.find(britishPorts, { value: 'JCT' }));
+      _.find(britishPorts, { value: 'DOV_DOVER' }).value.should.equal('DOV_DOVER');
+      should.equal(undefined, _.find(britishPorts, { value: 'JCT_Calais Passenger' }));
     });
   });
 
@@ -202,8 +202,8 @@ describe('lib/typeahead-options', function() {
 
     it('returns non-British ports only', function() {
       const nonBritishPorts = typeaheadOptions.nonBritishPorts();
-      _.find(nonBritishPorts, { value: 'JCT' }).value.should.equal('JCT');
-      should.equal(undefined, _.find(nonBritishPorts, { value: 'DOV' }));
+      _.find(nonBritishPorts, { value: 'JCT_Calais Passenger' }).value.should.equal('JCT_Calais Passenger');
+      should.equal(undefined, _.find(nonBritishPorts, { value: 'DOV_DOVER' }));
     });
   });
 
@@ -233,26 +233,6 @@ describe('lib/typeahead-options', function() {
     it('returns an array of all stations', function() {
       typeaheadOptions.allCountries.should.be.an.array;
       typeaheadOptions.allCountries.should.be.lengthOf(212);
-    });
-  });
-
-  describe('#getTypeaheadValue', function() {
-    it('returns null if value is null', function() {
-      const value = typeaheadOptions.getTypeaheadValue(null, typeaheadOptions.allCountries);
-      should.equal(value, null);
-    });
-
-    it('returns null if value is empty', function() {
-      const value = typeaheadOptions.getTypeaheadValue('', typeaheadOptions.allCountries);
-      should.equal(value, null);
-    });
-
-    it('returns value from typeahead data if it exists', function() {
-      typeaheadOptions.getTypeaheadValue('USA', typeaheadOptions.allCountries).should.equal('United States of America');
-    });
-
-    it('returns value passed in if it does not exist in the typeahead', function() {
-      typeaheadOptions.getTypeaheadValue('Totally made up country', typeaheadOptions.allCountries).should.equal('Totally made up country');
     });
   });
 
