@@ -103,7 +103,7 @@ describe('lib/flight-lookup', function() {
                 departureTimePlaneHour: '14',
                 departureTimePlaneMinutes: '35',
                 departureTimezone: 'Asia/Dubai',
-                arrivalAirport: 'London - Gatwick',
+                arrivalAirport: 'London Gatwick Airport',
                 portOfArrivalPlaneCode: 'LGW',
                 arrivalTimezone: 'Europe/London',
                 arrivalDateRaw: '2016-08-09',
@@ -114,7 +114,7 @@ describe('lib/flight-lookup', function() {
                 arrivalTime: '18:25',
                 arrivalTimePlaneHour: '18',
                 arrivalTimePlaneMinutes: '25',
-                departureAirport: 'Dubai',
+                departureAirport: 'Dubai Airport',
                 inwardDeparturePortPlaneCode: 'DXB',
                 inwardDepartureCountryPlane: 'United Arab Emirates',
                 inwardDepartureCountryPlaneCode: 'ARE'
@@ -160,12 +160,19 @@ describe('lib/flight-lookup', function() {
                     key: 'code',
                     val: 'KWI'
                 };
+                /*
+                 {
+                 "code": "KWI",
+                 "name": "Kuwait International Airport",
+                 "countryCode": "KWT",
+                 "timezone": "Asia/Kuwait"
+                 },
+                 */
                 flightLookup.search(airports, pair).should.deep.equal({
-                    type: 'plane',
-                    country: 'Kuwait',
-                    'country-code': 'KWT',
                     code: 'KWI',
-                    name: 'Kuwait - Kuwait Intl'
+                    name: 'Kuwait International Airport',
+                    countryCode: 'KWT',
+                    timezone: 'Asia/Kuwait'
                 });
             });
 
@@ -194,7 +201,7 @@ describe('lib/flight-lookup', function() {
     describe('#airport', function() {
         describe('when searching the airports data file', function() {
             it('returns an airport object if the airport is found', function() {
-                flightLookup.airport('DXB').should.equal('Dubai');
+                flightLookup.airport('DXB').should.equal('Dubai Airport');
             });
 
             it("returns false if the airport isn't found", function() {

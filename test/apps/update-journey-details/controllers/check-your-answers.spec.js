@@ -43,7 +43,7 @@ describe('apps/update-journey-details/controllers/check-your-answers', function(
       controller.locals(req, res).should.deep.equal({
         knowDepartureDetailsYes: true,
         knowDepartureDetailsNo: false,
-        ukPortOfDepartureDisplay: 'London - Gatwick'
+        ukPortOfDepartureDisplay: 'London Gatwick Airport'
       });
     });
 
