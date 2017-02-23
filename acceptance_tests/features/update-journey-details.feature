@@ -28,7 +28,7 @@ Scenario: Entering new flight details and correct flight found
   And the "Departure airport" should contain "Dubai"
   And the "Departure date" should contain a date "2 months" in the future
   And the "Departure time" should contain "14:35"
-  And the "Arrival airport" should contain "London - Gatwick"
+  And the "Arrival airport" should contain "London Gatwick Airport"
   And the "Arrival date" should contain a date "2 months" in the future
   And the "Arrival time" should contain "18:25"
   And I click "Yes"
@@ -51,7 +51,7 @@ Scenario: Entering new flight details and correct flight found
     Departure country
                       United Arab Emirates
     Departure airport
-                      Dubai
+                      Dubai Airport
     Departure date
                       ${"2 months" in the "future"}
     Departure time
@@ -59,7 +59,7 @@ Scenario: Entering new flight details and correct flight found
     Flight number
                       KU101
     Arrival airport
-                      London - Gatwick
+                      London Gatwick Airport
     Arrival date
                       ${"2 months" in the "future"}
     Arrival time
@@ -109,14 +109,14 @@ Scenario: Entering new flight details and correct flight found
     And I select "Yes" for "Know departure details"
     And I enter "FL1001" into "UK departure travel number"
     And I enter a date "3 months" in the future into "UK date of departure"
-    And I enter "London - Gatwick" into "UK port of departure_typeahead"
+    And I enter "London Gatwick Airport" into "UK port of departure_typeahead"
     And I continue
     # Check your answers page
     Then the page title should contain "Check your answers"
     And the "outbound-summary" table should contain
     """
     Departure airport
-                      London - Gatwick
+                      London Gatwick Airport
     Departure date
                       ${"3 months" in the "future"}
     Flight number
