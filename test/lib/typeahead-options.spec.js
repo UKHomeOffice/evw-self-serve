@@ -12,7 +12,6 @@ describe('lib/typeahead-options', function() {
 
     it('prepends blank entry', function() {
       const britishAirports = typeaheadOptions.britishAirports();
-      britishAirports.should.have.lengthOf(35);
       typeaheadOptions.britishAirports().shift().should.deep.equal({
         label: '',
         value: ''
@@ -21,7 +20,6 @@ describe('lib/typeahead-options', function() {
 
     it('does not prepend blank entry', function() {
       const britishAirports = typeaheadOptions.britishAirports({ prependEmpty: false });
-      britishAirports.should.have.lengthOf(34);
       britishAirports.shift().should.not.deep.equal({
         label: '',
         value: ''
@@ -42,7 +40,6 @@ describe('lib/typeahead-options', function() {
 
     it('prepends blank entry', function() {
       const nonBritishAirports = typeaheadOptions.nonBritishAirports();
-      nonBritishAirports.should.have.lengthOf(1651);
       nonBritishAirports.shift().should.deep.equal({
         label: '',
         value: ''
@@ -51,7 +48,6 @@ describe('lib/typeahead-options', function() {
 
     it('does not prepend blank entry', function() {
       const nonBritishAirports = typeaheadOptions.nonBritishAirports({ prependEmpty: false });
-      nonBritishAirports.should.have.lengthOf(1650);
       nonBritishAirports.shift().should.not.deep.equal({
         label: '',
         value: ''
@@ -173,7 +169,7 @@ describe('lib/typeahead-options', function() {
       });
     });
 
-    it('returns British airports only', function() {
+    it('returns British ports only', function() {
       const britishPorts = typeaheadOptions.britishPorts();
       _.find(britishPorts, { value: 'DOV' }).value.should.equal('DOV');
       should.equal(undefined, _.find(britishPorts, { value: 'JCT' }));
@@ -204,7 +200,7 @@ describe('lib/typeahead-options', function() {
       });
     });
 
-    it('returns non-British airports only', function() {
+    it('returns non-British ports only', function() {
       const nonBritishPorts = typeaheadOptions.nonBritishPorts();
       _.find(nonBritishPorts, { value: 'JCT' }).value.should.equal('JCT');
       should.equal(undefined, _.find(nonBritishPorts, { value: 'DOV' }));
@@ -214,7 +210,8 @@ describe('lib/typeahead-options', function() {
   describe('allAirports', function() {
     it('returns an array of all airports', function() {
       typeaheadOptions.allAirports.should.be.an.array;
-      typeaheadOptions.allAirports.should.be.lengthOf(1684);
+      _.find(typeaheadOptions.allAirports, { code: 'LGW' }).name.should.equal('London Gatwick Airport');
+      _.find(typeaheadOptions.allAirports, { code: 'LAX' }).name.should.equal('Los Angeles International Airport');
     });
   });
 
