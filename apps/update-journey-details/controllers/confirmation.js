@@ -9,12 +9,11 @@ const logger = require('../../../lib/logger');
 const Validator = require('jsonschema').Validator;
 const v = new Validator();
 const schema = require('evw-schemas').evw.updateJourney.schema;
-const getTypeaheadValue = require('../../../lib/typeahead-options').getTypeaheadValue;
-const allAirportsPortsStations = require('../../../lib/typeahead-options').all;
 
 const propMap = (model) => {
   const f = model.flightDetails;
   const departureDateTime = moment.utc(`${f.departureDateRaw} ${f.departureTime}`);
+  const getOptionValue = value => typeof value === 'string' ? value.substr(value.indexOf('_') + 1) : '';
 
   const getReturnJourneyDetails = () => {
     let returnJourneyProps = {
@@ -34,7 +33,7 @@ const propMap = (model) => {
     if (model['know-departure-details'] === 'Yes') {
       Object.assign(returnJourneyProps, {
         departureTravel: model['uk-departure-travel-number'],
-        portOfDeparture: getTypeaheadValue(model['uk-port-of-departure'], allAirportsPortsStations),
+        portOfDeparture: getOptionValue(model['uk-port-of-departure']),
         departureDate: model['uk-date-of-departure']
       });
     }

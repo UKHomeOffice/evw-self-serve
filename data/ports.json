@@ -115,7 +115,7 @@
   { "code": "RMG", "countryCode": "GBR", "name": "RAMSGATE" ,"type":"boat" },
   { "code": "ROC", "countryCode": "GBR", "name": "Reading" ,"type":"boat" },
   { "code": "MOS", "countryCode": "GBR", "name": "Rhyl" ,"type":"boat" },
-  { "code": "MED ", "countryCode": "GBR", "name": "Ridham Dock" ,"type":"boat" },
+  { "code": "MED", "countryCode": "GBR", "name": "Ridham Dock" ,"type":"boat" },
   { "code": "MED", "countryCode": "GBR", "name": "Rochester" ,"type":"boat" },
   { "code": "LON", "countryCode": "GBR", "name": "Rochford" ,"type":"boat" },
   { "code": "COL", "countryCode": "GBR", "name": "Rowhedge" ,"type":"boat" },
