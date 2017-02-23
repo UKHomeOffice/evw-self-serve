@@ -49,16 +49,16 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
         'departureForUKTime' : '14:35',
         'flightDetailsCheck': 'Yes',
         'dateCreated': moment().format('YYYY-MM-DD hh:mm:ss'),
-        'portOfArrival' : 'London - Gatwick',
+        'portOfArrival' : 'London Gatwick Airport',
         'portOfArrivalCode' : 'LGW',
         'inwardDepartureCountry': 'ARE',
-        'inwardDeparturePort': 'Dubai',
+        'inwardDeparturePort': 'Dubai Airport',
         'inwardDeparturePortCode': 'DXB',
         'haveDepartureFromUkDetailsChanged': 'Yes',
         'knowDepartureDetails': 'Yes',
         'departureDate': '2017-01-30',
         'departureTravel': 'FL1001',
-        'portOfDeparture': 'London - Gatwick'
+        'portOfDeparture': 'London Gatwick Airport'
       });
     });
 
@@ -74,10 +74,10 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
         'departureForUKTime' : '14:35',
         'flightDetailsCheck': 'Yes',
         'dateCreated': moment().format('YYYY-MM-DD hh:mm:ss'),
-        'portOfArrival' : 'London - Gatwick',
+        'portOfArrival' : 'London Gatwick Airport',
         'portOfArrivalCode' : 'LGW',
         'inwardDepartureCountry': 'ARE',
-        'inwardDeparturePort': 'Dubai',
+        'inwardDeparturePort': 'Dubai Airport',
         'inwardDeparturePortCode': 'DXB',
         'haveDepartureFromUkDetailsChanged': 'Yes',
         'knowDepartureDetails': 'No',
@@ -97,10 +97,10 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
         'departureForUKTime' : '14:35',
         'flightDetailsCheck': 'Yes',
         'dateCreated': moment().format('YYYY-MM-DD hh:mm:ss'),
-        'portOfArrival' : 'London - Gatwick',
+        'portOfArrival' : 'London Gatwick Airport',
         'portOfArrivalCode' : 'LGW',
         'inwardDepartureCountry': 'ARE',
-        'inwardDeparturePort': 'Dubai',
+        'inwardDeparturePort': 'Dubai Airport',
         'inwardDeparturePortCode': 'DXB',
         'haveDepartureFromUkDetailsChanged': 'No'
       });
