@@ -60,10 +60,10 @@ module.exports = {
     validate: ['required', 'date'],
     validators: [{
       type: beforeDate,
-      arguments: moment().add(48, 'hours').format('YYYY-MM-DD')
+      arguments: () => moment().add(48, 'hours').format('YYYY-MM-DD')
     }, {
       type: afterDate,
-      arguments: moment().add(6, 'months').format('YYYY-MM-DD')
+      arguments: () => moment().add(6, 'months').format('YYYY-MM-DD')
     }],
     dependent: {
       field: 'know-departure-details',
