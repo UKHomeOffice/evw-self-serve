@@ -113,6 +113,8 @@ describe('apps/common/controllers/evw-base', function() {
     let key = 'lifetime-expiry';
     let validatorTypeStub = sinon.stub();
     let secondValidator = sinon.stub();
+    let validatorWithFunction = sinon.stub();
+    let stubValidatorFunction = sinon.stub().returns(2);
     let seshStub = sinon.stub();
     let req = {
       sessionModel: seshStub,
@@ -123,6 +125,9 @@ describe('apps/common/controllers/evw-base', function() {
             arguments: 100
           }, {
             type: secondValidator
+          }, {
+            type: validatorWithFunction,
+            arguments: stubValidatorFunction
           }]
         }
       },
@@ -134,6 +139,7 @@ describe('apps/common/controllers/evw-base', function() {
     };
 
     beforeEach(function() {
+      stubValidatorFunction.reset();
       BaseController.prototype.validateField = sinon.stub();
     });
 
@@ -150,6 +156,12 @@ describe('apps/common/controllers/evw-base', function() {
       it('calls custom validator', function () {
         controller.validateField(key, req);
         validatorTypeStub.should.have.been.calledWith(88, 100);
+      });
+
+      it('calls custom validator with function', function() {
+        controller.validateField(key, req);
+        stubValidatorFunction.should.have.been.calledOnce;
+        validatorWithFunction.should.have.been.calledWith(88, 2);
       });
 
       describe('☑️ valid field ☑️', function () {
