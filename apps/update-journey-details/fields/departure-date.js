@@ -9,10 +9,10 @@ module.exports = {
     validate: ['required', 'date'],
     validators: [{
       type: beforeDate,
-      arguments: moment().add(48, 'hours').format('YYYY-MM-DD')
+      arguments: () => moment().add(48, 'hours').format('YYYY-MM-DD')
     }, {
       type: afterDate,
-      arguments: moment().add(3, 'months').format('YYYY-MM-DD')
+      arguments: () => moment().add(3, 'months').format('YYYY-MM-DD')
     }]
   },
   'departure-date-day': {

@@ -38,7 +38,7 @@ module.exports = class EvwBaseController extends BaseController {
       let value = req.form.values[key];
       req.fields[key].validators.forEach((validator) => {
         validator.formValues = Object.assign({}, req.sessionModel.attributes, req.form.values);
-        if (validator.type(value, validator.arguments)) {
+        if (validator.type(value, typeof validator.arguments === 'function' ? validator.arguments() : validator.arguments)) {
           error = new ErrorController(key, {
             type: validator.type.name
           });
