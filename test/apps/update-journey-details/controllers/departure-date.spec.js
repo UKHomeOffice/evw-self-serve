@@ -54,7 +54,7 @@ describe('apps/update-journey-details/controllers/departure-date', function() {
       mapFlight: sinon.stub().returns('mapped flight details')
     };
     DepartureDateController = proxyquire('../../../../apps/update-journey-details/controllers/departure-date', {
-      '../../../lib/flight-lookup': flightLookupMock
+      'evw-ffs': flightLookupMock
     });
     controller = new DepartureDateController({template: 'departure-date'});
   });
