@@ -23,14 +23,6 @@ module.exports = {
   mongo: {
     connectionString: process.env.MONGO_CONNECTION_STRING || 'mongodb://localhost:27017/evw-self-serve'
   },
-  flightService: {
-    url: process.env.FLIGHT_SERVICE_URL || 'http://localhost:9350',
-    timeout: 5000,
-    check: {
-        method: 'GET',
-        endpoint: 'check-flight'
-    }
-  },
   integrationService: {
     url: process.env.INTEGRATION_SERVICE_URL || 'http://localhost:9300',
     port: process.env.INTEGRATION_SERVICE_PORT || 9300,
