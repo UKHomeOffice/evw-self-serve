@@ -2,7 +2,7 @@
 
 const ErrorClass = require('hof').controllers.error;
 const EvwBaseController = require('../../common/controllers/evw-base');
-const flightLookup = require('../../../lib/flight-lookup');
+const flightLookup = require('evw-ffs');
 const logger = require('../../../lib/logger');
 const validators = require('../../../lib/validators');
 
@@ -13,43 +13,49 @@ module.exports = class DepartureDateController extends EvwBaseController {
   }
 
   lookup(req, res, callback) {
-    let lookupData = flightLookup.formatPost({
+    this.lookupData = flightLookup.formatPost({
       flightNumber: req.sessionModel.get('flight-number'),
       departureDateDay: req.form.values['departure-date-day'],
       departureDateMonth: req.form.values['departure-date-month'],
       departureDateYear: req.form.values['departure-date-year']
     });
 
-    logger.info('looking up flight', lookupData);
+    logger.info('looking up flight using this data:', this.lookupData);
 
-    return flightLookup.findFlight(lookupData.number, lookupData.date)
+    return flightLookup
+      .findFlight(this.lookupData.number, this.lookupData.date)
       .then(foundData => {
-        logger.info('flight service response for', lookupData, foundData.body);
-        const flight = foundData.body.flights[0];
-
-        if (typeof flight !== 'undefined' && flight.departure.country === 'GBR') {
-          logger.info('Rejecting domestic flight', flight);
-          req.sessionModel.set('flightDetails', null);
-          return callback();
-        }
-
-        // Flight found
-        if (typeof flight !== 'undefined') {
-          const mappedFlight = flightLookup.mapFlight(flight, req.sessionModel);
-          req.sessionModel.set('flightDetails', mappedFlight);
-        }  else {
-          req.sessionModel.set('flightDetails', null);
-        }
-
-        // Flight not found, page gets set in steps.js
-        callback();
-      })
-      .catch(error => {
+        this.flightData = foundData.body;
+        this.setFlight(req, res, callback);
+      }).catch(error => {
         // timeout/error etc
-        logger.error('flight lookup error', error);
+        logger.error('flight lookup error');
+        logger.error(error);
         req.sessionModel.set('flightDetails', null);
         callback();
       });
+  }
+
+  setFlight(req, res, callback) {
+    logger.info('flight service response for', this.lookupData, this.flightData);
+    const flight = this.flightData.flights[0] || false;
+    req.sessionModel.set('flightDetails', null);
+
+    if (flight && flight.departure.country === 'GBR') {
+      logger.info('Rejecting domestic flight', flight);
+      req.sessionModel.set('flightDetails', null);
+      return callback();
+    }
+
+    if (flight) {
+      const dataLists = {
+        countries: require('../../../data/nationalities.json'),
+        airports: require('../../../data/airports.json')
+      };
+      const mappedFlight = flightLookup.mapFlight(flight, dataLists);
+      req.sessionModel.set('flightDetails', mappedFlight);
+    }
+    callback();
   }
 
   validateField(key, req) {
