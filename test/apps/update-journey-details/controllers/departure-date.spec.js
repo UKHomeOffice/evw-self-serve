@@ -3,6 +3,7 @@
 const moment = require('moment');
 const proxyquire = require('proxyquire').noCallThru().noPreserveCache();
 const EvwBaseController = require('../../../../apps/common/controllers/evw-base');
+const flightLookup = require('evw-ffs');
 const sampleFlight = {
   flightNumber: 'EK009',
   departure: {
@@ -28,11 +29,19 @@ describe('apps/update-journey-details/controllers/departure-date', function() {
   let req;
   let res;
   let callback;
+  let flightDetails = {
+    arrivalDateRaw: moment().add(5, 'days').format('YYYY-MM-DD'),
+    arrivalTime: '18:25',
+    arrivalTimezone: 'Europe/London',
+    departureDateRaw: moment().add(5, 'days').format('YYYY-MM-DD'),
+    departureTime: '14:35',
+    departureTimezone: 'Asia/Dubai'
+  };
 
   beforeEach(function() {
     req = {
       sessionModel: {
-        get: sinon.stub().returns('FN1001'),
+        get: sinon.stub(),
         set: sinon.spy()
       },
       form: {
@@ -51,12 +60,15 @@ describe('apps/update-journey-details/controllers/departure-date', function() {
         date: moment('2017-01-21')
       }),
       findFlight: sinon.stub(),
-      mapFlight: sinon.stub().returns('mapped flight details')
+      mapFlight: sinon.stub().returns('mapped flight details'),
+      momentDate: flightLookup.momentDate
     };
     DepartureDateController = proxyquire('../../../../apps/update-journey-details/controllers/departure-date', {
       'evw-ffs': flightLookupMock
     });
     controller = new DepartureDateController({template: 'departure-date'});
+    req.sessionModel.get.withArgs('flight-number').returns('FN1001');
+    req.sessionModel.get.withArgs('flightDetails').returns(flightDetails);
   });
 
   describe('#process', function() {
@@ -202,6 +214,40 @@ describe('apps/update-journey-details/controllers/departure-date', function() {
 
       it('calls the callback', function() {
         callback.should.have.been.calledOnce;
+      });
+    });
+  });
+
+  describe('#getTravelDates', function() {
+    it('returns an object', function() {
+      controller.getTravelDates(req).should.be.an.object;
+    });
+
+    it('returns arrival date moment', function() {
+      controller.getTravelDates(req).arrival.should.contain.property('_isAMomentObject', true);
+    });
+
+    it('returns departure date moment', function() {
+      controller.getTravelDates(req).departure.should.contain.property('_isAMomentObject', true);
+    });
+
+    describe('flight service', function() {
+      let dates;
+
+
+      beforeEach(function() {
+        flightDetails.departureDateRaw = '2017-01-21';
+        flightDetails.arrivalDateRaw = '2017-01-21';
+        dates = controller.getTravelDates(req);
+      });
+
+      it('should get the data from the flight details on the session', function() {
+        req.sessionModel.get.should.have.calledWith('flightDetails');
+      });
+
+      it('returns the correct departure and arrival dates', function() {
+        dates.departure.format('DD-MM-YYYY HH:mm').should.equal('21-01-2017 10:35');
+        dates.arrival.format('DD-MM-YYYY HH:mm').should.equal('21-01-2017 18:25');
       });
     });
   });

@@ -58,6 +58,29 @@ module.exports = class DepartureDateController extends EvwBaseController {
     callback();
   }
 
+  getTravelDates(req) {
+    const details = req.sessionModel.get('flightDetails');
+    let arrivalDate = details.arrivalDateRaw;
+    let arrivalTime = details.arrivalTime;
+    let arrivalTimezone = details.arrivalTimezone;
+    let departureDate = details.departureDateRaw;
+    let departureTime = details.departureTime;
+    let departureTimezone = details.departureTimezone;
+
+    return {
+      arrival: flightLookup.momentDate({
+        date: arrivalDate,
+        time: arrivalTime,
+        timezone: arrivalTimezone
+      }).tz('Europe/London'),
+      departure: flightLookup.momentDate({
+        date: departureDate,
+        time: departureTime,
+        timezone: departureTimezone
+      }).tz('Europe/London')
+    };
+  }
+
   validateField(key, req) {
     const defaultValidationErrors = super.validateField(key, req);
     if (defaultValidationErrors) {
@@ -66,25 +89,11 @@ module.exports = class DepartureDateController extends EvwBaseController {
     const timeIsSet = time => time !== '' && time !== 'Invalid date';
     const flightFound = () => req.sessionModel.get('flightDetails');
     if (key === 'departure-date' && timeIsSet(req.form.values['departure-time']) && flightFound()) {
-      const arrivalDate = req.sessionModel.get('flightDetails').arrivalDateRaw;
-      const arrivalTime = req.sessionModel.get('flightDetails').arrivalTime;
-      const arrivalTimezone = req.sessionModel.get('flightDetails').arrivalTimezone;
-      const departureDate = req.sessionModel.get('flightDetails').departureDateRaw;
-      const departureTime = req.sessionModel.get('flightDetails').departureTime;
-      const departureTimezone = req.sessionModel.get('flightDetails').departureTimezone;
-
-      const arrivalDateTime = flightLookup.momentDate({
-        date: arrivalDate,
-        time: arrivalTime,
-        timezone: arrivalTimezone
-      }).tz('Europe/London');
-      const departureDateTime = flightLookup.momentDate({
-        date: departureDate,
-        time: departureTime,
-        timezone: departureTimezone
-      }).tz('Europe/London');
-
-      const errorType = validators.validateDepartureDate(arrivalDateTime, departureDateTime);
+      // get date using timezone local to flight arrival/departure
+      // then convert to Europe/London timezone for comparisons for validation.
+      const travelDates = this.getTravelDates(req);
+      const allowTimeTravel = false;
+      const errorType = validators.validateDepartureDate(travelDates.arrival, travelDates.departure, allowTimeTravel);
       if (errorType) {
         return new ErrorClass(key, {
           key: key,
