@@ -2,7 +2,7 @@
   "name": "EVW-Self-Serve",
   "version": "1.0.0",
   "main": "app.js",
-  "description": "A tiny, HOF-based form to allow Electronic Visa Waiver users to update their travel details.",
+  "description": "A tiny, HOF-based form to allow Electronic visa waiver users to update their travel details.",
   "license": "GPLv2",
   "repository": {
     "type": "git",

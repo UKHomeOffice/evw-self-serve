@@ -4,7 +4,7 @@
 
 # EVW Self serve
 
-A tiny, HOF-based form to allow Electronic Visa Waiver users to update their travel details.
+A tiny, HOF-based form to allow Electronic visa waiver users to update their travel details.
 
 ### Prerequisities
 
