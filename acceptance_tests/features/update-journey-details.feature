@@ -27,10 +27,10 @@ Scenario: Entering new flight details and correct flight found
   And the "Flight number" should contain "KU101"
   And the "Departure airport" should contain "Dubai"
   And the "Departure date" should contain a date "2 months" in the future
-  And the "Departure time" should contain "14:55"
+  And the "Departure time" should contain "14:35"
   And the "Arrival airport" should contain "London Gatwick Airport"
   And the "Arrival date" should contain a date "2 months" in the future
-  And the "Arrival time" should contain "19:45"
+  And the "Arrival time" should contain "18:25"
   And I click "Yes"
   And I continue
   # Return travel
@@ -55,7 +55,7 @@ Scenario: Entering new flight details and correct flight found
     Departure date
                       ${"2 months" in the "future"}
     Departure time
-                      14:55
+                      14:35
     Flight number
                       KU101
     Arrival airport
@@ -63,7 +63,7 @@ Scenario: Entering new flight details and correct flight found
     Arrival date
                       ${"2 months" in the "future"}
     Arrival time
-                      19:45
+                      18:25
     Length of stay
                       1 to 3 months
     """
