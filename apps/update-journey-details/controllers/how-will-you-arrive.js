@@ -28,7 +28,7 @@ const checkValidated = (req, res, callback) => {
 
 const validateApp = (req, res, callback) => {
   let evwNumber = req.query.evwNumber;
-  let token = req.query.token;
+  let token = req.query.token.replace('?hof-cookie-check', '');
 
   if(!evwNumber || !token) {
     return fourOhfourIt(res);
