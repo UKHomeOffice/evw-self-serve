@@ -11,17 +11,19 @@ A tiny, HOF-based form to allow Electronic visa waiver users to update their tra
 What things you need to install the software and how to install them
 - [NodeJS](https://nodejs.org/en/)
 - npm (bundled with node)
-- [Redis server](http://redis.io/topics/quickstart) running on the default port
+- [MongoDB](https://www.mongodb.com) running on the default port
 
-### Installing
+### Installing and running the app
 
 ```bash
-$ redis-server &
+$ mongod
 $ npm install
-$ npm run dev
+$ npm run dev:mock
 ```
 
-Go to http://localhost:8080/update-journey-details
+Go to http://localhost:8080/find-your-application
+
+When you’re asked to check your e-mail, go to http://localhost:8080/update-journey-details/how-will-you-arrive?evwNumber=VALID
 
 ## Running the tests
 You will need the server running to run the cucumber tests against.
