@@ -80,6 +80,7 @@
     "chromedriver": "^2.24.1",
     "colour": "^0.7.1",
     "cucumber": "^1.0.0",
+    "cypress": "^3.1.0",
     "debug": "^2.2.0",
     "dyson": "^0.10.0",
     "eslint": "^2.11.1",
