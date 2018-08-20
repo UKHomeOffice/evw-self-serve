@@ -39,5 +39,13 @@ module.exports = {
       method: 'POST',
       endpoint: 'update/journey-details'
     }
+  },
+  cypress: {
+    caseworkerBase: process.env.EVW_CASEWORKER_BASE || 'https://dev-evwcase.notprod.homeoffice.gov.uk/caseworker',
+    customerBase: process.env.EVW_CUSTOMER_BASE || 'https://dev-evw.notprod.homeoffice.gov.uk',
+    caseworker: {
+      'username': 'smoke',
+      'password': 'whysoserious'
+    }
   }
 };
