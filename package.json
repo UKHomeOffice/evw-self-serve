@@ -25,6 +25,8 @@
     "watch:scss": "nodemon -e scss -x 'npm run sass'",
     "watch:js": "nodemon --watch assets/js -x 'npm run browserify'",
     "watch:translations": "nodemon --watch apps/update-journey-details/translations/src -x 'npm run hof-transpile'",
+    "cypress:open": "cypress open",
+    "cypress": "cypress run",
     "test": "NODE_ENV=test node_modules/.bin/mocha",
     "test:acceptance": "node_modules/.bin/nightwatch -e default --skiptags update_journey_smoke",
     "test:ci": "npm run lint && npm run test",
