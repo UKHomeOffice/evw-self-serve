@@ -3,3 +3,4 @@ acceptance_tests
 public
 apps/**/translations/**/default.json
 test
+cypress

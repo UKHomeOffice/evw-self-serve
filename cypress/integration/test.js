@@ -1,5 +1,3 @@
-const _ = require('lodash');
-
 let store = {};
 
 const config = require('../../config');
@@ -8,7 +6,7 @@ const caseworkerBase = config.cypress.caseworkerBase;
 const caseworker = config.cypress.caseworker;
 let applicant;
 
-describe('Initial happy path', () => {
+describe('End to end smoke test including caseworker & self-serve', () => {
     beforeEach( () => {
         cy.fixture('applicant_details').then( (result) => {
             store.applicant = result.applicants['smoke'];
