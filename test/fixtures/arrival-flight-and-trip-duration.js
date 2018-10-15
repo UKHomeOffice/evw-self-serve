@@ -50,12 +50,7 @@ module.exports = {
   'departure-date-month': '10',
   'departure-date-year': '2016',
   'departure-date-formatted': '10/10/2016',
-  'accept-declaration': 'true',
-  'know-departure-details': 'Yes',
-  'uk-date-of-departure': '2017-01-30',
-  'uk-date-of-departure-day': '30',
-  'uk-date-of-departure-month': '01',
-  'uk-date-of-departure-year': '2017',
-  'uk-departure-travel-number': 'FL1001',
-  'uk-port-of-departure': 'LGW_London Gatwick Airport'
+  'know-departure-details': 'No',
+  'uk-duration': '1 to 3 months',
+  'accept-declaration': 'true'
 };

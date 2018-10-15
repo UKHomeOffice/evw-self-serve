@@ -23,12 +23,12 @@ module.exports = function () {
     });
 
     this.Given(/^I start the Update journey details app$/, function () {
-        this.url(`${base}/update-journey-details/how-will-you-arrive?evwNumber=EVW123&token=TOKEN123`)
+        this.url(`${base}/update-journey-details/select-details?evwNumber=EVW123&token=TOKEN123`)
         .waitForElementVisible('body', 1000);
     });
 
     this.Given(/^I start the Update journey details app with an invalid token$/, function () {
-        this.url(`${base}/update-journey-details/how-will-you-arrive?evwNumber=EVW123&token=invalid`)
+        this.url(`${base}/update-journey-details/select-details?evwNumber=EVW123&token=invalid`)
         .waitForElementVisible('body', 1000);
     });
 

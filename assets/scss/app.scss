@@ -82,6 +82,16 @@ h1 {
   margin-bottom: 15px;
 }
 
+.block-label-hidden-text {
+  padding-left: 18px;
+  padding-right: 18px;
+
+  input {
+    position: static;
+  }
+}
+
+
 // GOVUK Elements `.form-date` overrides
 .form-date {
   border-left: none;
@@ -122,6 +132,40 @@ h1 {
     }
   }
 
+  th[scope="rowgroup"] {
+    padding-right: 0;
+
+    .heading-medium.with-button {
+      display: block;
+      position: relative;
+      padding-right: 3em;
+
+      // Add a top border, near the top of the vertical space that would normally be all margin
+      margin-top: em(5, 20);
+      border-top: solid 1px $grey-2;
+      padding-top: em(20, 20);
+
+      @include media(tablet) {
+        margin-top: em(10, 24);
+        padding-top: em(35, 24);
+        padding-right: 4em;
+      }
+
+      a {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        font-size: .8em;
+        line-height: 1.5625;
+        font-weight: normal;
+      }
+    }
+  }
+
+  th[scope="row"] {
+    @include core-19;
+  }
+
   .button {
     margin: 0;
     background: #dde0e1;
@@ -158,4 +202,29 @@ table td {
 
 #accept-declaration-group {
   margin: 0 0 5px;
+}
+
+.select-details {
+  legend {
+    text-align:right;
+  }
+
+  .column-two-thirds {
+    @media (max-width: 769px - 1px){// In later versions of GOV.UK Frontend Toolkit, this is $desktop-breakpoint
+      float: left;
+      width: 100%;
+      box-sizing: border-box;
+      padding-right: 80px;
+    }
+  }
+
+  .form-group {
+    float: right;
+    width: auto;
+
+    @media (max-width: 769px - 1px){// In later versions of GOV.UK Frontend Toolkit, this is $desktop-breakpoint
+      margin-left: -80px;
+      margin-top: 0;
+    }
+  }
 }

@@ -1,19 +1,40 @@
 'use strict';
 
-let features = require('characteristic')(__dirname + '/../../config/features.yml');
-
 module.exports = {
+  '/select-details': {
+    template: 'select-details',
+    controller: require('./controllers/select-details'),
+    fields: [
+      'select-details',
+      'update-to-uk',
+      'update-from-uk'
+    ],
+    forks: [{
+      target: '/uk-departure',
+      condition: {
+        field: 'update-from-uk',
+        value: 'true'
+      }
+    },
+    {
+      target: '/how-will-you-arrive',
+      condition: {
+        field: 'update-to-uk',
+        value: 'true'
+      }
+    }]
+  },
   '/how-will-you-arrive': {
     template: 'how-will-you-arrive',
-    controller: require('./controllers/how-will-you-arrive'),
     fields: [
       'transport-options'
     ],
     next: '/email-us',
     forks: [{
       target: '/flight-number',
-      condition: (req) => {
-        return features.isEnabled('update_details') && req.form.values['transport-options'] === 'by-plane';
+      condition: {
+        field: 'transport-options',
+        value: 'by-plane'
       }
     }]
   },
@@ -55,27 +76,18 @@ module.exports = {
     fields: [
       'is-this-your-flight'
     ],
-    next: '/return-travel',
+    next: '/check-your-answers',
     forks: [{
+      target: '/uk-departure',
+      condition: function (req) {
+        return req.sessionModel.get('update-from-uk');
+      }
+    },
+    {
       target: '/flight-not-found',
       condition: {
         field: 'is-this-your-flight',
         value: 'no'
-      }
-    }]
-  },
-  '/return-travel': {
-    template: 'return-travel',
-    controller: require('../common/controllers/evw-base'),
-    fields: [
-      'travel-details-changed'
-    ],
-    next: '/check-your-answers',
-    forks: [{
-      target: '/uk-departure',
-      condition: {
-        field: 'travel-details-changed',
-        value: 'Yes'
       }
     }]
   },

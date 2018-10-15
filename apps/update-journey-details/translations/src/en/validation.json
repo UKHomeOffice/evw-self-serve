@@ -1,7 +1,9 @@
 {
+  "select-details": {
+    "none-selected": "Choose the details you want to update"
+  },
   "transport-options": {
-    "required": "Tell us how you will arrive",
-    "equal": "Please select an option from the list"
+    "required": "Tell us how you will arrive"
   },
   "flight-number": {
     "required": "Enter the number of the flight you will be arriving in the UK on, for example EK009, QR003 or KU101",
@@ -9,24 +11,20 @@
     "regex": "Enter a valid flight number, for example EK009, QR003 or KU101"
   },
   "is-this-your-flight": {
-    "required": "Select an option",
-    "equal": "Please select an option from the list"
+    "required": "Select an option"
   },
   "accept-declaration": {
     "required": "You must agree to the declaration to continue"
   },
   "departure-date": {
     "required": "Enter the date you will depart for the UK",
-    "date": "Enter a valid date",
+    "date": "Enter a real date",
     "afterDate": "Date of travel in the UK must be no more than 3 months from now",
     "beforeDate": "Date of travel must be at least 48 hours from now",
     "travel-too-soon": "Date of travel must be at least 48 hours from now",
     "depart-after-arrive": "Your departure cannot be after your arrival",
     "depart-24-hours-before-arrive": "The date your flight to the UK takes off cannot be more than 24 hours before it arrives in the UK"
 
-  },
-  "travel-details-changed": {
-    "required": "Select one option"
   },
   "know-departure-details": {
     "required": "Select one option"

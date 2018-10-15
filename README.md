@@ -23,7 +23,7 @@ $ npm run dev:mock
 
 Go to http://localhost:8080/find-your-application
 
-When you’re asked to check your e-mail, go to http://localhost:8080/update-journey-details/how-will-you-arrive?evwNumber=valid&token=token
+When you’re asked to check your e-mail, go to http://localhost:8080/update-journey-details/select-details?evwNumber=valid&token=token
 
 ## Running the tests
 You will need the server running to run the cucumber tests against.

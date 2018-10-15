@@ -7,7 +7,7 @@ const translations = require('../translations/en/default.json');
 const list = translations.pages['email-us'].list;
 
 const EmailUsController = function EmailUsController() {
-  BaseController.apply(this, arguments);
+   BaseController.apply(this, arguments);
 };
 
 util.inherits(EmailUsController, BaseController);

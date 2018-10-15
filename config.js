@@ -37,7 +37,11 @@ module.exports = {
     },
     update: {
       method: 'POST',
-      endpoint: 'update/journey-details'
+      endpoint: 'self-serve/update'
+    },
+    evwDetails: {
+      method: 'GET',
+      endpoint: 'self-serve/get'
     }
   },
   cypress: {

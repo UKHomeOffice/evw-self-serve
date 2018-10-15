@@ -6,10 +6,13 @@ Scenario: Invalid token
   Given I start the Update journey details app with an invalid token
   Then the page body should contain "The page or item you were looking for has not been found"
 
-Scenario: Entering new flight details and correct flight found
+Scenario: Entering new inbound flight details (correct flight found) only
 
   Given I start the Update journey details app
-  Then the page title should contain "Your new journey to the UK"
+  Then the page title should contain "Your electronic visa waiver"
+  When I click exact id "update-to-uk"
+  And I continue
+  Then I should be on the "How will you arrive" page of the "Update journey details" app
   When I click "By plane"
   And I continue
   Then I should be on the "Flight number" page of the "Update journey details" app
@@ -33,10 +36,231 @@ Scenario: Entering new flight details and correct flight found
   And the "Arrival time" should contain "18:25"
   And I click "Yes"
   And I continue
-  # Return travel
-  Then I should be on the "Return travel" page of the "Update journey details" app
-  And the page title should contain "Have your travel details for your departure from the UK changed?"
-  And I select "Yes" for "Travel details changed"
+  # Check your answers page
+  Then the page title should contain "Check your answers"
+  And the "inbound-summary" table should contain
+    """
+    Departure country
+                      United Arab Emirates
+    Departure airport
+                      Dubai Airport
+    Departure date
+                      ${"2 months" in the "future"}
+    Departure time
+                      14:35
+    Flight number
+                      KU101
+    Arrival airport
+                      London Gatwick Airport
+    Arrival date
+                      ${"2 months" in the "future"}
+    Arrival time
+                      18:25
+    """
+  And I continue
+  # Declaration page
+  Then I should be on the "Declaration" page of the "Update journey details" app
+  And the page title should contain "Declaration"
+  And the content list should contain
+    """
+    The new information I have entered is correct to the best of my knowledge and belief.
+    On changing my flight details my old electronic visa waiver document will be invalid and I will not use it to travel to the UK; if I do so I may be denied boarding or be refused entry at the UK border.
+    If I have completed this for someone else I have their full agreement.
+    """
+  When I click id "Accept Declaration"
+  And I continue
+  Then I should be on the "Confirmation" page of the "Update journey details" app
+  And the "header notice complete" should contain "Request received"
+  And the reference number should be present
+
+Scenario: Entering new outbound flight details only
+
+  Given I start the Update journey details app
+  When I click exact id "update-from-uk"
+  And I continue
+  # UK departure
+  Then I should be on the "UK departure" page of the "Update journey details" app
+  And I select "Yes" for "Know departure details"
+  And I enter "FL1001" into "UK departure travel number"
+  And I enter a date "3 months" in the future into "UK date of departure"
+  And I enter "London Gatwick Airport" into "UK port of departure_typeahead"
+  And I continue
+  # Check your answers page
+  Then the page title should contain "Check your answers"
+  And the "outbound-summary" table should contain
+  """
+  Departure airport
+                    London Gatwick Airport
+  Departure date
+                    ${"3 months" in the "future"}
+  Flight number
+                    FL1001
+  """
+  And I continue
+  # Declaration page
+  Then I should be on the "Declaration" page of the "Update journey details" app
+  And the page title should contain "Declaration"
+  And the content list should contain
+    """
+    The new information I have entered is correct to the best of my knowledge and belief.
+    On changing my flight details my old electronic visa waiver document will be invalid and I will not use it to travel to the UK; if I do so I may be denied boarding or be refused entry at the UK border.
+    If I have completed this for someone else I have their full agreement.
+    """
+  When I click id "Accept Declaration"
+  And I continue
+  Then I should be on the "Confirmation" page of the "Update journey details" app
+  And the "header notice complete" should contain "Request received"
+  And the reference number should be present
+
+Scenario: Entering new trip duration only
+
+  Given I start the Update journey details app
+  Then the page title should contain "Your electronic visa waiver"
+  And I click exact id "update-from-uk"
+  And I continue
+  Then I should be on the "UK departure" page of the "Update journey details" app
+  And the page title should contain "Do you have your travel details for your departure from the UK?"
+  And I select "No" for "Know departure details"
+  And I select "1 to 3 months" for "UK duration"
+  And I continue
+  # Check your answers page
+  Then the page title should contain "Check your answers"
+  And the "outbound-summary" table should contain
+    """
+    Length of stay
+                      1 to 3 months
+    """
+  And I continue
+  # Declaration page
+  Then I should be on the "Declaration" page of the "Update journey details" app
+  And the page title should contain "Declaration"
+  And the content list should contain
+    """
+    The new information I have entered is correct to the best of my knowledge and belief.
+    On changing my flight details my old electronic visa waiver document will be invalid and I will not use it to travel to the UK; if I do so I may be denied boarding or be refused entry at the UK border.
+    If I have completed this for someone else I have their full agreement.
+    """
+  When I click id "Accept Declaration"
+  And I continue
+  Then I should be on the "Confirmation" page of the "Update journey details" app
+  And the "header notice complete" should contain "Request received"
+  And the reference number should be present
+
+Scenario: Entering new inbound flight details (correct flight found) and outbound flight details
+
+  Given I start the Update journey details app
+  Then the page title should contain "Your electronic visa waiver"
+  When I click exact id "update-to-uk"
+  And I click exact id "update-from-uk"
+  And I continue
+  Then I should be on the "How will you arrive" page of the "Update journey details" app
+  When I click "By plane"
+  And I continue
+  Then I should be on the "Flight number" page of the "Update journey details" app
+  And the page title should contain "Your new flight details"
+  Then I enter "KU101" into "Flight number"
+  And I continue
+  # Departure date page
+  Then I should be on the "Departure date" page of the "Update journey details" app
+  And the page title should contain "Your new flight details"
+  And I enter a date "2 months" in the future into "Departure date"
+  And I continue
+  # Is this your flight page
+  Then I should be on the "Is this your flight" page of the "Update journey details" app
+  And the page title should contain "Is this your flight to the UK?"
+  And the "Flight number" should contain "KU101"
+  And the "Departure airport" should contain "Dubai"
+  And the "Departure date" should contain a date "2 months" in the future
+  And the "Departure time" should contain "14:35"
+  And the "Arrival airport" should contain "London Gatwick Airport"
+  And the "Arrival date" should contain a date "2 months" in the future
+  And the "Arrival time" should contain "18:25"
+  And I click "Yes"
+  And I continue
+  # UK departure
+  Then I should be on the "UK departure" page of the "Update journey details" app
+  And the page title should contain "Do you have your travel details for your departure from the UK?"
+  And I select "Yes" for "Know departure details"
+  And I enter "FL1001" into "UK departure travel number"
+  And I enter a date "3 months" in the future into "UK date of departure"
+  And I enter "London Gatwick Airport" into "UK port of departure_typeahead"
+  And I continue
+  # Check your answers page
+  Then the page title should contain "Check your answers"
+  And the "inbound-summary" table should contain
+    """
+    Departure country
+                      United Arab Emirates
+    Departure airport
+                      Dubai Airport
+    Departure date
+                      ${"2 months" in the "future"}
+    Departure time
+                      14:35
+    Flight number
+                      KU101
+    Arrival airport
+                      London Gatwick Airport
+    Arrival date
+                      ${"2 months" in the "future"}
+    Arrival time
+                      18:25
+    """
+  And the "outbound-summary" table should contain
+  """
+  Departure airport
+                    London Gatwick Airport
+  Departure date
+                    ${"3 months" in the "future"}
+  Flight number
+                    FL1001
+  """
+  And I continue
+  # Declaration page
+  Then I should be on the "Declaration" page of the "Update journey details" app
+  And the page title should contain "Declaration"
+  And the content list should contain
+    """
+    The new information I have entered is correct to the best of my knowledge and belief.
+    On changing my flight details my old electronic visa waiver document will be invalid and I will not use it to travel to the UK; if I do so I may be denied boarding or be refused entry at the UK border.
+    If I have completed this for someone else I have their full agreement.
+    """
+  When I click id "Accept Declaration"
+  And I continue
+  Then I should be on the "Confirmation" page of the "Update journey details" app
+  And the "header notice complete" should contain "Request received"
+  And the reference number should be present
+
+Scenario: Entering new inbound flight details (correct flight found) and trip duration
+
+  Given I start the Update journey details app
+  Then the page title should contain "Your electronic visa waiver"
+  When I click exact id "update-to-uk"
+  And I click exact id "update-from-uk"
+  And I continue
+  Then I should be on the "How will you arrive" page of the "Update journey details" app
+  When I click "By plane"
+  And I continue
+  Then I should be on the "Flight number" page of the "Update journey details" app
+  And the page title should contain "Your new flight details"
+  Then I enter "KU101" into "Flight number"
+  And I continue
+  # Departure date page
+  Then I should be on the "Departure date" page of the "Update journey details" app
+  And the page title should contain "Your new flight details"
+  And I enter a date "2 months" in the future into "Departure date"
+  And I continue
+  # Is this your flight page
+  Then I should be on the "Is this your flight" page of the "Update journey details" app
+  And the page title should contain "Is this your flight to the UK?"
+  And the "Flight number" should contain "KU101"
+  And the "Departure airport" should contain "Dubai"
+  And the "Departure date" should contain a date "2 months" in the future
+  And the "Departure time" should contain "14:35"
+  And the "Arrival airport" should contain "London Gatwick Airport"
+  And the "Arrival date" should contain a date "2 months" in the future
+  And the "Arrival time" should contain "18:25"
+  And I click "Yes"
   And I continue
   # UK departure
   Then I should be on the "UK departure" page of the "Update journey details" app
@@ -64,6 +288,9 @@ Scenario: Entering new flight details and correct flight found
                       ${"2 months" in the "future"}
     Arrival time
                       18:25
+    """
+  And the "outbound-summary" table should contain
+    """
     Length of stay
                       1 to 3 months
     """
@@ -83,50 +310,13 @@ Scenario: Entering new flight details and correct flight found
   And the "header notice complete" should contain "Request received"
   And the reference number should be present
 
-  Scenario: Entering new outbound flight details
-
-    Given I start the Update journey details app
-    When I click "By plane"
-    And I continue
-    Then I should be on the "Flight number" page of the "Update journey details" app
-    And I enter "KU101" into "Flight number"
-    And I continue
-    # Arrival date page
-    Then I should be on the "Departure date" page of the "Update journey details" app
-    And I enter a date "2 months" in the future into "Departure date"
-    And I continue
-    # Is this your flight page
-    Then I should be on the "Is this your flight" page of the "Update journey details" app
-    And I click "Yes"
-    And I continue
-    # Return travel
-    Then I should be on the "Return travel" page of the "Update journey details" app
-    And the page title should contain "Have your travel details for your departure from the UK changed?"
-    And I select "Yes" for "Travel details changed"
-    And I continue
-    # UK departure
-    Then I should be on the "UK departure" page of the "Update journey details" app
-    And I select "Yes" for "Know departure details"
-    And I enter "FL1001" into "UK departure travel number"
-    And I enter a date "3 months" in the future into "UK date of departure"
-    And I enter "London Gatwick Airport" into "UK port of departure_typeahead"
-    And I continue
-    # Check your answers page
-    Then the page title should contain "Check your answers"
-    And the "outbound-summary" table should contain
-    """
-    Departure airport
-                      London Gatwick Airport
-    Departure date
-                      ${"3 months" in the "future"}
-    Flight number
-                      FL1001
-    """
-
-Scenario: Entering new flight details and flight not found
+Scenario: Entering new inbound flight details and flight not found
 
   Given I start the Update journey details app
-  Then the page title should contain "Your new journey to the UK"
+  Then the page title should contain "Your electronic visa waiver"
+  When I click exact id "update-to-uk"
+  And I continue
+  Then I should be on the "How will you arrive" page of the "Update journey details" app
   When I click "By plane"
   And I continue
   Then I should be on the "Flight number" page of the "Update journey details" app
@@ -155,10 +345,13 @@ Scenario: Entering new flight details and flight not found
   And I retry
   Then I should be on the "Flight number" page of the "Update journey details" app
 
-Scenario: Entering new flight details and incorrect flight found
+Scenario: Entering new inbound flight details and incorrect flight found
 
   Given I start the Update journey details app
-  Then the page title should contain "Your new journey to the UK"
+  Then the page title should contain "Your electronic visa waiver"
+  When I click exact id "update-to-uk"
+  And I continue
+  Then I should be on the "How will you arrive" page of the "Update journey details" app
   When I click "By plane"
   And I continue
   Then I should be on the "Flight number" page of the "Update journey details" app
@@ -183,7 +376,12 @@ Scenario: Entering new flight details and incorrect flight found
   Then I should be on the "Flight number" page of the "Update journey details" app
 
 Scenario: Choosing Train
+
   Given I start the Update journey details app
+  Then the page title should contain "Your electronic visa waiver"
+  When I click exact id "update-to-uk"
+  And I continue
+  Then I should be on the "How will you arrive" page of the "Update journey details" app
   When I click "By train"
   And I continue
   Then I should be on the "Email us" page of the "Update journey details" app
@@ -202,6 +400,10 @@ Scenario: Choosing Train
 Scenario: Choosing Private Plane
 
   Given I start the Update journey details app
+  Then the page title should contain "Your electronic visa waiver"
+  When I click exact id "update-to-uk"
+  And I continue
+  Then I should be on the "How will you arrive" page of the "Update journey details" app
   When I click "By private plane"
   And I continue
   Then I should be on the "Email us" page of the "Update journey details" app
@@ -220,6 +422,10 @@ Scenario: Choosing Private Plane
 Scenario: Choosing Boat
 
   Given I start the Update journey details app
+  Then the page title should contain "Your electronic visa waiver"
+  When I click exact id "update-to-uk"
+  And I continue
+  Then I should be on the "How will you arrive" page of the "Update journey details" app
   When I click "By boat"
   And I continue
   Then I should be on the "Email us" page of the "Update journey details" app
@@ -238,6 +444,10 @@ Scenario: Choosing Boat
 Scenario: Choosing Land
 
   Given I start the Update journey details app
+  Then the page title should contain "Your electronic visa waiver"
+  When I click exact id "update-to-uk"
+  And I continue
+  Then I should be on the "How will you arrive" page of the "Update journey details" app
   When I click "By land"
   And I continue
   Then I should be on the "Email us" page of the "Update journey details" app

@@ -48,7 +48,11 @@ Scenario: Entering an EVW number that cannot be updated
 Scenario: Not entering any details on the departure date page
 
   Given I start the Update journey details app
+  # Select details page
+  When I click exact id "update-to-uk"
+  And I continue
   # How will you arrive page
+  Then I should be on the "How will you arrive" page of the "Update journey details" app
   When I click "By plane"
   And I continue
   And I enter "KU101" into "Flight number"
@@ -64,30 +68,14 @@ Scenario: Not entering any details on the departure date page
   And I continue
   Then the validation summary should contain
     """
-    Enter a valid date
+    Enter a real date
     """
 
 Scenario: UK departure page validation
 
   Given I start the Update journey details app
-  # How will you arrive page
-  When I click "By plane"
-  And I continue
-  And I enter "KU101" into "Flight number"
-  And I continue
-  # Departure date page
-  And I enter a date "2 months" in the future into "Departure date"
-  And I continue
-  # Is this your flight page
-  And I click "Yes"
-  And I continue
-  # Return travel
-  And I continue
-  Then the validation summary should contain
-  """
-  Select one option
-  """
-  And I select "Yes" for "Travel details changed"
+  # Select details page
+  When I click exact id "update-from-uk"
   And I continue
   # UK departure
   And I continue

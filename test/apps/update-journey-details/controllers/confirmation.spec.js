@@ -1,7 +1,11 @@
 'use strict';
 
 const moment = require('moment');
-const modelFixture = require('../../../fixtures/update-model');
+const arrivalAndDepartureFlightFixture = require('../../../fixtures/update-model');
+const arrivalFlightAndTripDurationFixture = require('../../../fixtures/arrival-flight-and-trip-duration');
+const arrivalFlightOnlyFixture = require('../../../fixtures/arrival-flight-only');
+const departureFlightOnlyFixture = require('../../../fixtures/departure-flight-only');
+const tripDurationOnlyFixture = require('../../../fixtures/trip-duration-only');
 const proxyquire = require('proxyquire');
 
 describe('apps/update-journey-details/controllers/confirmation', function () {
@@ -10,18 +14,12 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
   let mockRequest;
   let mockJsonSchema;
   let validateStub;
-  let model;
 
   beforeEach(function() {
-    model = Object.assign({}, modelFixture);
     mockRequest = {
       post: sinon.stub().yields(null, null, {
         membershipNumber: '123ABC',
-        currentDetails: {
-          contactDetails: {
-            emailAddress: 'test@example.com'
-          }
-        }
+        emailAddress: 'test@example.com'
       })
     };
     validateStub = sinon.stub().returns({valid: true});
@@ -38,71 +36,115 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
   });
 
   describe('#propMap', function () {
-    it('returns mapped update ready for submission', function () {
-      ConfirmationController.propMap(model).should.deep.equal({
+    it('returns mapped update when arrival flight and departure flight details are supplied', function () {
+      let arrivalAndDepartureFlight = Object.assign({}, arrivalAndDepartureFlightFixture);
+
+      ConfirmationController.propMap(arrivalAndDepartureFlight).should.deep.equal({
         'membershipNumber' : 'ABC1234',
         'token' : 'token123',
-        'arrivalTravel' : 'EK009',
-        'arrivalDate' : '2016-10-10',
-        'arrivalTime' : '19:45',
-        'departureForUKDate' : '2016-10-10',
-        'departureForUKTime' : '14:35',
-        'flightDetailsCheck': 'Yes',
         'dateCreated': moment().format('YYYY-MM-DD hh:mm:ss'),
-        'portOfArrival' : 'London Gatwick Airport',
-        'portOfArrivalCode' : 'LGW',
-        'inwardDepartureCountry': 'ARE',
-        'inwardDeparturePort': 'Dubai Airport',
-        'inwardDeparturePortCode': 'DXB',
-        'haveDepartureFromUkDetailsChanged': 'Yes',
-        'knowDepartureDetails': 'Yes',
-        'departureDate': '2017-01-30',
-        'departureTravel': 'FL1001',
-        'portOfDeparture': 'London Gatwick Airport'
+        'arrival': {
+          'arrivalTravel' : 'EK009',
+          'arrivalDate' : '2016-10-10',
+          'arrivalTime' : '19:45',
+          'departureForUKDate' : '2016-10-10',
+          'departureForUKTime' : '14:35',
+          'portOfArrival' : 'London Gatwick Airport',
+          'portOfArrivalCode' : 'LGW',
+          'inwardDepartureCountry': 'ARE',
+          'inwardDeparturePort': 'Dubai Airport',
+          'inwardDeparturePortCode': 'DXB',
+          'flightDetailsCheck': 'Yes',
+          'travelBy': 'Plane'
+        },
+        'departure': {
+          'knowDepartureDetails': 'Yes',
+          'departureDate': '2017-01-30',
+          'departureTravel': 'FL1001',
+          'portOfDeparture': 'London Gatwick Airport'
+        }
       });
     });
 
-    it('returns mapped update when return journey is changed but is unknown', function() {
-      model['know-departure-details'] = 'No';
-      ConfirmationController.propMap(model).should.deep.equal({
+    it('returns mapped update when arrival flight and trip duration details are supplied', function() {
+      let arrivalFlightAndTripDuration = Object.assign({}, arrivalFlightAndTripDurationFixture);
+
+      ConfirmationController.propMap(arrivalFlightAndTripDuration).should.deep.equal({
         'membershipNumber' : 'ABC1234',
         'token' : 'token123',
-        'arrivalTravel' : 'EK009',
-        'arrivalDate' : '2016-10-10',
-        'arrivalTime' : '19:45',
-        'departureForUKDate' : '2016-10-10',
-        'departureForUKTime' : '14:35',
-        'flightDetailsCheck': 'Yes',
         'dateCreated': moment().format('YYYY-MM-DD hh:mm:ss'),
-        'portOfArrival' : 'London Gatwick Airport',
-        'portOfArrivalCode' : 'LGW',
-        'inwardDepartureCountry': 'ARE',
-        'inwardDeparturePort': 'Dubai Airport',
-        'inwardDeparturePortCode': 'DXB',
-        'haveDepartureFromUkDetailsChanged': 'Yes',
-        'knowDepartureDetails': 'No',
-        'ukDuration': '1 to 3 months'
+        'arrival': {
+          'arrivalTravel' : 'EK009',
+          'arrivalDate' : '2016-10-10',
+          'arrivalTime' : '19:45',
+          'departureForUKDate' : '2016-10-10',
+          'departureForUKTime' : '14:35',
+          'portOfArrival' : 'London Gatwick Airport',
+          'portOfArrivalCode' : 'LGW',
+          'inwardDepartureCountry': 'ARE',
+          'inwardDeparturePort': 'Dubai Airport',
+          'inwardDeparturePortCode': 'DXB',
+          'flightDetailsCheck': 'Yes',
+          'travelBy': 'Plane'
+        },
+        'departure': {
+          'knowDepartureDetails': 'No',
+          'ukDuration': '1 to 3 months'
+        }
       });
     });
 
-    it('returns mapped update when return journey not changed', function() {
-      model['travel-details-changed'] = 'No';
-      ConfirmationController.propMap(model).should.deep.equal({
+    it('returns mapped update when only arrival flight details are supplied', function() {
+      let arrivalFlightOnly = Object.assign({}, arrivalFlightOnlyFixture);
+
+      ConfirmationController.propMap(arrivalFlightOnly).should.deep.equal({
         'membershipNumber' : 'ABC1234',
         'token' : 'token123',
-        'arrivalTravel' : 'EK009',
-        'arrivalDate' : '2016-10-10',
-        'arrivalTime' : '19:45',
-        'departureForUKDate' : '2016-10-10',
-        'departureForUKTime' : '14:35',
-        'flightDetailsCheck': 'Yes',
         'dateCreated': moment().format('YYYY-MM-DD hh:mm:ss'),
-        'portOfArrival' : 'London Gatwick Airport',
-        'portOfArrivalCode' : 'LGW',
-        'inwardDepartureCountry': 'ARE',
-        'inwardDeparturePort': 'Dubai Airport',
-        'inwardDeparturePortCode': 'DXB',
-        'haveDepartureFromUkDetailsChanged': 'No'
+        'arrival': {
+          'arrivalTravel' : 'EK009',
+          'arrivalDate' : '2016-10-10',
+          'arrivalTime' : '19:45',
+          'departureForUKDate' : '2016-10-10',
+          'departureForUKTime' : '14:35',
+          'portOfArrival' : 'London Gatwick Airport',
+          'portOfArrivalCode' : 'LGW',
+          'inwardDepartureCountry': 'ARE',
+          'inwardDeparturePort': 'Dubai Airport',
+          'inwardDeparturePortCode': 'DXB',
+          'flightDetailsCheck': 'Yes',
+          'travelBy': 'Plane'
+        }
+      });
+    });
+
+    it('returns mapped update when only departure flight details are supplied', function() {
+      let departureFlightOnly = Object.assign({}, departureFlightOnlyFixture);
+
+      ConfirmationController.propMap(departureFlightOnly).should.deep.equal({
+        'membershipNumber' : 'ABC1234',
+        'token' : 'token123',
+        'dateCreated': moment().format('YYYY-MM-DD hh:mm:ss'),
+        'departure': {
+          'knowDepartureDetails': 'Yes',
+          'departureDate': '2017-01-30',
+          'departureTravel': 'FL1001',
+          'portOfDeparture': 'London Gatwick Airport',
+        }
+      });
+    });
+
+    it('returns mapped update when only trip duration details are supplied', function() {
+      let tripDurationOnly = Object.assign({}, tripDurationOnlyFixture);
+
+      ConfirmationController.propMap(tripDurationOnly).should.deep.equal({
+        'membershipNumber' : 'ABC1234',
+        'token' : 'token123',
+        'dateCreated': moment().format('YYYY-MM-DD hh:mm:ss'),
+        'departure': {
+          'knowDepartureDetails': 'No',
+          'ukDuration': '1 to 3 months'
+        }
       });
     });
   });
@@ -111,8 +153,10 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
     let req;
     let res;
     let callback;
+    let model;
 
     beforeEach(function() {
+      model = Object.assign({}, arrivalAndDepartureFlightFixture);
       req = {
         sessionModel: {
           attributes: model,

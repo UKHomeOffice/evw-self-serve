@@ -1,4 +1,10 @@
 {
+  "update-to-uk": {
+    "label": "Update arrival flight details"
+  },
+  "update-from-uk": {
+    "label": "Update departure flight details"
+  },
   "transport-options": {
     "legend": "How will you arrive in the UK?",
     "options": {
@@ -6,7 +12,7 @@
         "label": "By plane"
       },
       "by-train": {
-        "label": "By train"
+         "label": "By train"
       },
       "by-private-plane": {
         "label": "By private plane"
@@ -47,16 +53,6 @@
   },
   "accept-declaration": {
     "label": "I understand and agree with the above"
-  },
-  "travel-details-changed": {
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
   },
   "know-departure-details": {
     "options": {
