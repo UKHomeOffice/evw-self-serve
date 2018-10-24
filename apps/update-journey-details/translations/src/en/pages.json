@@ -5,7 +5,7 @@
   },
   "email-us": {
     "header": "Email us with your new travel details",
-    "request": "Please email <a href='mailto:electronicvisawaiver@homeoffice.gsi.gov.uk'>electronicvisawaiver@homeoffice.gsi.gov.uk</a> with the new details for your journey to the UK.",
+    "request": "Please email <a href='mailto:electronicvisawaiver@homeoffice.gov.uk'>electronicvisawaiver@homeoffice.gov.uk</a> with the new details for your journey to the UK.",
     "call-out": "We must receive your request at least 48 hours before your original travel date. Otherwise we won’t be able to change your electronic visa waiver",
     "list": {
       "title": "We need to know:",
@@ -90,7 +90,7 @@
     "request": "This might be because the flight you entered doesn’t land in the UK. For example, if you are flying from Kuwait to Doha, then Doha to London, we just need the number for the Doha to London flight.",
     "contact-by-email": {
       "title": "Tell us about your flight by email",
-      "details": "Email <a href='mailto:electronicvisawaiver@homeoffice.gsi.gov.uk'>electronicvisawaiver@homeoffice.gsi.gov.uk</a> with your new travel details. We need to know:",
+      "details": "Email <a href='mailto:electronicvisawaiver@homeoffice.gov.uk'>electronicvisawaiver@homeoffice.gov.uk</a> with your new travel details. We need to know:",
       "list": {
         "item-1": "your reference number",
         "item-2": "your new flight number (if your journey has any stops or connecting flights we only need details of the flight landing in the UK)",
@@ -124,7 +124,7 @@
     "email-continued": "with details of how to download your new electronic visa waiver.",
     "bring": "You must bring your new electronic visa waiver with you, or you might not be allowed to travel.",
     "print": "You can either print it or save a copy on your mobile phone or tablet.",
-    "wait": "Add electronicvisawaiver@homeoffice.gsi.gov.uk to your safe senders list to make sure you get your download details. Please wait 24 hours before contacting us about your new electronic visa waiver.",
+    "wait": "Add electronicvisawaiver@homeoffice.gov.uk to your safe senders list to make sure you get your download details. Please wait 24 hours before contacting us about your new electronic visa waiver.",
     "finish-button": "Finished"
   }
 }
