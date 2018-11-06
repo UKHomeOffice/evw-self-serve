@@ -25,6 +25,9 @@
       }
     }
   },
+  "update-accommodation": {
+    "label": "Update accommodation details"
+  },
   "flight-number": {
     "label": "New flight number<p class='form-hint'>For example EK009, QR003 or KU101</p><p class='form-hint'>If you have any stops or connecting flights you must enter the number for the final part of your journey to the UK</p>"
   },
@@ -98,5 +101,20 @@
   "uk-port-of-departure": {
     "label": "What airport, train station or port are you leaving the UK from?",
     "hint": "The details will be on your travel documents"
+  },
+  "uk-address-1": {
+    "label": "<span class='visuallyhidden' >1st Line of address</span>"
+  },
+  "uk-address-2": {
+    "label": "<span class='visuallyhidden' >2nd Line of address</span>"
+  },
+  "uk-address-3": {
+    "label": "<span class='visuallyhidden' >3rd Line of address</span>"
+  },
+  "uk-address-4": {
+    "label": "<span class='visuallyhidden' >4th Line of address</span>"
+  },
+  "uk-postcode": {
+    "label": "Postcode"
   }
 }

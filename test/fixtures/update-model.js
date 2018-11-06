@@ -16,6 +16,8 @@ module.exports = {
   ],
   'update-to-uk': 'true',
   'update-from-uk': 'true',
+  'update-accommodation': '',
+  'uk-phone': '447707070707',
   'flight-number': 'EK009',
   flightDetails: {
     flightNumber: 'EK009',

@@ -96,7 +96,9 @@ module.exports = class SelectDetailsController extends EvwBaseController {
                   'evwName': evwDetails['name'],
           'toUKArrivalPort': evwDetails.arrival.portOfArrival.split(',')[0],
       'fromUKDeparturePort': evwDetails.departure.portOfDeparture,
-             'tripDuration': evwDetails.departure.ukDuration
+             'tripDuration': evwDetails.departure.ukDuration,
+            'accommodation': evwDetails.accommodation.ukAddress.join(', '),
+                  'ukPhone': evwDetails.accommodation.ukVisitPhoneNumber
     };
 
     if (evwDetails.arrival.travelBy !== 'Land') {
@@ -111,6 +113,7 @@ module.exports = class SelectDetailsController extends EvwBaseController {
     if (
          req.form.values['update-to-uk']   === ''
       && req.form.values['update-from-uk'] === ''
+      && req.form.values['update-accommodation'] === ''
     ) {
 
       const validationError = new ValidationError(

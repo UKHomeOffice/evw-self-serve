@@ -7,9 +7,18 @@ module.exports = {
     fields: [
       'select-details',
       'update-to-uk',
-      'update-from-uk'
+      'update-from-uk',
+      'update-accommodation',
+      'uk-phone'
     ],
     forks: [{
+      target: '/visit-information',
+      condition: {
+        field: 'update-accommodation',
+        value: 'true'
+      }
+    },
+    {
       target: '/uk-departure',
       condition: {
         field: 'update-from-uk',
@@ -78,6 +87,12 @@ module.exports = {
     ],
     next: '/check-your-answers',
     forks: [{
+      target: '/visit-information',
+      condition: function (req) {
+        return req.sessionModel.get('update-accommodation');
+      }
+    },
+    {
       target: '/uk-departure',
       condition: function (req) {
         return req.sessionModel.get('update-from-uk');
@@ -105,9 +120,27 @@ module.exports = {
       'uk-port-of-departure'
     ],
     next: '/check-your-answers',
+    forks: [{
+      target: '/visit-information',
+      condition: function (req) {
+        return req.sessionModel.get('update-accommodation');
+      }
+    }],
     options: {
       dateKeys: ['uk-date-of-departure']
     }
+  },
+  '/visit-information': {
+    template: 'visit-information',
+    controller: require('../common/controllers/evw-base'),
+    fields: [
+      'uk-address-1',
+      'uk-address-2',
+      'uk-address-3',
+      'uk-address-4',
+      'uk-postcode'
+    ],
+    next: '/check-your-answers'
   },
   '/check-your-answers': {
     template: 'check-your-answers.html',

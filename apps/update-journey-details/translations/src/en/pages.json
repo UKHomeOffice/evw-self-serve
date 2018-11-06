@@ -8,7 +8,8 @@
     "journey-arrow-alt-text": "to",
     "from-uk-header": "From the UK",
     "from-uk-port-prefix": "From",
-    "trip-duration-prefix": "Staying for"
+    "trip-duration-prefix": "Staying for",
+    "accommodation-details-header": "Your accommodation details"
   },
   "how-will-you-arrive": {
     "header": "Your new journey to the UK",
@@ -73,10 +74,17 @@
   "uk-departure": {
     "header": "Do you have your travel details for your departure from the UK?"
   },
+  "visit-information": {
+    "header": "Your stay",
+    "uk-address": {
+      "legend": "What is the address of the first place you will stay in the UK?"
+    }
+  },
   "check-your-answers": {
     "header": "Check your answers",
     "journey-to-uk-title": "Your new travel details to the UK",
     "journey-from-uk-title": "Your new travel details from the UK",
+    "address-title": "Your new accommodation details",
     "table": {
       "departure-country": "Departure country",
       "departure-airport": "Departure airport",

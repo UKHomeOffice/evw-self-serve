@@ -6,14 +6,14 @@ module.exports = {
   errors: null,
   steps: [
     '/select-details',
-    '/how-will-you-arrive',
     '/uk-departure',
+    '/visit-information',
     '/check-your-answers',
     '/declaration'
   ],
   'update-to-uk': '',
   'update-from-uk': 'true',
-  'update-accommodation': '',
+  'update-accommodation': 'true',
   'uk-phone': '447707070707',
   'know-departure-details': 'Yes',
   'uk-date-of-departure': '2017-01-30',
@@ -22,5 +22,10 @@ module.exports = {
   'uk-date-of-departure-year': '2017',
   'uk-departure-travel-number': 'FL1001',
   'uk-port-of-departure': 'LGW_London Gatwick Airport',
+  'uk-address-1': '123 Lane Street',
+  'uk-address-2': 'Avenue Road',
+  'uk-address-3': 'Bromley',
+  'uk-address-4': 'West Surrey',
+  'uk-postcode': 'CR1 9ZQ',
   'accept-declaration': 'true'
 };

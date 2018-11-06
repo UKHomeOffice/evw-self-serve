@@ -6,16 +6,16 @@ module.exports = {
   errors: null,
   steps: [
     '/select-details',
-    '/how-will-you-arrive',
     '/flight-number',
     '/departure-date',
     '/is-this-your-flight',
+    '/visit-information',
     '/check-your-answers',
     '/declaration'
   ],
   'update-to-uk': 'true',
   'update-from-uk': '',
-  'update-accommodation': '',
+  'update-accommodation': 'true',
   'uk-phone': '447707070707',
   'flight-number': 'EK009',
   flightDetails: {
@@ -51,5 +51,12 @@ module.exports = {
   'departure-date-month': '10',
   'departure-date-year': '2016',
   'departure-date-formatted': '10/10/2016',
+  'know-departure-details': 'No',
+  'uk-duration': '1 to 3 months',
+  'uk-address-1': '123 Lane Street',
+  'uk-address-2': 'Avenue Road',
+  'uk-address-3': 'Bromley',
+  'uk-address-4': 'West Surrey',
+  'uk-postcode': 'CR1 9ZQ',
   'accept-declaration': 'true'
 };

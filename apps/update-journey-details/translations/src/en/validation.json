@@ -43,5 +43,13 @@
   },
   "uk-port-of-departure": {
     "required": "Select one of the airports, sea ports or rail terminals from the list"
+  },
+  "uk-address-1": {
+    "required": "Enter the address of the first place you will stay when you arrive in the UK",
+    "regex": "Enter your address in the UK in English"
+  },
+  "uk-postcode": {
+    "required": "Enter the post code of your UK address",
+    "regex": "Enter a UK post code, for example AB12 3CD"
   }
 }

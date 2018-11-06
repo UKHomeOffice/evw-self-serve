@@ -7,5 +7,9 @@ module.exports = {
   },
   'update-from-uk': {
     label: 'fields.update-from-uk.label'
-  }
+  },
+  'update-accommodation': {
+    label: 'fields.update-accommodation.label'
+  },
+  'uk-phone': {}
 };

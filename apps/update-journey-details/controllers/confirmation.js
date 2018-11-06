@@ -70,11 +70,30 @@ const propMap = (model) => {
     return arrivalJourneyProps;
   };
 
+  const getAccommodationDetails = () => {
+    let accommodationProps = {};
+
+    if (model['update-accommodation'] === 'true') {
+      accommodationProps.accommodation = {
+        'ukAddress': [
+          model['uk-address-1'],
+          model['uk-address-2'],
+          model['uk-address-3'],
+          model['uk-address-4'],
+          model['uk-postcode']
+        ],
+        'ukVisitPhoneNumber': model['uk-phone']
+      };
+    }
+
+    return accommodationProps;
+  };
+
   return Object.assign({
     membershipNumber: model['evw-number'],
     token: model.token,
     dateCreated: moment().format('YYYY-MM-DD hh:mm:ss')
-  }, getArrivalJourneyDetails(), getDepartureJourneyDetails());
+  }, getArrivalJourneyDetails(), getDepartureJourneyDetails(), getAccommodationDetails());
 };
 
 class ConfirmationController extends EvwBaseController {

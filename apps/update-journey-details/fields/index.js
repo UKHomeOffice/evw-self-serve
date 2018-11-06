@@ -8,5 +8,6 @@ module.exports = Object.assign(
   require('./is-this-your-flight'),
   require('./departure-date'),
   require('./uk-departure'),
+  require('./visit-information'),
   require('./declaration')
 );

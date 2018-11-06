@@ -1,0 +1,41 @@
+{{<layout}}
+
+{{$journeyHeader}}
+{{#t}}journey.header{{/t}}
+{{/journeyHeader}}
+
+{{$validationSummary}}
+{{> partials-validation-summary}}
+{{/validationSummary}}
+
+{{$propositionHeader}}
+{{> partials-navigation}}
+{{/propositionHeader}}
+
+
+{{$content}}
+
+<h1 class="heading-large">{{#t}}pages.visit-information.header{{/t}}</h1>
+
+{{<partials-form}}
+
+{{$form}}
+
+<fieldset class="address-group form-group{{#errors.uk-address-1}} form-group-error{{/errors.uk-address-1}}">
+  <legend class="form-label-bold">{{#t}}pages.visit-information.uk-address.legend{{/t}}</legend>
+  {{#input-text}}uk-address-1{{/input-text}}
+  {{#input-text}}uk-address-2{{/input-text}}
+  {{#input-text}}uk-address-3{{/input-text}}
+  {{#input-text}}uk-address-4{{/input-text}}
+</fieldset>
+
+{{#input-text}}uk-postcode{{/input-text}}
+
+{{#input-submit}}continue{{/input-submit}}
+{{/form}}
+
+{{/partials-form}}
+
+{{/content}}
+
+{{/layout}}

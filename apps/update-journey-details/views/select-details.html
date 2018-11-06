@@ -90,9 +90,26 @@
 
 		</div>
 	</div>
+	<div class="grid-row">
+		<div class="column-full">
+			<hr class="keyline">
+		</div>
+	</div>
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<h2 class="heading-small">{{#t}}pages.select-details.accommodation-details-header{{/t}}</h2>
+			{{accommodation}}
+		</div>
+		<div class="column-one-third">
+			{{#checkbox-with-hidden-label}}update-accommodation{{/checkbox-with-hidden-label}}
+		</div>
+	</div>
+
 </fieldset>
 
 <hr class="keyline">
+
+<input type="hidden" name="uk-phone" value="{{ukPhone}}">
 
 {{#input-submit}}continue{{/input-submit}}
 {{/form}}

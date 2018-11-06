@@ -124,6 +124,27 @@
         {{/knowDepartureDetailsNo}}
     </tbody>
     {{/values.update-from-uk}}
+    {{#values.update-accommodation}}
+    <tbody id="accommodation-summary">
+        <tr>
+            <th scope="rowgroup" colspan="2" id="accommodation-summary-header">
+                <span class="heading-medium with-button">
+                    {{#t}}pages.check-your-answers.address-title{{/t}}
+                    <a href="visit-information">{{#t}}buttons.change{{/t}}<span class="visuallyhidden"> {{#t}}pages.check-your-answers.address-title{{/t}}</span></a>
+                </span>
+            </th>
+        </tr>
+        <tr>
+            <td colspan="2" headers="accommodation-summary-header">
+                {{#values.uk-address-1}}{{values.uk-address-1}},<br>{{/values.uk-address-1}}
+                {{#values.uk-address-2}}{{values.uk-address-2}},<br>{{/values.uk-address-2}}
+                {{#values.uk-address-3}}{{values.uk-address-3}},<br>{{/values.uk-address-3}}
+                {{#values.uk-address-4}}{{values.uk-address-4}},<br>{{/values.uk-address-4}}
+                {{#values.uk-postcode}}{{values.uk-postcode}}{{/values.uk-postcode}}
+            </td>
+        </tr>
+    </tbody>
+    {{/values.update-accommodation}}
 </table>
 
 

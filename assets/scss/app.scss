@@ -7,6 +7,7 @@ $path: "../img/";
 @import "./panels.scss";
 @import "hof_overrides";
 @import "confirmation";
+@import "./address-group.scss";
 
 
 .phase-banner {
@@ -132,8 +133,13 @@ h1 {
     }
   }
 
+  th, td {
+    border-style: none;
+  }
+
   th[scope="rowgroup"] {
     padding-right: 0;
+    border-bottom: none;
 
     .heading-medium.with-button {
       display: block;
@@ -151,6 +157,16 @@ h1 {
         padding-right: 4em;
       }
 
+      // Add a top border, near the top of the vertical space that would normally be all margin
+      margin-top: em(5, 20);
+      border-top: solid 1px $grey-2;
+      padding-top: em(20, 20);
+
+      @include media(tablet) {
+        margin-top: em(10, 24);
+        padding-top: em(35, 24);
+      }
+
       a {
         position: absolute;
         right: 0;
@@ -164,6 +180,7 @@ h1 {
 
   th[scope="row"] {
     @include core-19;
+    vertical-align: top;
   }
 
   .button {

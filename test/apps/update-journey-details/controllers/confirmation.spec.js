@@ -1,11 +1,15 @@
 'use strict';
 
 const moment = require('moment');
+const everythingFixture = require('../../../fixtures/everything');
 const arrivalAndDepartureFlightFixture = require('../../../fixtures/update-model');
 const arrivalFlightAndTripDurationFixture = require('../../../fixtures/arrival-flight-and-trip-duration');
+const arrivalAndAccommodationFixture = require('../../../fixtures/arrival-and-accommodation');
+const departureFlightAndAccommodationFixture = require('../../../fixtures/departure-and-accommodation');
 const arrivalFlightOnlyFixture = require('../../../fixtures/arrival-flight-only');
 const departureFlightOnlyFixture = require('../../../fixtures/departure-flight-only');
 const tripDurationOnlyFixture = require('../../../fixtures/trip-duration-only');
+const accommodationOnlyFixture = require('../../../fixtures/accommodation-only');
 const proxyquire = require('proxyquire');
 
 describe('apps/update-journey-details/controllers/confirmation', function () {
@@ -36,6 +40,46 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
   });
 
   describe('#propMap', function () {
+    it('returns mapped update when arrival flight, departure flight, and accommodation details are supplied', function () {
+      let everything = Object.assign({}, everythingFixture);
+
+      ConfirmationController.propMap(everything).should.deep.equal({
+        'membershipNumber' : 'ABC1234',
+        'token' : 'token123',
+        'dateCreated': moment().format('YYYY-MM-DD hh:mm:ss'),
+        'arrival': {
+          'arrivalTravel' : 'EK009',
+          'arrivalDate' : '2016-10-10',
+          'arrivalTime' : '19:45',
+          'departureForUKDate' : '2016-10-10',
+          'departureForUKTime' : '14:35',
+          'portOfArrival' : 'London Gatwick Airport',
+          'portOfArrivalCode' : 'LGW',
+          'inwardDepartureCountry': 'ARE',
+          'inwardDeparturePort': 'Dubai Airport',
+          'inwardDeparturePortCode': 'DXB',
+          'flightDetailsCheck': 'Yes',
+          'travelBy': 'Plane'
+        },
+        'departure': {
+          'knowDepartureDetails': 'Yes',
+          'departureDate': '2017-01-30',
+          'departureTravel': 'FL1001',
+          'portOfDeparture': 'London Gatwick Airport'
+        },
+        'accommodation': {
+          'ukAddress': [
+            '123 Lane Street',
+            'Avenue Road',
+            'Bromley',
+            'West Surrey',
+            'CR1 9ZQ'
+          ],
+          'ukVisitPhoneNumber': '447707070707'
+        }
+      });
+    });
+
     it('returns mapped update when arrival flight and departure flight details are supplied', function () {
       let arrivalAndDepartureFlight = Object.assign({}, arrivalAndDepartureFlightFixture);
 
@@ -94,6 +138,66 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
       });
     });
 
+    it('returns mapped update when arrival flight and accommodation details are supplied', function () {
+      let arrivalAndAccommodation = Object.assign({}, arrivalAndAccommodationFixture);
+
+      ConfirmationController.propMap(arrivalAndAccommodation).should.deep.equal({
+        'membershipNumber' : 'ABC1234',
+        'token' : 'token123',
+        'dateCreated': moment().format('YYYY-MM-DD hh:mm:ss'),
+        'arrival': {
+          'arrivalTravel' : 'EK009',
+          'arrivalDate' : '2016-10-10',
+          'arrivalTime' : '19:45',
+          'departureForUKDate' : '2016-10-10',
+          'departureForUKTime' : '14:35',
+          'portOfArrival' : 'London Gatwick Airport',
+          'portOfArrivalCode' : 'LGW',
+          'inwardDepartureCountry': 'ARE',
+          'inwardDeparturePort': 'Dubai Airport',
+          'inwardDeparturePortCode': 'DXB',
+          'flightDetailsCheck': 'Yes',
+          'travelBy': 'Plane'
+        },
+        'accommodation': {
+          'ukAddress': [
+            '123 Lane Street',
+            'Avenue Road',
+            'Bromley',
+            'West Surrey',
+            'CR1 9ZQ'
+          ],
+          'ukVisitPhoneNumber': '447707070707'
+        }
+      });
+    });
+
+    it('returns mapped update when departure flight and accommodation details are supplied', function () {
+      let departureFlightAndAccommodation = Object.assign({}, departureFlightAndAccommodationFixture);
+
+      ConfirmationController.propMap(departureFlightAndAccommodation).should.deep.equal({
+        'membershipNumber' : 'ABC1234',
+        'token' : 'token123',
+        'dateCreated': moment().format('YYYY-MM-DD hh:mm:ss'),
+        'departure': {
+          'knowDepartureDetails': 'Yes',
+          'departureDate': '2017-01-30',
+          'departureTravel': 'FL1001',
+          'portOfDeparture': 'London Gatwick Airport'
+        },
+        'accommodation': {
+          'ukAddress': [
+            '123 Lane Street',
+            'Avenue Road',
+            'Bromley',
+            'West Surrey',
+            'CR1 9ZQ'
+          ],
+          'ukVisitPhoneNumber': '447707070707'
+        }
+      });
+    });
+
     it('returns mapped update when only arrival flight details are supplied', function() {
       let arrivalFlightOnly = Object.assign({}, arrivalFlightOnlyFixture);
 
@@ -147,6 +251,27 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
         }
       });
     });
+
+    it('returns mapped update when only accommodation details are supplied', function() {
+      let accommodationOnly = Object.assign({}, accommodationOnlyFixture);
+
+      ConfirmationController.propMap(accommodationOnly).should.deep.equal({
+        'membershipNumber' : 'ABC1234',
+        'token' : 'token123',
+        'dateCreated': moment().format('YYYY-MM-DD hh:mm:ss'),
+        'accommodation': {
+          'ukAddress': [
+            '123 Lane Street',
+            'Avenue Road',
+            'Bromley',
+            'West Surrey',
+            'CR1 9ZQ'
+          ],
+          'ukVisitPhoneNumber': '447707070707'
+        }
+      });
+    });
+
   });
 
   describe('#getValues', function() {

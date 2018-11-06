@@ -1,5 +1,3 @@
-@import "../../node_modules/hof/node_modules/hmpo-frontend-toolkit/assets/stylesheets/app.scss";
-
 .form-group {
     // Margins taken from .heading-medium in elements_typography
     margin-top: em(25, 20);
@@ -25,4 +23,24 @@
 .form-group .form-hint {
   color: $black;
   @include core-19;
+}
+
+
+// Use .form-group-error to add a red border to the left of a .form-group
+.form-group-error {
+  @extend %contain-floats;
+  margin-right: 15px;
+  border-left: 4px solid $error-colour;
+  padding-left: 10px;
+
+  @include media(tablet) {
+    border-left: 5px solid $error-colour;
+    padding-left: $gutter-half;
+  }
+}
+
+
+.form-group-error .form-control,
+.validation-error .form-control {
+  border: 4px solid $error-colour;
 }
