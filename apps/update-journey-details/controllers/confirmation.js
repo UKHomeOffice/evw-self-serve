@@ -136,7 +136,8 @@ class ConfirmationController extends EvwBaseController {
 
       req.context = {
         updateNumber: body.membershipNumber,
-        emailAddress: body.emailAddress
+        emailAddress: body.emailAddress,
+        didUpdateToUK: req.sessionModel.attributes['update-to-uk'] === 'true'
       };
 
       logger.info('application sent to integration service', body);
@@ -158,7 +159,8 @@ class ConfirmationController extends EvwBaseController {
     return Object.assign(
       {
         updateNumber: req.context.updateNumber,
-        emailAddress: req.context.emailAddress
+        emailAddress: req.context.emailAddress,
+        didUpdateToUK: req.context.didUpdateToUK
       },
       super.locals(req, res)
     );

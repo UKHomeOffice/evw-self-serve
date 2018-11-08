@@ -72,6 +72,7 @@ Scenario: Entering new inbound flight details (correct flight found) only
   Then I should be on the "Confirmation" page of the "Update journey details" app
   And the "header notice complete" should contain "Request received"
   And the reference number should be present
+  And the user is told they will receive a new EVW
 
 Scenario: Entering new outbound flight details only
 
@@ -111,6 +112,7 @@ Scenario: Entering new outbound flight details only
   Then I should be on the "Confirmation" page of the "Update journey details" app
   And the "header notice complete" should contain "Request received"
   And the reference number should be present
+  And the user is told their EVW details will be changed
 
 Scenario: Entering new trip duration only
 
@@ -145,6 +147,7 @@ Scenario: Entering new trip duration only
   Then I should be on the "Confirmation" page of the "Update journey details" app
   And the "header notice complete" should contain "Request received"
   And the reference number should be present
+  And the user is told their EVW details will be changed
 
 Scenario: Entering new accommodation details only
   Given I start the Update journey details app
@@ -184,6 +187,7 @@ Scenario: Entering new accommodation details only
   Then I should be on the "Confirmation" page of the "Update journey details" app
   And the "header notice complete" should contain "Request received"
   And the reference number should be present
+  And the user is told their EVW details will be changed
 
 Scenario: Entering new inbound flight details (correct flight found) and outbound flight details
 
@@ -269,6 +273,7 @@ Scenario: Entering new inbound flight details (correct flight found) and outboun
   Then I should be on the "Confirmation" page of the "Update journey details" app
   And the "header notice complete" should contain "Request received"
   And the reference number should be present
+  And the user is told they will receive a new EVW
 
 Scenario: Entering new inbound flight details (correct flight found) and trip duration
 
@@ -348,6 +353,7 @@ Scenario: Entering new inbound flight details (correct flight found) and trip du
   Then I should be on the "Confirmation" page of the "Update journey details" app
   And the "header notice complete" should contain "Request received"
   And the reference number should be present
+  And the user is told they will receive a new EVW
 
 Scenario: Entering new inbound flight details and flight not found
 
@@ -496,6 +502,7 @@ Scenario: Entering new inbound flight details (correct flight found) and address
   Then I should be on the "Confirmation" page of the "Update journey details" app
   And the "header notice complete" should contain "Request received"
   And the reference number should be present
+  And the user is told they will receive a new EVW
 
 Scenario: Entering new outbound flight details and address details
   Given I start the Update journey details app
@@ -551,6 +558,7 @@ Scenario: Entering new outbound flight details and address details
   Then I should be on the "Confirmation" page of the "Update journey details" app
   And the "header notice complete" should contain "Request received"
   And the reference number should be present
+  And the user is told their EVW details will be changed
 
 Scenario: Entering new trip duration and address details
   Given I start the Update journey details app
@@ -601,6 +609,7 @@ Scenario: Entering new trip duration and address details
   Then I should be on the "Confirmation" page of the "Update journey details" app
   And the "header notice complete" should contain "Request received"
   And the reference number should be present
+  And the user is told their EVW details will be changed
 
 Scenario: Choosing Train
 

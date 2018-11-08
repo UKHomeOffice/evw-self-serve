@@ -313,7 +313,8 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
       it('sets details in request', function() {
         req.context.should.deep.equal({
           updateNumber: '123ABC',
-          emailAddress: 'test@example.com'
+          emailAddress: 'test@example.com',
+          didUpdateToUK: true
         });
       });
 

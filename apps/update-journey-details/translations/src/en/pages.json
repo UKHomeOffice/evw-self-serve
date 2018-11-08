@@ -134,6 +134,7 @@
     "header": "Electronic visa waiver",
     "received": "Request received",
     "reference": "Your reference is",
+    "did-not-update-to-uk": "We’ll now check your details and email you within 24 hours to confirm your changes have been made.",
     "check": "We will check your details before we issue a new electronic visa waiver - this can take up to 24 hours.",
     "email": "We will then send you an email to",
     "email-continued": "with details of how to download your new electronic visa waiver.",
