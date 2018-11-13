@@ -74,12 +74,7 @@ Scenario: Entering new flight details and correct flight found
   # Declaration page
   Then I should be on the "Declaration" page of the "Update journey details" app
   And the page title should contain "Declaration"
-  And the content list should contain
-    """
-    The new flight information I have entered is correct to the best of my knowledge and belief and is for my flight that lands in the UK.
-    On changing my flight details my old electronic visa waiver document will be invalid and I will not use it to travel to the UK; if I do so I may be denied boarding or be refused entry at the UK border.
-    If I have completed this for someone else I have their full agreement.
-    """
+  And the new EVW warning should be present
   When I click id "Accept Declaration"
   And I continue
   Then I should be on the "Confirmation" page of the "Update journey details" app

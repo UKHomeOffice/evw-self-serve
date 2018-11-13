@@ -154,6 +154,7 @@ module.exports = {
   },
   '/declaration': {
     template: 'declaration',
+    controller: require('./controllers/declaration'),
     fields: [
       'accept-declaration'
     ],
