@@ -9,4 +9,12 @@ module.exports = function () {
         });
     });
 
+    this.Then(/^the user is told they will receive a new EVW$/, function () {
+        this.assert.visible('[data-test="new-evw"]');
+    });
+
+    this.Then(/^the user is told their EVW details will be changed$/, function () {
+        this.assert.visible('[data-test="no-new-evw"]');
+    });
+
 };

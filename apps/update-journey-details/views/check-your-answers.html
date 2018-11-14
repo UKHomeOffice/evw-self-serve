@@ -19,110 +19,134 @@
 {{$form}}
 
 <h1 class='heading-large'>{{#t}}pages.check-your-answers.header{{/t}}</h1>
-<p>{{#t}}pages.check-your-answers.notice{{/t}}</p>
 
-<h2>{{#t}}pages.check-your-answers.journey-to-uk-title{{/t}}</h2>
-<table id="inbound-summary" class="table-details">
-    <thead></thead>
-    <tbody>
+
+<table class="table-details">
+    {{#values.update-to-uk}}
+    <tbody id="inbound-summary">
         <tr>
-            <td>{{#t}}pages.check-your-answers.table.departure-country{{/t}}</td>
+            <th scope="rowgroup" colspan="2">
+                <span class="heading-medium with-button">
+                    {{#t}}pages.check-your-answers.journey-to-uk-title{{/t}}
+                    <a href="flight-number">{{#t}}buttons.change{{/t}}<span class="visuallyhidden"> {{#t}}pages.check-your-answers.journey-to-uk-title{{/t}}</span></a>
+                </span>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">{{#t}}pages.check-your-answers.table.departure-country{{/t}}</th>
             <td class="data-departure-country bold">
                 {{values.flightDetails.inwardDepartureCountryPlane}}
             </td>
-            <td><a href="flight-number#edit/flight-number" class="button">{{#t}}buttons.change{{/t}}</a></td>
         </tr>
         <tr>
-            <td>{{#t}}pages.check-your-answers.table.departure-airport{{/t}}</td>
+            <th scope="row">{{#t}}pages.check-your-answers.table.departure-airport{{/t}}</th>
             <td class="data-departure-airport bold">
                 {{values.flightDetails.departureAirport}}
             </td>
-            <td><a href="flight-number#edit/flight-number" class="button">{{#t}}buttons.change{{/t}}</a></td>
         </tr>
         <tr>
-            <td>{{#t}}pages.check-your-answers.table.departure-date{{/t}}</td>
+            <th scope="row">{{#t}}pages.check-your-answers.table.departure-date{{/t}}</th>
             <td class="data-departure-date bold">
                 {{values.flightDetails.departureDate}}
             </td>
-            <td><a href="departure-date#edit/departure-date" class="button">{{#t}}buttons.change{{/t}}</a></td>
         </tr>
         <tr>
-            <td>{{#t}}pages.check-your-answers.table.departure-time{{/t}}</td>
+            <th scope="row">{{#t}}pages.check-your-answers.table.departure-time{{/t}}</th>
             <td class="data-departure-time bold">
                 {{values.flightDetails.departureTime}}
             </td>
-            <td><a href="flight-number#edit/flight-number" class="button">{{#t}}buttons.change{{/t}}</a></td>
         </tr>
         <tr>
-            <td>{{#t}}pages.check-your-answers.table.flight-number{{/t}}</td>
+            <th scope="row">{{#t}}pages.check-your-answers.table.flight-number{{/t}}</th>
             <td class="data-flight-number bold">
                 {{values.flight-number}}
             </td>
-            <td><a href="flight-number#edit/flight-number" class="button">{{#t}}buttons.change{{/t}}</a></td>
         </tr>
         <tr>
-            <td>{{#t}}pages.check-your-answers.table.arrival-airport{{/t}}</td>
+            <th scope="row">{{#t}}pages.check-your-answers.table.arrival-airport{{/t}}</th>
             <td class="data-arrival-airport bold">
                 {{values.flightDetails.arrivalAirport}}
             </td>
-            <td><a href="flight-number#edit/flight-number" class="button">{{#t}}buttons.change{{/t}}</a></td>
         </tr>
         <tr>
-            <td>{{#t}}pages.check-your-answers.table.arrival-date{{/t}}</td>
+            <th scope="row">{{#t}}pages.check-your-answers.table.arrival-date{{/t}}</th>
             <td class="data-arrival-date bold">
                 {{values.flightDetails.arrivalDate}}
             </td>
-            <td><a href="flight-number#edit/flight-number" class="button">{{#t}}buttons.change{{/t}}</a></td>
         </tr>
         <tr>
-            <td>{{#t}}pages.check-your-answers.table.arrival-time{{/t}}</td>
+            <th scope="row">{{#t}}pages.check-your-answers.table.arrival-time{{/t}}</th>
             <td class="data-arrival-time bold">
                 {{values.flightDetails.arrivalTime}}
             </td>
-            <td><a href="flight-number#edit/flight-number" class="button">{{#t}}buttons.change{{/t}}</a></td>
         </tr>
+    </tbody>
+    {{/values.update-to-uk}}
+    {{#values.update-from-uk}}
+    <tbody id="outbound-summary">
+        <tr>
+            <th scope="rowgroup" colspan="2">
+                <span class="heading-medium with-button">
+                    {{#t}}pages.check-your-answers.journey-from-uk-title{{/t}}
+                    <a href="uk-departure">{{#t}}buttons.change{{/t}}<span class="visuallyhidden"> {{#t}}pages.check-your-answers.journey-from-uk-title{{/t}}</span></a>
+                </span>
+            </th>
+        </tr>
+
+        {{#knowDepartureDetailsYes}}
+        <tr>
+            <th scope="row">{{#t}}pages.check-your-answers.table.uk-port-of-departure{{/t}}</th>
+            <td class="data-port-of-departure bold">
+                {{ukPortOfDepartureDisplay}}
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">{{#t}}pages.check-your-answers.table.uk-date-of-departure{{/t}}</th>
+            <td class="data-uk-date-of-departure bold">
+                {{values.uk-date-of-departure-formatted}}
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">{{#t}}pages.check-your-answers.table.uk-departure-travel-number{{/t}}</th>
+            <td class="data-uk-departure-travel-number bold">
+                {{values.uk-departure-travel-number}}
+            </td>
+        </tr>
+        {{/knowDepartureDetailsYes}}
+
         {{#knowDepartureDetailsNo}}
-            <tr>
-                <td>{{#t}}pages.check-your-answers.table.uk-duration{{/t}}</td>
-                <td class="data-uk-duration bold">
-                    {{values.uk-duration}}
-                </td>
-                <td><a href="uk-departure#edit/uk-duration" class="button">{{#t}}buttons.change{{/t}}</a></td>
-            </tr>
+        <tr>
+            <th scope="row">{{#t}}pages.check-your-answers.table.uk-duration{{/t}}</th>
+            <td class="data-uk-duration bold">
+                {{values.uk-duration}}
+            </td>
+        </tr>
         {{/knowDepartureDetailsNo}}
     </tbody>
+    {{/values.update-from-uk}}
+    {{#values.update-accommodation}}
+    <tbody id="accommodation-summary">
+        <tr>
+            <th scope="rowgroup" colspan="2" id="accommodation-summary-header">
+                <span class="heading-medium with-button">
+                    {{#t}}pages.check-your-answers.address-title{{/t}}
+                    <a href="visit-information">{{#t}}buttons.change{{/t}}<span class="visuallyhidden"> {{#t}}pages.check-your-answers.address-title{{/t}}</span></a>
+                </span>
+            </th>
+        </tr>
+        <tr>
+            <td colspan="2" headers="accommodation-summary-header">
+                {{#values.uk-address-1}}{{values.uk-address-1}},<br>{{/values.uk-address-1}}
+                {{#values.uk-address-2}}{{values.uk-address-2}},<br>{{/values.uk-address-2}}
+                {{#values.uk-address-3}}{{values.uk-address-3}},<br>{{/values.uk-address-3}}
+                {{#values.uk-address-4}}{{values.uk-address-4}},<br>{{/values.uk-address-4}}
+                {{#values.uk-postcode}}{{values.uk-postcode}}{{/values.uk-postcode}}
+            </td>
+        </tr>
+    </tbody>
+    {{/values.update-accommodation}}
 </table>
 
-
-{{#knowDepartureDetailsYes}}
-    <h2>{{#t}}pages.check-your-answers.journey-from-uk-title{{/t}}</h2>
-    <table id="outbound-summary" class="table-details">
-        <thead></thead>
-        <tbody>
-            <tr>
-                <td>{{#t}}pages.check-your-answers.table.uk-port-of-departure{{/t}}</td>
-                <td class="data-port-of-departure bold">
-                    {{ukPortOfDepartureDisplay}}
-                </td>
-                <td><a href="uk-departure#edit/uk-port-of-departure" class="button">{{#t}}buttons.change{{/t}}</a></td>
-            </tr>
-            <tr>
-                <td>{{#t}}pages.check-your-answers.table.uk-date-of-departure{{/t}}</td>
-                <td class="data-uk-date-of-departure bold">
-                    {{values.uk-date-of-departure-formatted}}
-                </td>
-                <td><a href="uk-departure#edit/uk-date-of-departure" class="button">{{#t}}buttons.change{{/t}}</a></td>
-            </tr>
-            <tr>
-                <td>{{#t}}pages.check-your-answers.table.uk-departure-travel-number{{/t}}</td>
-                <td class="data-uk-departure-travel-number bold">
-                    {{values.uk-departure-travel-number}}
-                </td>
-                <td><a href="uk-departure#edit/uk-departure-travel-number" class="button">{{#t}}buttons.change{{/t}}</a></td>
-            </tr>
-        </tbody>
-    </table>
-{{/knowDepartureDetailsYes}}
 
 <p>
     <br>

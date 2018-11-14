@@ -1,4 +1,16 @@
 {
+  "select-details": {
+    "header": "Your electronic visa waiver",
+    "evwLabel": "EVW Number",
+    "checkboxes-legend": "Select which details you want to update",
+    "travel-details-header": "Your travel details",
+    "to-uk-header": "To the UK",
+    "journey-arrow-alt-text": "to",
+    "from-uk-header": "From the UK",
+    "from-uk-port-prefix": "From",
+    "trip-duration-prefix": "Staying for",
+    "accommodation-details-header": "Your accommodation details"
+  },
   "how-will-you-arrive": {
     "header": "Your new journey to the UK",
     "question": "How will you arrive in the UK?"
@@ -59,17 +71,20 @@
   "departure-date": {
     "header": "Your new flight details"
   },
-  "return-travel": {
-    "header": "Have your travel details for your departure from the UK changed?"
-  },
   "uk-departure": {
     "header": "Do you have your travel details for your departure from the UK?"
   },
+  "visit-information": {
+    "header": "Your stay",
+    "uk-address": {
+      "legend": "What is the address of the first place you will stay in the UK?"
+    }
+  },
   "check-your-answers": {
     "header": "Check your answers",
-    "notice": "Please check your new flight details and correct them if necessary",
-    "journey-to-uk-title": "Your journey to the UK",
-    "journey-from-uk-title": "Your journey from the UK",
+    "journey-to-uk-title": "Your new travel details to the UK",
+    "journey-from-uk-title": "Your new travel details from the UK",
+    "address-title": "Your new accommodation details",
     "table": {
       "departure-country": "Departure country",
       "departure-airport": "Departure airport",
@@ -111,14 +126,15 @@
   "declaration": {
     "header": "Declaration",
     "content": "I confirm that:",
-    "confirmation-1": "The new information I have entered is correct to the best of my knowledge and belief.",
-    "confirmation-2": "On changing my flight details my old electronic visa waiver document will be invalid and I will not use it to travel to the UK; if I do so I may be denied boarding or be refused entry at the UK border.",
-    "confirmation-3": "If I have completed this for someone else I have their full agreement."
+    "confirmation-1": "the information I've entered is correct to the best of my knowledge and belief",
+    "confirmation-2": "on changing details about my travel to the UK, my old electronic visa waiver document will be invalid and I will not use it to travel to the UK; if I do so I may be denied boarding or be refused entry at the UK border",
+    "confirmation-3": "if I've completed this for someone else I have their full agreement"
   },
   "confirmation": {
     "header": "Electronic visa waiver",
     "received": "Request received",
     "reference": "Your reference is",
+    "did-not-update-to-uk": "We’ll now check your details and email you within 24 hours to confirm your changes have been made.",
     "check": "We will check your details before we issue a new electronic visa waiver - this can take up to 24 hours.",
     "email": "We will then send you an email to",
     "email-continued": "with details of how to download your new electronic visa waiver.",

@@ -37,6 +37,8 @@ app.enable('view cache');
 app.use(require('express-partial-templates')(app));
 app.engine('html', require('hogan-express-strict'));
 
+app.use(require('./middleware/additional-hof-template-mixins')());
+
 app.use(require('body-parser').urlencoded({extended: true}));
 app.use(require('body-parser').json());
 

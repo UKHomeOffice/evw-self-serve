@@ -1,0 +1,121 @@
+{{<layout}}
+
+{{$journeyHeader}}
+{{#t}}journey.header{{/t}}
+{{/journeyHeader}}
+
+{{$validationSummary}}
+{{> partials-validation-summary}}
+{{/validationSummary}}
+
+{{$propositionHeader}}
+{{> partials-navigation}}
+{{/propositionHeader}}
+
+
+{{$content}}
+
+<h1 class="heading-large">{{#t}}pages.select-details.header{{/t}}</h1>
+
+<p class="bold-small">{{ evwName }}</p>
+
+<p>{{#t}}pages.select-details.evwLabel{{/t}}: {{ evwNumber }}</p>
+
+
+
+{{<partials-form}}
+
+{{$form}}
+
+<fieldset class="select-details{{#errors.select-details}} error{{/errors.select-details}}" id="select-details-group">
+	<div class="grid-row">
+		<div class="column-two-thirds">&nbsp;</div>
+		<div class="column-one-third">
+
+			<legend>
+				{{#t}}pages.select-details.checkboxes-legend{{/t}}
+
+				{{#errors.select-details}}<span id="select-details-error-{{type}}" class="error-message">{{message}}</span>{{/errors.select-details}}
+
+			</legend>
+
+		</div>
+	</div>
+	<div class="grid-row">
+		<div class="column-full">
+
+			<hr class="keyline">
+
+			<h2 class="heading-small">{{#t}}pages.select-details.travel-details-header{{/t}}</h2>
+
+		</div>
+	</div>
+	<div class="grid-row">
+		<div class="column-two-thirds">
+
+			<h3 class="heading-small">{{#t}}pages.select-details.to-uk-header{{/t}}</h3>
+
+			{{#toUKDeparturePort}}
+			{{ toUKDeparturePort }}
+			<span class="visuallyhidden">{{#t}}pages.select-details.journey-arrow-alt-text{{/t}}</span>
+			<!--[if gte IE 9]><!-->
+			<img alt="" src="/public/images/journey-arrow.svg" width="40" height="10" style="margin:0 1em;">
+			<!--<![endif]-->
+			<!--[if lte IE 8]>
+			<img alt="" src="/public/images/journey-arrow.png" width="40" height="10" style="margin:0 1em;">
+			<![endif]-->
+			{{/toUKDeparturePort}}
+			{{ toUKArrivalPort }}
+
+		</div>
+		<div class="column-one-third">
+
+			{{#checkbox-with-hidden-label}}update-to-uk{{/checkbox-with-hidden-label}}
+
+		</div>
+	</div>
+	<div class="grid-row">
+		<div class="column-two-thirds">
+
+			<h3 class="heading-small">{{#t}}pages.select-details.from-uk-header{{/t}}</h3>
+
+			{{#fromUKDeparturePort}}{{#t}}pages.select-details.from-uk-port-prefix{{/t}} {{ fromUKDeparturePort }}{{/fromUKDeparturePort}}
+
+			{{#tripDuration}}{{#t}}pages.select-details.trip-duration-prefix{{/t}} {{ tripDuration }}{{/tripDuration}}
+
+		</div>
+		<div class="column-one-third">
+
+			{{#checkbox-with-hidden-label}}update-from-uk{{/checkbox-with-hidden-label}}
+
+		</div>
+	</div>
+	<div class="grid-row">
+		<div class="column-full">
+			<hr class="keyline">
+		</div>
+	</div>
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<h2 class="heading-small">{{#t}}pages.select-details.accommodation-details-header{{/t}}</h2>
+			{{accommodation}}
+		</div>
+		<div class="column-one-third">
+			{{#checkbox-with-hidden-label}}update-accommodation{{/checkbox-with-hidden-label}}
+		</div>
+	</div>
+
+</fieldset>
+
+<hr class="keyline">
+
+<input type="hidden" name="uk-phone" value="{{ukPhone}}">
+
+{{#input-submit}}continue{{/input-submit}}
+{{/form}}
+
+{{/partials-form}}
+
+{{/content}}
+
+{{/layout}}
