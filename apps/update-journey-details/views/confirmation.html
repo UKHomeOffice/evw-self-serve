@@ -25,7 +25,14 @@
 </header>
 <br />
 
-<p>{{#t}}pages.confirmation.check{{/t}}</p>
+{{^didUpdateToUK}}
+<p data-test="no-new-evw">{{#t}}pages.confirmation.did-not-update-to-uk{{/t}}</p>
+{{/didUpdateToUK}}
+
+
+{{#didUpdateToUK}}
+
+<p data-test="new-evw">{{#t}}pages.confirmation.check{{/t}}</p>
 <p>{{#t}}pages.confirmation.email{{/t}} {{emailAddress}} {{#t}}pages.confirmation.email-continued{{/t}}</p>
 
 <div class="panel panel-border-wide">
@@ -34,6 +41,8 @@
 </div>
 
 <p>{{#t}}pages.confirmation.wait{{/t}}</p>
+
+{{/didUpdateToUK}}
 
 <a href="https://www.gov.uk/done/get-electronic-visa-waiver" id="done" type="done" data-journey-click="electronic-visa-waver:complete" rel="button" class="button">
   <span data-lang="eng">{{#t}}pages.confirmation.finish-button{{/t}}</span>

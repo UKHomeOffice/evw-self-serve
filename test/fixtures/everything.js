@@ -6,17 +6,17 @@ module.exports = {
   errors: null,
   steps: [
     '/select-details',
-    '/how-will-you-arrive',
     '/flight-number',
     '/departure-date',
     '/is-this-your-flight',
     '/uk-departure',
+    '/visit-information',
     '/check-your-answers',
     '/declaration'
   ],
   'update-to-uk': 'true',
   'update-from-uk': 'true',
-  'update-accommodation': '',
+  'update-accommodation': 'true',
   'uk-phone': '447707070707',
   'flight-number': 'EK009',
   flightDetails: {
@@ -59,5 +59,10 @@ module.exports = {
   'uk-date-of-departure-month': '01',
   'uk-date-of-departure-year': '2017',
   'uk-departure-travel-number': 'FL1001',
-  'uk-port-of-departure': 'LGW_London Gatwick Airport'
+  'uk-port-of-departure': 'LGW_London Gatwick Airport',
+  'uk-address-1': '123 Lane Street',
+  'uk-address-2': 'Avenue Road',
+  'uk-address-3': 'Bromley',
+  'uk-address-4': 'West Surrey',
+  'uk-postcode': 'CR1 9ZQ'
 };

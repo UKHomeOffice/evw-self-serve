@@ -1,4 +1,10 @@
 {
+  "update-to-uk": {
+    "label": "Update arrival flight details"
+  },
+  "update-from-uk": {
+    "label": "Update departure flight details"
+  },
   "transport-options": {
     "legend": "How will you arrive in the UK?",
     "options": {
@@ -6,7 +12,7 @@
         "label": "By plane"
       },
       "by-train": {
-        "label": "By train"
+         "label": "By train"
       },
       "by-private-plane": {
         "label": "By private plane"
@@ -18,6 +24,9 @@
         "label": "By road from the Republic of Ireland"
       }
     }
+  },
+  "update-accommodation": {
+    "label": "Update accommodation details"
   },
   "flight-number": {
     "label": "New flight number<p class='form-hint'>For example EK009, QR003 or KU101</p><p class='form-hint'>If you have any stops or connecting flights you must enter the number for the final part of your journey to the UK</p>"
@@ -47,16 +56,6 @@
   },
   "accept-declaration": {
     "label": "I understand and agree with the above"
-  },
-  "travel-details-changed": {
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
   },
   "know-departure-details": {
     "options": {
@@ -102,5 +101,20 @@
   "uk-port-of-departure": {
     "label": "What airport, train station or port are you leaving the UK from?",
     "hint": "The details will be on your travel documents"
+  },
+  "uk-address-1": {
+    "label": "<span class='visuallyhidden' >1st Line of address</span>"
+  },
+  "uk-address-2": {
+    "label": "<span class='visuallyhidden' >2nd Line of address</span>"
+  },
+  "uk-address-3": {
+    "label": "<span class='visuallyhidden' >3rd Line of address</span>"
+  },
+  "uk-address-4": {
+    "label": "<span class='visuallyhidden' >4th Line of address</span>"
+  },
+  "uk-postcode": {
+    "label": "Postcode"
   }
 }

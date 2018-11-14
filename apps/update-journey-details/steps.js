@@ -1,19 +1,49 @@
 'use strict';
 
-let features = require('characteristic')(__dirname + '/../../config/features.yml');
-
 module.exports = {
+  '/select-details': {
+    template: 'select-details',
+    controller: require('./controllers/select-details'),
+    fields: [
+      'select-details',
+      'update-to-uk',
+      'update-from-uk',
+      'update-accommodation',
+      'uk-phone'
+    ],
+    forks: [{
+      target: '/visit-information',
+      condition: {
+        field: 'update-accommodation',
+        value: 'true'
+      }
+    },
+    {
+      target: '/uk-departure',
+      condition: {
+        field: 'update-from-uk',
+        value: 'true'
+      }
+    },
+    {
+      target: '/how-will-you-arrive',
+      condition: {
+        field: 'update-to-uk',
+        value: 'true'
+      }
+    }]
+  },
   '/how-will-you-arrive': {
     template: 'how-will-you-arrive',
-    controller: require('./controllers/how-will-you-arrive'),
     fields: [
       'transport-options'
     ],
     next: '/email-us',
     forks: [{
       target: '/flight-number',
-      condition: (req) => {
-        return features.isEnabled('update_details') && req.form.values['transport-options'] === 'by-plane';
+      condition: {
+        field: 'transport-options',
+        value: 'by-plane'
       }
     }]
   },
@@ -55,27 +85,24 @@ module.exports = {
     fields: [
       'is-this-your-flight'
     ],
-    next: '/return-travel',
+    next: '/check-your-answers',
     forks: [{
+      target: '/visit-information',
+      condition: function (req) {
+        return req.sessionModel.get('update-accommodation');
+      }
+    },
+    {
+      target: '/uk-departure',
+      condition: function (req) {
+        return req.sessionModel.get('update-from-uk');
+      }
+    },
+    {
       target: '/flight-not-found',
       condition: {
         field: 'is-this-your-flight',
         value: 'no'
-      }
-    }]
-  },
-  '/return-travel': {
-    template: 'return-travel',
-    controller: require('../common/controllers/evw-base'),
-    fields: [
-      'travel-details-changed'
-    ],
-    next: '/check-your-answers',
-    forks: [{
-      target: '/uk-departure',
-      condition: {
-        field: 'travel-details-changed',
-        value: 'Yes'
       }
     }]
   },
@@ -93,9 +120,27 @@ module.exports = {
       'uk-port-of-departure'
     ],
     next: '/check-your-answers',
+    forks: [{
+      target: '/visit-information',
+      condition: function (req) {
+        return req.sessionModel.get('update-accommodation');
+      }
+    }],
     options: {
       dateKeys: ['uk-date-of-departure']
     }
+  },
+  '/visit-information': {
+    template: 'visit-information',
+    controller: require('../common/controllers/evw-base'),
+    fields: [
+      'uk-address-1',
+      'uk-address-2',
+      'uk-address-3',
+      'uk-address-4',
+      'uk-postcode'
+    ],
+    next: '/check-your-answers'
   },
   '/check-your-answers': {
     template: 'check-your-answers.html',
@@ -109,6 +154,7 @@ module.exports = {
   },
   '/declaration': {
     template: 'declaration',
+    controller: require('./controllers/declaration'),
     fields: [
       'accept-declaration'
     ],

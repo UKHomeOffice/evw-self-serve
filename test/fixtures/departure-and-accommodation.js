@@ -1,0 +1,31 @@
+module.exports = {
+  'csrf-secret': 'w-WjnKui6V3DBUT8u298ZG5W',
+  validated: true,
+  'evw-number': 'ABC1234',
+  token: 'token123',
+  errors: null,
+  steps: [
+    '/select-details',
+    '/uk-departure',
+    '/visit-information',
+    '/check-your-answers',
+    '/declaration'
+  ],
+  'update-to-uk': '',
+  'update-from-uk': 'true',
+  'update-accommodation': 'true',
+  'uk-phone': '447707070707',
+  'know-departure-details': 'Yes',
+  'uk-date-of-departure': '2017-01-30',
+  'uk-date-of-departure-day': '30',
+  'uk-date-of-departure-month': '01',
+  'uk-date-of-departure-year': '2017',
+  'uk-departure-travel-number': 'FL1001',
+  'uk-port-of-departure': 'LGW_London Gatwick Airport',
+  'uk-address-1': '123 Lane Street',
+  'uk-address-2': 'Avenue Road',
+  'uk-address-3': 'Bromley',
+  'uk-address-4': 'West Surrey',
+  'uk-postcode': 'CR1 9ZQ',
+  'accept-declaration': 'true'
+};

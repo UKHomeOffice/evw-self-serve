@@ -35,7 +35,7 @@ module.exports = function () {
     });
 
     this.Given(/^I start the Update journey details app with smoke params$/, function () {
-        this.url(`${base}:${port}/update-journey-details/how-will-you-arrive?evwNumber=EVW123456&token=74d3e5a47154150525964d90d0a99138a2633b49fbd9f829f9387414c1a458ef`)
+        this.url(`${base}:${port}/update-journey-details/select-details?evwNumber=EVW123456&token=74d3e5a47154150525964d90d0a99138a2633b49fbd9f829f9387414c1a458ef`)
         .waitForElementVisible('body', 1000);
     });
 }

@@ -9,6 +9,7 @@ const EvwBaseController = require('../../common/controllers/evw-base');
 const request = require('request');
 const is = require('../../../config').integrationService;
 const logger = require('../../../lib/logger');
+const ValidationError = require('hof').controllers.error;
 
 const fourOhfourIt = (res) => {
   return res.status(404).render('404', {
@@ -34,10 +35,10 @@ const validateApp = (req, res, callback) => {
     return fourOhfourIt(res);
   }
 
-  request[is.check.method.toLowerCase()]({
+  request[is.evwDetails.method.toLowerCase()]({
     url: [
         is.url,
-        is.check.endpoint,
+        is.evwDetails.endpoint,
         evwNumber,
         token
     ].join('/'),
@@ -75,12 +76,60 @@ const validateApp = (req, res, callback) => {
     req.sessionModel.set('validated', true);
     req.sessionModel.set('evw-number', evwNumber);
     req.sessionModel.set('token', token);
+
+    req.sessionModel.set('evw-details', parsed);
+
     return callback();
   });
 }
 
-module.exports = class HowWillYouArriveController extends EvwBaseController {
+module.exports = class SelectDetailsController extends EvwBaseController {
   getValues(req, res, callback) {
     return checkValidated(req, res, callback);
+  }
+
+  locals(req) {
+    const evwDetails = req.sessionModel.get('evw-details');
+
+    var locals = {
+                'evwNumber': req.sessionModel.get('evw-number'),
+                  'evwName': evwDetails['name'],
+          'toUKArrivalPort': evwDetails.arrival.portOfArrival.split(',')[0],
+      'fromUKDeparturePort': evwDetails.departure.portOfDeparture,
+             'tripDuration': evwDetails.departure.ukDuration,
+            'accommodation': evwDetails.accommodation.ukAddress.join(', '),
+                  'ukPhone': evwDetails.accommodation.ukVisitPhoneNumber
+    };
+
+    if (evwDetails.arrival.travelBy !== 'Land') {
+      locals.toUKDeparturePort = evwDetails.arrival.inwardDeparturePort.split(',')[0];
+    }
+
+    return locals;
+  }
+
+  validate(req, res, callback) {
+    // If no options are selected, return a validation error to be displayed on the parent fieldset
+    if (
+         req.form.values['update-to-uk']   === ''
+      && req.form.values['update-from-uk'] === ''
+      && req.form.values['update-accommodation'] === ''
+    ) {
+
+      const validationError = new ValidationError(
+        'select-details',
+        {
+          type: 'none-selected'
+        },
+        req
+      );
+
+      callback({
+        'select-details': validationError
+      });
+    }
+    else {
+      return super.validate(req, res, callback);
+    }
   }
 }

@@ -1,0 +1,8 @@
+<div id="{{key}}-group" class="form-group{{#error}} validation-error{{/error}}">
+    {{#error}}<p class="error-message visuallyhidden" aria-hidden="true">{{error.message}}</p>{{/error}}
+    <label for="{{key}}" class="{{#className}}{{className}} {{/className}}{{#invalid}}invalid-input{{/invalid}} block-label-hidden-text">
+        <input type="checkbox" id="{{key}}" name="{{key}}" value="true" aria-required="{{required}}"{{#error}} aria-invalid="true"{{/error}}{{^error}}{{#toggle}} data-toggle="{{toggle}}"{{/toggle}}{{#selected}} checked="checked"{{/selected}}{{/error}}>
+        <span class="visuallyhidden">{{{label}}}</span>
+        {{#error}}<span class="visuallyhidden">{{error.message}}</span>{{/error}}
+    </label>
+</div>

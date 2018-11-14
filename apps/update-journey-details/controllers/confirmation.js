@@ -8,54 +8,92 @@ const request = require('request');
 const logger = require('../../../lib/logger');
 const Validator = require('jsonschema').Validator;
 const v = new Validator();
-const schema = require('evw-schemas').evw.updateJourney.schema;
+const schema = require('evw-schemas').evw.selfServe.schema;
 
 const propMap = (model) => {
   const f = model.flightDetails;
-  const departureDateTime = moment.utc(`${f.departureDateRaw} ${f.departureTime}`);
   const getOptionValue = value => typeof value === 'string' ? value.substr(value.indexOf('_') + 1) : '';
 
-  const getReturnJourneyDetails = () => {
-    let returnJourneyProps = {
-      haveDepartureFromUkDetailsChanged: model['travel-details-changed']
-    };
-    if (model['travel-details-changed'] === 'No') {
-      return returnJourneyProps;
+  const getDepartureJourneyDetails = () => {
+    let departureJourneyProps = {};
+
+    if (model['update-from-uk'] === 'true') {
+      departureJourneyProps.departure = {};
+
+      if (!(model['know-departure-details'] === undefined)) {
+        Object.assign(departureJourneyProps.departure, {
+          knowDepartureDetails: model['know-departure-details']
+        });
+      }
+      if (model['know-departure-details'] === 'No') {
+        Object.assign(departureJourneyProps.departure, {
+          ukDuration: model['uk-duration']
+        });
+      }
+      if (model['know-departure-details'] === 'Yes') {
+        Object.assign(departureJourneyProps.departure, {
+          departureTravel: model['uk-departure-travel-number'],
+          portOfDeparture: getOptionValue(model['uk-port-of-departure']),
+          departureDate: model['uk-date-of-departure']
+        });
+      }
+
     }
-    Object.assign(returnJourneyProps, {
-      knowDepartureDetails: model['know-departure-details']
-    });
-    if (model['know-departure-details'] === 'No') {
-      Object.assign(returnJourneyProps, {
-        ukDuration: model['uk-duration']
+    return departureJourneyProps;
+  };
+
+  const getArrivalJourneyDetails = () => {
+    let arrivalJourneyProps = {};
+
+    if (model['update-to-uk'] === 'true') {
+      arrivalJourneyProps.arrival = {
+        flightDetailsCheck: 'Yes',// hard-coded until we implement un-happy path
+        travelBy: 'Plane'
+      };
+
+      const departureDateTime = moment.utc(`${f.departureDateRaw} ${f.departureTime}`);
+
+      Object.assign(arrivalJourneyProps.arrival, {
+        arrivalTravel: f.flightNumber,
+        arrivalDate: f.arrivalDateRaw,
+        arrivalTime: f.arrivalTime,
+        portOfArrival: f.arrivalAirport,
+        portOfArrivalCode: f.portOfArrivalPlaneCode,
+        inwardDepartureCountry: f.inwardDepartureCountryPlaneCode,
+        inwardDeparturePort: f.departureAirport,
+        inwardDeparturePortCode: f.inwardDeparturePortPlaneCode,
+        departureForUKDate: departureDateTime.format('YYYY-MM-DD'),
+        departureForUKTime: departureDateTime.format('HH:mm')
       });
     }
-    if (model['know-departure-details'] === 'Yes') {
-      Object.assign(returnJourneyProps, {
-        departureTravel: model['uk-departure-travel-number'],
-        portOfDeparture: getOptionValue(model['uk-port-of-departure']),
-        departureDate: model['uk-date-of-departure']
-      });
+
+    return arrivalJourneyProps;
+  };
+
+  const getAccommodationDetails = () => {
+    let accommodationProps = {};
+
+    if (model['update-accommodation'] === 'true') {
+      accommodationProps.accommodation = {
+        'ukAddress': [
+          model['uk-address-1'],
+          model['uk-address-2'],
+          model['uk-address-3'],
+          model['uk-address-4'],
+          model['uk-postcode']
+        ],
+        'ukVisitPhoneNumber': model['uk-phone']
+      };
     }
-   return returnJourneyProps;
+
+    return accommodationProps;
   };
 
   return Object.assign({
     membershipNumber: model['evw-number'],
     token: model.token,
-    arrivalTravel: f.flightNumber,
-    arrivalDate: f.arrivalDateRaw,
-    arrivalTime: f.arrivalTime,
-    departureForUKDate: departureDateTime.format('YYYY-MM-DD'),
-    departureForUKTime: departureDateTime.format('HH:mm'),
-    portOfArrival: f.arrivalAirport,
-    portOfArrivalCode: f.portOfArrivalPlaneCode,
-    inwardDepartureCountry: f.inwardDepartureCountryPlaneCode,
-    inwardDeparturePort: f.departureAirport,
-    inwardDeparturePortCode: f.inwardDeparturePortPlaneCode,
-    dateCreated: moment().format('YYYY-MM-DD hh:mm:ss'),
-    flightDetailsCheck: 'Yes' // hard-coded until we implement un-happy path
-  }, getReturnJourneyDetails());
+    dateCreated: moment().format('YYYY-MM-DD hh:mm:ss')
+  }, getArrivalJourneyDetails(), getDepartureJourneyDetails(), getAccommodationDetails());
 };
 
 class ConfirmationController extends EvwBaseController {
@@ -98,7 +136,8 @@ class ConfirmationController extends EvwBaseController {
 
       req.context = {
         updateNumber: body.membershipNumber,
-        emailAddress: body.currentDetails.contactDetails.emailAddress
+        emailAddress: body.emailAddress,
+        didUpdateToUK: req.sessionModel.attributes['update-to-uk'] === 'true'
       };
 
       logger.info('application sent to integration service', body);
@@ -120,7 +159,8 @@ class ConfirmationController extends EvwBaseController {
     return Object.assign(
       {
         updateNumber: req.context.updateNumber,
-        emailAddress: req.context.emailAddress
+        emailAddress: req.context.emailAddress,
+        didUpdateToUK: req.context.didUpdateToUK
       },
       super.locals(req, res)
     );

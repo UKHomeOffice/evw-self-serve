@@ -10,12 +10,11 @@ module.exports = {
     '/flight-number',
     '/departure-date',
     '/is-this-your-flight',
-    '/uk-departure',
     '/check-your-answers',
     '/declaration'
   ],
   'update-to-uk': 'true',
-  'update-from-uk': 'true',
+  'update-from-uk': '',
   'update-accommodation': '',
   'uk-phone': '447707070707',
   'flight-number': 'EK009',
@@ -52,12 +51,5 @@ module.exports = {
   'departure-date-month': '10',
   'departure-date-year': '2016',
   'departure-date-formatted': '10/10/2016',
-  'accept-declaration': 'true',
-  'know-departure-details': 'Yes',
-  'uk-date-of-departure': '2017-01-30',
-  'uk-date-of-departure-day': '30',
-  'uk-date-of-departure-month': '01',
-  'uk-date-of-departure-year': '2017',
-  'uk-departure-travel-number': 'FL1001',
-  'uk-port-of-departure': 'LGW_London Gatwick Airport'
+  'accept-declaration': 'true'
 };
