@@ -11,7 +11,7 @@ updatesVersion=`cat version`
 TARGET=fpm/build/usr/share/evw-self-serve
 
 rm -rf ${TARGET}/*
-cp -rf app.js config.js CONTRIBUTING.md LICENSE package.json README.md version apps lib assets errors middleware node_modules public config data $TARGET/
+cp -rf app.js config.js CONTRIBUTING.md LICENSE package.json README.md version apps lib assets errors middleware node_modules public config.js data $TARGET/
 cp -a lib $TARGET/
 cd fpm
 
