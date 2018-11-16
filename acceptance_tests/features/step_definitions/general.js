@@ -23,13 +23,17 @@ module.exports = function () {
     });
 
     this.Given(/^I start the Update journey details app$/, function () {
-        this.url(`${base}/update-journey-details/select-details?evwNumber=EVW123&token=TOKEN123`)
+        this.url(`${base}/update-journey-details/start?evwNumber=EVW123&token=TOKEN123`)
         .waitForElementVisible('body', 1000);
     });
 
     this.Given(/^I start the Update journey details app with an invalid token$/, function () {
-        this.url(`${base}/update-journey-details/select-details?evwNumber=EVW123&token=invalid`)
+        this.url(`${base}/update-journey-details/start?evwNumber=EVW123&token=invalid`)
         .waitForElementVisible('body', 1000);
+    });
+
+    this.Then(/^I should be redirected to the first step, with the query string intact$/, function () {
+        this.assert.urlEquals(`${base}/update-journey-details/select-details?evwNumber=EVW123&token=TOKEN123`);
     });
 
     this.When(/^I wait for "([^"]*)"$/, function (time) {

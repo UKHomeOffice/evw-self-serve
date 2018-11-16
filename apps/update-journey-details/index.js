@@ -24,6 +24,22 @@ router.use((req, res, next) => {
   next();
 });
 
+// Redirect users from a permanent initial URL, to our actual first Home Office Forms step
+// /update-journey-details/how-will-you-arrive is a temporary redirect in case the user follows an old e-mail link. Once we've deployed an updated evw-domain-lib, with e-mails pointing to /update-journey-details/start, we can delete that URL, and just leave /update-journey-details/start
+router.use([
+    '/update-journey-details/start',
+    '/update-journey-details/how-will-you-arrive'
+  ], function (req, res, next) {
+    let evwNumber = req.query.evwNumber;
+    let token = (req.query.token || '').replace('?hof-cookie-check', '');
+
+    if(evwNumber && token) {
+      return res.redirect(`/update-journey-details/select-details?evwNumber=${evwNumber}&token=${token}`);
+    }
+
+    next();
+});
+
 router.use('/update-journey-details/', wizard(require('./steps'), fields, {
   controller: BaseController,
   templatePath: path.resolve(__dirname, 'views'),
