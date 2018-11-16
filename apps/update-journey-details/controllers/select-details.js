@@ -88,7 +88,7 @@ module.exports = class SelectDetailsController extends EvwBaseController {
     return checkValidated(req, res, callback);
   }
 
-  locals(req) {
+  locals(req, res) {
     const evwDetails = req.sessionModel.get('evw-details');
 
     var locals = {
@@ -105,7 +105,7 @@ module.exports = class SelectDetailsController extends EvwBaseController {
       locals.toUKDeparturePort = evwDetails.arrival.inwardDeparturePort.split(',')[0];
     }
 
-    return locals;
+    return Object.assign(locals, super.locals.call(this, req, res));
   }
 
   validate(req, res, callback) {
