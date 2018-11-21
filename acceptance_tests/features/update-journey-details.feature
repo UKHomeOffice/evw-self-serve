@@ -6,6 +6,11 @@ Scenario: Invalid token
   Given I start the Update journey details app with an invalid token
   Then the page body should contain "The page or item you were looking for has not been found"
 
+Scenario: Redirecting from start URL to first step
+
+  Given I start the Update journey details app
+  Then I should be redirected to the first step, with the query string intact
+
 Scenario: Entering new inbound flight details (correct flight found) only
 
   Given I start the Update journey details app
