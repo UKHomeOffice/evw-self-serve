@@ -1,13 +1,13 @@
 {
   "select-details": {
-    "none-selected": "Choose the details you want to update"
+    "none-selected": "Select the details you want to update"
   },
   "transport-options": {
     "required": "Tell us how you will arrive"
   },
   "flight-number": {
     "required": "Enter the number of the flight you will be arriving in the UK on, for example EK009, QR003 or KU101",
-    "maxlength": "Your flight number is too long. Please check your travel documents and enter it correctly",
+    "maxlength": "Your flight number is too long. Please check your travel documents and try again",
     "regex": "Enter a valid flight number, for example EK009, QR003 or KU101"
   },
   "is-this-your-flight": {
@@ -19,7 +19,7 @@
   "departure-date": {
     "required": "Enter the date you will depart for the UK",
     "date": "Enter a real date",
-    "afterDate": "Date of travel in the UK must be no more than 3 months from now",
+    "afterDate": "Date of travel to the UK must be no more than 3 months from now",
     "beforeDate": "Date of travel must be at least 48 hours from now",
     "travel-too-soon": "Date of travel must be at least 48 hours from now",
     "depart-after-arrive": "Your departure cannot be after your arrival",
@@ -36,20 +36,20 @@
     "required": "Enter the flight number, train number or boat name that you will be leaving the UK on"
   },
   "uk-date-of-departure": {
-    "required": "Enter the date you are leaving the UK",
-    "date": "Enter a valid date",
+    "required": "Enter the date you will leave the UK",
+    "date": "Enter a date in the format dd/mm/yyyy",
     "beforeDate": "The date you leave the UK cannot be in the past",
-    "afterDate": "Date of departure cannot be more than 6 months after you enter the UK"
+    "afterDate": "Enter a departure date that’s no more than 6 months after your arrival date."
   },
   "uk-port-of-departure": {
     "required": "Select one of the airports, sea ports or rail terminals from the list"
   },
   "uk-address-1": {
-    "required": "Enter the address of the first place you will stay when you arrive in the UK",
-    "regex": "Enter your address in the UK in English"
+    "required": "Enter the first place you’ll stay in the UK",
+    "regex": "All your answers must be in English"
   },
   "uk-postcode": {
-    "required": "Enter the post code of your UK address",
-    "regex": "Enter a UK post code, for example AB12 3CD"
+    "required": "Enter the postcode of your UK address",
+    "regex": "Enter a UK postcode, for example AB12 3CD"
   }
 }

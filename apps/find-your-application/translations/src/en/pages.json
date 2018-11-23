@@ -12,8 +12,8 @@
     "content": "You can no longer download your electronic visa waiver. This is because it is for a travel date in the past and has expired."
   },
   "evw-not-verified": {
-    "header": "Electronic visa waiver not yet verified",
-    "content": "Your application is still awaiting verification. We will email you as soon as your current application has been processed."
+    "header": "Your electronic visa waiver is not ready",
+    "content": "We're still processing your electronic visa waiver application. We'll email you within 24 hours."
   },
   "update-limit-reached": {
     "header": "You can't change your flight details again",
