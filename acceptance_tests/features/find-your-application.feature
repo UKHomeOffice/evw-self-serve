@@ -1,7 +1,7 @@
 @find_your_application
 Feature: Finding an application
 
-Scenario: Requesting a flight change link
+Scenario: Requesting a change link
 
   Given I start the "Find your application" app
   When I enter "EVW08001000" into "EVW number"
@@ -10,7 +10,7 @@ Scenario: Requesting a flight change link
   # Link sent page
   Then I should be on the "Link sent" page of the "Find your application" app
   Then the page title should contain "Check your email"
-  And the page content should contain "We have sent a link for you to change your flight details to"
+  And the page content should contain "We have sent a link for you to update your Electronic Visa Waiver to"
 
 Scenario: Application not yet verified
   Given I start the "Find your application" app
