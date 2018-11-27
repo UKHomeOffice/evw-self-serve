@@ -3,13 +3,15 @@
 const proxyquire = require('proxyquire').noPreserveCache();
 const mockConfig = {
   session: {
+    name: 'sessionName',
     secret: 'ohsosecret',
     ttl: 5000
   },
   mongo: {
     port: 27017,
     host: 'localhost',
-    connectionString: 'mongodb://notarealdatabase:27016'
+    connectionString: 'mongodb://notarealdatabase:27016',
+    ttl: 5000
   }
 };
 
@@ -28,12 +30,14 @@ describe('session/mongo', function() {
 
   it('creates a session with a mongo store', function() {
     mongoStoreStub.should.have.been.calledWith({
-      url: mockConfig.mongo.connectionString
+      url: mockConfig.mongo.connectionString,
+      ttl: 5000
     });
   });
 
   it('session is called with config options', function() {
     sessionStub.should.have.been.calledWith({
+      name: 'sessionName',
       secret: 'ohsosecret',
       ttl: 5000,
       cookie: {
