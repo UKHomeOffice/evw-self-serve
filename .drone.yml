@@ -1,0 +1,19 @@
+pipeline:
+
+  build:
+    image: node:8
+    secrets:
+      - npm_auth_token
+    environment:
+      - NPM_CONFIG_ALWAYS_AUTH=true
+      - CI=true
+    commands:
+      - npm i -q
+      - npm run build
+    when:
+      event: push
+
+
+matrix:
+  NPM_AUTH_USERNAME:
+    - regt-build-bot
