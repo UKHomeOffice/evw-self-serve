@@ -1,48 +1,54 @@
-FROM quay.io/ukhomeofficedigital/nodejs-base:v4.4.7
+FROM quay.io/ukhomeofficedigital/nodejs-base:v8
 
-MAINTAINER Jay Keshur <Jay.Keshur@digital.homeoffice.gov.uk>
+ARG NPM_AUTH_USERNAME
+ARG NPM_AUTH_TOKEN
 
 ENV NODE_ENV=development \
-    PORT=8080 \
-    GOOGLE_ANALYTICS_CODE=false \
-    ASSET_PATH=/public \
-    GOVUK_ASSET_PATH=/govuk-assets \
-    SESSION_SECRET=howdoesyourgardengrow \
-    SESSION_TTL=1200 \
-    MONGO_CONNECTION_STRING=mongodb://localhost:27017/evw-self-serve \
-    FLIGHT_SERVICE_URL=http://localhost:9350 \
-    INTEGRATION_SERVICE_URL=http://localhost:9300 \
-    INTEGRATION_SERVICE_PORT=9300
+    NPM_AUTH_USERNAME=${NPM_AUTH_USERNAME} \
+    NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
+#    MONGO_CONNECTION_STRING=mongodb://mongo:27017/applicationdb
+#    PORT=8080 \
+#    PROTOCOL=http \
+#    INTEGRATION_PORT=8090 \
+#    SESSION_SECRET=itdoesnotlooksecurebutitis \
+#    SESSION_TTL=1200 \
+#    RTP_WORLDPAY_STUB=false \
+#    WORLDPAY_URI= \
+#    WORLDPAY_BASE= \
+#    WORLDPAY_MAC= \
+#    INTEGRATION_SERVICE_URL= \
+#    INTEGRATION_SERVICE_PROTOCOL=
 
-ENV PATH=${PATH}:/opt/nodejs/bin
-# Ensure downstream builds are patched.
-RUN yum clean all && \
-    yum update -y && \
-    yum install -y bzip2 && \
-    yum clean all && \
-    rpm --rebuilddb && \
-    rm -rf node_modules && \
-    npm install npm@3.9.0 -g
+RUN yum install -y make gcc gcc-c++ krb5-devel git bzip2 && \
+    npm i -g npm@6
 
-# Copy downstream in which should help
-# ensure everyone using this has a similar
-# app structure.
-COPY . /app
+# Bare minimum npm requirements
+COPY package.json .npmrc /app/
 
-# Install node depenencies, make sure unit
-# tests are passing, then prune the dev deps.
-RUN npm --production=false install --unsafe-perm --no-optional && \
+COPY app.js /app/
+COPY config.js /app/
+COPY CONTRIBUTING.md /app/
+COPY LICENSE package.json /app/
+COPY README.md /app/
+COPY version /app/
+COPY apps /app/apps
+COPY lib /app/lib
+COPY assets /app/assets
+COPY errors /app/errors
+COPY middleware /app/middleware
+COPY data /app/data
+COPY test /app/test
+
+# Install node dependencies
+RUN CI=true MONGOMS_VERSION=3.4.18 npm --production=false install --unsafe-perm
+
+RUN npm test && \
     npm prune && \
+    mkdir -p /app/public/images/upload.tmp && \
+    chown -R nodejs:nodejs /app/public/images/upload.tmp
 
-# Make sure only user nobody can access these
-# files, forcing downstream to set it.
-    chown -R nodejs:nodejs .
+USER 999
 
-RUN npm run sass
-RUN npm test
-
-USER nodejs
-
-EXPOSE 8080
+EXPOSE 8089
 
 CMD npm start
