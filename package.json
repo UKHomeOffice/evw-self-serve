@@ -29,6 +29,7 @@
     "cypress": "cypress run",
     "test": "NODE_ENV=test node_modules/.bin/mocha",
     "test:acceptance": "node_modules/.bin/nightwatch -e default --skiptags update_journey_smoke",
+    "test:acceptance:chrome": "node_modules/.bin/nightwatch -e chrome --skiptags update_journey_smoke",
     "test:ci": "npm run lint && npm run test",
     "browserify": "browserify ./assets/js/index.js > ./public/js/bundle.js",
     "lint": "eslint .",

@@ -27,10 +27,14 @@ COPY package.json .npmrc /app/
 
 COPY app.js /app/
 COPY config.js /app/
+COPY nightwatch.conf.js /app/
+COPY cypress /app/cypress
+COPY cypress.json /app/
 COPY CONTRIBUTING.md /app/
 COPY LICENSE package.json /app/
 COPY README.md /app/
 COPY version /app/
+COPY acceptance_tests /app/acceptance_tests
 COPY apps /app/apps
 COPY lib /app/lib
 COPY assets /app/assets

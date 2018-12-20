@@ -1,8 +1,14 @@
-'use strict';
+    'use strict';
 
 const seleniumServer = require('selenium-server');
 const phantomjs = require('phantomjs-prebuilt');
 const chromedriver = require('chromedriver');
+
+// assign a port number between 4-5k
+const testUrl = process.env.TEST_URL || 'http://localhost';
+const port = process.env.SELENIUM_PORT || Math.floor(Math.random() * (5000 - 4000) + 4000);
+const host = process.env.SELENIUM_HOST || 'localhost';
+
 
 /*eslint camelcase: 0*/
 const screenshotSettings = function (folderName) {
@@ -33,25 +39,26 @@ module.exports = {
     // },
 
     selenium: {
-        start_process: true,
+        start_process: host === 'localhost' ? true : false,
         server_path: seleniumServer.path,
         log_path: '',
-        host: '127.0.0.1',
-        port: 4444
+        host: host,
+        port: port
     },
 
     /*eslint camelcase: 0 no-reserved-keys: 0*/
     test_settings: {
         default: {
-            launch_url: 'http://localhost',
-            selenium_port: 4444,
-            selenium_host: 'localhost',
+            launch_url: testUrl,
+            selenium_port: port,
+            selenium_host: host,
             silent: true,
             screenshots: screenshotSettings('phantomjs'),
             desiredCapabilities: {
                 browserName: 'phantomjs',
                 javascriptEnabled: true,
                 acceptSslCerts: true,
+                'phantomjs.cli.args': ['--ignore-ssl-errors=true'],
                 'phantomjs.binary.path': phantomjs.path
             }
         },
