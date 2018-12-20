@@ -34,7 +34,7 @@ COPY CONTRIBUTING.md /app/
 COPY LICENSE package.json /app/
 COPY README.md /app/
 COPY version /app/
-COPY acceptance_tests /app/acceptance_tests
+COPY acceptance_tests/features /app/acceptance_tests/features
 COPY apps /app/apps
 COPY lib /app/lib
 COPY assets /app/assets

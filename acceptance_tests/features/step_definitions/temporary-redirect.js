@@ -1,6 +1,6 @@
 'use strict';
 
-const base = 'http://localhost:8080';
+const base =  process.env.TEST_URL || 'http://localhost:8080';
 
 module.exports = function () {
 

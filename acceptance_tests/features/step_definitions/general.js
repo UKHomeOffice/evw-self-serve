@@ -1,7 +1,7 @@
 'use strict';
 
 const moment = require('moment');
-const base = 'http://localhost:8080';
+const base =  process.env.TEST_URL || 'http://localhost:8080';
 const urlise = (text) => text.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
 const setUrl = (app, page) => `${base}/${urlise(app)}/${page ? urlise(page) : ''}`;
 const futureDate = (future) => {
