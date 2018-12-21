@@ -37,6 +37,6 @@ RUN npm test && \
 
 USER 999
 
-EXPOSE 8089
+EXPOSE 8080
 
 CMD npm start
