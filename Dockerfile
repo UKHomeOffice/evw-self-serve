@@ -47,9 +47,7 @@ COPY test /app/test
 RUN CI=true MONGOMS_VERSION=3.4.18 npm --production=false install --unsafe-perm
 
 RUN npm test && \
-    npm prune && \
-    mkdir -p /app/public/images/upload.tmp && \
-    chown -R nodejs:nodejs /app/public/images/upload.tmp
+    npm prune
 
 USER 999
 
