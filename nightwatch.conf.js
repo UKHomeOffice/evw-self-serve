@@ -1,4 +1,4 @@
-    'use strict';
+'use strict';
 
 const seleniumServer = require('selenium-server');
 const phantomjs = require('phantomjs-prebuilt');
