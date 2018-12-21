@@ -33,7 +33,9 @@ RUN CI=true MONGOMS_VERSION=3.4.18 npm --production=false install --unsafe-perm
 RUN npm test && \
     npm prune && \
     mkdir -p /app/reports && \
-    chown -R nodejs:nodejs /app/reports
+    chown -R nodejs:nodejs /app/reports && \
+    mkdir -p /app/acceptance_tests/reports && \
+    chown -R nodejs:nodejs /app/acceptance_tests/reports
 
 USER 999
 
