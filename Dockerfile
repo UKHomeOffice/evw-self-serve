@@ -25,23 +25,7 @@ RUN yum install -y make gcc gcc-c++ krb5-devel git bzip2 && \
 # Bare minimum npm requirements
 COPY package.json .npmrc /app/
 
-COPY app.js /app/
-COPY config.js /app/
-COPY nightwatch.conf.js /app/
-COPY cypress /app/cypress
-COPY cypress.json /app/
-COPY CONTRIBUTING.md /app/
-COPY LICENSE package.json /app/
-COPY README.md /app/
-COPY version /app/
-COPY acceptance_tests/features /app/acceptance_tests/features
-COPY apps /app/apps
-COPY lib /app/lib
-COPY assets /app/assets
-COPY errors /app/errors
-COPY middleware /app/middleware
-COPY data /app/data
-COPY test /app/test
+COPY . /app/
 
 # Install node dependencies
 RUN CI=true MONGOMS_VERSION=3.4.18 npm --production=false install --unsafe-perm
