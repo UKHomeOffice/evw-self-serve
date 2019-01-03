@@ -29,7 +29,7 @@ COPY . /app/
 
 
 # Install node dependencies
-RUN env & CI=true MONGOMS_VERSION=3.4.18 npm -ddd --production=false install --unsafe-perm
+RUN CI=true MONGOMS_VERSION=3.4.18 npm --production=false install --unsafe-perm
 
 RUN npm test && \
     npm prune && \
