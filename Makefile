@@ -12,7 +12,7 @@ build_self_serve:
 
 push_self_serve:
 	@echo "--> Pushing EVW Self Serve"
-    docker tag ${REGISTRY}/${NAME}:${VERSION} ${REGISTRY}/${NAME}:latest
+	docker tag ${REGISTRY}/${NAME}:${VERSION} ${REGISTRY}/${NAME}:latest
 	docker push ${REGISTRY}/${NAME}:${VERSION}
 	docker push ${REGISTRY}/${NAME}:latest
 
