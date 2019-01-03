@@ -13,6 +13,7 @@ build_self_serve:
 push_self_serve:
 	@echo "--> Pushing EVW Self Serve"
 	docker push ${REGISTRY}/${NAME}:${VERSION}
+    docker push ${REGISTRY}/${NAME}:latest
 
 run_tests:
 	@echo "--> Waiting for EVW Self Serve?"
