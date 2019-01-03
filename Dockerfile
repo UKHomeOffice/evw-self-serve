@@ -27,8 +27,9 @@ COPY package.json .npmrc /app/
 
 COPY . /app/
 
+
 # Install node dependencies
-RUN CI=true MONGOMS_VERSION=3.4.18 npm -ddd --production=false install --unsafe-perm
+RUN env & CI=true MONGOMS_VERSION=3.4.18 npm -ddd --production=false install --unsafe-perm
 
 RUN npm test && \
     npm prune && \
