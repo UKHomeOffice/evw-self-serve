@@ -35,4 +35,4 @@ pipeline:
 
 matrix:
   NPM_AUTH_USERNAME:
-    - regt-build-bot
+    - evw-build-bot
