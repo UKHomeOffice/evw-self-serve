@@ -9,11 +9,12 @@ acceptance_test: network selenium mongo govpay webapp run_tests
 build_self_serve:
 	@echo "--> Building EVW Self Serve"
 	docker build -t ${REGISTRY}/${NAME}:${VERSION} . --build-arg=NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN} --build-arg=NPM_AUTH_USERNAME=${NPM_AUTH_USERNAME} --build-arg=VERSION=${VERSION}
+	docker tag ${REGISTRY}/${NAME}:latest
 
 push_self_serve:
 	@echo "--> Pushing EVW Self Serve"
 	docker push ${REGISTRY}/${NAME}:${VERSION}
-    docker push ${REGISTRY}/${NAME}:latest
+	docker push ${REGISTRY}/${NAME}:latest
 
 run_tests:
 	@echo "--> Waiting for EVW Self Serve?"
