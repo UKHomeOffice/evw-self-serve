@@ -1,18 +1,37 @@
 pipeline:
 
   build:
-    image: node:8
+    image: docker:18.06
     secrets:
       - npm_auth_token
+      - docker_password
     environment:
-      - NPM_CONFIG_ALWAYS_AUTH=true
-      - CI=true
+      - DOCKER_HOST=tcp://172.17.0.1:2375
+      - VERSION=${DRONE_COMMIT_SHA}
     commands:
-      - npm i -q
-      - npm run build
+      - apk add --update make
+      - docker login -u="evw-build-bot" -p=$${DOCKER_PASSWORD} docker.digital.homeoffice.gov.uk
+      - make build_self_serve
+      - make acceptance_test
+      - make clean
     when:
       event: push
 
+  image_to_artifactory:
+    image: docker:18.06
+    secrets:
+      - npm_auth_token
+      - docker_password
+    environment:
+      - DOCKER_HOST=tcp://172.17.0.1:2375
+      - VERSION=${DRONE_COMMIT_SHA}
+    commands:
+      - apk add --update make
+      - docker login -u="evw-build-bot" -p=$${DOCKER_PASSWORD} docker.digital.homeoffice.gov.uk
+      - make push_self_serve
+    when:
+#      branch: master
+      event: push
 
 matrix:
   NPM_AUTH_USERNAME:
