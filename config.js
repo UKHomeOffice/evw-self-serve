@@ -22,7 +22,7 @@ module.exports = {
   },
   mongo: {
     connectionString: process.env.MONGO_CONNECTION_STRING || 'mongodb://localhost:27017/evw-self-serve',
-    sslEnabled: process.env.MONGO_SSL_ENABLED === 'true',
+    sslEnabled: process.env.MONGO_SSL_ENABLED === 'false',
     sslCA: process.env.MONGO_SSL_CA || '/etc/ssl/certs/ca-certificates.crt',
     sslCert: process.env.MONGO_SSL_CERT || '/mnt/certs/tls.pem',
     sslKey: process.env.MONGO_SSL_KEY || '/mnt/certs/tls-key.pem',
