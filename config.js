@@ -21,7 +21,8 @@ module.exports = {
     ttl: process.env.SESSION_TTL || 1200 /* 20 mins */
   },
   mongo: {
-    connectionString: process.env.MONGO_CONNECTION_STRING || 'mongodb://localhost:27017/evw-self-serve'
+    connectionString: process.env.MONGO_CONNECTION_STRING || 'mongodb://localhost:27017/evw-self-serve',
+    sslEnabled: process.env.MONGO_SSL_ENABLED === 'true'
   },
   integrationService: {
     url: process.env.INTEGRATION_SERVICE_URL || 'http://localhost:9300',
