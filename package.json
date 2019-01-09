@@ -70,6 +70,7 @@
     "nodemailer-stub-transport": "^1.0.0",
     "redis": "^2.6.1",
     "request": "^2.72.0",
+    "rtp-monitoring-metrics": "^0.1.0",
     "typeahead-aria": "git+https://github.com/UKHomeOffice/typeahead-aria.git",
     "typeahead.js-browserify": "^1.0.5",
     "underscore": "^1.8.3",
