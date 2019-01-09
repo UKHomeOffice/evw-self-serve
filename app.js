@@ -69,6 +69,9 @@ app.use(secureCookies);
 //const mongoSession = require('./lib/session/mongo')(config);
 //app.use(mongoSession);
 
+// kubernetes monitoring and metrics endpoints
+app.use(require('rtp-monitoring-metrics'));
+
 app.get('/cookies', function renderCookies(req, res) {
   res.render('cookies');
 });
