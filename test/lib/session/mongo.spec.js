@@ -33,10 +33,12 @@ describe('session/mongo', function() {
   it('creates a session with a mongo store', function() {
     mongoStoreStub.should.have.been.calledWith({
       url: mockConfig.mongo.connectionString,
-      sslCA:  '/etc/ssl/certs/ca-certificates.crt',
-      sslCert: '../../../evw_test.pem',
-      sslKey: '../../../evw_test.key',
-      sslValidate: false
+      mongoOptions: {
+        sslCA: '/etc/ssl/certs/ca-certificates.crt',
+        sslCert: '../../../evw_test.pem',
+        sslKey: '../../../evw_test.key',
+        sslValidate: false
+      }
     });
   });
 
