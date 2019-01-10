@@ -25,7 +25,7 @@ module.exports = {
     sslEnabled: process.env.MONGO_SSL_ENABLED === 'true',
     sslCA: process.env.MONGO_SSL_CA || '/etc/ssl/certs/ca-certificates.crt',
     sslCert: process.env.MONGO_SSL_CERT || '/mnt/certs/tls.pem',
-    sslKey: process.env.MONGO_SSL_KEY || '/mnt/certs/tls-key.pem',
+    sslKey: process.env.MONGO_SSL_KEY || '/mnt/certs/tls-key.pem'
 
 },
   integrationService: {
