@@ -70,6 +70,7 @@ app.use(secureCookies);
 //app.use(mongoSession);
 
 //Use memorystore sessions to try debug mongo connection issue.
+const session = require('express-session');
 app.use(session({
   secret: config.session.secret,
   ttl: config.session.ttl,
