@@ -22,13 +22,13 @@ run_tests:
 	@echo "--> Okay I guess EVW Self Serve is up?"
 
 	@echo "--> Running tests"
-#	docker run --name acceptance-tests.evw-self-serve-${VERSION} --rm \
-#		-e TEST_URL=http://webapp.evw-self-serve-${VERSION}:8080 \
-#		-e EVW_HOF_BASE=http://webapp.evw-self-serve-${VERSION}:8080 \
-#		-e SELENIUM_PORT=4444 \
-#		-e SELENIUM_HOST=selenium.evw-self-serve-${VERSION} \
-#		--network evw-self-serve-${VERSION} \
-#		${REGISTRY}/${NAME}:${VERSION} npm run test:acceptance:chrome
+	docker run --name acceptance-tests.evw-self-serve-${VERSION} --rm \
+		-e TEST_URL=http://webapp.evw-self-serve-${VERSION}:8080 \
+		-e EVW_HOF_BASE=http://webapp.evw-self-serve-${VERSION}:8080 \
+		-e SELENIUM_PORT=4444 \
+		-e SELENIUM_HOST=selenium.evw-self-serve-${VERSION} \
+		--network evw-self-serve-${VERSION} \
+		${REGISTRY}/${NAME}:${VERSION} npm run test:acceptance:chrome
 
 network:
 	@echo "--> Creating network evw-self-serve-${VERSION}"

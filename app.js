@@ -66,8 +66,22 @@ app.use(require('cookie-parser')(config.session.secret));
 app.use(secureCookies);
 
 // Mongo session
-const mongoSession = require('./lib/session/mongo')(config);
-app.use(mongoSession);
+//const mongoSession = require('./lib/session/mongo')(config);
+//app.use(mongoSession);
+
+//Use memorystore sessions to try debug mongo connection issue.
+app.use(session({
+  secret: config.session.secret,
+  ttl: config.session.ttl,
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    secure: (
+      config.env === 'development' ||
+      config.env === 'ci'
+    ) ? false : true
+  },
+}));
 
 // kubernetes monitoring and metrics endpoints
 app.use(require('rtp-monitoring-metrics'));
