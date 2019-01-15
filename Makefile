@@ -58,7 +58,7 @@ govpay:
 
 selenium:
 	@echo "--> Starting selenium"
-	docker run --name selenium.evw-self-serve-${VERSION} -d --rm -p4444:4444 \
+	docker run --name selenium.evw-self-serve-${VERSION} -d --rm \
 		--network evw-self-serve-${VERSION} \
 		-v ${PWD}/acceptance_tests/features/images:/app/acceptance_tests/features/images \
 		quay.io/ukhomeofficedigital/selenium-standalone-server:v0.2.0
