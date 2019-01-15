@@ -19,7 +19,7 @@ ENV NODE_ENV=development \
 #    INTEGRATION_SERVICE_URL= \
 #    INTEGRATION_SERVICE_PROTOCOL=
 
-RUN yum install -y make gcc gcc-c++ krb5-devel git bzip2 && \
+RUN yum install -y make gcc gcc-c++ krb5-devel git bzip2 nmap-ncat socat&& \
     npm i -g npm@6
 
 # Bare minimum npm requirements
