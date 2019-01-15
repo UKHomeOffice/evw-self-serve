@@ -38,7 +38,7 @@ RUN npm test && \
     mkdir -p /app/acceptance_tests/reports && \
     chown -R nodejs:nodejs /app/acceptance_tests/reports
 
-USER 999
+USER 1000
 
 EXPOSE 8080
 
