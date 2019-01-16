@@ -11,9 +11,9 @@ const mockConfig = {
     host: 'localhost',
     connectionString: 'mongodb://notarealdatabase:27016',
     sslEnabled: true,
-    sslCA:  '/etc/ssl/certs/ca-certificates.crt',
-    sslCert: '../../../../evw_test.pem',
-    sslKey: '../../../../evw_test.key'
+    sslCA:   'ca-certificates.crt',
+    sslCert: 'evw_test.pem',
+    sslKey: 'evw_test.key'
   }
 };
 
@@ -35,9 +35,9 @@ describe('session/mongo', function() {
     mongoStoreStub.should.have.been.calledWith({
       url: mockConfig.mongo.connectionString,
       mongoOptions: {
-        sslCA: fs.readFileSync('/etc/ssl/certs/ca-certificates.crt'),
-        sslCert: fs.readFileSync('../../../../evw_test.pem'),
-        sslKey: fs.readFileSync('../../../../evw_test.key'),
+        sslCA: fs.readFileSync('ca-certificates.crt'),
+        sslCert: fs.readFileSync('evw_test.pem'),
+        sslKey: fs.readFileSync('evw_test.key'),
         ssl: true,
         sslValidate: false
       }
