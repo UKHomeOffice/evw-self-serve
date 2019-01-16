@@ -66,10 +66,11 @@ app.use(require('cookie-parser')(config.session.secret));
 app.use(secureCookies);
 
 // Mongo session
-//const mongoSession = require('./lib/session/mongo')(config);
-//app.use(mongoSession);
+const mongoSession = require('./lib/session/mongo')(config);
+app.use(mongoSession);
 
 
+/*
 //Use memorystore sessions to try debug mongo connection issue.
 const session = require('express-session');
 app.use(session({
@@ -84,6 +85,7 @@ app.use(session({
     ) ? false : true
   },
 }));
+*/
 
 // kubernetes monitoring and metrics endpoints
 app.use(require('rtp-monitoring-metrics'));
