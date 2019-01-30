@@ -17,6 +17,7 @@ module.exports = {
   govukAssetPath: process.env.GOVUK_ASSET_PATH || '/govuk-assets',
   appPath: 'find-your-application/enter-your-details',
   session: {
+    name: 'evwselfserve.sid',
     secret: process.env.SESSION_SECRET || 'howdoesyourgardengrow',
     ttl: process.env.SESSION_TTL || 1200 /* 20 mins */
   },

@@ -3,6 +3,7 @@
 const proxyquire = require('proxyquire').noPreserveCache();
 const mockConfig = {
   session: {
+    name: "sessionName",
     secret: 'ohsosecret',
     ttl: 5000
   },
@@ -49,6 +50,7 @@ describe('session/mongo', function() {
       secret: 'ohsosecret',
       ttl: 5000,
       cookie: {
+        name: "sessionName",
         secure: true
       },
       resave: true,
