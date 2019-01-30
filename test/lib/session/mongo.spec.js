@@ -47,6 +47,7 @@ describe('session/mongo', function() {
 
   it('session is called with config options', function() {
     sessionStub.should.have.been.calledWith({
+      name: "sessionName",
       secret: 'ohsosecret',
       ttl: 5000,
       cookie: {
