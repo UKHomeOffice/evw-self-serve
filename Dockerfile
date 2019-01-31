@@ -5,7 +5,8 @@ ARG NPM_AUTH_TOKEN
 
 ENV NODE_ENV=development \
     NPM_AUTH_USERNAME=${NPM_AUTH_USERNAME} \
-    NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
+    NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN} \
+    ASSET_PATH=/update-journey-details/public
 #    MONGO_CONNECTION_STRING=mongodb://mongo:27017/applicationdb
 #    PORT=8080 \
 #    PROTOCOL=http \
