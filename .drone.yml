@@ -1,3 +1,7 @@
+matrix:
+  NPM_AUTH_USERNAME:
+    - evw-build-bot
+
 pipeline:
 
   build:
@@ -30,9 +34,18 @@ pipeline:
       - docker login -u="evw-build-bot" -p=$${DOCKER_PASSWORD} docker.digital.homeoffice.gov.uk
       - make push_self_serve
     when:
-#      branch: master
+      branch: master
       event: push
 
-matrix:
-  NPM_AUTH_USERNAME:
-    - evw-build-bot
+  trigger_deploy_to_dev:
+    image: quay.io/ukhomeofficedigital/drone-trigger
+    secrets:
+      - drone_token
+    drone_server: https://drone-gitlab.acp.homeoffice.gov.uk
+    repo: REGT/kube-evw
+    branch: master
+    deploy_to: dev
+    params: "SERVICE=evw-self-serve,VERSION=${DRONE_COMMIT_SHA}"
+    when:
+      branch: master
+      event: push
