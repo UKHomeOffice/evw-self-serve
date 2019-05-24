@@ -12,12 +12,17 @@ const mockConfig = {
     host: 'localhost',
     connectionString: 'mongodb://notarealdatabase:27016',
     ttl: 5000
+    sslEnabled: true,
+    sslCA:   'ca-certificates.crt',
+    sslCert: 'evw_test.pem',
+    sslKey: 'evw_test.key'
   }
 };
 
 let sessionStub = sinon.stub();
 let mongoStoreStub = sinon.stub();
 let mongoSession;
+const fs = require('fs');
 
 describe('session/mongo', function() {
   before(function() {
@@ -32,6 +37,13 @@ describe('session/mongo', function() {
     mongoStoreStub.should.have.been.calledWith({
       url: mockConfig.mongo.connectionString,
       ttl: 5000
+      mongoOptions: {
+        sslCA: fs.readFileSync('ca-certificates.crt'),
+        sslCert: fs.readFileSync('evw_test.pem'),
+        sslKey: fs.readFileSync('evw_test.key'),
+        ssl: true,
+        sslValidate: false
+      }
     });
   });
 
@@ -41,6 +53,7 @@ describe('session/mongo', function() {
       secret: 'ohsosecret',
       ttl: 5000,
       cookie: {
+        name: "sessionName",
         secure: true
       },
       resave: true,

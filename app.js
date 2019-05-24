@@ -69,6 +69,27 @@ app.use(secureCookies);
 const mongoSession = require('./lib/session/mongo')(config);
 app.use(mongoSession);
 
+
+/*
+//Use memorystore sessions to try debug mongo connection issue.
+const session = require('express-session');
+app.use(session({
+  secret: config.session.secret,
+  ttl: config.session.ttl,
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    secure: (
+      config.env === 'development' ||
+      config.env === 'ci'
+    ) ? false : true
+  },
+}));
+*/
+
+// kubernetes monitoring and metrics endpoints
+app.use(require('rtp-monitoring-metrics'));
+
 app.get('/cookies', function renderCookies(req, res) {
   res.render('cookies');
 });

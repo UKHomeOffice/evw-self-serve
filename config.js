@@ -10,7 +10,7 @@ module.exports = {
   appName: 'EVW Self Serve',
   env: process.env.NODE_ENV,
   port: port,
-  baseUrl: process.env.BASE_URL || 'http://localhost',
+  baseUrl: process.env.TEST_URL || process.env.BASE_URL || 'http://localhost',
   listen_host: process.env.LISTEN_HOST || '0.0.0.0',
   gaCode: process.env.GOOGLE_ANALYTICS_CODE || false,
   assetPath: process.env.ASSET_PATH || '/public',
@@ -22,8 +22,13 @@ module.exports = {
     ttl: process.env.SESSION_TTL || 1200 /* 20 mins */
   },
   mongo: {
-    connectionString: process.env.MONGO_CONNECTION_STRING || 'mongodb://localhost:27017/evw-self-serve'
-  },
+    connectionString: process.env.MONGO_CONNECTION_STRING || 'mongodb://localhost:27017/evw-self-serve',
+    sslEnabled: process.env.MONGO_SSL_ENABLED === 'true',
+    sslCA: process.env.MONGO_SSL_CA || '/etc/ssl/certs/ca-certificates.crt',
+    sslCert: process.env.MONGO_SSL_CERT || '/mnt/certs/tls.pem',
+    sslKey: process.env.MONGO_SSL_KEY || '/mnt/certs/tls-key.pem'
+
+},
   integrationService: {
     url: process.env.INTEGRATION_SERVICE_URL || 'http://localhost:9300',
     port: process.env.INTEGRATION_SERVICE_PORT || 9300,

@@ -6,3 +6,11 @@ node_modules
 public
 *.log
 .DS_Store
+fpm
+Jenkinsfile
+selenium-debug.log
+.travis.yml
+.nvmrc
+acceptance_tests/screenshots
+acceptance_tests/reports
+
