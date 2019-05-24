@@ -11,7 +11,7 @@ const mockConfig = {
     port: 27017,
     host: 'localhost',
     connectionString: 'mongodb://notarealdatabase:27016',
-    ttl: 5000
+    ttl: 5000,
     sslEnabled: true,
     sslCA:   'ca-certificates.crt',
     sslCert: 'evw_test.pem',
