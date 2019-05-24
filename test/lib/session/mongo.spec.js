@@ -36,7 +36,7 @@ describe('session/mongo', function() {
   it('creates a session with a mongo store', function() {
     mongoStoreStub.should.have.been.calledWith({
       url: mockConfig.mongo.connectionString,
-      ttl: 5000
+      ttl: 5000,
       mongoOptions: {
         sslCA: fs.readFileSync('ca-certificates.crt'),
         sslCert: fs.readFileSync('evw_test.pem'),
