@@ -1,2 +1,17 @@
 <meta name="format-detection" content="telephone=no">
 <link rel="stylesheet" href="{{assetPath}}/css/app.css">
+{{! [DPS-1731] Add frame-busting JavaScript, for older browsers that don't support the X-Frame-Options header }}
+ <script>
+ try {
+   top.document.domain
+ }
+ catch (e) {
+   var f = function() {
+     document.body.innerHTML = '';
+   }
+   setInterval(f, 1);
+   if (document.body) {
+     document.body.onload = f;
+   }
+ }
+ </script>

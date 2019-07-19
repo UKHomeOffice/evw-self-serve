@@ -21,6 +21,13 @@ app.use(function setGaCode(req, res, next) {
   next();
 });
 
+// [DPS-1731] Set X-Frame-Options header. Home Office Forms version 10 does this, so if we ever upgrade,
+ // we don't need this any more.
+ app.use(function setXFrameOptionsHeader(req, res, next) {
+   res.set('X-Frame-Options', 'SAMEORIGIN');
+   next();
+ });
+
 app.use(config.assetPath, express.static(path.resolve(__dirname, './public')));
 
 app.use(function setAssetPath(req, res, next) {
