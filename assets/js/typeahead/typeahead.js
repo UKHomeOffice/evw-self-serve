@@ -70,7 +70,7 @@ HofTypeahead.prototype.initTypeahead = function initTypeahead(values) {
 
 HofTypeahead.prototype.onUnload = function onUnload(el) {
   /* eslint-disable no-undef */
-  $(window).unload(function onWindowUnload() {
+  $(window).on('unload', function onWindowUnload() {
     /* eslint-enable no-undef */
     el.typeahead('destroy');
     this.form.off('submit');
