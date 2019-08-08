@@ -1,0 +1,68 @@
+{{<layout}}
+
+{{$pageTitleText}}{{#t}}en.pages.upload-passport-image.header{{/t}}{{/pageTitleText}}
+
+{{$validationSummary}}
+{{> partials-validation-summary}}
+{{/validationSummary}}
+
+{{$propositionHeader}}
+{{> partials-navigation}}
+{{/propositionHeader}}
+
+{{$content}}
+
+<header>
+  <h1 class="heading-large">{{#t}}pages.upload-passport-image.header{{/t}}</h1>
+</header>
+
+<div class="passport-upload-guidance">
+  <div class="passport-upload-guidance-text" lang="en">
+      <h3 class="bold-small">{{#t}}en.pages.upload-passport-image.example.title{{/t}}</h3>
+      <p>{{#t}}en.pages.upload-passport-image.example.content{{/t}}</p>
+  </div>
+  <div class="passport-upload-guidance-text" lang="ar">
+      <h3 class="bold-small">{{#t}}ar.pages.upload-passport-image.example.title{{/t}}</h3>
+      <p>{{#t}}ar.pages.upload-passport-image.example.content{{/t}}</p>
+  </div>
+  <img src="/public/images/sample-passports/{{nationality}}.jpg" class="passport-upload-guidance-image" alt="Sample passport image showing the photgraph and biographic information page.">
+</div>
+
+<div class="passport-upload-requirements">
+<div lang="en">
+    <h3 class="bold-small">{{#t}}en.pages.upload-passport-image.requirements.title{{/t}}</h3>
+    <ul class="list list-bullet">
+        <li>{{#t}}en.pages.upload-passport-image.requirements.item-1{{/t}}</li>
+        <li>{{#t}}en.pages.upload-passport-image.requirements.item-2{{/t}}</li>
+        <li>{{#t}}en.pages.upload-passport-image.requirements.item-3{{/t}}</li>
+        <li>{{#t}}en.pages.upload-passport-image.requirements.item-4{{/t}}</li>
+    </ul>
+</div>
+<div lang="ar">
+    <h3 class="bold-small">{{#t}}ar.pages.upload-passport-image.requirements.title{{/t}}</h3>
+    <ul class="list list-bullet">
+        <li>{{#t}}ar.pages.upload-passport-image.requirements.item-1{{/t}}</li>
+        <li>{{#t}}ar.pages.upload-passport-image.requirements.item-2{{/t}}</li>
+        <li>{{#t}}ar.pages.upload-passport-image.requirements.item-3{{/t}}</li>
+        <li>{{#t}}ar.pages.upload-passport-image.requirements.item-4{{/t}}</li>
+    </ul>
+</div>
+</div>
+
+{{<partials-form}}
+
+{{$encoding}}enctype="multipart/form-data"{{/encoding}}
+
+{{$form}}
+
+  {{#file-upload}}passport-image{{/file-upload}}
+
+  {{#input-submit}}upload-picture{{/input-submit}}
+
+{{/form}}
+
+{{/partials-form}}
+
+{{/content}}
+
+{{/layout}}

@@ -1,5 +1,8 @@
 'use strict';
 
+/* eslint no-underscore-dangle:0 */
+global.__base = __dirname;
+
 var path = require('path');
 var express = require('express');
 var app = express();
@@ -11,7 +14,7 @@ var config = require('./config');
 require('moment-business');
 
 if (config.env !== 'ci') {
-  app.use(churchill(logger));
+  // app.use(churchill(logger));
 }
 
 app.use(function setGaCode(req, res, next) {
@@ -123,6 +126,7 @@ app.use(require('hof').middleware.cookies());
 // apps
 app.use(require('./apps/find-your-application/'));
 app.use(require('./apps/update-journey-details/'));
+app.use(require('./apps/update-passport-image/'));
 
 app.use(require('./middleware/not-found')());
 

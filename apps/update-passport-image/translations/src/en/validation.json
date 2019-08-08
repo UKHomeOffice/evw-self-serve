@@ -1,0 +1,11 @@
+{
+  "passport-image": {
+    "file-required": "You must upload a copy of your passport",
+    "invalid-file-type": "You must upload JPG, JPEG or PNG format only",
+    "file-too-large": "Too big",
+    "error-saving-file": "Error saving file"
+  },
+  "check-passport-image": {
+    "required": "Let us know if you are happy with your passport image or not"
+  }
+}

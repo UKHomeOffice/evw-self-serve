@@ -16,6 +16,11 @@ module.exports = {
   assetPath: process.env.ASSET_PATH || '/public',
   govukAssetPath: process.env.GOVUK_ASSET_PATH || '/govuk-assets',
   appPath: 'find-your-application/enter-your-details',
+  imageUploadDir: process.env.IMAGE_UPLOAD_DIR || 'public/images/upload.tmp',
+  maxUploadSize: process.env.MAX_UPLOAD_SIZE || 10485760,
+  validImageTypes: ['image/jpeg', 'image/png'],
+  imageRetrieveSizesAllowed: [500, 150],
+  virusCheckUrl: process.env.VIRUS_CHECK_URL,
   session: {
     name: 'evwselfserve.sid',
     secret: process.env.SESSION_SECRET || 'howdoesyourgardengrow',

@@ -1,0 +1,36 @@
+{
+  "upload-passport-image": {
+    "header": "Upload a copy of your passport",
+    "example": {
+      "title": "Example image",
+      "content": "The image must be of the page showing your photo, name and other personal information."
+    },
+    "requirements": {
+      "title": "Image requirements",
+      "item-1": "whole page and no other objects",
+      "item-2": "clear and in focus",
+      "item-3": "no flash, shadows, creases or tears",
+      "item-4": "JPG, JPEG or PNG format only"
+    }
+  },
+  "check-passport-image": {
+    "header": "Is your passport image clear?",
+    "passport-image-alt-text": "The image of your passport that you uploaded in the previous step.",
+    "checklist": {
+      "title": "Check that:",
+      "item-1": "the whole page is visible",
+      "item-2": "you can read all the information",
+      "item-3": "there are no flashes, shadows, creases or tears"
+    }
+  },
+  "complete": {
+    "title": "We have received your passport image",
+    "title-block-h1": "We have received your passport image",
+    "content": {
+      "what-happens-next-h2": "What happens next?",
+      "what-happens-next-p1": "We will now check your passport image before we issue your electronic visa waiver - this can take up to 24 hours.",
+      "what-happens-next-p2": "We will email {{email}} within 24 hours with details of how to download it.",
+      "what-happens-next-p3": "Please add electronicvisawaiver@homeoffice.gov.uk to your safe senders list to make sure you get your download details. You should wait 24 hours before contacting us about your EVW"
+    }
+  }
+}

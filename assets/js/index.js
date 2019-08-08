@@ -8,4 +8,7 @@ var formFocus = toolkit.formFocus;
 helpers.documentReady(progressiveReveal);
 helpers.documentReady(formFocus);
 
+var passportImageUpload = require('./passport-image');
+passportImageUpload.setupPassportImageUpload();
+
 helpers.documentReady(require('./typeahead/init-typeahead'));

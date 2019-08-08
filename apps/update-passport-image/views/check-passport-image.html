@@ -1,0 +1,54 @@
+{{<layout}}
+
+{{$pageTitleText}}{{#t}}en.pages.check-passport-image.header{{/t}}{{/pageTitleText}}
+
+{{$validationSummary}}
+{{> partials-validation-summary}}
+{{/validationSummary}}
+
+{{$propositionHeader}}
+{{> partials-navigation}}
+{{/propositionHeader}}
+
+{{$content}}
+
+<header>
+  <h1 class="heading-large">{{#t}}pages.check-passport-image.header{{/t}}</h1>
+</header>
+
+<img src="/passport-image/500/{{imageUploadFilename}}" class="check-passport-image" alt="{{#t}}en.pages.check-passport-image.passport-image-alt-text{{/t}}">
+
+<div class="passport-upload-requirements">
+  <div lang="en">
+    <h2>{{#t}}en.pages.check-passport-image.checklist.title{{/t}}</h2>
+    <ul class="list list-bullet">
+      <li>{{#t}}en.pages.check-passport-image.checklist.item-1{{/t}}</li>
+      <li>{{#t}}en.pages.check-passport-image.checklist.item-2{{/t}}</li>
+      <li>{{#t}}en.pages.check-passport-image.checklist.item-3{{/t}}</li>
+    </ul>
+  </div>
+  <div lang="ar">
+    <h2>{{#t}}ar.pages.check-passport-image.checklist.title{{/t}}</h2>
+    <ul class="list list-bullet">
+      <li>{{#t}}ar.pages.check-passport-image.checklist.item-1{{/t}}</li>
+      <li>{{#t}}ar.pages.check-passport-image.checklist.item-2{{/t}}</li>
+      <li>{{#t}}ar.pages.check-passport-image.checklist.item-3{{/t}}</li>
+    </ul>
+  </div>
+</div>
+
+{{<partials-form}}
+
+{{$form}}
+
+{{#radio-group}}check-passport-image{{/radio-group}}
+
+{{#input-submit}}continue{{/input-submit}}
+
+{{/form}}
+
+{{/partials-form}}
+
+{{/content}}
+
+{{/layout}}

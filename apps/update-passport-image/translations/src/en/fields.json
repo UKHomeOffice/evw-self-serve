@@ -1,0 +1,17 @@
+{
+  "passport-image": {
+    "label": "Upload picture"
+  },
+  "check-passport-image": {
+    "label": "Is your passport image clear?",
+    "legend": "Is your passport image clear?",
+    "options": {
+      "yes": {
+        "label": "Yes, my image is clear"
+      },
+      "no": {
+        "label": "No, I want to change my image"
+      }
+    }
+  }
+}
