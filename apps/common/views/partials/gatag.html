@@ -9,5 +9,13 @@
       ga('create', '{{gaCode}}', 'auto', {'allowLinker': true});
       ga('set', 'anonymizeIp', true);
       ga('send', 'pageview');
+
+      {{#govukGaCode}}
+      ga('create', '{{govukGaCode}}', 'auto', 'govuk_shared', {'allowLinker': true});
+      ga('govuk_shared.require', 'linker');
+      ga('govuk_shared.linker.set', 'anonymizeIp', true);
+      ga('govuk_shared.linker:autoLink', ['www.gov.uk', 'assets.publishing.service.gov.uk', 'www.legislation.gov.uk']);
+      ga('govuk_shared.send', 'pageview');
+      {{/govukGaCode}}
     </script>
 {{/gaCode}}

@@ -10,7 +10,7 @@ function initTypeahead(event, typeaheadLibrary) {
     return;
   }
   if (!typeaheadLibrary) {
-    require('../../../node_modules/typeahead-aria/dist/typeahead.jquery');
+    require('./typeahead.jquery');
   }
   $.each($('select.typeahead'), function setTypeahead(index, el) {
     new HofTypeahead().setupTypeahead(el);

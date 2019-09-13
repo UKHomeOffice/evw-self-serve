@@ -13,6 +13,7 @@ module.exports = {
   baseUrl: process.env.TEST_URL || process.env.BASE_URL || 'http://localhost',
   listen_host: process.env.LISTEN_HOST || '0.0.0.0',
   gaCode: process.env.GOOGLE_ANALYTICS_CODE || false,
+  govukGaCode: process.env.GOVUK_GOOGLE_ANALYTICS_CODE || false,
   assetPath: process.env.ASSET_PATH || '/public',
   govukAssetPath: process.env.GOVUK_ASSET_PATH || '/govuk-assets',
   appPath: 'find-your-application/enter-your-details',
