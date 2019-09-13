@@ -17,6 +17,7 @@ if (config.env !== 'ci') {
 app.use(function setGaCode(req, res, next) {
   if (config.gaCode) {
     res.locals.gaCode = config.gaCode;
+    res.locals.govukGaCode = config.govukGaCode;
   }
   next();
 });
