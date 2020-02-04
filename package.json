@@ -89,7 +89,7 @@
     "eslint-plugin-filenames": "^1.0.0",
     "eslint-plugin-mocha": "^3.0.0",
     "eslint-plugin-one-variable-per-var": "0.0.3",
-    "evw-integration-stub": "^1.7.0",
+    "evw-integration-stub": "^1.8.4",
     "hof-transpiler": "0.0.6",
     "jscs": "^3.0.4",
     "jsdom": "^9.9.1",

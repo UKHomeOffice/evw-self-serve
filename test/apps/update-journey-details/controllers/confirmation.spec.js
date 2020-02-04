@@ -11,6 +11,7 @@ const departureFlightOnlyFixture = require('../../../fixtures/departure-flight-o
 const tripDurationOnlyFixture = require('../../../fixtures/trip-duration-only');
 const accommodationOnlyFixture = require('../../../fixtures/accommodation-only');
 const proxyquire = require('proxyquire');
+const is = require('../../../../config').integrationService;
 
 describe('apps/update-journey-details/controllers/confirmation', function () {
   let ConfirmationController;

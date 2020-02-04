@@ -33,6 +33,8 @@ module.exports = {
   integrationService: {
     url: process.env.INTEGRATION_SERVICE_URL || 'http://localhost:9300',
     port: process.env.INTEGRATION_SERVICE_PORT || 9300,
+    user: process.env.INTEGRATION_SERVICE_USER || 'evw-customer-hof',
+    password: process.env.INTEGRATION_SERVICE_PASSWORD || 'pwd1',
     timeout: 5000,
     verify: {
       method: 'POST',
@@ -49,6 +51,10 @@ module.exports = {
     evwDetails: {
       method: 'GET',
       endpoint: 'self-serve/get'
+    },
+    login: {
+      method: 'POST',
+      endpoint: 'auth/login'
     }
   },
   cypress: {

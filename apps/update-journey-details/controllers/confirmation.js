@@ -97,6 +97,37 @@ const propMap = (model) => {
 };
 
 class ConfirmationController extends EvwBaseController {
+  authenticate() {
+    let now = new Date().getTime();
+    let tokenMillis = is.millis ? is.millis : 0;
+    if ((now - tokenMillis) > (5 * 3600 * 1000)) {
+      const auth = {
+        user: is.user,
+        pass: is.password,
+      };
+      logger.info(`logging into  ${is.uri}${is.login.endpoint} using ${is.user}:${is.password}`);
+      request[is.login.method.toLowerCase()]({
+        url: [
+          is.url,
+          is.login.endpoint
+        ].join('/'),
+        json: auth,
+        timeout: is.timeout
+      }, function (err, res, body) {
+
+        if (err) {
+          logger.error(`An error occurred while authenticating with ${is.login.uri} Error: ${err}`);
+          return false;
+        }
+        logger.info(`Setting bearer auth token to: ${body.jwt}`);
+        is.auth = {'bearer': body.jwt};
+        is.millis = now;
+        return true;
+      });
+    }
+    return true;
+  }
+
   getValues(req, res, callback) {
 
     const transformData = ConfirmationController.propMap(req.sessionModel.attributes);
@@ -110,6 +141,8 @@ class ConfirmationController extends EvwBaseController {
 
     logger.info('sending update', transformData);
 
+    if (! this.authenticate())
+      return callback('error sending update to integration service');
     request[is.update.method.toLowerCase()]({
       url: [
           is.url,
