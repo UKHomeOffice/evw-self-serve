@@ -7,6 +7,6 @@
   "dob": {
     "required": "Enter your date of birth",
     "before": "Date of birth cannot be in the future",
-    "date": "Please use the correct date format, for example, 22 3 1979"
+    "date": "Enter a date in the format dd/mm/yyyy"
   }
 }
