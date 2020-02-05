@@ -119,6 +119,7 @@ class ConfirmationController extends EvwBaseController {
           logger.error(`An error occurred while authenticating with ${is.login.uri} Error: ${err}`);
           return false;
         }
+        logger.info(body);
         logger.info(`Setting bearer auth token to: ${body.jwt}`);
         is.auth = {'bearer': body.jwt};
         is.millis = now;
