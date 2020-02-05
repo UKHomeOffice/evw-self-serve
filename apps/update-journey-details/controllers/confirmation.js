@@ -105,18 +105,18 @@ class ConfirmationController extends EvwBaseController {
         user: is.user,
         pass: is.password,
       };
-      logger.info(`logging into  ${is.uri}${is.login.endpoint} using ${is.user}:${is.password}`);
+      logger.info(`logging into  ${is.url}/${is.login.endpoint} using ${is.user}:${is.password}`);
       request[is.login.method.toLowerCase()]({
         url: [
           is.url,
           is.login.endpoint
         ].join('/'),
-        json: auth,
+        json: {},
         timeout: is.timeout
       }, function (err, res, body) {
 
-        if (err) {
-          logger.error(`An error occurred while authenticating with ${is.login.uri} Error: ${err}`);
+        if (err || body.error) {
+          logger.error(`An error occurred while authenticating with ${is.login.uri} Error: ${err} ${body.error}`);
           return false;
         }
         logger.info(body);
