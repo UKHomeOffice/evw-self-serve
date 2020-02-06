@@ -308,7 +308,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
       });
 
       it('calls request post', function() {
-        mockRequest.post.should.have.been.calledThrice;
+        mockRequest.post.should.have.been.calledOnce;
       });
 
       it('sets details in request', function() {
@@ -320,11 +320,11 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
       });
 
       it('calls session reset', function() {
-        req.sessionModel.reset.should.have.been.calledTwice;
+        req.sessionModel.reset.should.have.been.calledOnce;
       });
 
       it('calls callback with no params', function() {
-        callback.should.have.been.calledTwice.calledWith();
+        callback.should.have.been.calledOnce.calledWith();
       });
     });
 
@@ -366,11 +366,11 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
       });
 
       it('calls request post', function() {
-        mockRequest.post.should.have.been.calledTwice;
+        mockRequest.post.should.have.been.calledOnce;
       });
 
       it('calls callback with error', function() {
-        callback.should.have.been.calledTwice.calledWith({error: 'request error'});
+        callback.should.have.been.calledOnce.calledWith({error: 'request error'});
       });
     });
 
@@ -389,11 +389,11 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
       });
 
       it('calls request post', function() {
-        mockRequest.post.should.have.been.calledThrice;
+        mockRequest.post.should.have.been.calledOnce;
       });
 
       it('calls callback with error', function() {
-        callback.should.have.been.calledTwice.calledWith('request error');
+        callback.should.have.been.calledOnce.calledWith('request error');
       });
     });
   });

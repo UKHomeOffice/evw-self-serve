@@ -97,41 +97,6 @@ const propMap = (model) => {
 };
 
 class ConfirmationController extends EvwBaseController {
-  authenticate(callback) {
-    let now = new Date().getTime();
-    let tokenMillis = is.millis ? is.millis : 0;
-    if ((now - tokenMillis) > (5 * 3600 * 1000)) {
-      const auth = {
-        user: is.user,
-        pass: is.password,
-      };
-      logger.info(`logging into  ${is.url}/${is.login.endpoint} using ${is.user}:${is.password}`);
-      request[is.login.method.toLowerCase()]({
-        url: [
-          is.url,
-          is.login.endpoint
-        ].join('/'),
-        json: {},
-        timeout: is.timeout,
-        auth: auth
-      }, function (err, res, body) {
-
-        if (err || body.error) {
-          logger.error(`An error occurred while authenticating with ${is.login.uri} Error: ${err}`);
-          return callback(null, err);
-        }
-        if ( body.jwt == undefined) {
-          logger.error('undefined body');
-          return callback('JWT Token undefined')
-        }
-        logger.info(body);
-        logger.info(`Setting bearer auth token to: ${body.jwt}`);
-        is.auth = {'bearer': body.jwt};
-        is.millis = now;
-      });
-    }
-    return callback(is.auth);
-  }
 
   getValues(req, res, callback) {
 
@@ -148,7 +113,8 @@ class ConfirmationController extends EvwBaseController {
 
     this.authenticate( function (auth, authError) {
       if (authError) {
-        return callback(authError);
+        logger.info('error sending update to integration service', authError);
+        return;
       }
       request[is.update.method.toLowerCase()]({
         url: [
