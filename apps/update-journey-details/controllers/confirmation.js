@@ -97,7 +97,7 @@ const propMap = (model) => {
 };
 
 class ConfirmationController extends EvwBaseController {
-  authenticate() {
+  authenticate(callback) {
     let now = new Date().getTime();
     let tokenMillis = is.millis ? is.millis : 0;
     if ((now - tokenMillis) > (5 * 3600 * 1000)) {
@@ -112,21 +112,25 @@ class ConfirmationController extends EvwBaseController {
           is.login.endpoint
         ].join('/'),
         json: {},
-        timeout: is.timeout
+        timeout: is.timeout,
+        auth: auth
       }, function (err, res, body) {
 
         if (err || body.error) {
-          logger.error(`An error occurred while authenticating with ${is.login.uri} Error: ${err} ${body.error}`);
-          return false;
+          logger.error(`An error occurred while authenticating with ${is.login.uri} Error: ${err}`);
+          return callback(null, err);
+        }
+        if ( body.jwt == undefined) {
+          logger.error('undefined body');
+          return callback('JWT Token undefined')
         }
         logger.info(body);
         logger.info(`Setting bearer auth token to: ${body.jwt}`);
         is.auth = {'bearer': body.jwt};
         is.millis = now;
-        return true;
       });
     }
-    return true;
+    return callback(is.auth);
   }
 
   getValues(req, res, callback) {
@@ -142,49 +146,53 @@ class ConfirmationController extends EvwBaseController {
 
     logger.info('sending update', transformData);
 
-    if (! this.authenticate())
-      return callback('error sending update to integration service');
-    request[is.update.method.toLowerCase()]({
-      url: [
+    this.authenticate( function (auth, authError) {
+      if (authError) {
+        return callback(authError);
+      }
+      request[is.update.method.toLowerCase()]({
+        url: [
           is.url,
           is.update.endpoint
-      ].join('/'),
-      json: propMap(req.sessionModel.attributes),
-      headers: {
+        ].join('/'),
+        json: propMap(req.sessionModel.attributes),
+        headers: {
           'Content-Type': 'application/json'
-      },
-      timeout: is.timeout
-    }, function (err, response, body) {
+        },
+        timeout: is.timeout,
+        auth: auth
+      }, function (err, response, body) {
 
-      if (err) {
-        logger.error('error sending update to integration service', err);
-        return callback(err);
-      }
+        if (err) {
+          logger.error('error sending update to integration service', err);
+          return callback(err);
+        }
 
-      if (body.error) {
-        logger.error('body error sending update to integration service', body.error || err);
-        return callback(body.error);
-        /* eslint no-warning-comments: 1*/
-        // TODO change to an error page
-      }
+        if (body.error) {
+          logger.error('body error sending update to integration service', body.error || err);
+          return callback(body.error);
+          /* eslint no-warning-comments: 1*/
+          // TODO change to an error page
+        }
 
-      req.context = {
-        updateNumber: body.membershipNumber,
-        emailAddress: body.emailAddress,
-        didUpdateToUK: req.sessionModel.attributes['update-to-uk'] === 'true'
-      };
+        req.context = {
+          updateNumber: body.membershipNumber,
+          emailAddress: body.emailAddress,
+          didUpdateToUK: req.sessionModel.attributes['update-to-uk'] === 'true'
+        };
 
-      logger.info('application sent to integration service', body);
+        logger.info('application sent to integration service', body);
 
-      // Manually reset the session.
-      // This should be handled by the super.getValues function,
-      // but due to a race condition it is possible the response
-      // is sent before the session is reset.
-      // When https://github.com/UKHomeOffice/hof-controllers/pull/72
-      // is merged and released in a version of hof this can be removed.
-      req.sessionModel.reset();
+        // Manually reset the session.
+        // This should be handled by the super.getValues function,
+        // but due to a race condition it is possible the response
+        // is sent before the session is reset.
+        // When https://github.com/UKHomeOffice/hof-controllers/pull/72
+        // is merged and released in a version of hof this can be removed.
+        req.sessionModel.reset();
 
-      return callback();
+        return callback();
+      });
     });
 
   }
