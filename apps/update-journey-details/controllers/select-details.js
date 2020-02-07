@@ -9,6 +9,7 @@ const EvwBaseController = require('../../common/controllers/evw-base');
 const request = require('request');
 const is = require('../../../config').integrationService;
 const logger = require('../../../lib/logger');
+const authenticate = require('../../../lib/authenticate');
 const ValidationError = require('hof').controllers.error;
 
 const fourOhfourIt = (res) => {
@@ -37,7 +38,7 @@ module.exports = class SelectDetailsController extends EvwBaseController {
       return fourOhfourIt(res);
     }
 
-    this.authenticate( function (auth, authError) {
+    authenticate( function (auth, authError) {
       if (authError) {
         logger.info('error sending update to integration service', authError);
         return;

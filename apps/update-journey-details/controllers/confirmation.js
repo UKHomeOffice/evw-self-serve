@@ -9,6 +9,8 @@ const logger = require('../../../lib/logger');
 const Validator = require('jsonschema').Validator;
 const v = new Validator();
 const schema = require('evw-schemas').evw.selfServe.schema;
+const authenticate = require('../../../lib/authenticate');
+
 
 const propMap = (model) => {
   const f = model.flightDetails;
@@ -111,7 +113,7 @@ class ConfirmationController extends EvwBaseController {
 
     logger.info('sending update', transformData);
 
-    this.authenticate( function (auth, authError) {
+    authenticate( function (auth, authError) {
       if (authError) {
         logger.info('error sending update to integration service', authError);
         return;
