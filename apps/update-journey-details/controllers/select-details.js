@@ -18,80 +18,81 @@ const fourOhfourIt = (res) => {
   });
 }
 
-const checkValidated = (req, res, callback) => {
-  let valid = req.sessionModel.get('validated');
-  if(valid) {
-    callback();
-  } else {
-    validateApp(req,res,callback);
-  }
-};
-
-const validateApp = (req, res, callback) => {
-  let evwNumber = req.query.evwNumber;
-  let token = (req.query.token || '').replace('?hof-cookie-check', '');
-
-  if(!evwNumber || !token) {
-    return fourOhfourIt(res);
-  }
-
-  this.authenticate( function (auth, authError) {
-    if (authError) {
-      logger.info('error sending update to integration service', authError);
-      return;
-    }
-    request[is.evwDetails.method.toLowerCase()]({
-      url: [
-        is.url,
-        is.evwDetails.endpoint,
-        evwNumber,
-        token
-      ].join('/'),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      timeout: is.timeout
-    }, function (err, response, body) {
-      let parsed;
-
-      if (err) {
-        logger.error('error verifying application', err);
-        return callback(err);
-      }
-
-      try {
-        parsed = JSON.parse(body);
-      } catch (e) {
-        parsed = body;
-        logger.info('could not parse body, attempting without json parse', body);
-      }
-
-
-      // 404 it in lieu of a more specific error page
-      if (parsed.error) {
-        req.sessionModel.reset();
-        logger.error('error verifying application', parsed.error);
-        return fourOhfourIt(res);
-        /* eslint no-warning-comments: 1*/
-        // TODO change to a invalid page
-      }
-      let startLink = req.path.replace(/^\/([^\/]*).*$/, '$1') + `?evwNumber=${evwNumber}&token=${token}`;
-      logger.info('setting startLink', startLink);
-      req.sessionModel.set('startLink', startLink);
-      req.sessionModel.set('validated', true);
-      req.sessionModel.set('evw-number', evwNumber);
-      req.sessionModel.set('token', token);
-
-      req.sessionModel.set('evw-details', parsed);
-
-      return callback();
-    });
-  });
-}
 
 module.exports = class SelectDetailsController extends EvwBaseController {
+  checkValidated(req, res, callback) {
+    let valid = req.sessionModel.get('validated');
+    if(valid) {
+      callback();
+    } else {
+      this.validateApp(req,res,callback);
+    }
+  }
+
+  validateApp(req, res, callback) {
+    let evwNumber = req.query.evwNumber;
+    let token = (req.query.token || '').replace('?hof-cookie-check', '');
+
+    if(!evwNumber || !token) {
+      return fourOhfourIt(res);
+    }
+
+    this.authenticate( function (auth, authError) {
+      if (authError) {
+        logger.info('error sending update to integration service', authError);
+        return;
+      }
+      request[is.evwDetails.method.toLowerCase()]({
+        url: [
+          is.url,
+          is.evwDetails.endpoint,
+          evwNumber,
+          token
+        ].join('/'),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        timeout: is.timeout
+      }, function (err, response, body) {
+        let parsed;
+
+        if (err) {
+          logger.error('error verifying application', err);
+          return callback(err);
+        }
+
+        try {
+          parsed = JSON.parse(body);
+        } catch (e) {
+          parsed = body;
+          logger.info('could not parse body, attempting without json parse', body);
+        }
+
+
+        // 404 it in lieu of a more specific error page
+        if (parsed.error) {
+          req.sessionModel.reset();
+          logger.error('error verifying application', parsed.error);
+          return fourOhfourIt(res);
+          /* eslint no-warning-comments: 1*/
+          // TODO change to a invalid page
+        }
+        let startLink = req.path.replace(/^\/([^\/]*).*$/, '$1') + `?evwNumber=${evwNumber}&token=${token}`;
+        logger.info('setting startLink', startLink);
+        req.sessionModel.set('startLink', startLink);
+        req.sessionModel.set('validated', true);
+        req.sessionModel.set('evw-number', evwNumber);
+        req.sessionModel.set('token', token);
+
+        req.sessionModel.set('evw-details', parsed);
+
+        return callback();
+      });
+    });
+  }
+
   getValues(req, res, callback) {
-    return checkValidated(req, res, callback);
+    return this.checkValidated(req, res, callback);
   }
 
   locals(req, res) {
