@@ -47,7 +47,7 @@ mongo:
 	@echo "--> Starting mongoDB"
 	docker run --name database.evw-self-serve-${VERSION} -d --rm -p27017:27017 \
 		--network evw-self-serve-${VERSION} \
-		mongo:3.6
+		mongo:4.0.17
 
 govpay:
 	@echo "--> Starting GovPay stub"
