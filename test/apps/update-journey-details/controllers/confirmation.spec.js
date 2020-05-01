@@ -296,7 +296,10 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
 
     describe('successful', function() {
       beforeEach(function() {
-        controller.getValues(req, res, callback);
+        controller.getValues(req, res, function () {
+          console.log('back from getValues');
+          callback();
+        });
       });
 
       it('calls propMap to transformData', function() {
@@ -308,6 +311,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
       });
 
       it('calls request post', function() {
+        console.log('counting crows');
         mockRequest.post.should.have.been.calledOnce;
       });
 

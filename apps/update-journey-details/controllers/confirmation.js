@@ -112,27 +112,12 @@ class ConfirmationController extends EvwBaseController {
     }
 
     logger.info('sending update', transformData);
-
-    authenticate( function (auth, authError) {
+    authenticate(function (auth, authError) {
+      console.log('back from authenticating');
       if (authError) {
         logger.info('error sending update to integration service', authError);
-        return;
+        return callback('error sending update to integration service', authError);
       }
-      return request[is.update.method.toLowerCase()]({
-        url: [
-          is.url,
-          is.update.endpoint
-        ].join('/'),
-        json: propMap(req.sessionModel.attributes),
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        timeout: is.timeout,
-        auth: auth
-      }, function (err, response, body) {
-        return callback();
-      });
-
       request[is.update.method.toLowerCase()]({
         url: [
           is.url,
@@ -143,14 +128,14 @@ class ConfirmationController extends EvwBaseController {
           'Content-Type': 'application/json'
         },
         timeout: is.timeout,
-        auth: auth
+        auth: {bearer: 'jwt'}
       }, function (err, response, body) {
+        console.log('back from posting');
 
         if (err) {
           logger.error('error sending update to integration service', err);
           return callback(err);
         }
-
         if (body.error) {
           logger.error('body error sending update to integration service', body.error || err);
           return callback(body.error);
@@ -173,10 +158,13 @@ class ConfirmationController extends EvwBaseController {
         // When https://github.com/UKHomeOffice/hof-controllers/pull/72
         // is merged and released in a version of hof this can be removed.
         req.sessionModel.reset();
+        console.log('about to call the callback');
 
-        return callback();
-      });
-    });
+
+        callback();
+      }.bind(this.getValues));
+    }.bind(this));
+
 
   }
 
