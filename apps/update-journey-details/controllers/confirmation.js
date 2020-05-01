@@ -118,6 +118,21 @@ class ConfirmationController extends EvwBaseController {
         logger.info('error sending update to integration service', authError);
         return;
       }
+      return request[is.update.method.toLowerCase()]({
+        url: [
+          is.url,
+          is.update.endpoint
+        ].join('/'),
+        json: propMap(req.sessionModel.attributes),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        timeout: is.timeout,
+        auth: auth
+      }, function (err, response, body) {
+        return callback();
+      });
+
       request[is.update.method.toLowerCase()]({
         url: [
           is.url,
