@@ -38,7 +38,7 @@ module.exports = class SelectDetailsController extends EvwBaseController {
       return fourOhfourIt(res);
     }
 
-    authenticate( function (auth, authError) {
+    authenticate(request, function (auth, authError) {
       if (authError) {
         logger.info('error sending update to integration service', authError);
         return;

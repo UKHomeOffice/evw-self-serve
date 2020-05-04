@@ -21,11 +21,17 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
   let validateStub;
 
   beforeEach(function() {
+    let callback = sinon.stub();
+    callback.onCall(0).yields(null, null, {
+      jwt: 'Bearer: somesecret'
+    });
+    callback.onCall(1).yields(null, null, {
+      membershipNumber: '123ABC',
+      emailAddress: 'test@example.com'
+    });
+
     mockRequest = {
-      post: sinon.stub().yields(null, null, {
-        membershipNumber: '123ABC',
-        emailAddress: 'test@example.com'
-      })
+      post: callback
     };
     validateStub = sinon.stub().returns({valid: true});
     mockJsonSchema = {
@@ -296,7 +302,10 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
 
     describe('successful', function() {
       beforeEach(function() {
-        controller.getValues(req, res, callback);
+        controller.getValues(req, res, function () {
+          console.log('back from getValues');
+          callback();
+        });
       });
 
       it('calls propMap to transformData', function() {
@@ -308,7 +317,8 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
       });
 
       it('calls request post', function() {
-        mockRequest.post.should.have.been.calledOnce;
+        console.log('counting crows');
+        mockRequest.post.should.have.been.calledTwice;
       });
 
       it('sets details in request', function() {
@@ -353,7 +363,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
 
     describe('failed request, error returned', function() {
       beforeEach(function() {
-        mockRequest.post.yields({error: 'request error'}, null, null);
+        mockRequest.post.onSecondCall().yields({error: 'request error'}, null, null);
         controller.getValues(req, res, callback);
       });
 
@@ -366,7 +376,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
       });
 
       it('calls request post', function() {
-        mockRequest.post.should.have.been.calledOnce;
+        mockRequest.post.should.have.been.calledTwice;
       });
 
       it('calls callback with error', function() {
@@ -376,7 +386,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
 
     describe('failed request, error returned in body', function() {
       beforeEach(function() {
-        mockRequest.post.yields(null, null, {error: 'request error'});
+        mockRequest.post.onSecondCall().yields(null, null, {error: 'request error'});
         controller.getValues(req, res, callback);
       });
 
@@ -389,7 +399,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
       });
 
       it('calls request post', function() {
-        mockRequest.post.should.have.been.calledOnce;
+        mockRequest.post.should.have.been.calledTwice;
       });
 
       it('calls callback with error', function() {
