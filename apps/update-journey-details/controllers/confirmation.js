@@ -113,7 +113,6 @@ class ConfirmationController extends EvwBaseController {
 
     logger.info('sending update', transformData);
     authenticate(request, function (auth, authError) {
-      console.log('back from authenticating');
       if (authError) {
         logger.error('error sending update to integration service', authError);
         return callback(authError);
@@ -130,7 +129,6 @@ class ConfirmationController extends EvwBaseController {
         timeout: is.timeout,
         auth: {bearer: 'jwt'}
       }, function (err, response, body) {
-        console.log('back from posting');
 
         if (err) {
           logger.error('error sending update to integration service', err);
@@ -158,14 +156,11 @@ class ConfirmationController extends EvwBaseController {
         // When https://github.com/UKHomeOffice/hof-controllers/pull/72
         // is merged and released in a version of hof this can be removed.
         req.sessionModel.reset();
-        console.log('about to call the callback');
 
 
         return callback();
       });
-      //console.log(request.post.callCount);
     });
-    //console.log(request.post.callCount);
   }
 
   locals(req, res) {
