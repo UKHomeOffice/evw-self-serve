@@ -112,11 +112,11 @@ class ConfirmationController extends EvwBaseController {
     }
 
     logger.info('sending update', transformData);
-    authenticate(function (auth, authError) {
+    authenticate(request, function (auth, authError) {
       console.log('back from authenticating');
       if (authError) {
-        logger.info('error sending update to integration service', authError);
-        return callback('error sending update to integration service', authError);
+        logger.error('error sending update to integration service', authError);
+        return callback(authError);
       }
       request[is.update.method.toLowerCase()]({
         url: [
@@ -161,11 +161,11 @@ class ConfirmationController extends EvwBaseController {
         console.log('about to call the callback');
 
 
-        callback();
-      }.bind(this.getValues));
-    }.bind(this));
-
-
+        return callback();
+      });
+      //console.log(request.post.callCount);
+    });
+    //console.log(request.post.callCount);
   }
 
   locals(req, res) {
