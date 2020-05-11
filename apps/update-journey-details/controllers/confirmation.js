@@ -127,7 +127,7 @@ class ConfirmationController extends EvwBaseController {
           'Content-Type': 'application/json'
         },
         timeout: is.timeout,
-        auth: {bearer: 'jwt'}
+        auth: auth
       }, function (err, response, body) {
 
         if (err) {
