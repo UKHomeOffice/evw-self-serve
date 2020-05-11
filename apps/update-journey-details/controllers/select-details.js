@@ -53,7 +53,8 @@ module.exports = class SelectDetailsController extends EvwBaseController {
         headers: {
           'Content-Type': 'application/json'
         },
-        timeout: is.timeout
+        timeout: is.timeout,
+        auth: auth
       }, function (err, response, body) {
         let parsed;
 
