@@ -303,7 +303,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
     describe('successful', function() {
       beforeEach(function() {
         controller.getValues(req, res, function () {
-          console.log('back from getValues');
+          is.millis = 0;
           callback();
         });
       });
@@ -362,6 +362,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
 
     describe('failed request, error returned', function() {
       beforeEach(function() {
+        is.millis = 0;
         mockRequest.post.onSecondCall().yields({error: 'request error'}, null, null);
         controller.getValues(req, res, callback);
       });
@@ -385,6 +386,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
 
     describe('failed request, error returned in body', function() {
       beforeEach(function() {
+        is.millis = 0;
         mockRequest.post.onSecondCall().yields(null, null, {error: 'request error'});
         controller.getValues(req, res, callback);
       });
