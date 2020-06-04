@@ -317,7 +317,6 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
       });
 
       it('calls request post', function() {
-        console.log('counting crows');
         mockRequest.post.should.have.been.calledTwice;
       });
 
