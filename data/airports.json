@@ -637,6 +637,12 @@
     "timezone": "Asia/Kolkata"
   },
   {
+    "code": "BER",
+    "name": "Berlin Brandenburg Airport",
+    "countryCode": "DEU",
+    "timezone": "Europe/Berlin"
+  },
+  {
     "name": "Twin Island Airpark",
     "countryCode": "CAN",
     "timezone": "America/Edmonton"
