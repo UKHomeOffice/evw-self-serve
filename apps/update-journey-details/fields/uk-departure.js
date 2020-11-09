@@ -81,7 +81,7 @@ module.exports = {
   },
   'uk-port-of-departure': {
     validate: ['required', {type: 'maxlength', arguments: '95'}],
-    className: ['typeahead'],
+    className: ['autocomplete'],
     options: ukPortOfDepartureOptions,
     dependent: {
       field: 'know-departure-details',

@@ -8,4 +8,4 @@ var formFocus = toolkit.formFocus;
 helpers.documentReady(progressiveReveal);
 helpers.documentReady(formFocus);
 
-helpers.documentReady(require('./typeahead/init-typeahead'));
+require('./autocomplete')();

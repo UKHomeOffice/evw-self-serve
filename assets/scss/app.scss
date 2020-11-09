@@ -2,12 +2,16 @@ $path: "../img/";
 
 @import "../../node_modules/hof/node_modules/hmpo-frontend-toolkit/assets/stylesheets/app.scss";
 
+@import "../../node_modules/accessible-autocomplete/src/autocomplete.scss";
+
+
 @import "./alert.scss";
 @import "./icons.scss";
 @import "./panels.scss";
 @import "hof_overrides";
 @import "confirmation";
 @import "./address-group.scss";
+
 
 
 .phase-banner {
@@ -66,9 +70,6 @@ h1 {
   }
 }
 
-.twitter-typeahead {
-  width: 100%;
-}
 
 //custom form styling
 .form-control {

@@ -31,7 +31,7 @@ describe('End to end smoke test including caseworker & self-serve', () => {
         cy.get('#passport-issue-date-group').populateDateGroup(applicant.passportIssue);
         cy.get('#passport-expiry-date-group').populateDateGroup(applicant.passportExpiry);
         cy.get('#passport-issue-place').type(applicant.passportIssuedPlace);
-        cy.get('#country-of-birth_typeahead').type(applicant.countryOfBirth);
+        cy.get('#country-of-birth').type(applicant.countryOfBirth);
         cy.get('#continue').click();
         cy.get('#passport-image').upload_file('SMOKE.png', 'image/png');
         cy.contains('Is your passport image clear?');
@@ -60,9 +60,9 @@ describe('End to end smoke test including caseworker & self-serve', () => {
         cy.get('#train-departure-date-group').populateDateGroup(applicant.departureDate);
 
         cy.get('#train-departure-time-group').populateTimeGroup(applicant.trainDepartureTime)
-        cy.get('#train-departure-country_typeahead').type(applicant.countryDepartingFrom);
-        cy.get('#train-departure-station_typeahead').type(applicant.stationDepartingFrom);
-        cy.get('#train-arrival-station_typeahead').type(applicant.arrivalStation);
+        cy.get('#train-departure-country').type(applicant.countryDepartingFrom);
+        cy.get('#train-departure-station').type(applicant.stationDepartingFrom);
+        cy.get('#train-arrival-station').type(applicant.arrivalStation);
         cy.get('#train-arrival-date-group').populateDateGroup(applicant.arrivalDate);
         cy.get('#train-arrival-time-group').populateTimeGroup(applicant.trainArrivalTime);
         cy.get('#continue').click();
@@ -80,10 +80,10 @@ describe('End to end smoke test including caseworker & self-serve', () => {
         cy.get('#uk-visit-more-than-once-No').click();
         cy.get('#continue').click();
         cy.contains('Your contact details');
-        cy.get('#country-applied-from_typeahead').type(applicant.countryAppliedFrom);
+        cy.get('#country-applied-from').type(applicant.countryAppliedFrom);
         cy.get('#home-address-1').type(applicant.homeAddress);
         cy.get('#home-postcode').type(applicant.homePostcode);
-        cy.get('#home-country_typeahead').type(applicant.homeCountry);
+        cy.get('#home-country').type(applicant.homeCountry);
         cy.get('#home-phone').type(applicant.homePhone);
         cy.get('#mobile').type(applicant.mobileNumber);
         cy.get('#email').type(applicant.emailAddress);
