@@ -2,8 +2,6 @@ $path: "../img/";
 
 @import "../../node_modules/hof/node_modules/hmpo-frontend-toolkit/assets/stylesheets/app.scss";
 
-@import "../../node_modules/accessible-autocomplete/src/autocomplete.scss";
-
 
 @import "./alert.scss";
 @import "./icons.scss";
@@ -11,6 +9,8 @@ $path: "../img/";
 @import "hof_overrides";
 @import "confirmation";
 @import "./address-group.scss";
+@import "./autocomplete.scss";
+
 
 
 
