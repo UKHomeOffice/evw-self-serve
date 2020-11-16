@@ -83,8 +83,8 @@ Scenario: Entering new outbound flight details only
   Then I should be on the "UK departure" page of the "Update journey details" app
   And I select "Yes" for "Know departure details"
   And I enter "FL1001" into "UK departure travel number"
-  And I enter a date "3 months" in the future into "UK date of departure"
   And I enter "London Gatwick Airport" into "UK port of departure"
+  And I enter a date "3 months" in the future into "UK date of departure"
   And I continue
   # Check your answers page
   Then the page title should contain "Check your answers"
@@ -210,8 +210,8 @@ Scenario: Entering new inbound flight details (correct flight found) and outboun
   And the page title should contain "Do you have your travel details for your departure from the UK?"
   And I select "Yes" for "Know departure details"
   And I enter "FL1001" into "UK departure travel number"
-  And I enter a date "3 months" in the future into "UK date of departure"
   And I enter "London Gatwick Airport" into "UK port of departure"
+  And I enter a date "3 months" in the future into "UK date of departure"
   And I continue
   # Check your answers page
   Then the page title should contain "Check your answers"
@@ -483,8 +483,8 @@ Scenario: Entering new outbound flight details and address details
   Then I should be on the "UK departure" page of the "Update journey details" app
   And I select "Yes" for "Know departure details"
   And I enter "FL1001" into "UK departure travel number"
-  And I enter a date "3 months" in the future into "UK date of departure"
   And I enter "London Gatwick Airport" into "UK port of departure"
+  And I enter a date "3 months" in the future into "UK date of departure"
   And I continue
   # Your stay page
   Then I should be on the "Visit information" page of the "Update journey details" app
