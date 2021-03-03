@@ -52,21 +52,24 @@ steps:
 
 - name: trigger_deploy_to_dev
   pull: if-not-exists
-  image: quay.io/ukhomeofficedigital/drone-trigger
+  image: plugins/downstream
   settings:
-    branch: master
-    deploy_to: dev
-    drone_server: https://drone-gitlab.acp.homeoffice.gov.uk
-    params: SERVICE=evw-self-serve,VERSION=${DRONE_COMMIT_SHA}
-    repo: REGT/kube-evw
-  environment:
-    DRONE_TOKEN:
+    server: https://drone-gl.acp.homeoffice.gov.uk
+    token:
       from_secret: drone_token
+    deploy: dev
+    params:
+      - SERVICE=evw-self-serve
+      - VERSION=${DRONE_COMMIT_SHA}
+      - REPO=UKHomeOffice/evw-self-serve
+    last_successful: true
+    repositories:
+      - REGT/kube-evw@master
   when:
-#    branch:
-#    - master
     event:
-    - push
+      - push
+  #    branch:
+  #      - master
   depends_on:
     - image_to_artifactory
 
