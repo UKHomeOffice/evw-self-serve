@@ -1,0 +1,76 @@
+---
+kind: pipeline
+type: kubernetes
+name: evw-self-serve
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: build
+  pull: if-not-exists
+  image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+  commands:
+  - apk add --update make
+  - docker login -u="evw-build-bot" -p=$${DOCKER_PASSWORD} docker.digital.homeoffice.gov.uk
+  - make build_self_serve
+  - make acceptance_test
+  - make clean
+  environment:
+    DOCKER_PASSWORD:
+      from_secret: docker_password
+    NPM_AUTH_USERNAME: evw-build-bot
+    NPM_AUTH_TOKEN:
+      from_secret: npm_auth_token
+    VERSION: ${DRONE_COMMIT_SHA}
+  when:
+    event:
+    - push
+
+- name: image_to_artifactory
+  pull: if-not-exists
+  image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+  commands:
+  - apk add --update make
+  - docker login -u="evw-build-bot" -p=$${DOCKER_PASSWORD} docker.digital.homeoffice.gov.uk
+  - make push_self_serve
+  environment:
+    DOCKER_PASSWORD:
+      from_secret: docker_password
+    NPM_AUTH_USERNAME: evw-build-bot
+    NPM_AUTH_TOKEN:
+      from_secret: npm_auth_token
+    VERSION: ${DRONE_COMMIT_SHA}
+  when:
+#    branch:
+#    - master
+    event:
+    - push
+  depends_on:
+    - build
+
+- name: trigger_deploy_to_dev
+  pull: if-not-exists
+  image: quay.io/ukhomeofficedigital/drone-trigger
+  settings:
+    branch: master
+    deploy_to: dev
+    drone_server: https://drone-gitlab.acp.homeoffice.gov.uk
+    params: SERVICE=evw-self-serve,VERSION=${DRONE_COMMIT_SHA}
+    repo: REGT/kube-evw
+  environment:
+    DRONE_TOKEN:
+      from_secret: drone_token
+  when:
+#    branch:
+#    - master
+    event:
+    - push
+  depends_on:
+    - image_to_artifactory
+
+services:
+  - name: docker
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+...
