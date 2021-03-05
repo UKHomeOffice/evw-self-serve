@@ -67,9 +67,9 @@ steps:
       - REGT/kube-evw@master
   when:
     event:
-      - push
-      branch:
-        - master
+    - push
+    branch:
+    - master
   depends_on:
     - image_to_artifactory
 
