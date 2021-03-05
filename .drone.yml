@@ -43,8 +43,8 @@ steps:
       from_secret: npm_auth_token
     VERSION: ${DRONE_COMMIT_SHA}
   when:
-#    branch:
-#    - master
+    branch:
+    - master
     event:
     - push
   depends_on:
@@ -68,8 +68,8 @@ steps:
   when:
     event:
       - push
-  #    branch:
-  #      - master
+      branch:
+        - master
   depends_on:
     - image_to_artifactory
 
