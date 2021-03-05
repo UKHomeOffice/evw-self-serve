@@ -1,51 +1,79 @@
-matrix:
-  NPM_AUTH_USERNAME:
-    - evw-build-bot
+---
+kind: pipeline
+type: kubernetes
+name: evw-self-serve
 
-pipeline:
+platform:
+  os: linux
+  arch: amd64
 
-  build:
-    image: docker:18.06
-    secrets:
-      - npm_auth_token
-      - docker_password
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
+steps:
+- name: build
+  pull: if-not-exists
+  image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+  commands:
+  - apk add --update make
+  - docker login -u="evw-build-bot" -p=$${DOCKER_PASSWORD} docker.digital.homeoffice.gov.uk
+  - make build_self_serve
+  - make acceptance_test
+  - make clean
+  environment:
+    DOCKER_PASSWORD:
+      from_secret: docker_password
+    NPM_AUTH_USERNAME: evw-build-bot
+    NPM_AUTH_TOKEN:
+      from_secret: npm_auth_token
+    VERSION: ${DRONE_COMMIT_SHA}
+  when:
+    event:
+    - push
+
+- name: image_to_artifactory
+  pull: if-not-exists
+  image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+  commands:
+  - apk add --update make
+  - docker login -u="evw-build-bot" -p=$${DOCKER_PASSWORD} docker.digital.homeoffice.gov.uk
+  - make push_self_serve
+  environment:
+    DOCKER_PASSWORD:
+      from_secret: docker_password
+    NPM_AUTH_USERNAME: evw-build-bot
+    NPM_AUTH_TOKEN:
+      from_secret: npm_auth_token
+    VERSION: ${DRONE_COMMIT_SHA}
+  when:
+#    branch:
+#    - master
+    event:
+    - push
+  depends_on:
+    - build
+
+- name: trigger_deploy_to_dev
+  pull: if-not-exists
+  image: plugins/downstream
+  settings:
+    server: https://drone-gl.acp.homeoffice.gov.uk
+    token:
+      from_secret: drone_token
+    deploy: dev
+    params:
+      - SERVICE=evw-self-serve
       - VERSION=${DRONE_COMMIT_SHA}
-    commands:
-      - apk add --update make
-      - docker login -u="evw-build-bot" -p=$${DOCKER_PASSWORD} docker.digital.homeoffice.gov.uk
-      - make build_self_serve
-      - make acceptance_test
-      - make clean
-    when:
-      event: push
+      - REPO=UKHomeOffice/evw-self-serve
+    last_successful: true
+    repositories:
+      - REGT/kube-evw@master
+  when:
+    event:
+      - push
+  #    branch:
+  #      - master
+  depends_on:
+    - image_to_artifactory
 
-  image_to_artifactory:
-    image: docker:18.06
-    secrets:
-      - npm_auth_token
-      - docker_password
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
-      - VERSION=${DRONE_COMMIT_SHA}
-    commands:
-      - apk add --update make
-      - docker login -u="evw-build-bot" -p=$${DOCKER_PASSWORD} docker.digital.homeoffice.gov.uk
-      - make push_self_serve
-    when:
-      branch: master
-      event: push
-
-  trigger_deploy_to_dev:
-    image: quay.io/ukhomeofficedigital/drone-trigger
-    secrets:
-      - drone_token
-    drone_server: https://drone-gitlab.acp.homeoffice.gov.uk
-    repo: REGT/kube-evw
-    branch: master
-    deploy_to: dev
-    params: "SERVICE=evw-self-serve,VERSION=${DRONE_COMMIT_SHA}"
-    when:
-      branch: master
-      event: push
+services:
+  - name: docker
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+...
