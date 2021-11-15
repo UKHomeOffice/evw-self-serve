@@ -15,36 +15,11 @@
 
 {{$content}}
 
-<h1 class="heading-large">{{#t}}pages.enter-your-details.header{{/t}}</h1>
+<header>
+  <h1 class="heading-large">Sorry, the service is unavailable</h1>
+</header>
 
-{{<partials-form}}
-
-{{$form}}
-
-    {{#input-text}}evw-number{{/input-text}}
-
-    <fieldset id="dob-group" class="form-group{{#errors.dob}} validation-error{{/errors.dob}}">
-
-        <span class="form-label-bold">{{#t}}fields.dob.legend{{/t}}</span>
-        <div class="form-date">
-            <p class="form-hint">{{#t}}fields.dob.hint{{/t}}</p>
-            {{#errors.dob}}
-                <span id="dob-error" class="error-message">
-                    {{errors.dob.message}}
-                </span>
-            {{/errors.dob}}
-            {{#input-date}}dob{{/input-date}}
-        </div>
-
-    </fieldset>
-
-    <p>
-        {{#input-submit}}Confirm details{{/input-submit}}
-    </p>
-
-{{/form}}
-
-{{/partials-form}}
+<p>You will be able to use the service later today.</p>
 
 {{/content}}
 
