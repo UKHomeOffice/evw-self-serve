@@ -1,4 +1,4 @@
-FROM quay.io/ukhomeofficedigital/nodejs-base:v8
+FROM centos/nodejs-10-centos7
 
 ARG NPM_AUTH_USERNAME
 ARG NPM_AUTH_TOKEN
@@ -20,6 +20,12 @@ ENV NODE_ENV=development \
 #    INTEGRATION_SERVICE_URL= \
 #    INTEGRATION_SERVICE_PROTOCOL=
 
+USER root
+
+WORKDIR /app
+
+RUN yum update -qy ca-certificates
+
 RUN yum install -y make gcc gcc-c++ krb5-devel git bzip2 nmap-ncat socat&& \
     npm i -g npm@6
 
@@ -32,11 +38,7 @@ COPY . /app/
 # Install node dependencies
 RUN CI=true MONGOMS_VERSION=3.4.18 npm --production=false install --unsafe-perm
 
-RUN npm prune && \
-    mkdir -p /app/reports && \
-    chown -R nodejs:nodejs /app/reports && \
-    mkdir -p /app/acceptance_tests/reports && \
-    chown -R nodejs:nodejs /app/acceptance_tests/reports
+RUN npm prune
 
 USER 1000
 
