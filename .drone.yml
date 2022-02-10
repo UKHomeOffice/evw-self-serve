@@ -15,6 +15,8 @@ steps:
   - apk add --update make
   - docker login -u="evw-build-bot" -p=$${DOCKER_PASSWORD} docker.digital.homeoffice.gov.uk
   - make build_self_serve
+  - make acceptance_test
+  - make clean
   environment:
     DOCKER_PASSWORD:
       from_secret: docker_password

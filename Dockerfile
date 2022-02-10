@@ -38,7 +38,8 @@ COPY . /app/
 # Install node dependencies
 RUN CI=true MONGOMS_VERSION=3.4.18 npm --production=false install --unsafe-perm
 
-RUN npm prune
+RUN npm test && \
+    npm prune
 
 USER 1000
 
