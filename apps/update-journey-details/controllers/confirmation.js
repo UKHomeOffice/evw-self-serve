@@ -65,7 +65,9 @@ const propMap = (model) => {
         inwardDeparturePort: f.departureAirport,
         inwardDeparturePortCode: f.inwardDeparturePortPlaneCode,
         departureForUKDate: departureDateTime.format('YYYY-MM-DD'),
-        departureForUKTime: departureDateTime.format('HH:mm')
+        departureForUKTime: departureDateTime.format('HH:mm'),
+        inwardDepartureDate: departureDateTime.toISOString(),
+        inwardDepartureTimezone: f.departureTimezone
       });
     }
 
