@@ -65,6 +65,8 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
           'inwardDepartureCountry': 'ARE',
           'inwardDeparturePort': 'Dubai Airport',
           'inwardDeparturePortCode': 'DXB',
+          'inwardDepartureDate': '2016-10-10T10:35:00.000Z',
+          'inwardDepartureTimezone': 'Asia/Dubai',
           'flightDetailsCheck': 'Yes',
           'travelBy': 'Plane'
         },
@@ -73,6 +75,7 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
           'departureDate': '2017-01-30',
           'departureTravel': 'FL1001',
           'portOfDeparture': 'London Gatwick Airport'
+
         },
         'accommodation': {
           'ukAddress': [
@@ -105,6 +108,8 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
           'inwardDepartureCountry': 'ARE',
           'inwardDeparturePort': 'Dubai Airport',
           'inwardDeparturePortCode': 'DXB',
+          'inwardDepartureDate': '2016-10-10T10:35:00.000Z',
+          'inwardDepartureTimezone': 'Asia/Dubai',
           'flightDetailsCheck': 'Yes',
           'travelBy': 'Plane'
         },
@@ -135,6 +140,8 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
           'inwardDepartureCountry': 'ARE',
           'inwardDeparturePort': 'Dubai Airport',
           'inwardDeparturePortCode': 'DXB',
+          'inwardDepartureDate': '2016-10-10T10:35:00.000Z',
+          'inwardDepartureTimezone': 'Asia/Dubai',
           'flightDetailsCheck': 'Yes',
           'travelBy': 'Plane'
         },
@@ -163,6 +170,8 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
           'inwardDepartureCountry': 'ARE',
           'inwardDeparturePort': 'Dubai Airport',
           'inwardDeparturePortCode': 'DXB',
+          'inwardDepartureDate': '2016-10-10T10:35:00.000Z',
+          'inwardDepartureTimezone': 'Asia/Dubai',
           'flightDetailsCheck': 'Yes',
           'travelBy': 'Plane'
         },
@@ -223,6 +232,8 @@ describe('apps/update-journey-details/controllers/confirmation', function () {
           'inwardDepartureCountry': 'ARE',
           'inwardDeparturePort': 'Dubai Airport',
           'inwardDeparturePortCode': 'DXB',
+          'inwardDepartureDate': '2016-10-10T10:35:00.000Z',
+          'inwardDepartureTimezone': 'Asia/Dubai',
           'flightDetailsCheck': 'Yes',
           'travelBy': 'Plane'
         }

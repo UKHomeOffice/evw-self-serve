@@ -10,7 +10,27 @@ const Validator = require('jsonschema').Validator;
 const v = new Validator();
 const schema = require('evw-schemas').evw.selfServe.schema;
 const authenticate = require('../../../lib/authenticate');
+const dayjs = require('dayjs');
+const utc = require('dayjs/plugin/utc')
+const timezone = require('dayjs/plugin/timezone');
 
+dayjs.extend(utc)
+dayjs.extend(timezone)
+
+// dayjs() currently (2021-10-19) has a bug where converting dates from one timezone to another may not work, depending on whether DST in effect in the local JavaScript timezone, and the dates themselves.
+// https://github.com/iamkun/dayjs/issues/1635
+
+// For now, we work around this by writing a plugin function to apply the imminent dayjs fix
+// https://github.com/wellcomecollection/wellcomecollection.org/blob/32af11a4169a0a91ff3e1efd2cf2bf919d61fb90/common/utils/dates.ts#L37-L45
+const fixTimezoneConversion = (option, dayjsClass) => {
+  dayjsClass.prototype.valueOf = function () {
+    const addedOffset = !this.$utils().u(this.$offset)
+      ? this.$offset + (this.$x.$localOffset || this.$d.getTimezoneOffset())
+      : 0;
+    return this.$d.valueOf() - addedOffset * 60 * 1000;
+  };
+}
+dayjs.extend(fixTimezoneConversion);
 
 const propMap = (model) => {
   const f = model.flightDetails;
@@ -53,7 +73,7 @@ const propMap = (model) => {
         travelBy: 'Plane'
       };
 
-      const departureDateTime = moment.utc(`${f.departureDateRaw} ${f.departureTime}`);
+      const departureDateTime = dayjs(`${f.departureDateRaw} ${f.departureTime}`);
 
       Object.assign(arrivalJourneyProps.arrival, {
         arrivalTravel: f.flightNumber,
@@ -65,7 +85,9 @@ const propMap = (model) => {
         inwardDeparturePort: f.departureAirport,
         inwardDeparturePortCode: f.inwardDeparturePortPlaneCode,
         departureForUKDate: departureDateTime.format('YYYY-MM-DD'),
-        departureForUKTime: departureDateTime.format('HH:mm')
+        departureForUKTime: departureDateTime.format('HH:mm'),
+        inwardDepartureDate: departureDateTime.tz(f.departureTimezone, true).utc().toDate().toISOString(),
+        inwardDepartureTimezone: f.departureTimezone
       });
     }
 
