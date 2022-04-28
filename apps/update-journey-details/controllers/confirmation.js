@@ -10,6 +10,13 @@ const Validator = require('jsonschema').Validator;
 const v = new Validator();
 const schema = require('evw-schemas').evw.selfServe.schema;
 const authenticate = require('../../../lib/authenticate');
+const dayjs = require('dayjs');
+const utc = require('dayjs/plugin/utc')
+const timezone = require('dayjs/plugin/timezone');
+
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
 
 
 const propMap = (model) => {
@@ -53,7 +60,7 @@ const propMap = (model) => {
         travelBy: 'Plane'
       };
 
-      const departureDateTime = moment.utc(`${f.departureDateRaw} ${f.departureTime}`);
+      const departureDateTime = dayjs(`${f.departureDateRaw} ${f.departureTime}`);
 
       Object.assign(arrivalJourneyProps.arrival, {
         arrivalTravel: f.flightNumber,
@@ -66,7 +73,7 @@ const propMap = (model) => {
         inwardDeparturePortCode: f.inwardDeparturePortPlaneCode,
         departureForUKDate: departureDateTime.format('YYYY-MM-DD'),
         departureForUKTime: departureDateTime.format('HH:mm'),
-        inwardDepartureDate: departureDateTime.toISOString(),
+        inwardDepartureDate: departureDateTime.tz(f.departureTimezone, true).utc().toDate().toISOString(),
         inwardDepartureTimezone: f.departureTimezone
       });
     }
