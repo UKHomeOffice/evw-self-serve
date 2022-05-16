@@ -116,5 +116,63 @@
   },
   "uk-postcode": {
     "label": "Postcode"
+  },
+  "train-number": {
+    "label": "What is your train number?",
+    "hint": "For example, Eurostar 9140. Enter 'Irish Rail' if you are travelling from the Republic of Ireland"
+  },
+  "train-departure-date": {
+    "legend": "What date does your train to the UK depart?"
+  },
+  "train-departure-date-day": {
+    "label": "Day"
+  },
+  "train-departure-date-month": {
+    "label": "Month"
+  },
+  "train-departure-date-year": {
+    "label": "Year"
+  },
+  "train-departure-time": {
+    "legend": "What time does your train to the UK depart?",
+    "hint": "Use the 24 hour clock, for example 09:45 or 21:45"
+  },
+  "train-departure-time-hour": {
+    "label": "Hours"
+  },
+  "train-departure-time-minute": {
+    "label": "Minutes"
+  },
+  "train-departure-country": {
+    "label": "What country is your train to the UK travelling from?"
+  },
+  "train-departure-station": {
+    "label": "What station is your train to the UK from?"
+  },
+  "train-arrival-station": {
+    "label": "What is your arrival train station in the UK?"
+  },
+  "train-arrival-date": {
+    "legend": "Date of arrival in the UK",
+    "hint": "For example, {{#dateHint}}2-weeks-future{{/dateHint}}"
+  },
+  "train-arrival-date-day": {
+    "label": "Day"
+  },
+  "train-arrival-date-month": {
+    "label": "Month"
+  },
+  "train-arrival-date-year": {
+    "label": "Year"
+  },
+  "train-arrival-time": {
+    "legend": "What time is your train due to arrive in the UK?",
+    "hint": "Use the 24 hour clock, for example 09:45 or 21:45"
+  },
+  "train-arrival-time-hour": {
+    "label": "Hours"
+  },
+  "train-arrival-time-minute": {
+    "label": "Minutes"
   }
 }

@@ -39,13 +39,52 @@ module.exports = {
       'transport-options'
     ],
     next: '/email-us',
-    forks: [{
-      target: '/flight-number',
-      condition: {
-        field: 'transport-options',
-        value: 'by-plane'
+    forks: [
+      {
+        target: '/flight-number',
+        condition: {
+          field: 'transport-options',
+          value: 'by-plane'
+        }
+      },
+      {
+        target: '/train-details',
+        condition: {
+          field: 'transport-options',
+          value: 'by-train'
+        }
       }
-    }]
+    ]
+  },
+  '/train-details': {
+    controller: require('./controllers/train-date-of-departure'),
+    template: 'train-details',
+    fields: [
+      'train-number',
+      'train-departure-date',
+      'train-departure-date-day',
+      'train-departure-date-month',
+      'train-departure-date-year',
+      'train-departure-time',
+      'train-departure-time-hour',
+      'train-departure-time-minute',
+      'train-departure-country',
+      'train-departure-station',
+      'train-arrival-station',
+      'train-arrival-date',
+      'train-arrival-date-day',
+      'train-arrival-date-month',
+      'train-arrival-date-year',
+      'train-arrival-time',
+      'train-arrival-time-hour',
+      'train-arrival-time-minute'
+    ],
+    next: '/check-your-answers',
+    options: {
+      dateKeys: ['train-departure-date', 'train-arrival-date'],
+      timeKeys: ['train-departure-time', 'train-arrival-time'],
+      overridableTypeaheadKeys: ['train-departure-station']
+    }
   },
   '/email-us': {
     template: 'email-us',
