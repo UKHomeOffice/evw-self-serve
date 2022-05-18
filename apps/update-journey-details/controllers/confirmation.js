@@ -83,8 +83,8 @@ const propMap = (model) => {
         };
 
         departureDateTime = dayjs(`${model['train-departure-date']} ${model['train-departure-time']}`);
-        const departureStation = getTrainDepartureTimezone(model['train-departure-station']);
-        const arrivalStation = getTrainDepartureTimezone(model['train-arrival-station']);
+        const departureStation = getTrainDepartureStation(model['train-departure-station']);
+        const arrivalStation = getTrainDepartureStation(model['train-arrival-station']);
   
         Object.assign(arrivalJourneyProps.arrival, {
           arrivalTravel: model['train-number'],
@@ -92,7 +92,7 @@ const propMap = (model) => {
           arrivalTime: model['train-arrival-time'],
           portOfArrival: model['train-arrival-station'],
           portOfArrivalCode: arrivalStation.code,
-          inwardDepartureCountry: model['train-departure-country'],
+          inwardDepartureCountry: model['train-departure-country'].substring(0,3),
           inwardDeparturePort: model['train-departure-station'],
           inwardDeparturePortCode: departureStation.code,
           departureForUKDate: departureDateTime.format('YYYY-MM-DD'),
@@ -124,6 +124,8 @@ const propMap = (model) => {
         });
       }
     }
+
+    console.log(arrivalJourneyProps);
 
     return arrivalJourneyProps;
   };

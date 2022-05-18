@@ -46,11 +46,11 @@ module.exports = {
       className: 'visuallyhidden'
     }
   },
-  'train-departure-time-hour': {
+  'train-departure-time-hours': {
     validate: [{type: 'maxlength', arguments: '2'}],
     label: 'fields.train-departure-time-hour.label'
   },
-  'train-departure-time-minute': {
+  'train-departure-time-minutes': {
     validate: [{type: 'maxlength', arguments: '2'}],
     label: 'fields.train-departure-time-minute.label'
   },
@@ -103,11 +103,11 @@ module.exports = {
       className: 'visuallyhidden'
     }
   },
-  'train-arrival-time-hour': {
+  'train-arrival-time-hours': {
     validate: [{type: 'maxlength', arguments: '2'}],
     label: 'fields.train-arrival-time-hour.label'
   },
-  'train-arrival-time-minute': {
+  'train-arrival-time-minutes': {
     validate: [{type: 'maxlength', arguments: '2'}],
     label: 'fields.train-arrival-time-minute.label'
   }

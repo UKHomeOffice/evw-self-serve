@@ -66,8 +66,8 @@ module.exports = {
       'train-departure-date-month',
       'train-departure-date-year',
       'train-departure-time',
-      'train-departure-time-hour',
-      'train-departure-time-minute',
+      'train-departure-time-hours',
+      'train-departure-time-minutes',
       'train-departure-country',
       'train-departure-station',
       'train-arrival-station',
@@ -76,8 +76,8 @@ module.exports = {
       'train-arrival-date-month',
       'train-arrival-date-year',
       'train-arrival-time',
-      'train-arrival-time-hour',
-      'train-arrival-time-minute'
+      'train-arrival-time-hours',
+      'train-arrival-time-minutes'
     ],
     next: '/check-your-answers',
     options: {
