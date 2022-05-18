@@ -122,7 +122,8 @@
     "hint": "For example, Eurostar 9140. Enter 'Irish Rail' if you are travelling from the Republic of Ireland"
   },
   "train-departure-date": {
-    "legend": "What date does your train to the UK depart?"
+    "legend": "What date does your train to the UK depart?",
+    "hint": "For example, {{#dateHint}}2-months-future{{/dateHint}}"
   },
   "train-departure-date-day": {
     "label": "Day"
