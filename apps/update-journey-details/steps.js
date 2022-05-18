@@ -80,10 +80,21 @@ module.exports = {
       'train-arrival-time-minutes'
     ],
     next: '/check-your-answers',
+    forks: [{
+      target: '/visit-information',
+      condition: function (req) {
+        return req.sessionModel.get('update-accommodation');
+      }
+    },
+    {
+      target: '/uk-departure',
+      condition: function (req) {
+        return req.sessionModel.get('update-from-uk');
+      }
+    }],
     options: {
       dateKeys: ['train-departure-date', 'train-arrival-date'],
-      timeKeys: ['train-departure-time', 'train-arrival-time'],
-      overridableTypeaheadKeys: ['train-departure-station']
+      timeKeys: ['train-departure-time', 'train-arrival-time']
     }
   },
   '/email-us': {
