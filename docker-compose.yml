@@ -1,7 +1,12 @@
-version: '2'
+version: '3'
 services:
   app:
-    build: .
+    container_name: evw-self-serve
+    build: 
+      context: .
+      args:
+        NPM_AUTH_TOKEN: ${NPM_AUTH_TOKEN}
+        NPM_AUTH_USERNAME: ${NPM_AUTH_USERNAME}
     environment:
     - NODE_ENV=docker-compose
     - MONGO_CONNECTION_STRING=mongodb://db:27017/evw-self-serve
@@ -9,22 +14,9 @@ services:
       - "8080:8080"
     depends_on:
       - db
-    links:
-      - db
     volumes:
       - /public
   db:
     image: mongo:3.2
     ports:
       - "27017:27017"
-  # flight-forecast-service:
-  #   depends_on:
-  #     - db
-  #   build: ../flight-forecast-service/.
-  #   links:
-  #     - db
-  #   ports:
-  #     - "9350:9350"
-  #   restart: always
-  #   environment:
-  #     MONGO_HOST: db

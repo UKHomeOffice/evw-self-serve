@@ -4,6 +4,7 @@ const EvwBaseController = require('../../common/controllers/evw-base');
 
 module.exports = class CheckYourAnswersController extends EvwBaseController {
   locals(req, res) {
+    console.log(req.sessionModel);
     let displayProps = {};
     if (req.sessionModel.get('know-departure-details') === 'Yes') {
       const getOptionValue = value => typeof value === 'string' ? value.substr(value.indexOf('_') + 1) : '';

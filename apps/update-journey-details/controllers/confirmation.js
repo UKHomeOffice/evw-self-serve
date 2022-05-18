@@ -65,19 +65,42 @@ const propMap = (model) => {
     return departureJourneyProps;
   };
 
-  const getTrainDepartureTimezone = (stationCodeName) => {
+  const getTrainDepartureStation = (stationCodeName) => {
     const stationName = stationCodeName.substring(stationCodeName.indexOf('_') + 1);
-    const station = stations.find(s => s.name === stationName);
-    return station.timezone || 'Europe/London';
+    return stations.find(s => s.name === stationName);
   }
 
   const getArrivalJourneyDetails = () => {
     let arrivalJourneyProps = {};
     let departureDateTime;
-s
+
     if (model['update-to-uk'] === 'true') {
 
-      if (model['transport-options'] === 'by-plane') {
+      if (model['transport-options'] === 'by-train') {
+        arrivalJourneyProps.arrival = {
+          flightDetailsCheck: 'No',
+          travelBy: 'Train'
+        };
+
+        departureDateTime = dayjs(`${model['train-departure-date']} ${model['train-departure-time']}`);
+        const departureStation = getTrainDepartureTimezone(model['train-departure-station']);
+        const arrivalStation = getTrainDepartureTimezone(model['train-arrival-station']);
+  
+        Object.assign(arrivalJourneyProps.arrival, {
+          arrivalTravel: model['train-number'],
+          arrivalDate: model['train-arrival-date'],
+          arrivalTime: model['train-arrival-time'],
+          portOfArrival: model['train-arrival-station'],
+          portOfArrivalCode: arrivalStation.code,
+          inwardDepartureCountry: model['train-departure-country'],
+          inwardDeparturePort: model['train-departure-station'],
+          inwardDeparturePortCode: departureStation.code,
+          departureForUKDate: departureDateTime.format('YYYY-MM-DD'),
+          departureForUKTime: departureDateTime.format('HH:mm'),
+          inwardDepartureDate: departureDateTime.tz(departureStation.timezone, true).utc().toDate().toISOString(),
+          inwardDepartureTimezone: departureStation.timezone
+        });
+      } else {
         arrivalJourneyProps.arrival = {
           flightDetailsCheck: 'Yes',
           travelBy: 'Plane'
@@ -98,29 +121,6 @@ s
           departureForUKTime: departureDateTime.format('HH:mm'),
           inwardDepartureDate: departureDateTime.tz(f.departureTimezone, true).utc().toDate().toISOString(),
           inwardDepartureTimezone: f.departureTimezone
-        });
-      }
-
-      if (model['transport-options'] === 'by-train') {
-        arrivalJourneyProps.arrival = {
-          flightDetailsCheck: 'No',
-          travelBy: 'Train'
-        };
-
-        departureDateTime = dayjs(`${model['train-departure-date']} ${model['train-departure-time']}`);
-        const inwardDepartureTimezone = getTrainDepartureTimezone(model['train-departure-station']);
-  
-        Object.assign(arrivalJourneyProps.arrival, {
-          arrivalTravel: model['train-number'],
-          arrivalDate: model['train-arrival-date'],
-          arrivalTime: model['train-arrival-time'],
-          portOfArrival: model['train-arrival-station'],
-          inwardDepartureCountry: model['train-departure-country'],
-          inwardDeparturePort: model['train-departure-station'],
-          departureForUKDate: departureDateTime.format('YYYY-MM-DD'),
-          departureForUKTime: departureDateTime.format('HH:mm'),
-          inwardDepartureDate: departureDateTime.tz(inwardDepartureTimezone, true).utc().toDate().toISOString(),
-          inwardDepartureTimezone
         });
       }
     }

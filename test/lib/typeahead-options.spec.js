@@ -98,7 +98,7 @@ describe('lib/typeahead-options', function() {
 
     it('prepends blank entry', function() {
       const nonBritishStations = typeaheadOptions.nonBritishStations();
-      nonBritishStations.should.have.lengthOf(35);
+      nonBritishStations.should.have.lengthOf(37);
       nonBritishStations.shift().should.deep.equal({
         label: '',
         value: ''
@@ -107,7 +107,7 @@ describe('lib/typeahead-options', function() {
 
     it('does not prepend blank entry', function() {
       const nonBritishStations = typeaheadOptions.nonBritishStations({ prependEmpty: false });
-      nonBritishStations.should.have.lengthOf(34);
+      nonBritishStations.should.have.lengthOf(36);
       nonBritishStations.shift().should.not.deep.equal({
         label: '',
         value: ''
@@ -218,7 +218,7 @@ describe('lib/typeahead-options', function() {
   describe('allStations', function() {
     it('returns an array of all stations', function() {
       typeaheadOptions.allStations.should.be.an.array;
-      typeaheadOptions.allStations.should.be.lengthOf(50);
+      typeaheadOptions.allStations.should.be.lengthOf(52);
     });
   });
 
