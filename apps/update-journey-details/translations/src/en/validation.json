@@ -51,5 +51,42 @@
   "uk-postcode": {
     "required": "Enter the post code of your UK address",
     "regex": "Enter a UK post code, for example AB12 3CD"
+  },
+  "train-number": {
+    "required": "Enter the train number you will be entering the UK on. This will be on your travel documents"
+  },
+  "train-departure-date": {
+    "required": "Enter the date you will be travelling to the UK",
+    "date": "Enter a valid date, in the format dd mm yyyy",
+    "afterDate": "Date of travel to the UK must be no more than 3 months from now",
+    "beforeDate": "Date of travel must be at least 48 hours from now",
+    "travel-too-soon": "Date of travel must be at least 48 hours from now",
+    "depart-after-arrive": "Your departure cannot be after your arrival",
+    "depart-24-hours-before-arrive": "The date your flight to the UK takes off cannot be more than 24 hours before it arrives in the UK"
+  },
+  "train-departure-time": {
+    "required": "Enter the time your train leaves to come to the UK",
+    "validTime": "Enter the time your train leaves to come to the UK"
+  },
+  "train-departure-country": {
+    "required": "Select the country your train to the UK is travelling from",
+    "equal": "Select one of the countries from the list"
+  },
+  "train-departure-station": {
+    "required": "Enter the name of the port your travel to the UK departs from"
+  },
+  "train-arrival-station": {
+    "required": "Select your UK arrival station",
+    "equal": "Select one of the stations from the list"
+  },
+  "train-arrival-date": {
+    "required": "Enter the date your train arrives in the UK",
+    "date": "Enter a valid date, in the format dd mm yyyy",
+    "afterDate": "Date of arrival in the UK must be no more than 3 months from now",
+    "beforeDate": "Date of arrival must be at least 48 hours from now"
+  },
+  "train-arrival-time": {
+    "required": "Enter the time your train is due to arrive in the UK",
+    "validTime": "Enter the time your train is due to arrive in the UK in 24 hour format HH:MM"
   }
 }

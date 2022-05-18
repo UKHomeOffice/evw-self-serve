@@ -56,15 +56,18 @@ module.exports = {
   },
   'train-departure-country': {
     validate: ['required'],
+    className: ['autocomplete'],
     options: nationalities
   },
   'train-departure-station': {
     validate: ['required', {type: 'maxlength', arguments: '95'}],
     ignoreValidate: ['equal'],
+    className: ['autocomplete'],
     options: nonBritishStations
   },
   'train-arrival-station': {
     validate: ['required'],
+    className: ['autocomplete'],
     options: britishStations
   },
   'train-arrival-date': {

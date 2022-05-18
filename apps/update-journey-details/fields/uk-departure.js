@@ -13,7 +13,6 @@ ukPortOfDepartureOptions.unshift({
   value: ''
 });
 
-
 module.exports = {
   'know-departure-details': {
     validate: ['required'],
