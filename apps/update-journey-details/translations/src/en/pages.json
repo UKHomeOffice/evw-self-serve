@@ -97,7 +97,10 @@
       "uk-duration": "Length of stay",
       "uk-port-of-departure": "Departure airport",
       "uk-date-of-departure": "Departure date",
-      "uk-departure-travel-number": "Flight number"
+      "uk-departure-travel-number": "Flight number",
+      "train-number": "Train number",
+      "departure-station": "Departure station",
+      "arrival-station": "Arrival station"
     }
   },
   "flight-not-found": {
@@ -142,5 +145,9 @@
     "print": "You can either print it or save a copy on your mobile phone or tablet.",
     "wait": "Add electronicvisawaiver@homeoffice.gov.uk to your safe senders list to make sure you get your download details. Please wait 24 hours before contacting us about your new electronic visa waiver.",
     "finish-button": "Finished"
+  },
+  "train-details": {
+    "header": "Your train details",
+    "sub-header": "Your arrival in the UK"
   }
 }

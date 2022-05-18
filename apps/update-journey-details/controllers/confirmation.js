@@ -13,6 +13,7 @@ const authenticate = require('../../../lib/authenticate');
 const dayjs = require('dayjs');
 const utc = require('dayjs/plugin/utc')
 const timezone = require('dayjs/plugin/timezone');
+const stations = require('../../../data/stations.json');
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -64,31 +65,64 @@ const propMap = (model) => {
     return departureJourneyProps;
   };
 
+  const getTrainDepartureStation = (stationCodeName) => {
+    const stationName = stationCodeName.substring(stationCodeName.indexOf('_') + 1);
+    return stations.find(s => s.name === stationName);
+  }
+
   const getArrivalJourneyDetails = () => {
     let arrivalJourneyProps = {};
+    let departureDateTime;
 
     if (model['update-to-uk'] === 'true') {
-      arrivalJourneyProps.arrival = {
-        flightDetailsCheck: 'Yes',// hard-coded until we implement un-happy path
-        travelBy: 'Plane'
-      };
 
-      const departureDateTime = dayjs(`${f.departureDateRaw} ${f.departureTime}`);
+      if (model['transport-options'] === 'by-train') {
+        arrivalJourneyProps.arrival = {
+          flightDetailsCheck: 'No',
+          travelBy: 'Train'
+        };
 
-      Object.assign(arrivalJourneyProps.arrival, {
-        arrivalTravel: f.flightNumber,
-        arrivalDate: f.arrivalDateRaw,
-        arrivalTime: f.arrivalTime,
-        portOfArrival: f.arrivalAirport,
-        portOfArrivalCode: f.portOfArrivalPlaneCode,
-        inwardDepartureCountry: f.inwardDepartureCountryPlaneCode,
-        inwardDeparturePort: f.departureAirport,
-        inwardDeparturePortCode: f.inwardDeparturePortPlaneCode,
-        departureForUKDate: departureDateTime.format('YYYY-MM-DD'),
-        departureForUKTime: departureDateTime.format('HH:mm'),
-        inwardDepartureDate: departureDateTime.tz(f.departureTimezone, true).utc().toDate().toISOString(),
-        inwardDepartureTimezone: f.departureTimezone
-      });
+        departureDateTime = dayjs(`${model['train-departure-date']} ${model['train-departure-time']}`);
+        const departureStation = getTrainDepartureStation(model['train-departure-station']);
+        const arrivalStation = getTrainDepartureStation(model['train-arrival-station']);
+  
+        Object.assign(arrivalJourneyProps.arrival, {
+          arrivalTravel: model['train-number'],
+          arrivalDate: model['train-arrival-date'],
+          arrivalTime: model['train-arrival-time'],
+          portOfArrival: model['train-arrival-station'],
+          portOfArrivalCode: arrivalStation.code,
+          inwardDepartureCountry: model['train-departure-country'].substring(0,3),
+          inwardDeparturePort: model['train-departure-station'],
+          inwardDeparturePortCode: departureStation.code,
+          departureForUKDate: departureDateTime.format('YYYY-MM-DD'),
+          departureForUKTime: departureDateTime.format('HH:mm'),
+          inwardDepartureDate: departureDateTime.tz(departureStation.timezone, true).utc().toDate().toISOString(),
+          inwardDepartureTimezone: departureStation.timezone
+        });
+      } else {
+        arrivalJourneyProps.arrival = {
+          flightDetailsCheck: 'Yes',
+          travelBy: 'Plane'
+        };
+
+        departureDateTime = dayjs(`${f.departureDateRaw} ${f.departureTime}`);
+  
+        Object.assign(arrivalJourneyProps.arrival, {
+          arrivalTravel: f.flightNumber,
+          arrivalDate: f.arrivalDateRaw,
+          arrivalTime: f.arrivalTime,
+          portOfArrival: f.arrivalAirport,
+          portOfArrivalCode: f.portOfArrivalPlaneCode,
+          inwardDepartureCountry: f.inwardDepartureCountryPlaneCode,
+          inwardDeparturePort: f.departureAirport,
+          inwardDeparturePortCode: f.inwardDeparturePortPlaneCode,
+          departureForUKDate: departureDateTime.format('YYYY-MM-DD'),
+          departureForUKTime: departureDateTime.format('HH:mm'),
+          inwardDepartureDate: departureDateTime.tz(f.departureTimezone, true).utc().toDate().toISOString(),
+          inwardDepartureTimezone: f.departureTimezone
+        });
+      }
     }
 
     return arrivalJourneyProps;

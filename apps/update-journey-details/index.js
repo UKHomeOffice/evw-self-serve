@@ -8,11 +8,17 @@ var router = require('express').Router();
 var path = require('path');
 var _ = require('underscore');
 var controllers = require('hof').controllers;
+const formatting = require('../../lib/formatting');
 var BaseController = controllers.base;
 
 var fields = _.extend({}, require('../common/fields/'), require('./fields/'));
 var i18n = i18nFuture({
   path: path.resolve(__dirname, './translations/__lng__/__ns__.json')
+});
+
+router.use((req, res, next) => {
+  res.locals.dateHint = () => (txt) => formatting.dateHint(txt);
+  next();
 });
 
 router.use(mixins(fields, {

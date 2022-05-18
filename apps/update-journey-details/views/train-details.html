@@ -1,0 +1,106 @@
+{{<layout}}
+
+{{$journeyHeader}}
+{{#t}}journey.header{{/t}}
+{{/journeyHeader}}
+
+{{$validationSummary}}
+{{> partials-validation-summary}}
+{{/validationSummary}}
+
+{{$propositionHeader}}
+{{> partials-navigation}}
+{{/propositionHeader}}
+
+{{$content}}
+
+<header>
+  <h1 class="heading-large">{{#t}}pages.train-details.header{{/t}}</h1>
+</header>
+
+{{<partials-form}}
+
+{{$form}}
+
+{{#input-text}}train-number{{/input-text}}
+<hr class="keyline">
+
+<div id="train-departure-date-group" class="form-group{{#errors.train-departure-date}} form-group-error{{/errors.train-departure-date}}">
+  <legend class="form-label-bold">{{#t}}fields.train-departure-date.legend{{/t}}</legend>
+  <div class="form-date">
+    {{#errors.train-departure-date}}
+    <p id="train-departure-date-hint" class="form-hint">{{#t}}fields.train-departure-date.hint{{/t}}</p>
+    <span id="train-departure-date-error" class="error-message">{{{errors.train-departure-date.message}}}</span>
+    {{/errors.train-departure-date}}
+    {{#input-date}}train-departure-date{{/input-date}}
+  </div>
+</div>
+
+<hr class="keyline">
+
+<div id="train-departure-time-group" class="form-group{{#errors.train-departure-time}} form-group-error{{/errors.train-departure-time}}">
+  <legend class="form-label-bold">{{#t}}fields.train-departure-time.legend{{/t}}</legend>
+  <div class="form-date">
+    <p id="train-departure-time-hint" class="form-hint">{{#t}}fields.train-departure-time.hint{{/t}}</p>
+    {{#errors.train-departure-time}}
+      <span id="train-departure-time-error" class="error-message">{{{errors.train-departure-time.message}}}</span>
+    {{/errors.train-departure-time}}
+    {{#input-text-compound}}train-departure-time-hours{{/input-text-compound}}
+  </div>
+  <div class="form-date">
+    {{#input-text-compound}}train-departure-time-minutes{{/input-text-compound}}
+  </div>
+</div>
+
+<hr class="keyline">
+
+{{#select}}train-departure-country{{/select}}
+
+<hr class="keyline">
+
+{{#select}}train-departure-station{{/select}}
+
+<div class="form-group train-details-arrival">
+  <h2 class="heading-large">{{#t}}pages.train-details.sub-header{{/t}}</h2>
+</div>
+
+{{#select}}train-arrival-station{{/select}}
+
+<hr class="keyline">
+
+<div id="train-arrival-date-group" class="form-group{{#errors.train-arrival-date}} form-group-error{{/errors.train-arrival-date}} ">
+    <legend class="form-label-bold">{{#t}}fields.train-arrival-date.legend{{/t}}</legend>
+  <div class="form-date">
+    <p id="train-arrival-date-hint" class="form-hint">{{#t}}fields.train-arrival-date.hint{{/t}}</p>
+    {{#errors.train-arrival-date}}
+      <span id="train-arrival-date-error" class="error-message">{{{errors.train-arrival-date.message}}}</span>
+    {{/errors.train-arrival-date}}
+    {{#input-date}}train-arrival-date{{/input-date}}
+  </div>
+</div>
+
+<hr class="keyline">
+
+<div id="train-arrival-time-group" class="form-group{{#errors.train-arrival-time}} form-group-error{{/errors.train-arrival-time}}">
+    <legend class="form-label-bold">{{#t}}fields.train-arrival-time.legend{{/t}}</legend>
+  <div class="form-date">
+    <p id="train-arrival-time-hint" class="form-hint">{{#t}}fields.train-arrival-time.hint{{/t}}</p>
+    {{#errors.train-arrival-time}}
+      <span id="train-arrival-time-error" class="error-message">{{{errors.train-arrival-time.message}}}</span>
+    {{/errors.train-arrival-time}}
+    {{#input-text-compound}}train-arrival-time-hours{{/input-text-compound}}
+  </div>
+  <div class="form-date">
+    {{#input-text-compound}}train-arrival-time-minutes{{/input-text-compound}}
+  </div>
+</div>
+
+{{#input-submit}}continue{{/input-submit}}
+
+{{/form}}
+
+{{/partials-form}}
+
+{{/content}}
+
+{{/layout}}

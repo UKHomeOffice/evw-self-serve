@@ -580,18 +580,50 @@ Scenario: Choosing Train
   Then I should be on the "How will you arrive" page of the "Update journey details" app
   When I click "By train"
   And I continue
-  Then I should be on the "Email us" page of the "Update journey details" app
-  And the content list should contain
+  Then I should be on the "Train details" page of the "Update journey details" app
+  Then I enter "Eurostar 9140" into "Train number"
+  And I enter a date "2 months" in the future into "Train departure date"
+  And I enter "09" into "Train departure time hours"
+  And I enter "45" into "Train departure time minutes"
+  And I enter "France" into "Train departure country"
+  And I enter "Calais-Frethun" into "Train departure station"
+  And I enter "Lurgan" into "Train arrival station"
+  And I enter a date "2 months" in the future into "Train arrival date"
+  And I enter "21" into "Train arrival time hours"
+  And I enter "45" into "Train arrival time minutes"
+  And I continue
+  # Check your answers page
+  Then the page title should contain "Check your answers"
+  And the "inbound-summary" table should contain
     """
-    reference number: EVW123 (this is in the email we sent you)
-    new train number, eg Eurostar 9140
-    new train station you depart for the UK from
-    new date of departure for the UK
-    new time of departure for the UK
-    new UK arrival train station
-    new date of arrival in the UK
-    new time of arrival in the UK
+    Departure country
+                      France
+    Departure station
+                      Calais-Frethun
+    Departure date
+                      ${"2 months" in the "future"}
+    Departure time
+                      09:45
+    Train number
+                      Eurostar 9140
+    Arrival station
+                      Lurgan
+    Arrival date
+                      ${"2 months" in the "future"}
+    Arrival time
+                      21:45
     """
+  And I continue
+  # Declaration page
+  Then I should be on the "Declaration" page of the "Update journey details" app
+  And the page title should contain "Declaration"
+  And the new EVW warning should be present
+  When I click id "Accept Declaration"
+  And I continue
+  Then I should be on the "Confirmation" page of the "Update journey details" app
+  And the "header notice complete" should contain "Request received"
+  And the reference number should be present
+  And the user is told they will receive a new EVW
 
 Scenario: Choosing Private Plane
 

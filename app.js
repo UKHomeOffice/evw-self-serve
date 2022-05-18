@@ -4,15 +4,10 @@ var path = require('path');
 var express = require('express');
 var app = express();
 var logger = require('./lib/logger');
-var churchill = require('churchill');
 
 
 var config = require('./config');
 require('moment-business');
-
-if (config.env !== 'ci') {
-  app.use(churchill(logger));
-}
 
 app.use(function setGaCode(req, res, next) {
   if (config.gaCode) {

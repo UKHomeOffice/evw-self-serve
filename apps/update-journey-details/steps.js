@@ -39,13 +39,63 @@ module.exports = {
       'transport-options'
     ],
     next: '/email-us',
-    forks: [{
-      target: '/flight-number',
-      condition: {
-        field: 'transport-options',
-        value: 'by-plane'
+    forks: [
+      {
+        target: '/flight-number',
+        condition: {
+          field: 'transport-options',
+          value: 'by-plane'
+        }
+      },
+      {
+        target: '/train-details',
+        condition: {
+          field: 'transport-options',
+          value: 'by-train'
+        }
       }
-    }]
+    ]
+  },
+  '/train-details': {
+    controller: require('./controllers/train-date-of-departure'),
+    template: 'train-details',
+    fields: [
+      'train-number',
+      'train-departure-date',
+      'train-departure-date-day',
+      'train-departure-date-month',
+      'train-departure-date-year',
+      'train-departure-time',
+      'train-departure-time-hours',
+      'train-departure-time-minutes',
+      'train-departure-country',
+      'train-departure-station',
+      'train-arrival-station',
+      'train-arrival-date',
+      'train-arrival-date-day',
+      'train-arrival-date-month',
+      'train-arrival-date-year',
+      'train-arrival-time',
+      'train-arrival-time-hours',
+      'train-arrival-time-minutes'
+    ],
+    next: '/check-your-answers',
+    forks: [{
+      target: '/visit-information',
+      condition: function (req) {
+        return req.sessionModel.get('update-accommodation');
+      }
+    },
+    {
+      target: '/uk-departure',
+      condition: function (req) {
+        return req.sessionModel.get('update-from-uk');
+      }
+    }],
+    options: {
+      dateKeys: ['train-departure-date', 'train-arrival-date'],
+      timeKeys: ['train-departure-time', 'train-arrival-time']
+    }
   },
   '/email-us': {
     template: 'email-us',
