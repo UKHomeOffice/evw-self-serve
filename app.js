@@ -9,10 +9,6 @@ var logger = require('./lib/logger');
 var config = require('./config');
 require('moment-business');
 
-// if (config.env !== 'ci') {
-//   app.use(churchill(logger));
-// }
-
 app.use(function setGaCode(req, res, next) {
   if (config.gaCode) {
     res.locals.gaCode = config.gaCode;

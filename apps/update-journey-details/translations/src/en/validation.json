@@ -62,7 +62,7 @@
     "beforeDate": "Date of travel must be at least 48 hours from now",
     "travel-too-soon": "Date of travel must be at least 48 hours from now",
     "depart-after-arrive": "Your departure cannot be after your arrival",
-    "depart-24-hours-before-arrive": "The date your flight to the UK takes off cannot be more than 24 hours before it arrives in the UK"
+    "depart-24-hours-before-arrive": "Your departure cannot be more than 24 hours before your arrival"
   },
   "train-departure-time": {
     "required": "Enter the time your train leaves to come to the UK",

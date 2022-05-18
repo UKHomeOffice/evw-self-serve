@@ -125,8 +125,6 @@ const propMap = (model) => {
       }
     }
 
-    console.log(arrivalJourneyProps);
-
     return arrivalJourneyProps;
   };
 
