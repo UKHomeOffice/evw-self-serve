@@ -1,6 +1,7 @@
 'use strict';
 
 const EvwBaseController = require('../../common/controllers/evw-base');
+const ErrorClass = require('hof').controllers.error;
 const moment = require('moment');
 const validators = require('../../../lib/validators');
 
@@ -21,7 +22,7 @@ module.exports = class TrainDateOfDepartureController extends EvwBaseController 
 
       const errorType = validators.validateDepartureDate(arrivalDateTime, departureDateTime, true);
       if (errorType) {
-        return new this.ValidationError(key, {
+        return new ErrorClass(key, {
           key: key,
           type: errorType,
           redirect: undefined
