@@ -5,7 +5,7 @@ const proxyquire = require('proxyquire').noCallThru().noPreserveCache();
 const EvwBaseController = require('../../../../apps/common/controllers/evw-base');
 const flightLookup = require('evw-ffs');
 const sampleFlight = {
-  flightNumber: 'EK009',
+  flightNumber: 'EK 009',
   departure: {
     country: 'AE',
     port: 'DXB',
