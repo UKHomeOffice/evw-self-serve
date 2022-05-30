@@ -43,7 +43,7 @@ Scenario: Entering an EVW number that cannot be updated
   And I click confirm details
   # EVW expired page
   Then I should be on the "EVW expired" page of the "Find your application" app
-  And the page title should contain "Electronic visa waiver expired"
+  And the page title should contain "You cannot update your journey"
 
 Scenario: Not entering any details on the departure date page
 
