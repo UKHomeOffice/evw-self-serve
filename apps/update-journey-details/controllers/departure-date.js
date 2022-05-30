@@ -23,7 +23,7 @@ module.exports = class DepartureDateController extends EvwBaseController {
     logger.info('looking up flight using this data:', this.lookupData);
 
     return flightLookup
-      .findFlight(this.lookupData.number.replace(/\s+/g), this.lookupData.date)
+      .findFlight(this.lookupData.number.replace(/\s+/g, ''), this.lookupData.date)
       .then(foundData => {
         this.flightData = foundData.body;
         this.setFlight(req, res, callback);
